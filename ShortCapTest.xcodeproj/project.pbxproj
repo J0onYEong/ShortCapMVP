@@ -14,9 +14,13 @@
 		9B8E7BE92B9496D9001F3D88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B8E7BE82B9496D9001F3D88 /* Assets.xcassets */; };
 		9B8E7BEC2B9496D9001F3D88 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B8E7BEA2B9496D9001F3D88 /* LaunchScreen.storyboard */; };
 		9B8E7BFB2B9497D3001F3D88 /* ShareShortFormModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7BF92B9497D3001F3D88 /* ShareShortFormModel.xcdatamodeld */; };
-		9B8E7BFD2B9499A2001F3D88 /* SSFModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7BFC2B9499A2001F3D88 /* SSFModel.swift */; };
-		9B8E7BFF2B949AE8001F3D88 /* SSFListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7BFE2B949AE8001F3D88 /* SSFListViewModel.swift */; };
-		9B8E7C012B949C53001F3D88 /* SSFViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C002B949C53001F3D88 /* SSFViewModel.swift */; };
+		9B8E7BFD2B9499A2001F3D88 /* SFModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7BFC2B9499A2001F3D88 /* SFModel.swift */; };
+		9B8E7BFF2B949AE8001F3D88 /* SFListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7BFE2B949AE8001F3D88 /* SFListViewModel.swift */; };
+		9B8E7C012B949C53001F3D88 /* SFViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C002B949C53001F3D88 /* SFViewModel.swift */; };
+		9B8E7C032B949E05001F3D88 /* MySFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C022B949E05001F3D88 /* MySFViewController.swift */; };
+		9B8E7C052B949FCC001F3D88 /* SFRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C042B949FCC001F3D88 /* SFRowCell.swift */; };
+		9B8E7C082B94A519001F3D88 /* SFFetchInterFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C072B94A519001F3D88 /* SFFetchInterFace.swift */; };
+		9B8E7C0A2B94A691001F3D88 /* TestSFFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C092B94A691001F3D88 /* TestSFFetcher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,9 +33,13 @@
 		9B8E7BEB2B9496D9001F3D88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9B8E7BED2B9496D9001F3D88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B8E7BFA2B9497D3001F3D88 /* ShareShortFormModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ShareShortFormModel.xcdatamodel; sourceTree = "<group>"; };
-		9B8E7BFC2B9499A2001F3D88 /* SSFModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSFModel.swift; sourceTree = "<group>"; };
-		9B8E7BFE2B949AE8001F3D88 /* SSFListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSFListViewModel.swift; sourceTree = "<group>"; };
-		9B8E7C002B949C53001F3D88 /* SSFViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSFViewModel.swift; sourceTree = "<group>"; };
+		9B8E7BFC2B9499A2001F3D88 /* SFModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFModel.swift; sourceTree = "<group>"; };
+		9B8E7BFE2B949AE8001F3D88 /* SFListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFListViewModel.swift; sourceTree = "<group>"; };
+		9B8E7C002B949C53001F3D88 /* SFViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFViewModel.swift; sourceTree = "<group>"; };
+		9B8E7C022B949E05001F3D88 /* MySFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySFViewController.swift; sourceTree = "<group>"; };
+		9B8E7C042B949FCC001F3D88 /* SFRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFRowCell.swift; sourceTree = "<group>"; };
+		9B8E7C072B94A519001F3D88 /* SFFetchInterFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFFetchInterFace.swift; sourceTree = "<group>"; };
+		9B8E7C092B94A691001F3D88 /* TestSFFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSFFetcher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +88,7 @@
 		9B8E7BF32B9496F8001F3D88 /* MyShortForm */ = {
 			isa = PBXGroup;
 			children = (
+				9B8E7C062B94A2A1001F3D88 /* InterFace */,
 				9B8E7BF72B949723001F3D88 /* Service */,
 				9B8E7BF62B949710001F3D88 /* Model */,
 				9B8E7BF52B94970C001F3D88 /* View */,
@@ -91,8 +100,8 @@
 		9B8E7BF42B949702001F3D88 /* VIewModel */ = {
 			isa = PBXGroup;
 			children = (
-				9B8E7BFE2B949AE8001F3D88 /* SSFListViewModel.swift */,
-				9B8E7C002B949C53001F3D88 /* SSFViewModel.swift */,
+				9B8E7BFE2B949AE8001F3D88 /* SFListViewModel.swift */,
+				9B8E7C002B949C53001F3D88 /* SFViewModel.swift */,
 			);
 			path = VIewModel;
 			sourceTree = "<group>";
@@ -100,6 +109,8 @@
 		9B8E7BF52B94970C001F3D88 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9B8E7C022B949E05001F3D88 /* MySFViewController.swift */,
+				9B8E7C042B949FCC001F3D88 /* SFRowCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -107,7 +118,7 @@
 		9B8E7BF62B949710001F3D88 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9B8E7BFC2B9499A2001F3D88 /* SSFModel.swift */,
+				9B8E7BFC2B9499A2001F3D88 /* SFModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -115,6 +126,7 @@
 		9B8E7BF72B949723001F3D88 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				9B8E7C092B94A691001F3D88 /* TestSFFetcher.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -125,6 +137,14 @@
 				9B8E7BF92B9497D3001F3D88 /* ShareShortFormModel.xcdatamodeld */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		9B8E7C062B94A2A1001F3D88 /* InterFace */ = {
+			isa = PBXGroup;
+			children = (
+				9B8E7C072B94A519001F3D88 /* SFFetchInterFace.swift */,
+			);
+			path = InterFace;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,12 +219,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B8E7BFB2B9497D3001F3D88 /* ShareShortFormModel.xcdatamodeld in Sources */,
+				9B8E7C032B949E05001F3D88 /* MySFViewController.swift in Sources */,
 				9B8E7BE42B9496D6001F3D88 /* ViewController.swift in Sources */,
 				9B8E7BE02B9496D6001F3D88 /* AppDelegate.swift in Sources */,
-				9B8E7C012B949C53001F3D88 /* SSFViewModel.swift in Sources */,
+				9B8E7C012B949C53001F3D88 /* SFViewModel.swift in Sources */,
 				9B8E7BE22B9496D6001F3D88 /* SceneDelegate.swift in Sources */,
-				9B8E7BFD2B9499A2001F3D88 /* SSFModel.swift in Sources */,
-				9B8E7BFF2B949AE8001F3D88 /* SSFListViewModel.swift in Sources */,
+				9B8E7C0A2B94A691001F3D88 /* TestSFFetcher.swift in Sources */,
+				9B8E7C052B949FCC001F3D88 /* SFRowCell.swift in Sources */,
+				9B8E7C082B94A519001F3D88 /* SFFetchInterFace.swift in Sources */,
+				9B8E7BFD2B9499A2001F3D88 /* SFModel.swift in Sources */,
+				9B8E7BFF2B949AE8001F3D88 /* SFListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

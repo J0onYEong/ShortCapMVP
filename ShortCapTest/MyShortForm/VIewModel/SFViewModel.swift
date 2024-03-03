@@ -19,16 +19,19 @@ class SFViewModel {
     
     var fetchCompletion: (() -> Void)?
     
-    var fetcher: APIFetcher
+    var apiFetcher: APIFetcher
+    
+    var sfFetcher: SFFetcher
     
     var isFetched: Bool {
         
         model.isFetched
     }
     
-    init(model: SFModel, fetcher: APIFetcher) {
+    init(model: SFModel, apiFetcher: APIFetcher, sfFetcher: SFFetcher) {
         self.model = model
-        self.fetcher = fetcher
+        self.apiFetcher = apiFetcher
+        self.sfFetcher = sfFetcher
     }
     
     var title: String {
@@ -39,20 +42,23 @@ class SFViewModel {
         
         if !isFetched {
             
-            Task.detached {
+            Task.detached { [weak self] in
                 
                 do {
                     
-                    let sFUuid = try await self.fetcher.requestSFSummary(sFUrl: self.model.url!)
-
-                    self.fetcher.checkRequest(uuid: sFUuid) { result in
+                    if let vm = self {
                         
-                        switch result {
-                        case .success(let success):
-                            self.onRequestSuccess(success)
-                        case .failure(let failure):
-                            print(failure.localizedDescription)
-                            self.onFetchRequestFailed()
+                        let sFUuid = try await vm.apiFetcher.requestSFSummary(sFUrl: vm.model.url!)
+
+                        vm.apiFetcher.checkRequest(uuid: sFUuid) { [weak self] result in
+                            
+                            switch result {
+                            case .success(let success):
+                                self?.onRequestSuccess(success)
+                            case .failure(let failure):
+                                print(failure.localizedDescription)
+                                self?.onFetchRequestFailed()
+                            }
                         }
                     }
                 }
@@ -62,12 +68,16 @@ class SFViewModel {
     
     func onRequestSuccess(_ newModel: SFModel) {
         
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
             
-            self.model = newModel
-            self.model.isFetched = true
-            
-            // do coreData thing
+            if let vm = self {
+                
+                vm.model = newModel
+                vm.model.isFetched = true
+                
+                // do coreData thing
+                vm.sfFetcher.updateLocalData(model: vm.model)
+            }
         }
     }
     

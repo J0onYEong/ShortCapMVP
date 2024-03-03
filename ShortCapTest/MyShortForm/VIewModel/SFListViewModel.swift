@@ -16,21 +16,21 @@ class SFListViewModel {
         }
     }
     
-    var fetcher: SFFetcher
+    var sfFetcher: SFFetcher
     
     var apiFetcher: APIFetcher
     
     var onModelIsModified: (() -> Void)?
     
-    init(fetcher: SFFetcher, apiFetcher: APIFetcher) {
+    init(sfFetcher: SFFetcher, apiFetcher: APIFetcher) {
         
-        self.fetcher = fetcher
+        self.sfFetcher = sfFetcher
         self.apiFetcher = apiFetcher
     }
     
     func fetchCellData() {
         
-        fetcher.getSFModels { result in
+        sfFetcher.getSFModels { result in
             switch result {
             case .success(let success):
                 
@@ -49,7 +49,11 @@ class SFListViewModel {
         
         let model = model[index]
         
-        let viewModel = SFViewModel(model: model, fetcher: apiFetcher)
+        let viewModel = SFViewModel(
+            model: model,
+            apiFetcher: apiFetcher,
+            sfFetcher: sfFetcher
+        )
         
         return viewModel
     }

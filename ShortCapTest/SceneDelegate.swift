@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let apiFetcher = APIRequestManager()
 
-        let sfListViewModel = SFListViewModel(fetcher: dataFetcher, apiFetcher: apiFetcher)
+        let sfListViewModel = SFListViewModel(sfFetcher: dataFetcher, apiFetcher: apiFetcher)
         
         let sfListVC = MySFViewController(sFListViewModel: sfListViewModel)
         let naviVC = UINavigationController(rootViewController: sfListVC)

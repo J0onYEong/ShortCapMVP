@@ -20,6 +20,28 @@ struct SFModel: Decodable {
     
     var isFetched: Bool = false
     
+    init(
+        uuid: String? = nil,
+        title: String? = nil,
+        description: String? = nil,
+        keywords: [String]? = nil,
+        url: String?,
+        summary: String? = nil,
+        address: String? = nil,
+        createdAt: String? = nil,
+        isFetched: Bool = false
+    ) {
+        self.uuid = uuid
+        self.title = title
+        self.description = description
+        self.keywords = keywords
+        self.url = url
+        self.summary = summary
+        self.address = address
+        self.createdAt = createdAt
+        self.isFetched = isFetched
+    }
+    
     enum CodingKeys: CodingKey {
         case uuid
         case title

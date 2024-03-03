@@ -25,6 +25,9 @@
 		9B8E7C0E2B94C216001F3D88 /* APIFetcherInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C0D2B94C216001F3D88 /* APIFetcherInterface.swift */; };
 		9B8E7C112B94C336001F3D88 /* DefaultResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C102B94C336001F3D88 /* DefaultResponseModel.swift */; };
 		9B8E7C142B94C6AB001F3D88 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 9B8E7C132B94C6AB001F3D88 /* Alamofire */; };
+		9B8E7C172B94DAF9001F3D88 /* ShortCapContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C162B94DAF9001F3D88 /* ShortCapContainer.swift */; };
+		9B8E7C1B2B94EC22001F3D88 /* SharedShortForm+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C192B94EC22001F3D88 /* SharedShortForm+CoreDataClass.swift */; };
+		9B8E7C1C2B94EC22001F3D88 /* SharedShortForm+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C1A2B94EC22001F3D88 /* SharedShortForm+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +50,9 @@
 		9B8E7C0B2B94C1FA001F3D88 /* APIRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestManager.swift; sourceTree = "<group>"; };
 		9B8E7C0D2B94C216001F3D88 /* APIFetcherInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIFetcherInterface.swift; sourceTree = "<group>"; };
 		9B8E7C102B94C336001F3D88 /* DefaultResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultResponseModel.swift; sourceTree = "<group>"; };
+		9B8E7C162B94DAF9001F3D88 /* ShortCapContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortCapContainer.swift; sourceTree = "<group>"; };
+		9B8E7C192B94EC22001F3D88 /* SharedShortForm+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SharedShortForm+CoreDataClass.swift"; path = "ShortCapTest/MyShortForm/Service/CoreData/Manual Classes/SharedShortForm+CoreDataClass.swift"; sourceTree = "<group>"; };
+		9B8E7C1A2B94EC22001F3D88 /* SharedShortForm+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SharedShortForm+CoreDataProperties.swift"; path = "ShortCapTest/MyShortForm/Service/CoreData/Manual Classes/SharedShortForm+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +70,8 @@
 		9B8E7BD32B9496D6001F3D88 = {
 			isa = PBXGroup;
 			children = (
+				9B8E7C192B94EC22001F3D88 /* SharedShortForm+CoreDataClass.swift */,
+				9B8E7C1A2B94EC22001F3D88 /* SharedShortForm+CoreDataProperties.swift */,
 				9B8E7BDE2B9496D6001F3D88 /* ShortCapTest */,
 				9B8E7BDD2B9496D6001F3D88 /* Products */,
 			);
@@ -80,7 +88,6 @@
 		9B8E7BDE2B9496D6001F3D88 /* ShortCapTest */ = {
 			isa = PBXGroup;
 			children = (
-				9B8E7BF82B94979C001F3D88 /* CoreData */,
 				9B8E7BF32B9496F8001F3D88 /* MyShortForm */,
 				9B8E7BDF2B9496D6001F3D88 /* AppDelegate.swift */,
 				9B8E7BE12B9496D6001F3D88 /* SceneDelegate.swift */,
@@ -135,8 +142,8 @@
 		9B8E7BF72B949723001F3D88 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				9B8E7C092B94A691001F3D88 /* TestSFFetcher.swift */,
-				9B8E7C0B2B94C1FA001F3D88 /* APIRequestManager.swift */,
+				9B8E7C152B94DAA1001F3D88 /* NetWork */,
+				9B8E7BF82B94979C001F3D88 /* CoreData */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -144,7 +151,10 @@
 		9B8E7BF82B94979C001F3D88 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				9B8E7C182B94EBFC001F3D88 /* Manual Classes */,
+				9B8E7C092B94A691001F3D88 /* TestSFFetcher.swift */,
 				9B8E7BF92B9497D3001F3D88 /* ShareShortFormModel.xcdatamodeld */,
+				9B8E7C162B94DAF9001F3D88 /* ShortCapContainer.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -164,6 +174,21 @@
 				9B8E7C102B94C336001F3D88 /* DefaultResponseModel.swift */,
 			);
 			path = DTO;
+			sourceTree = "<group>";
+		};
+		9B8E7C152B94DAA1001F3D88 /* NetWork */ = {
+			isa = PBXGroup;
+			children = (
+				9B8E7C0B2B94C1FA001F3D88 /* APIRequestManager.swift */,
+			);
+			path = NetWork;
+			sourceTree = "<group>";
+		};
+		9B8E7C182B94EBFC001F3D88 /* Manual Classes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Manual Classes";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -244,16 +269,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B8E7C0C2B94C1FA001F3D88 /* APIRequestManager.swift in Sources */,
+				9B8E7C1C2B94EC22001F3D88 /* SharedShortForm+CoreDataProperties.swift in Sources */,
 				9B8E7BFB2B9497D3001F3D88 /* ShareShortFormModel.xcdatamodeld in Sources */,
 				9B8E7C0E2B94C216001F3D88 /* APIFetcherInterface.swift in Sources */,
 				9B8E7C032B949E05001F3D88 /* MySFViewController.swift in Sources */,
 				9B8E7C112B94C336001F3D88 /* DefaultResponseModel.swift in Sources */,
+				9B8E7C1B2B94EC22001F3D88 /* SharedShortForm+CoreDataClass.swift in Sources */,
 				9B8E7BE42B9496D6001F3D88 /* ViewController.swift in Sources */,
 				9B8E7BE02B9496D6001F3D88 /* AppDelegate.swift in Sources */,
 				9B8E7C012B949C53001F3D88 /* SFViewModel.swift in Sources */,
 				9B8E7BE22B9496D6001F3D88 /* SceneDelegate.swift in Sources */,
 				9B8E7C0A2B94A691001F3D88 /* TestSFFetcher.swift in Sources */,
 				9B8E7C052B949FCC001F3D88 /* SFRowCell.swift in Sources */,
+				9B8E7C172B94DAF9001F3D88 /* ShortCapContainer.swift in Sources */,
 				9B8E7C082B94A519001F3D88 /* SFFetchInterface.swift in Sources */,
 				9B8E7BFD2B9499A2001F3D88 /* SFModel.swift in Sources */,
 				9B8E7BFF2B949AE8001F3D88 /* SFListViewModel.swift in Sources */,

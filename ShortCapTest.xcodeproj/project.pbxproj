@@ -13,6 +13,10 @@
 		9B8E7BE72B9496D6001F3D88 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B8E7BE52B9496D6001F3D88 /* Main.storyboard */; };
 		9B8E7BE92B9496D9001F3D88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B8E7BE82B9496D9001F3D88 /* Assets.xcassets */; };
 		9B8E7BEC2B9496D9001F3D88 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B8E7BEA2B9496D9001F3D88 /* LaunchScreen.storyboard */; };
+		9B8E7BFB2B9497D3001F3D88 /* ShareShortFormModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7BF92B9497D3001F3D88 /* ShareShortFormModel.xcdatamodeld */; };
+		9B8E7BFD2B9499A2001F3D88 /* SSFModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7BFC2B9499A2001F3D88 /* SSFModel.swift */; };
+		9B8E7BFF2B949AE8001F3D88 /* SSFListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7BFE2B949AE8001F3D88 /* SSFListViewModel.swift */; };
+		9B8E7C012B949C53001F3D88 /* SSFViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C002B949C53001F3D88 /* SSFViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		9B8E7BE82B9496D9001F3D88 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9B8E7BEB2B9496D9001F3D88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9B8E7BED2B9496D9001F3D88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9B8E7BFA2B9497D3001F3D88 /* ShareShortFormModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ShareShortFormModel.xcdatamodel; sourceTree = "<group>"; };
+		9B8E7BFC2B9499A2001F3D88 /* SSFModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSFModel.swift; sourceTree = "<group>"; };
+		9B8E7BFE2B949AE8001F3D88 /* SSFListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSFListViewModel.swift; sourceTree = "<group>"; };
+		9B8E7C002B949C53001F3D88 /* SSFViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSFViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +64,8 @@
 		9B8E7BDE2B9496D6001F3D88 /* ShortCapTest */ = {
 			isa = PBXGroup;
 			children = (
+				9B8E7BF82B94979C001F3D88 /* CoreData */,
+				9B8E7BF32B9496F8001F3D88 /* MyShortForm */,
 				9B8E7BDF2B9496D6001F3D88 /* AppDelegate.swift */,
 				9B8E7BE12B9496D6001F3D88 /* SceneDelegate.swift */,
 				9B8E7BE32B9496D6001F3D88 /* ViewController.swift */,
@@ -65,6 +75,56 @@
 				9B8E7BED2B9496D9001F3D88 /* Info.plist */,
 			);
 			path = ShortCapTest;
+			sourceTree = "<group>";
+		};
+		9B8E7BF32B9496F8001F3D88 /* MyShortForm */ = {
+			isa = PBXGroup;
+			children = (
+				9B8E7BF72B949723001F3D88 /* Service */,
+				9B8E7BF62B949710001F3D88 /* Model */,
+				9B8E7BF52B94970C001F3D88 /* View */,
+				9B8E7BF42B949702001F3D88 /* VIewModel */,
+			);
+			path = MyShortForm;
+			sourceTree = "<group>";
+		};
+		9B8E7BF42B949702001F3D88 /* VIewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9B8E7BFE2B949AE8001F3D88 /* SSFListViewModel.swift */,
+				9B8E7C002B949C53001F3D88 /* SSFViewModel.swift */,
+			);
+			path = VIewModel;
+			sourceTree = "<group>";
+		};
+		9B8E7BF52B94970C001F3D88 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9B8E7BF62B949710001F3D88 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9B8E7BFC2B9499A2001F3D88 /* SSFModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9B8E7BF72B949723001F3D88 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		9B8E7BF82B94979C001F3D88 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				9B8E7BF92B9497D3001F3D88 /* ShareShortFormModel.xcdatamodeld */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +198,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B8E7BFB2B9497D3001F3D88 /* ShareShortFormModel.xcdatamodeld in Sources */,
 				9B8E7BE42B9496D6001F3D88 /* ViewController.swift in Sources */,
 				9B8E7BE02B9496D6001F3D88 /* AppDelegate.swift in Sources */,
+				9B8E7C012B949C53001F3D88 /* SSFViewModel.swift in Sources */,
 				9B8E7BE22B9496D6001F3D88 /* SceneDelegate.swift in Sources */,
+				9B8E7BFD2B9499A2001F3D88 /* SSFModel.swift in Sources */,
+				9B8E7BFF2B949AE8001F3D88 /* SSFListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,6 +427,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		9B8E7BF92B9497D3001F3D88 /* ShareShortFormModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9B8E7BFA2B9497D3001F3D88 /* ShareShortFormModel.xcdatamodel */,
+			);
+			currentVersion = 9B8E7BFA2B9497D3001F3D88 /* ShareShortFormModel.xcdatamodel */;
+			path = ShareShortFormModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 9B8E7BD42B9496D6001F3D88 /* Project object */;
 }

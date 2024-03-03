@@ -68,10 +68,12 @@ extension MySFViewController {
         
         self.view.addSubview(sfTableView)
         
+        self.view.layer.backgroundColor = UIColor.white.cgColor
+        
         NSLayoutConstraint.activate([
             sfTableView.topAnchor.constraint(equalTo: view.topAnchor),
-            sfTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            sfTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            sfTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 21),
+            sfTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -21),
             sfTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }

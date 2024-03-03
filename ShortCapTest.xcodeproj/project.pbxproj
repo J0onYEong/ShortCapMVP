@@ -28,7 +28,39 @@
 		9B8E7C172B94DAF9001F3D88 /* ShortCapContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C162B94DAF9001F3D88 /* ShortCapContainer.swift */; };
 		9B8E7C1B2B94EC22001F3D88 /* SharedShortForm+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C192B94EC22001F3D88 /* SharedShortForm+CoreDataClass.swift */; };
 		9B8E7C1C2B94EC22001F3D88 /* SharedShortForm+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C1A2B94EC22001F3D88 /* SharedShortForm+CoreDataProperties.swift */; };
+		9B8E7C242B94F3AD001F3D88 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C232B94F3AD001F3D88 /* ShareViewController.swift */; };
+		9B8E7C2B2B94F3AD001F3D88 /* ShareExtensionForShortCap.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 9B8E7C212B94F3AD001F3D88 /* ShareExtensionForShortCap.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9B8E7C362B94FA65001F3D88 /* ShareShortFormModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7BF92B9497D3001F3D88 /* ShareShortFormModel.xcdatamodeld */; };
+		9B8E7C372B94FA92001F3D88 /* SharedShortForm+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C1A2B94EC22001F3D88 /* SharedShortForm+CoreDataProperties.swift */; };
+		9B8E7C382B94FA92001F3D88 /* SharedShortForm+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C192B94EC22001F3D88 /* SharedShortForm+CoreDataClass.swift */; };
+		9B8E7C392B94FFC8001F3D88 /* ShortCapContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C162B94DAF9001F3D88 /* ShortCapContainer.swift */; };
+		9B8E7C3A2B94FFEB001F3D88 /* SFFetchInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C072B94A519001F3D88 /* SFFetchInterface.swift */; };
+		9B8E7C3B2B94FFF6001F3D88 /* SFModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7BFC2B9499A2001F3D88 /* SFModel.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9B8E7C292B94F3AD001F3D88 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9B8E7BD42B9496D6001F3D88 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9B8E7C202B94F3AD001F3D88;
+			remoteInfo = ShareExtensionForShortCap;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9B8E7C2F2B94F3AD001F3D88 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				9B8E7C2B2B94F3AD001F3D88 /* ShareExtensionForShortCap.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		9B8E7BDC2B9496D6001F3D88 /* ShortCapTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShortCapTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,6 +85,12 @@
 		9B8E7C162B94DAF9001F3D88 /* ShortCapContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortCapContainer.swift; sourceTree = "<group>"; };
 		9B8E7C192B94EC22001F3D88 /* SharedShortForm+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SharedShortForm+CoreDataClass.swift"; path = "ShortCapTest/MyShortForm/Service/CoreData/Manual Classes/SharedShortForm+CoreDataClass.swift"; sourceTree = "<group>"; };
 		9B8E7C1A2B94EC22001F3D88 /* SharedShortForm+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SharedShortForm+CoreDataProperties.swift"; path = "ShortCapTest/MyShortForm/Service/CoreData/Manual Classes/SharedShortForm+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9B8E7C212B94F3AD001F3D88 /* ShareExtensionForShortCap.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShareExtensionForShortCap.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B8E7C232B94F3AD001F3D88 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		9B8E7C282B94F3AD001F3D88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9B8E7C302B94F3CF001F3D88 /* ShareExtensionForShortCap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShareExtensionForShortCap.entitlements; sourceTree = "<group>"; };
+		9B8E7C312B94F3E2001F3D88 /* ShortCapTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShortCapTest.entitlements; sourceTree = "<group>"; };
+		9B8E7C342B94F7B4001F3D88 /* ShortCapTest */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ShortCapTest; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +99,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B8E7C142B94C6AB001F3D88 /* Alamofire in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9B8E7C1E2B94F3AD001F3D88 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,7 +118,9 @@
 				9B8E7C192B94EC22001F3D88 /* SharedShortForm+CoreDataClass.swift */,
 				9B8E7C1A2B94EC22001F3D88 /* SharedShortForm+CoreDataProperties.swift */,
 				9B8E7BDE2B9496D6001F3D88 /* ShortCapTest */,
+				9B8E7C222B94F3AD001F3D88 /* ShareExtensionForShortCap */,
 				9B8E7BDD2B9496D6001F3D88 /* Products */,
+				9B8E7C332B94F7B4001F3D88 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				9B8E7BDC2B9496D6001F3D88 /* ShortCapTest.app */,
+				9B8E7C212B94F3AD001F3D88 /* ShareExtensionForShortCap.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -88,6 +136,7 @@
 		9B8E7BDE2B9496D6001F3D88 /* ShortCapTest */ = {
 			isa = PBXGroup;
 			children = (
+				9B8E7C312B94F3E2001F3D88 /* ShortCapTest.entitlements */,
 				9B8E7BF32B9496F8001F3D88 /* MyShortForm */,
 				9B8E7BDF2B9496D6001F3D88 /* AppDelegate.swift */,
 				9B8E7BE12B9496D6001F3D88 /* SceneDelegate.swift */,
@@ -191,6 +240,24 @@
 			path = "Manual Classes";
 			sourceTree = "<group>";
 		};
+		9B8E7C222B94F3AD001F3D88 /* ShareExtensionForShortCap */ = {
+			isa = PBXGroup;
+			children = (
+				9B8E7C302B94F3CF001F3D88 /* ShareExtensionForShortCap.entitlements */,
+				9B8E7C232B94F3AD001F3D88 /* ShareViewController.swift */,
+				9B8E7C282B94F3AD001F3D88 /* Info.plist */,
+			);
+			path = ShareExtensionForShortCap;
+			sourceTree = "<group>";
+		};
+		9B8E7C332B94F7B4001F3D88 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9B8E7C342B94F7B4001F3D88 /* ShortCapTest */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -201,10 +268,12 @@
 				9B8E7BD82B9496D6001F3D88 /* Sources */,
 				9B8E7BD92B9496D6001F3D88 /* Frameworks */,
 				9B8E7BDA2B9496D6001F3D88 /* Resources */,
+				9B8E7C2F2B94F3AD001F3D88 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				9B8E7C2A2B94F3AD001F3D88 /* PBXTargetDependency */,
 			);
 			name = ShortCapTest;
 			packageProductDependencies = (
@@ -213,6 +282,23 @@
 			productName = ShortCapTest;
 			productReference = 9B8E7BDC2B9496D6001F3D88 /* ShortCapTest.app */;
 			productType = "com.apple.product-type.application";
+		};
+		9B8E7C202B94F3AD001F3D88 /* ShareExtensionForShortCap */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9B8E7C2C2B94F3AD001F3D88 /* Build configuration list for PBXNativeTarget "ShareExtensionForShortCap" */;
+			buildPhases = (
+				9B8E7C1D2B94F3AD001F3D88 /* Sources */,
+				9B8E7C1E2B94F3AD001F3D88 /* Frameworks */,
+				9B8E7C1F2B94F3AD001F3D88 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ShareExtensionForShortCap;
+			productName = ShareExtensionForShortCap;
+			productReference = 9B8E7C212B94F3AD001F3D88 /* ShareExtensionForShortCap.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -225,6 +311,9 @@
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					9B8E7BDB2B9496D6001F3D88 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+					9B8E7C202B94F3AD001F3D88 = {
 						CreatedOnToolsVersion = 15.0;
 					};
 				};
@@ -246,6 +335,7 @@
 			projectRoot = "";
 			targets = (
 				9B8E7BDB2B9496D6001F3D88 /* ShortCapTest */,
+				9B8E7C202B94F3AD001F3D88 /* ShareExtensionForShortCap */,
 			);
 		};
 /* End PBXProject section */
@@ -258,6 +348,13 @@
 				9B8E7BEC2B9496D9001F3D88 /* LaunchScreen.storyboard in Resources */,
 				9B8E7BE92B9496D9001F3D88 /* Assets.xcassets in Resources */,
 				9B8E7BE72B9496D6001F3D88 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9B8E7C1F2B94F3AD001F3D88 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,7 +385,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9B8E7C1D2B94F3AD001F3D88 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9B8E7C3B2B94FFF6001F3D88 /* SFModel.swift in Sources */,
+				9B8E7C3A2B94FFEB001F3D88 /* SFFetchInterface.swift in Sources */,
+				9B8E7C392B94FFC8001F3D88 /* ShortCapContainer.swift in Sources */,
+				9B8E7C362B94FA65001F3D88 /* ShareShortFormModel.xcdatamodeld in Sources */,
+				9B8E7C382B94FA92001F3D88 /* SharedShortForm+CoreDataClass.swift in Sources */,
+				9B8E7C242B94F3AD001F3D88 /* ShareViewController.swift in Sources */,
+				9B8E7C372B94FA92001F3D88 /* SharedShortForm+CoreDataProperties.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9B8E7C2A2B94F3AD001F3D88 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9B8E7C202B94F3AD001F3D88 /* ShareExtensionForShortCap */;
+			targetProxy = 9B8E7C292B94F3AD001F3D88 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		9B8E7BE52B9496D6001F3D88 /* Main.storyboard */ = {
@@ -432,13 +551,16 @@
 		9B8E7BF12B9496D9001F3D88 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ShortCapTest/ShortCapTest.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = XHRN62S9RK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShortCapTest/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = NSExtensionActivationRule;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -460,13 +582,16 @@
 		9B8E7BF22B9496D9001F3D88 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ShortCapTest/ShortCapTest.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = XHRN62S9RK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShortCapTest/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = NSExtensionActivationRule;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -479,6 +604,58 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = choijunyeong.ShortCapTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		9B8E7C2D2B94F3AD001F3D88 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ShareExtensionForShortCap/ShareExtensionForShortCap.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XHRN62S9RK;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ShareExtensionForShortCap/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ShareExtensionForShortCap;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = choijunyeong.ShortCapTest.ShareExtensionForShortCap;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9B8E7C2E2B94F3AD001F3D88 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ShareExtensionForShortCap/ShareExtensionForShortCap.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XHRN62S9RK;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ShareExtensionForShortCap/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ShareExtensionForShortCap;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = choijunyeong.ShortCapTest.ShareExtensionForShortCap;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -502,6 +679,15 @@
 			buildConfigurations = (
 				9B8E7BF12B9496D9001F3D88 /* Debug */,
 				9B8E7BF22B9496D9001F3D88 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9B8E7C2C2B94F3AD001F3D88 /* Build configuration list for PBXNativeTarget "ShareExtensionForShortCap" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9B8E7C2D2B94F3AD001F3D88 /* Debug */,
+				9B8E7C2E2B94F3AD001F3D88 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

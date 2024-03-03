@@ -43,7 +43,7 @@ class TestSFFetcher: SFFetcher {
             print("✅ 영구 저장소 로딩 성공")
         }
         
-//        insertDummyData()
+        insertDummyData()
     }
     
     func insertDummyData() {

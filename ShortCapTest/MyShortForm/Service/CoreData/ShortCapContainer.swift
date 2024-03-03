@@ -19,7 +19,19 @@ class ShortCapPersistentContainer: NSPersistentContainer {
     }
 }
 
-class ShortCapContainer {
+public extension URL {
+    /// Returns a URL for the given app group and database pointing to the sqlite database.
+    static func storeURL(for appGroup: String, databaseName: String) -> URL {
+        
+        guard let fileContainer = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroup) else {
+            fatalError("Shared file container could not be created.")
+        }
+
+        return fileContainer.appendingPathComponent("\(databaseName).sqlite")
+    }
+}
+
+public class ShortCapContainer {
     
     static let modelName = "ShareShortFormModel"
     
@@ -27,11 +39,17 @@ class ShortCapContainer {
     
     var context: NSManagedObjectContext { container.viewContext }
     
-    init() {
+    public init() {
         
         let model = Self.model(for: Self.modelName, bundle: .main)
         
+        let storeURL = URL.storeURL(for: "group.shortcap", databaseName: "DataModel")
+         
+        let storeDescription = NSPersistentStoreDescription(url: storeURL)
+        
         self.container = .init(name: "ShortCapContainer", managedObjectModel: model)
+        
+        container.persistentStoreDescriptions = [storeDescription]
         
         self.container.loadPersistentStores { (desc, error) in
             
@@ -65,16 +83,20 @@ extension ShortCapContainer: SFFetcher {
             
             let shortForms = try context.fetch(fetchRequest)
             
+            print(shortForms.count)
+            
             let sFModelArray = shortForms.map { form in
-                
+                    
                 if let fetchedData = form.sfData {
                     
                     var keyWords: [String] = []
                     
                     if let localKeyWords = fetchedData.keyWords {
                         
-                        localKeyWords.allObjects.forEach { str in
-                            keyWords.append(str as! String)
+                        Set(_immutableCocoaSet: localKeyWords).forEach { (fk: FormKeywords) in
+                            if let str = fk.keyword {
+                                keyWords.append(str)
+                            }
                         }
                     }
                     
@@ -143,5 +165,17 @@ extension ShortCapContainer: SFFetcher {
                 try? backContext.save()
             }
         }
+    }
+}
+
+public extension ShortCapContainer {
+    
+    func saveUrlFromSharedExtension(url: String) {
+        
+        let ssf = SharedShortForm(context: context)
+        
+        ssf.url = url
+        
+        try? context.save()
     }
 }

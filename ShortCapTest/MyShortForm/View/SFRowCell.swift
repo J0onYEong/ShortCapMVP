@@ -9,13 +9,7 @@ import UIKit
 
 class SFRowCell: UITableViewCell {
     
-    var sFViewModel: SFViewModel! {
-        
-        didSet {
-            
-            whenModelSetted()
-        }
-    }
+    var sFViewModel: SFViewModel!
     
     // View
     let thumbNailView: UIImageView = {
@@ -36,9 +30,25 @@ class SFRowCell: UITableViewCell {
        
         let labelView = UILabel()
         
+        labelView.lineBreakMode = .byTruncatingTail
+        
         labelView.translatesAutoresizingMaskIntoConstraints = false
         
         return labelView
+    }()
+    
+    let stackView: UIStackView = {
+        
+        let view = UIStackView()
+        
+        view.axis = .horizontal
+        view.distribution = .fill
+        view.alignment = .leading
+        view.spacing = 10
+        
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -56,23 +66,41 @@ class SFRowCell: UITableViewCell {
         
         self.layer.backgroundColor = UIColor.red.withAlphaComponent(0.3).cgColor
         
-        self.addSubview(thumbNailView)
+        self.addSubview(stackView)
         
-        self.addSubview(titleView)
+        stackView.addArrangedSubview(thumbNailView)
+        stackView.addArrangedSubview(titleView)
         
         NSLayoutConstraint.activate([
-            thumbNailView.widthAnchor.constraint(equalToConstant: SFTableViewConfig.imageWidth),
-            thumbNailView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
-            thumbNailView.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
-            thumbNailView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5),
             
-            titleView.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
-            titleView.leadingAnchor.constraint(equalTo: thumbNailView.leadingAnchor, constant: 10)
+            stackView.topAnchor.constraint(equalTo: self.topAnchor),
+            stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            
+            thumbNailView.widthAnchor.constraint(equalToConstant: SFTableViewConfig.imageWidth),
+            thumbNailView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 5),
+            thumbNailView.topAnchor.constraint(equalTo: stackView.topAnchor, constant: 5),
+            thumbNailView.bottomAnchor.constraint(equalTo: stackView.bottomAnchor, constant: -5),
+            
+            titleView.topAnchor.constraint(equalTo: stackView.topAnchor, constant: 5),
         ])
     }
     
-    func whenModelSetted() {
+    func setUp() {
         
+        viewConfigure()
+        
+        sFViewModel.fetchCompletion = {
+            
+            self.viewConfigure()
+        }
+        
+        sFViewModel.checkIsFetched()
+    }
+    
+    func viewConfigure() {
+
         titleView.text = sFViewModel.title
     }
     

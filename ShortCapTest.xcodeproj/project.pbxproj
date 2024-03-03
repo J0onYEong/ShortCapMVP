@@ -19,8 +19,12 @@
 		9B8E7C012B949C53001F3D88 /* SFViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C002B949C53001F3D88 /* SFViewModel.swift */; };
 		9B8E7C032B949E05001F3D88 /* MySFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C022B949E05001F3D88 /* MySFViewController.swift */; };
 		9B8E7C052B949FCC001F3D88 /* SFRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C042B949FCC001F3D88 /* SFRowCell.swift */; };
-		9B8E7C082B94A519001F3D88 /* SFFetchInterFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C072B94A519001F3D88 /* SFFetchInterFace.swift */; };
+		9B8E7C082B94A519001F3D88 /* SFFetchInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C072B94A519001F3D88 /* SFFetchInterface.swift */; };
 		9B8E7C0A2B94A691001F3D88 /* TestSFFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C092B94A691001F3D88 /* TestSFFetcher.swift */; };
+		9B8E7C0C2B94C1FA001F3D88 /* APIRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C0B2B94C1FA001F3D88 /* APIRequestManager.swift */; };
+		9B8E7C0E2B94C216001F3D88 /* APIFetcherInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C0D2B94C216001F3D88 /* APIFetcherInterface.swift */; };
+		9B8E7C112B94C336001F3D88 /* DefaultResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C102B94C336001F3D88 /* DefaultResponseModel.swift */; };
+		9B8E7C142B94C6AB001F3D88 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 9B8E7C132B94C6AB001F3D88 /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,8 +42,11 @@
 		9B8E7C002B949C53001F3D88 /* SFViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFViewModel.swift; sourceTree = "<group>"; };
 		9B8E7C022B949E05001F3D88 /* MySFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySFViewController.swift; sourceTree = "<group>"; };
 		9B8E7C042B949FCC001F3D88 /* SFRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFRowCell.swift; sourceTree = "<group>"; };
-		9B8E7C072B94A519001F3D88 /* SFFetchInterFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFFetchInterFace.swift; sourceTree = "<group>"; };
+		9B8E7C072B94A519001F3D88 /* SFFetchInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFFetchInterface.swift; sourceTree = "<group>"; };
 		9B8E7C092B94A691001F3D88 /* TestSFFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSFFetcher.swift; sourceTree = "<group>"; };
+		9B8E7C0B2B94C1FA001F3D88 /* APIRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestManager.swift; sourceTree = "<group>"; };
+		9B8E7C0D2B94C216001F3D88 /* APIFetcherInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIFetcherInterface.swift; sourceTree = "<group>"; };
+		9B8E7C102B94C336001F3D88 /* DefaultResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultResponseModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B8E7C142B94C6AB001F3D88 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,6 +126,7 @@
 		9B8E7BF62B949710001F3D88 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9B8E7C0F2B94C31C001F3D88 /* DTO */,
 				9B8E7BFC2B9499A2001F3D88 /* SFModel.swift */,
 			);
 			path = Model;
@@ -127,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				9B8E7C092B94A691001F3D88 /* TestSFFetcher.swift */,
+				9B8E7C0B2B94C1FA001F3D88 /* APIRequestManager.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -142,9 +152,18 @@
 		9B8E7C062B94A2A1001F3D88 /* InterFace */ = {
 			isa = PBXGroup;
 			children = (
-				9B8E7C072B94A519001F3D88 /* SFFetchInterFace.swift */,
+				9B8E7C072B94A519001F3D88 /* SFFetchInterface.swift */,
+				9B8E7C0D2B94C216001F3D88 /* APIFetcherInterface.swift */,
 			);
 			path = InterFace;
+			sourceTree = "<group>";
+		};
+		9B8E7C0F2B94C31C001F3D88 /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				9B8E7C102B94C336001F3D88 /* DefaultResponseModel.swift */,
+			);
+			path = DTO;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,6 +182,9 @@
 			dependencies = (
 			);
 			name = ShortCapTest;
+			packageProductDependencies = (
+				9B8E7C132B94C6AB001F3D88 /* Alamofire */,
+			);
 			productName = ShortCapTest;
 			productReference = 9B8E7BDC2B9496D6001F3D88 /* ShortCapTest.app */;
 			productType = "com.apple.product-type.application";
@@ -191,6 +213,9 @@
 				Base,
 			);
 			mainGroup = 9B8E7BD32B9496D6001F3D88;
+			packageReferences = (
+				9B8E7C122B94C6AB001F3D88 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 9B8E7BDD2B9496D6001F3D88 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -218,15 +243,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B8E7C0C2B94C1FA001F3D88 /* APIRequestManager.swift in Sources */,
 				9B8E7BFB2B9497D3001F3D88 /* ShareShortFormModel.xcdatamodeld in Sources */,
+				9B8E7C0E2B94C216001F3D88 /* APIFetcherInterface.swift in Sources */,
 				9B8E7C032B949E05001F3D88 /* MySFViewController.swift in Sources */,
+				9B8E7C112B94C336001F3D88 /* DefaultResponseModel.swift in Sources */,
 				9B8E7BE42B9496D6001F3D88 /* ViewController.swift in Sources */,
 				9B8E7BE02B9496D6001F3D88 /* AppDelegate.swift in Sources */,
 				9B8E7C012B949C53001F3D88 /* SFViewModel.swift in Sources */,
 				9B8E7BE22B9496D6001F3D88 /* SceneDelegate.swift in Sources */,
 				9B8E7C0A2B94A691001F3D88 /* TestSFFetcher.swift in Sources */,
 				9B8E7C052B949FCC001F3D88 /* SFRowCell.swift in Sources */,
-				9B8E7C082B94A519001F3D88 /* SFFetchInterFace.swift in Sources */,
+				9B8E7C082B94A519001F3D88 /* SFFetchInterface.swift in Sources */,
 				9B8E7BFD2B9499A2001F3D88 /* SFModel.swift in Sources */,
 				9B8E7BFF2B949AE8001F3D88 /* SFListViewModel.swift in Sources */,
 			);
@@ -451,6 +479,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9B8E7C122B94C6AB001F3D88 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.8.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9B8E7C132B94C6AB001F3D88 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9B8E7C122B94C6AB001F3D88 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		9B8E7BF92B9497D3001F3D88 /* ShareShortFormModel.xcdatamodeld */ = {

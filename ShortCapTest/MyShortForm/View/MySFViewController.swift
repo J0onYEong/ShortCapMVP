@@ -109,6 +109,8 @@ extension MySFViewController: UITableViewDataSource {
         
         cell.sFViewModel = self.sFListViewModel.generateSFViewModel(index: indexPath.row)
         
+        cell.setUp()
+        
         return cell
     }
     

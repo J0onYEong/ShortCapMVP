@@ -20,8 +20,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         
         let dataFetcher = TestSFFetcher()
+        
+        let apiFetcher = APIRequestManager()
 
-        let sfListViewModel = SFListViewModel(fetcher: dataFetcher)
+        let sfListViewModel = SFListViewModel(fetcher: dataFetcher, apiFetcher: apiFetcher)
         
         let sfListVC = MySFViewController(sFListViewModel: sfListViewModel)
         let naviVC = UINavigationController(rootViewController: sfListVC)

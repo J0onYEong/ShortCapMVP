@@ -18,11 +18,14 @@ class SFListViewModel {
     
     var fetcher: SFFetcher
     
+    var apiFetcher: APIFetcher
+    
     var onModelIsModified: (() -> Void)?
     
-    init(fetcher: SFFetcher) {
+    init(fetcher: SFFetcher, apiFetcher: APIFetcher) {
         
         self.fetcher = fetcher
+        self.apiFetcher = apiFetcher
     }
     
     func fetchCellData() {
@@ -44,9 +47,9 @@ class SFListViewModel {
     
     func generateSFViewModel(index: Int) -> SFViewModel {
         
-        let viewModel = SFViewModel()
+        let model = model[index]
         
-        viewModel.model = model[index]
+        let viewModel = SFViewModel(model: model, fetcher: apiFetcher)
         
         return viewModel
     }

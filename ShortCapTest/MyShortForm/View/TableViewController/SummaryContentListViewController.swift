@@ -26,6 +26,12 @@ class SummaryContentListViewController: UIViewController {
         let view = UITableView()
         view.translatesAutoresizingMaskIntoConstraints = false
         
+        // 스크롤 제거
+        view.showsVerticalScrollIndicator = false
+        
+        view.separatorStyle = .none
+        view.layer.borderColor = UIColor.gray.cgColor
+        
         return view
     }()
     
@@ -85,8 +91,8 @@ extension SummaryContentListViewController {
         sfTableView.rowHeight = SFTableViewConfig.rowHeight
         
         // Cell registration
-        let sFRowCellId = String(describing: SFRowCell.self)
-        sfTableView.register(SFRowCell.self, forCellReuseIdentifier: sFRowCellId)
+        let sFRowCellId = String(describing: SummaryContentRowCell.self)
+        sfTableView.register(SummaryContentRowCell.self, forCellReuseIdentifier: sFRowCellId)
     }
 }
 
@@ -105,13 +111,27 @@ extension SummaryContentListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let sFRowCellId = String(describing: SFRowCell.self)
+        let sFRowCellId = String(describing: SummaryContentRowCell.self)
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: sFRowCellId, for: indexPath) as! SFRowCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: sFRowCellId, for: indexPath) as! SummaryContentRowCell
         
         cell.summayContentViewModel = self.summaryListViewModel.generateSFViewModel(index: indexPath.row)
         
-        cell.setUp()
+        var cellType: SCRowCellType = .middleCell
+        
+        let cellCounts = summaryListViewModel.model.count
+        
+        if indexPath.row == 0 {
+            
+            cellType = .topCell
+        }
+        
+        if indexPath.row == cellCounts-1 {
+            
+            cellType = .bottomCell
+        }
+        
+        cell.setUp(cellType: cellType)
         
         return cell
     }

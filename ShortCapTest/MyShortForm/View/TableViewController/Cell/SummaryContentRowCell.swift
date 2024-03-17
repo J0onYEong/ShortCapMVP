@@ -1,5 +1,5 @@
 //
-//  SFRowCell.swift
+//  SummaryContentRowCell.swift
 //  ShortCapTest
 //
 //  Created by 최준영 on 3/3/24.
@@ -7,16 +7,17 @@
 
 import UIKit
 
-class SFRowCell: UITableViewCell {
+class SummaryContentRowCell: UITableViewCell {
     
     var summayContentViewModel: SummaryContentViewModel!
+    
+    var cellType: SCRowCellType = .middleCell
     
     // View
     let thumbNailView: UIImageView = {
         
         let uiImageView = UIImageView()
         
-        uiImageView.layer.cornerRadius = 10
         uiImageView.layer.backgroundColor = UIColor.gray.cgColor
         
         uiImageView.contentMode = .scaleAspectFill
@@ -45,6 +46,7 @@ class SFRowCell: UITableViewCell {
         view.distribution = .fill
         view.alignment = .leading
         view.spacing = 10
+        view.backgroundColor = .white
         
         view.translatesAutoresizingMaskIntoConstraints = false
         
@@ -64,7 +66,7 @@ class SFRowCell: UITableViewCell {
     
     func setAutoLayout() {
         
-        self.layer.backgroundColor = UIColor.red.withAlphaComponent(0.3).cgColor
+        self.backgroundColor = .gray
         
         self.addSubview(stackView)
         
@@ -73,10 +75,8 @@ class SFRowCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             
-            stackView.topAnchor.constraint(equalTo: self.topAnchor),
-            stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 1.0),
+            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -1.0),
             
             thumbNailView.widthAnchor.constraint(equalToConstant: SFTableViewConfig.imageWidth),
             thumbNailView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 5),
@@ -87,28 +87,52 @@ class SFRowCell: UITableViewCell {
         ])
     }
     
-    func setUp() {
+    func setUp(cellType: SCRowCellType) {
         
-        viewConfigure()
+        setTitleText(text: summayContentViewModel.title)
         
-        summayContentViewModel.fetchCompletion = {
+        summayContentViewModel.fetchCompletion = { [weak self] in
             
-            self.viewConfigure()
+            self?.setTitleText(text: self?.summayContentViewModel.title ?? "")
         }
         
-        summayContentViewModel.checkIsFetched()
+        setCellBorder(type: cellType)
+        
+//        summayContentViewModel.checkIsFetched()
     }
     
-    func viewConfigure() {
-
-        titleView.text = summayContentViewModel.title
+    func setTitleText(text: String) {
+        
+        titleView.text = text
+    }
+    
+    func setCellBorder(type: SCRowCellType) {
+        
+        var topConstant: CGFloat = 1.0
+        var bottomConstant: CGFloat = 1.0
+        
+        if type == .topCell {
+            
+            bottomConstant = 0.5
+            
+        } else if type == .middleCell {
+            
+            topConstant = 0.5
+            bottomConstant = 0.5
+        } else {
+            
+            topConstant = 0.5
+        }
+        
+        NSLayoutConstraint.activate([
+            
+            stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: topConstant),
+            stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -bottomConstant)
+        ])
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        self.thumbNailView.clipsToBounds = true
-        self.thumbNailView.layer.cornerRadius = 10
     }
 }
 

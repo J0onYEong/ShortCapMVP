@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B8AD7852BA7327B00F1CD49 /* SCRowCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8AD7842BA7327B00F1CD49 /* SCRowCellType.swift */; };
 		9B8C55522BA6B57B00C61D53 /* SharedShortForm+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C192B94EC22001F3D88 /* SharedShortForm+CoreDataClass.swift */; };
 		9B8C55532BA6B57B00C61D53 /* SharedShortForm+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C1A2B94EC22001F3D88 /* SharedShortForm+CoreDataProperties.swift */; };
 		9B8C55542BA6B57B00C61D53 /* ShareShortFormModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7BF92B9497D3001F3D88 /* ShareShortFormModel.xcdatamodeld */; };
@@ -27,7 +28,7 @@
 		9B8E7BFF2B949AE8001F3D88 /* SummaryContentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7BFE2B949AE8001F3D88 /* SummaryContentListViewModel.swift */; };
 		9B8E7C012B949C53001F3D88 /* SummaryContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C002B949C53001F3D88 /* SummaryContentViewModel.swift */; };
 		9B8E7C032B949E05001F3D88 /* SummaryContentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C022B949E05001F3D88 /* SummaryContentListViewController.swift */; };
-		9B8E7C052B949FCC001F3D88 /* SFRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C042B949FCC001F3D88 /* SFRowCell.swift */; };
+		9B8E7C052B949FCC001F3D88 /* SummaryContentRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C042B949FCC001F3D88 /* SummaryContentRowCell.swift */; };
 		9B8E7C082B94A519001F3D88 /* SFFetchInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C072B94A519001F3D88 /* SFFetchInterface.swift */; };
 		9B8E7C0A2B94A691001F3D88 /* TestSFFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C092B94A691001F3D88 /* TestSFFetcher.swift */; };
 		9B8E7C0C2B94C1FA001F3D88 /* APIRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C0B2B94C1FA001F3D88 /* APIRequestManager.swift */; };
@@ -66,6 +67,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9B8AD7842BA7327B00F1CD49 /* SCRowCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCRowCellType.swift; sourceTree = "<group>"; };
 		9B8E7BDC2B9496D6001F3D88 /* ShortCapTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShortCapTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B8E7BDF2B9496D6001F3D88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B8E7BE12B9496D6001F3D88 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,7 +81,7 @@
 		9B8E7BFE2B949AE8001F3D88 /* SummaryContentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryContentListViewModel.swift; sourceTree = "<group>"; };
 		9B8E7C002B949C53001F3D88 /* SummaryContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryContentViewModel.swift; sourceTree = "<group>"; };
 		9B8E7C022B949E05001F3D88 /* SummaryContentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryContentListViewController.swift; sourceTree = "<group>"; };
-		9B8E7C042B949FCC001F3D88 /* SFRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFRowCell.swift; sourceTree = "<group>"; };
+		9B8E7C042B949FCC001F3D88 /* SummaryContentRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryContentRowCell.swift; sourceTree = "<group>"; };
 		9B8E7C072B94A519001F3D88 /* SFFetchInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFFetchInterface.swift; sourceTree = "<group>"; };
 		9B8E7C092B94A691001F3D88 /* TestSFFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSFFetcher.swift; sourceTree = "<group>"; };
 		9B8E7C0B2B94C1FA001F3D88 /* APIRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestManager.swift; sourceTree = "<group>"; };
@@ -116,6 +118,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9B8AD7822BA7325000F1CD49 /* TableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9B8AD7832BA7325800F1CD49 /* Cell */,
+				9B8E7C022B949E05001F3D88 /* SummaryContentListViewController.swift */,
+			);
+			path = TableViewController;
+			sourceTree = "<group>";
+		};
+		9B8AD7832BA7325800F1CD49 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				9B8E7C042B949FCC001F3D88 /* SummaryContentRowCell.swift */,
+				9B8AD7842BA7327B00F1CD49 /* SCRowCellType.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		9B8E7BD32B9496D6001F3D88 = {
 			isa = PBXGroup;
 			children = (
@@ -177,8 +197,7 @@
 		9B8E7BF52B94970C001F3D88 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				9B8E7C022B949E05001F3D88 /* SummaryContentListViewController.swift */,
-				9B8E7C042B949FCC001F3D88 /* SFRowCell.swift */,
+				9B8AD7822BA7325000F1CD49 /* TableViewController */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -363,6 +382,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B8E7C0C2B94C1FA001F3D88 /* APIRequestManager.swift in Sources */,
+				9B8AD7852BA7327B00F1CD49 /* SCRowCellType.swift in Sources */,
 				9B8E7C1C2B94EC22001F3D88 /* SharedShortForm+CoreDataProperties.swift in Sources */,
 				9B8E7BFB2B9497D3001F3D88 /* ShareShortFormModel.xcdatamodeld in Sources */,
 				9B8E7C0E2B94C216001F3D88 /* APIFetcherInterface.swift in Sources */,
@@ -374,7 +394,7 @@
 				9B8E7C012B949C53001F3D88 /* SummaryContentViewModel.swift in Sources */,
 				9B8E7BE22B9496D6001F3D88 /* SceneDelegate.swift in Sources */,
 				9B8E7C0A2B94A691001F3D88 /* TestSFFetcher.swift in Sources */,
-				9B8E7C052B949FCC001F3D88 /* SFRowCell.swift in Sources */,
+				9B8E7C052B949FCC001F3D88 /* SummaryContentRowCell.swift in Sources */,
 				9B8E7C172B94DAF9001F3D88 /* ShortCapContainer.swift in Sources */,
 				9B8E7C082B94A519001F3D88 /* SFFetchInterface.swift in Sources */,
 				9B8E7BFD2B9499A2001F3D88 /* SummaryContentModel.swift in Sources */,

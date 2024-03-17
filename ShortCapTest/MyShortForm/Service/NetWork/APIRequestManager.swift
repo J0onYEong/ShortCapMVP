@@ -114,10 +114,14 @@ class APIRequestManager: APIFetcher {
                         
                         let model = SummaryContentModel(content: dto)
                         
+                        print("\(uuid) 요청 완료")
+                        
                         completion(.success(model))
                     } else {
                         
-                        DispatchQueue.global().asyncAfter(deadline: .now()+0.5) {
+                        print("\(uuid) 재요청...")
+                        
+                        DispatchQueue.global().asyncAfter(deadline: .now()+1.5) {
                             
                             self.requestSummaryState(uuid: uuid, completion: completion)
                         }

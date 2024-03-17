@@ -8,23 +8,116 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Detail View Controller-->
+        <scene sceneID="1he-Yy-J8P">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ShortCapTest" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                <viewController storyboardIdentifier="DetailViewController" id="GL8-d6-amA" customClass="DetailViewController" customModule="ShortCapTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QAk-ig-5jL">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hnf-6Z-mDY">
+                                <rect key="frame" x="0.0" y="103" width="393" height="749"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="숏폼 제목" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xnD-Rg-QYf">
+                                        <rect key="frame" x="20.999999999999993" y="15" width="103.33333333333331" height="33.666666666666664"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="요약된 내용" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IyG-OX-zzj">
+                                        <rect key="frame" x="20.999999999999993" y="269.33333333333331" width="100.33333333333331" height="26.333333333333314"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="키워드" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cO4-O8-U2j">
+                                        <rect key="frame" x="21.000000000000004" y="445.66666666666663" width="57.333333333333343" height="26.333333333333314"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tss-Io-Q21">
+                                        <rect key="frame" x="21" y="310.66666666666669" width="351" height="120"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="120" id="utJ-5e-31S"/>
+                                        </constraints>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eac-sU-lBj">
+                                        <rect key="frame" x="21" y="63.666666666666671" width="351" height="175.66666666666663"/>
+                                        <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Eac-sU-lBj" secondAttribute="height" multiplier="2:1" id="Mul-EF-Y9r"/>
+                                        </constraints>
+                                        <wkWebViewConfiguration key="configuration">
+                                            <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                            <wkPreferences key="preferences"/>
+                                        </wkWebViewConfiguration>
+                                    </wkWebView>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lp0-HK-ddG">
+                                        <rect key="frame" x="21" y="487" width="351" height="65"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="left" ambiguous="YES" distribution="fillProportionally" alignment="lastBaseline" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ej7-4y-QaI">
+                                                <rect key="frame" x="0.0" y="0.0" width="351" height="65"/>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="ej7-4y-QaI" firstAttribute="bottom" secondItem="gYN-jL-tBn" secondAttribute="bottom" id="1uo-Rl-rG0"/>
+                                            <constraint firstItem="ej7-4y-QaI" firstAttribute="leading" secondItem="gYN-jL-tBn" secondAttribute="leading" id="3BY-q0-3qS"/>
+                                            <constraint firstAttribute="height" constant="65" id="8x1-Yq-Ddi"/>
+                                            <constraint firstItem="ej7-4y-QaI" firstAttribute="top" secondItem="gYN-jL-tBn" secondAttribute="top" id="wZe-L6-hjW"/>
+                                        </constraints>
+                                        <viewLayoutGuide key="contentLayoutGuide" id="owx-BH-ul7"/>
+                                        <viewLayoutGuide key="frameLayoutGuide" id="gYN-jL-tBn"/>
+                                    </scrollView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="IyG-OX-zzj" firstAttribute="leading" secondItem="SOd-5U-bfS" secondAttribute="leading" constant="21" id="36j-eQ-TZ6"/>
+                                    <constraint firstItem="Eac-sU-lBj" firstAttribute="top" secondItem="xnD-Rg-QYf" secondAttribute="bottom" constant="15" id="8MD-mA-2NP"/>
+                                    <constraint firstItem="SOd-5U-bfS" firstAttribute="trailing" secondItem="lp0-HK-ddG" secondAttribute="trailing" constant="21" id="Jll-5a-PRN"/>
+                                    <constraint firstItem="cO4-O8-U2j" firstAttribute="top" secondItem="tss-Io-Q21" secondAttribute="bottom" constant="15" id="OKe-kD-cdg"/>
+                                    <constraint firstItem="SOd-5U-bfS" firstAttribute="trailing" secondItem="tss-Io-Q21" secondAttribute="trailing" constant="21" id="Tdr-zL-N4n"/>
+                                    <constraint firstItem="SOd-5U-bfS" firstAttribute="trailing" secondItem="Eac-sU-lBj" secondAttribute="trailing" constant="21" id="WQB-MQ-XFc"/>
+                                    <constraint firstItem="xnD-Rg-QYf" firstAttribute="leading" secondItem="SOd-5U-bfS" secondAttribute="leading" constant="21" id="Xk0-hx-rT6"/>
+                                    <constraint firstItem="tss-Io-Q21" firstAttribute="top" secondItem="IyG-OX-zzj" secondAttribute="bottom" constant="15" id="iue-oV-oQ0"/>
+                                    <constraint firstItem="Eac-sU-lBj" firstAttribute="leading" secondItem="SOd-5U-bfS" secondAttribute="leading" constant="21" id="kEt-h5-art"/>
+                                    <constraint firstItem="IyG-OX-zzj" firstAttribute="top" secondItem="Eac-sU-lBj" secondAttribute="bottom" constant="30" id="ozI-7S-5rs"/>
+                                    <constraint firstItem="cO4-O8-U2j" firstAttribute="leading" secondItem="SOd-5U-bfS" secondAttribute="leading" constant="21" id="pOq-D7-MlX"/>
+                                    <constraint firstItem="xnD-Rg-QYf" firstAttribute="top" secondItem="SOd-5U-bfS" secondAttribute="top" constant="15" id="sxU-nO-WKr"/>
+                                    <constraint firstItem="tss-Io-Q21" firstAttribute="leading" secondItem="SOd-5U-bfS" secondAttribute="leading" constant="21" id="ugs-ek-hk4"/>
+                                    <constraint firstItem="lp0-HK-ddG" firstAttribute="leading" secondItem="SOd-5U-bfS" secondAttribute="leading" constant="21" id="yHp-8N-qd8"/>
+                                    <constraint firstItem="lp0-HK-ddG" firstAttribute="top" secondItem="cO4-O8-U2j" secondAttribute="bottom" constant="15" id="yXU-c8-aUG"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="znL-CP-Pbv"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="SOd-5U-bfS"/>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="iag-lG-CJK"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="adz-3M-mlb"/>
+                    <connections>
+                        <outlet property="keyWordStack" destination="ej7-4y-QaI" id="tfP-d7-Bd6"/>
+                        <outlet property="summaryHeightConst" destination="utJ-5e-31S" id="44o-pb-dKf"/>
+                        <outlet property="summaryTextView" destination="tss-Io-Q21" id="I39-kK-g1y"/>
+                        <outlet property="titleLabel" destination="xnD-Rg-QYf" id="WQ1-0s-haN"/>
+                        <outlet property="webView" destination="Eac-sU-lBj" id="h4N-cq-cT2"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="exY-Rq-A73" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2640" y="-320"/>
+            <point key="canvasLocation" x="-2469.4656488549617" y="-849.29577464788736"/>
         </scene>
     </scenes>
     <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

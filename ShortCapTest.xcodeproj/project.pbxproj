@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		9B8AD7852BA7327B00F1CD49 /* SCRowCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8AD7842BA7327B00F1CD49 /* SCRowCellType.swift */; };
+		9B8AD7882BA73AE700F1CD49 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8AD7872BA73AE700F1CD49 /* DetailViewController.swift */; };
+		9B8AD78A2BA74D3500F1CD49 /* SCDetailInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8AD7892BA74D3500F1CD49 /* SCDetailInterface.swift */; };
+		9B8AD78C2BA74D8F00F1CD49 /* SCViewModelForDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8AD78B2BA74D8F00F1CD49 /* SCViewModelForDetail.swift */; };
 		9B8C55522BA6B57B00C61D53 /* SharedShortForm+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C192B94EC22001F3D88 /* SharedShortForm+CoreDataClass.swift */; };
 		9B8C55532BA6B57B00C61D53 /* SharedShortForm+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C1A2B94EC22001F3D88 /* SharedShortForm+CoreDataProperties.swift */; };
 		9B8C55542BA6B57B00C61D53 /* ShareShortFormModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7BF92B9497D3001F3D88 /* ShareShortFormModel.xcdatamodeld */; };
@@ -68,6 +71,9 @@
 
 /* Begin PBXFileReference section */
 		9B8AD7842BA7327B00F1CD49 /* SCRowCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCRowCellType.swift; sourceTree = "<group>"; };
+		9B8AD7872BA73AE700F1CD49 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		9B8AD7892BA74D3500F1CD49 /* SCDetailInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCDetailInterface.swift; sourceTree = "<group>"; };
+		9B8AD78B2BA74D8F00F1CD49 /* SCViewModelForDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCViewModelForDetail.swift; sourceTree = "<group>"; };
 		9B8E7BDC2B9496D6001F3D88 /* ShortCapTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShortCapTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B8E7BDF2B9496D6001F3D88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B8E7BE12B9496D6001F3D88 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -136,6 +142,15 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		9B8AD7862BA73AC600F1CD49 /* DetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9B8AD7872BA73AE700F1CD49 /* DetailViewController.swift */,
+				9B8AD7822BA7325000F1CD49 /* TableViewController */,
+			);
+			path = DetailViewController;
+			sourceTree = "<group>";
+		};
 		9B8E7BD32B9496D6001F3D88 = {
 			isa = PBXGroup;
 			children = (
@@ -190,6 +205,7 @@
 			children = (
 				9B8E7BFE2B949AE8001F3D88 /* SummaryContentListViewModel.swift */,
 				9B8E7C002B949C53001F3D88 /* SummaryContentViewModel.swift */,
+				9B8AD78B2BA74D8F00F1CD49 /* SCViewModelForDetail.swift */,
 			);
 			path = VIewModel;
 			sourceTree = "<group>";
@@ -197,7 +213,7 @@
 		9B8E7BF52B94970C001F3D88 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				9B8AD7822BA7325000F1CD49 /* TableViewController */,
+				9B8AD7862BA73AC600F1CD49 /* DetailViewController */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -235,6 +251,7 @@
 			children = (
 				9B8E7C072B94A519001F3D88 /* SFFetchInterface.swift */,
 				9B8E7C0D2B94C216001F3D88 /* APIFetcherInterface.swift */,
+				9B8AD7892BA74D3500F1CD49 /* SCDetailInterface.swift */,
 			);
 			path = InterFace;
 			sourceTree = "<group>";
@@ -388,7 +405,9 @@
 				9B8E7C0E2B94C216001F3D88 /* APIFetcherInterface.swift in Sources */,
 				9B8E7C032B949E05001F3D88 /* SummaryContentListViewController.swift in Sources */,
 				9B8E7C112B94C336001F3D88 /* DefaultResponseDto.swift in Sources */,
+				9B8AD7882BA73AE700F1CD49 /* DetailViewController.swift in Sources */,
 				9B8E7C1B2B94EC22001F3D88 /* SharedShortForm+CoreDataClass.swift in Sources */,
+				9B8AD78C2BA74D8F00F1CD49 /* SCViewModelForDetail.swift in Sources */,
 				9B8E7BE42B9496D6001F3D88 /* ViewController.swift in Sources */,
 				9B8E7BE02B9496D6001F3D88 /* AppDelegate.swift in Sources */,
 				9B8E7C012B949C53001F3D88 /* SummaryContentViewModel.swift in Sources */,
@@ -396,6 +415,7 @@
 				9B8E7C0A2B94A691001F3D88 /* TestSFFetcher.swift in Sources */,
 				9B8E7C052B949FCC001F3D88 /* SummaryContentRowCell.swift in Sources */,
 				9B8E7C172B94DAF9001F3D88 /* ShortCapContainer.swift in Sources */,
+				9B8AD78A2BA74D3500F1CD49 /* SCDetailInterface.swift in Sources */,
 				9B8E7C082B94A519001F3D88 /* SFFetchInterface.swift in Sources */,
 				9B8E7BFD2B9499A2001F3D88 /* SummaryContentModel.swift in Sources */,
 				9BE9FC622BA6A30900978501 /* SummaryContentDto.swift in Sources */,

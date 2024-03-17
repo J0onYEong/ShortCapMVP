@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct DefaultResponseModel<T: Decodable>: Decodable {
+struct DefaultResponseDto<T: Decodable>: Decodable {
     
     let result: String?
     let message: String?

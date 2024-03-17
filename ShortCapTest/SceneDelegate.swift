@@ -23,15 +23,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let apiFetcher = APIRequestManager()
 
-        let sfListViewModel = SFListViewModel(sfFetcher: dataFetcher, apiFetcher: apiFetcher)
+        let scListViewModel = SummaryContentListViewModel(sfFetcher: dataFetcher, apiFetcher: apiFetcher)
         
-        let sfListVC = MySFViewController(sFListViewModel: sfListViewModel)
-        let naviVC = UINavigationController(rootViewController: sfListVC)
+        let scListVC = SummaryContentListViewController(summaryListViewModel: scListViewModel)
+        let navigationVC = UINavigationController(rootViewController: scListVC)
 
-        window?.rootViewController = naviVC
+        window?.rootViewController = navigationVC
         window?.makeKeyAndVisible()
     }
-
+    
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
@@ -52,6 +52,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneWillEnterForeground(_ scene: UIScene) {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
+        
+        
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {

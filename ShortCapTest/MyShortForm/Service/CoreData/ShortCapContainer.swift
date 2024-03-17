@@ -75,7 +75,7 @@ public class ShortCapContainer {
 
 extension ShortCapContainer: SFFetcher {
     
-    func getSFModels(completion: @escaping (Result<[SFModel], SFFetcherError>) -> Void) {
+    func getSummaryContentModels(completion: @escaping (Result<SummaryContentListModel, SFFetcherError>) -> Void) {
         
         let fetchRequest = SharedShortForm.fetchRequest()
         
@@ -100,7 +100,7 @@ extension ShortCapContainer: SFFetcher {
                         }
                     }
                     
-                    return SFModel(
+                    let dto = SummaryContentDto (
                         uuid: fetchedData.uuid,
                         title: fetchedData.title,
                         description: fetchedData.sfDescription,
@@ -108,13 +108,19 @@ extension ShortCapContainer: SFFetcher {
                         url: form.url,
                         summary: fetchedData.summary,
                         address: fetchedData.address,
-                        createdAt: fetchedData.createdAt,
+                        createdAt: fetchedData.createdAt
+                    )
+                    
+                    return SummaryContentModel(
+                        content: dto,
                         isFetched: true
                     )
                     
                 } else {
                     
-                    return SFModel(url: form.url)
+                    let dto = SummaryContentDto(url: form.url)
+                    
+                    return SummaryContentModel(content: dto)
                 }
             }
             
@@ -124,12 +130,15 @@ extension ShortCapContainer: SFFetcher {
             
             completion(.failure(.errorInFetchingProcess))
         }
-        
     }
     
-    func updateLocalData(model: SFModel) {
+    func updateLocalSummaryContentWith(model: SummaryContentModel) {
         
-        let url = model.url!
+        guard let idForLocalData = model.content.url else {
+            
+            print("일치하는 데이터를 찾을 수 없습니다.")
+            return;
+        }
         
         container.performBackgroundTask { backContext in
             
@@ -137,18 +146,21 @@ extension ShortCapContainer: SFFetcher {
             
             let ssfs = try! backContext.fetch(request)
             
-            if let target = ssfs.first(where: { $0.url == url }) {
+            if let target = ssfs.first(where: { $0.url == idForLocalData }) {
                 
+                // 로컬에 이미존재하는 SharedShortForm에 요약된 데이터를 주입
                 let sfData = SSFData(context: backContext)
                 
-                sfData.uuid = model.uuid
-                sfData.title = model.title
-                sfData.sfDescription = model.description
-                sfData.summary = model.summary
-                sfData.address = model.address
-                sfData.createdAt = model.createdAt
+                let content = model.content
                 
-                if let keywords = model.keywords {
+                sfData.uuid = content.uuid
+                sfData.title = content.title
+                sfData.sfDescription = content.description
+                sfData.summary = content.summary
+                sfData.address = content.address
+                sfData.createdAt = content.createdAt
+                
+                if let keywords = content.keywords {
                     
                     keywords.forEach { word in
                         

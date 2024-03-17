@@ -37,6 +37,7 @@ class APIRequestManager: APIFetcher {
         
         var request = try! URLRequest(url: url, method: method)
         
+        // Data transfer
         request.headers = [
             "Content-Type" : "application/json",
         ]
@@ -46,14 +47,14 @@ class APIRequestManager: APIFetcher {
         return request
     }
     
-    func requestSFSummary(sFUrl: String) async throws -> String {
+    func requestStartingSummary(vidoeUrl: String) async throws -> String {
         
         let url = getApiUrl(.startSummary)
         
         var request = getReqeust(url: url, method: .post)
 
         let jsonObject: [String: Any] = [
-            "url": sFUrl
+            "url": vidoeUrl
         ]
         
         request.httpBody = try! JSONSerialization.data(withJSONObject: jsonObject)
@@ -67,7 +68,7 @@ class APIRequestManager: APIFetcher {
             throw APIRequestError.statusCodeFailure(code: httpResponse.statusCode)
         }
         
-        guard let decoded = try? JSONDecoder().decode(DefaultResponseModel<SFUuidModel>.self, from: data) else {
+        guard let decoded = try? JSONDecoder().decode(DefaultResponseDto<SFUuidModel>.self, from: data) else {
             
             print(String(data: data, encoding: .utf8) ?? "Summary Start Request")
             
@@ -77,7 +78,9 @@ class APIRequestManager: APIFetcher {
         return decoded.data!.uuid
     }
     
-    func checkRequest(uuid: String, completion: @escaping (Result<SFModel, APIRequestError>) -> Void) {
+    /// 요약 상태를 확인하는 매서드
+    /// 요약중일 경우 재귀호출을 통해 성공, 실패할 때까지 요청을 보낸다.
+    func requestSummaryState(uuid: String, completion: @escaping (Result<SummaryContentModel, APIRequestError>) -> Void) {
         
         let url = getApiUrl(.checkSummary)
         
@@ -92,7 +95,9 @@ class APIRequestManager: APIFetcher {
                 
                 switch response.result {
                 case .success(let success):
-                    guard let data = success, let decoded = try? JSONDecoder().decode(DefaultResponseModel<SFModel>.self, from: data) else {
+                    
+                    // 응답이 잘들어왔고, 디코딩 가는한 지 확인
+                    guard let data = success, let decoded = try? JSONDecoder().decode(DefaultResponseDto<SummaryContentDto>.self, from: data) else {
                         
                         if let data = success {
                             
@@ -102,19 +107,25 @@ class APIRequestManager: APIFetcher {
                         return completion(.failure(APIRequestError.decodingFailure))
                     }
                     
-                    if decoded.result == "success", let model = decoded.data {
+                    // TODO: 이후 확인 url과 데이터를 가져오는 url을 분리할 예정
+                    
+                    // 성공여부에 따라 요청을 다시보낼 것인지 확인
+                    if decoded.result == "success", let dto = decoded.data {
+                        
+                        let model = SummaryContentModel(content: dto)
                         
                         completion(.success(model))
                     } else {
                         
                         DispatchQueue.global().asyncAfter(deadline: .now()+0.5) {
                             
-                            self.checkRequest(uuid: uuid, completion: completion)
+                            self.requestSummaryState(uuid: uuid, completion: completion)
                         }
                     }
                     
                 case .failure(let error):
                     
+                    // 요청자체가 실패한 경우
                     if let statusCode = response.response?.statusCode, !(200..<300).contains(statusCode) {
                         
                         completion(.failure(APIRequestError.statusCodeFailure(code: statusCode)))
@@ -124,8 +135,9 @@ class APIRequestManager: APIFetcher {
                     }
                 }
             }
-
     }
+    
+    
 }
 
 struct SFUuidModel: Decodable {

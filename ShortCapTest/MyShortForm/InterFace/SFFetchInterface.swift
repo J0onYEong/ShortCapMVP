@@ -14,7 +14,7 @@ enum SFFetcherError: Error {
 
 protocol SFFetcher {
     
-    func getSFModels(completion: @escaping (Result<[SFModel], SFFetcherError>) -> Void)
+    func getSummaryContentModels(completion: @escaping (Result<SummaryContentListModel, SFFetcherError>) -> Void)
     
-    func updateLocalData(model: SFModel)
+    func updateLocalSummaryContentWith(model: SummaryContentModel)
 }

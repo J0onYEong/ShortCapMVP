@@ -9,7 +9,7 @@ import UIKit
 
 class SFRowCell: UITableViewCell {
     
-    var sFViewModel: SFViewModel!
+    var summayContentViewModel: SummaryContentViewModel!
     
     // View
     let thumbNailView: UIImageView = {
@@ -91,17 +91,17 @@ class SFRowCell: UITableViewCell {
         
         viewConfigure()
         
-        sFViewModel.fetchCompletion = {
+        summayContentViewModel.fetchCompletion = {
             
             self.viewConfigure()
         }
         
-        sFViewModel.checkIsFetched()
+        summayContentViewModel.checkIsFetched()
     }
     
     func viewConfigure() {
 
-        titleView.text = sFViewModel.title
+        titleView.text = summayContentViewModel.title
     }
     
     override func layoutSubviews() {

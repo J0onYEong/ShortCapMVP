@@ -17,7 +17,7 @@ enum APIRequestError: Error {
 
 protocol APIFetcher {
     
-    func requestSFSummary(sFUrl: String) async throws -> String
+    func requestStartingSummary(vidoeUrl: String) async throws -> String
     
-    func checkRequest(uuid: String, completion: @escaping (Result<SFModel, APIRequestError>) -> Void)
+    func requestSummaryState(uuid: String, completion: @escaping (Result<SummaryContentModel, APIRequestError>) -> Void)
 }

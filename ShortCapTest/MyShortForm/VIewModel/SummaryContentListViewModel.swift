@@ -1,5 +1,5 @@
 //
-//  SFListViewModel.swift
+//  SummaryContentListViewModel.swift
 //  ShortCapTest
 //
 //  Created by 최준영 on 3/3/24.
@@ -7,9 +7,9 @@
 
 import Foundation
 
-class SFListViewModel {
+class SummaryContentListViewModel {
     
-    var model: [SFModel] = [] {
+    var model: SummaryContentListModel = [] {
         
         didSet {
             onModelIsModified?()
@@ -28,9 +28,9 @@ class SFListViewModel {
         self.apiFetcher = apiFetcher
     }
     
-    func fetchCellData() {
+    func fetchLocalData() {
         
-        sfFetcher.getSFModels { result in
+        sfFetcher.getSummaryContentModels { result in
             switch result {
             case .success(let success):
                 
@@ -45,11 +45,11 @@ class SFListViewModel {
         }
     }
     
-    func generateSFViewModel(index: Int) -> SFViewModel {
+    func generateSFViewModel(index: Int) -> SummaryContentViewModel {
         
         let model = model[index]
         
-        let viewModel = SFViewModel(
+        let viewModel = SummaryContentViewModel(
             model: model,
             apiFetcher: apiFetcher,
             sfFetcher: sfFetcher

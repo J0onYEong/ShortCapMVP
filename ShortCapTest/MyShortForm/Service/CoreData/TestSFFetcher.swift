@@ -60,13 +60,13 @@ class TestSFFetcher: SFFetcher {
             
             let ssf = SharedShortForm(context: context)
             
-            ssf.url = model.url
+            ssf.url = model.content.url!
             
             if model.isFetched {
                 let ssfData = SSFData(context: context)
                 
-                ssfData.title = model.title
-                ssfData.uuid = model.uuid
+                ssfData.title = model.content.title
+                ssfData.uuid = model.content.uuid
                 
                 ssf.sfData = ssfData
             }
@@ -85,40 +85,53 @@ class TestSFFetcher: SFFetcher {
         return model
     }
     
-    let dummyData: [SFModel] = [
-        SFModel(
-            uuid: "1",
-            title: "유튜브 쇼츠 더미1",
-            description: "더미객체1의 설명입니다.",
-            keywords: ["키워드1", "키워드2", "키워드3"],
-            url: "https://youtube.com/shorts/e5jsSi_aKmM?si=vRUkRp2utJV00Vbt",
-            summary: "더미객체1의 요약입니다.",
-            address: "더미객체1의 주소입니다.",
-            createdAt: "2024-03-03T20:00:00.000",
+    let dummyData: [SummaryContentModel] = [
+        
+        SummaryContentModel(
+            content: SummaryContentDto(
+                uuid: "1",
+                title: "유튜브 쇼츠 더미1",
+                description: "더미객체1의 설명입니다.",
+                keywords: ["키워드1", "키워드2", "키워드3"],
+                url: "https://youtube.com/shorts/e5jsSi_aKmM?si=vRUkRp2utJV00Vbt",
+                summary: "더미객체1의 요약입니다.",
+                address: "더미객체1의 주소입니다.",
+                createdAt: "2024-03-03T20:00:00.000"
+            ),
+            
             isFetched: true
         ),
-        SFModel(
-            uuid: "2",
-            title: "인스타 릴스 더미2",
-            description: "더미객체2의 설명입니다.",
-            keywords: ["키워드1", "키워드2", "키워드3"],
-            url: "https://www.instagram.com/reel/C3bm6JNPwbW/?utm_source=ig_web_copy_link",
-            summary: "더미객체2의 요약입니다.",
-            address: "더미객체2의 주소입니다.",
-            createdAt: "2024-03-03T20:00:00.000",
+        
+        SummaryContentModel(
+            content: SummaryContentDto(
+                uuid: "2",
+                title: "인스타 릴스 더미2",
+                description: "더미객체2의 설명입니다.",
+                keywords: ["키워드1", "키워드2", "키워드3"],
+                url: "https://www.instagram.com/reel/C3bm6JNPwbW/?utm_source=ig_web_copy_link",
+                summary: "더미객체2의 요약입니다.",
+                address: "더미객체2의 주소입니다.",
+                createdAt: "2024-03-03T20:00:00.000"
+            ),
+            
             isFetched: true
         ),
-        SFModel(
-            uuid: "3",
-            title: nil,
-            description: nil,
-            keywords: nil,
-            url: "https://youtube.com/shorts/BjjtDjkSlRo?si=Mt_4Sh6L8_tJu-z3",
-            summary: nil,
-            address: nil,
-            createdAt: nil,
+        
+        SummaryContentModel(
+            content: SummaryContentDto(
+                uuid: "3",
+                title: nil,
+                description: nil,
+                keywords: nil,
+                url: "https://youtube.com/shorts/BjjtDjkSlRo?si=Mt_4Sh6L8_tJu-z3",
+                summary: nil,
+                address: nil,
+                createdAt: nil
+            ),
+            
             isFetched: false
         ),
+        
 //        SFModel(
 //            uuid: "4",
 //            title: nil,
@@ -132,7 +145,7 @@ class TestSFFetcher: SFFetcher {
 //        )
     ]
     
-    func getSFModels(completion: @escaping (Result<[SFModel], SFFetcherError>) -> Void) {
+    func getSummaryContentModels(completion: @escaping (Result<SummaryContentListModel, SFFetcherError>) -> Void) {
         
         let fetchRequest = SharedShortForm.fetchRequest()
         
@@ -142,7 +155,7 @@ class TestSFFetcher: SFFetcher {
             
             print(shortForms.count)
             
-            let sFModelArray = shortForms.map { form in
+            let summayContentModels = shortForms.map { form in
                     
                 if let fetchedData = form.sfData {
                     
@@ -157,7 +170,7 @@ class TestSFFetcher: SFFetcher {
                         }
                     }
                     
-                    return SFModel(
+                    let dto = SummaryContentDto (
                         uuid: fetchedData.uuid,
                         title: fetchedData.title,
                         description: fetchedData.sfDescription,
@@ -165,17 +178,20 @@ class TestSFFetcher: SFFetcher {
                         url: form.url,
                         summary: fetchedData.summary,
                         address: fetchedData.address,
-                        createdAt: fetchedData.createdAt,
-                        isFetched: true
+                        createdAt: fetchedData.createdAt
                     )
+                    
+                    return SummaryContentModel(content: dto, isFetched: true)
                     
                 } else {
                     
-                    return SFModel(url: form.url)
+                    let dto = SummaryContentDto(url: form.url)
+                    
+                    return SummaryContentModel(content: dto)
                 }
             }
             
-            completion(.success(sFModelArray))
+            completion(.success(summayContentModels))
             
         } catch {
             
@@ -184,9 +200,13 @@ class TestSFFetcher: SFFetcher {
         
     }
     
-    func updateLocalData(model: SFModel) {
+    func updateLocalSummaryContentWith(model: SummaryContentModel) {
         
-        let url = model.url!
+        guard let idForLocalData = model.content.url else {
+            
+            print("일치하는 데이터를 찾을 수 없습니다.")
+            return;
+        }
         
         container.performBackgroundTask { backContext in
             
@@ -194,18 +214,21 @@ class TestSFFetcher: SFFetcher {
             
             let ssfs = try! backContext.fetch(request)
             
-            if let target = ssfs.first(where: { $0.url == url }) {
+            if let target = ssfs.first(where: { $0.url == idForLocalData }) {
                 
+                // 로컬에 이미존재하는 SharedShortForm에 요약된 데이터를 주입
                 let sfData = SSFData(context: backContext)
                 
-                sfData.uuid = model.uuid
-                sfData.title = model.title
-                sfData.sfDescription = model.description
-                sfData.summary = model.summary
-                sfData.address = model.address
-                sfData.createdAt = model.createdAt
+                let content = model.content
                 
-                if let keywords = model.keywords {
+                sfData.uuid = content.uuid
+                sfData.title = content.title
+                sfData.sfDescription = content.description
+                sfData.summary = content.summary
+                sfData.address = content.address
+                sfData.createdAt = content.createdAt
+                
+                if let keywords = content.keywords {
                     
                     keywords.forEach { word in
                         

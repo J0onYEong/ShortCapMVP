@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B8C55522BA6B57B00C61D53 /* SharedShortForm+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C192B94EC22001F3D88 /* SharedShortForm+CoreDataClass.swift */; };
+		9B8C55532BA6B57B00C61D53 /* SharedShortForm+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C1A2B94EC22001F3D88 /* SharedShortForm+CoreDataProperties.swift */; };
+		9B8C55542BA6B57B00C61D53 /* ShareShortFormModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7BF92B9497D3001F3D88 /* ShareShortFormModel.xcdatamodeld */; };
+		9B8C55552BA6B57B00C61D53 /* ShortCapContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C162B94DAF9001F3D88 /* ShortCapContainer.swift */; };
+		9B8C55562BA6B79B00C61D53 /* ShareExtensionForShortCap.entitlements in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C302B94F3CF001F3D88 /* ShareExtensionForShortCap.entitlements */; };
+		9B8C55572BA6B79B00C61D53 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C232B94F3AD001F3D88 /* ShareViewController.swift */; };
+		9B8C55582BA6B81300C61D53 /* SFFetchInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C072B94A519001F3D88 /* SFFetchInterface.swift */; };
+		9B8C55592BA6B82B00C61D53 /* SummaryContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7BFC2B9499A2001F3D88 /* SummaryContentModel.swift */; };
+		9B8C555A2BA6B83900C61D53 /* SummaryContentDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE9FC612BA6A30900978501 /* SummaryContentDto.swift */; };
 		9B8E7BE02B9496D6001F3D88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7BDF2B9496D6001F3D88 /* AppDelegate.swift */; };
 		9B8E7BE22B9496D6001F3D88 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7BE12B9496D6001F3D88 /* SceneDelegate.swift */; };
 		9B8E7BE42B9496D6001F3D88 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7BE32B9496D6001F3D88 /* ViewController.swift */; };
@@ -14,28 +23,22 @@
 		9B8E7BE92B9496D9001F3D88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B8E7BE82B9496D9001F3D88 /* Assets.xcassets */; };
 		9B8E7BEC2B9496D9001F3D88 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B8E7BEA2B9496D9001F3D88 /* LaunchScreen.storyboard */; };
 		9B8E7BFB2B9497D3001F3D88 /* ShareShortFormModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7BF92B9497D3001F3D88 /* ShareShortFormModel.xcdatamodeld */; };
-		9B8E7BFD2B9499A2001F3D88 /* SFModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7BFC2B9499A2001F3D88 /* SFModel.swift */; };
-		9B8E7BFF2B949AE8001F3D88 /* SFListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7BFE2B949AE8001F3D88 /* SFListViewModel.swift */; };
-		9B8E7C012B949C53001F3D88 /* SFViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C002B949C53001F3D88 /* SFViewModel.swift */; };
-		9B8E7C032B949E05001F3D88 /* MySFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C022B949E05001F3D88 /* MySFViewController.swift */; };
+		9B8E7BFD2B9499A2001F3D88 /* SummaryContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7BFC2B9499A2001F3D88 /* SummaryContentModel.swift */; };
+		9B8E7BFF2B949AE8001F3D88 /* SummaryContentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7BFE2B949AE8001F3D88 /* SummaryContentListViewModel.swift */; };
+		9B8E7C012B949C53001F3D88 /* SummaryContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C002B949C53001F3D88 /* SummaryContentViewModel.swift */; };
+		9B8E7C032B949E05001F3D88 /* SummaryContentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C022B949E05001F3D88 /* SummaryContentListViewController.swift */; };
 		9B8E7C052B949FCC001F3D88 /* SFRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C042B949FCC001F3D88 /* SFRowCell.swift */; };
 		9B8E7C082B94A519001F3D88 /* SFFetchInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C072B94A519001F3D88 /* SFFetchInterface.swift */; };
 		9B8E7C0A2B94A691001F3D88 /* TestSFFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C092B94A691001F3D88 /* TestSFFetcher.swift */; };
 		9B8E7C0C2B94C1FA001F3D88 /* APIRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C0B2B94C1FA001F3D88 /* APIRequestManager.swift */; };
 		9B8E7C0E2B94C216001F3D88 /* APIFetcherInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C0D2B94C216001F3D88 /* APIFetcherInterface.swift */; };
-		9B8E7C112B94C336001F3D88 /* DefaultResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C102B94C336001F3D88 /* DefaultResponseModel.swift */; };
+		9B8E7C112B94C336001F3D88 /* DefaultResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C102B94C336001F3D88 /* DefaultResponseDto.swift */; };
 		9B8E7C142B94C6AB001F3D88 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 9B8E7C132B94C6AB001F3D88 /* Alamofire */; };
 		9B8E7C172B94DAF9001F3D88 /* ShortCapContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C162B94DAF9001F3D88 /* ShortCapContainer.swift */; };
 		9B8E7C1B2B94EC22001F3D88 /* SharedShortForm+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C192B94EC22001F3D88 /* SharedShortForm+CoreDataClass.swift */; };
 		9B8E7C1C2B94EC22001F3D88 /* SharedShortForm+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C1A2B94EC22001F3D88 /* SharedShortForm+CoreDataProperties.swift */; };
-		9B8E7C242B94F3AD001F3D88 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C232B94F3AD001F3D88 /* ShareViewController.swift */; };
 		9B8E7C2B2B94F3AD001F3D88 /* ShareExtensionForShortCap.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 9B8E7C212B94F3AD001F3D88 /* ShareExtensionForShortCap.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		9B8E7C362B94FA65001F3D88 /* ShareShortFormModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7BF92B9497D3001F3D88 /* ShareShortFormModel.xcdatamodeld */; };
-		9B8E7C372B94FA92001F3D88 /* SharedShortForm+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C1A2B94EC22001F3D88 /* SharedShortForm+CoreDataProperties.swift */; };
-		9B8E7C382B94FA92001F3D88 /* SharedShortForm+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C192B94EC22001F3D88 /* SharedShortForm+CoreDataClass.swift */; };
-		9B8E7C392B94FFC8001F3D88 /* ShortCapContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C162B94DAF9001F3D88 /* ShortCapContainer.swift */; };
-		9B8E7C3A2B94FFEB001F3D88 /* SFFetchInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C072B94A519001F3D88 /* SFFetchInterface.swift */; };
-		9B8E7C3B2B94FFF6001F3D88 /* SFModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7BFC2B9499A2001F3D88 /* SFModel.swift */; };
+		9BE9FC622BA6A30900978501 /* SummaryContentDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE9FC612BA6A30900978501 /* SummaryContentDto.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,16 +75,16 @@
 		9B8E7BEB2B9496D9001F3D88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9B8E7BED2B9496D9001F3D88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B8E7BFA2B9497D3001F3D88 /* ShareShortFormModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ShareShortFormModel.xcdatamodel; sourceTree = "<group>"; };
-		9B8E7BFC2B9499A2001F3D88 /* SFModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFModel.swift; sourceTree = "<group>"; };
-		9B8E7BFE2B949AE8001F3D88 /* SFListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFListViewModel.swift; sourceTree = "<group>"; };
-		9B8E7C002B949C53001F3D88 /* SFViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFViewModel.swift; sourceTree = "<group>"; };
-		9B8E7C022B949E05001F3D88 /* MySFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySFViewController.swift; sourceTree = "<group>"; };
+		9B8E7BFC2B9499A2001F3D88 /* SummaryContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryContentModel.swift; sourceTree = "<group>"; };
+		9B8E7BFE2B949AE8001F3D88 /* SummaryContentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryContentListViewModel.swift; sourceTree = "<group>"; };
+		9B8E7C002B949C53001F3D88 /* SummaryContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryContentViewModel.swift; sourceTree = "<group>"; };
+		9B8E7C022B949E05001F3D88 /* SummaryContentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryContentListViewController.swift; sourceTree = "<group>"; };
 		9B8E7C042B949FCC001F3D88 /* SFRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFRowCell.swift; sourceTree = "<group>"; };
 		9B8E7C072B94A519001F3D88 /* SFFetchInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFFetchInterface.swift; sourceTree = "<group>"; };
 		9B8E7C092B94A691001F3D88 /* TestSFFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSFFetcher.swift; sourceTree = "<group>"; };
 		9B8E7C0B2B94C1FA001F3D88 /* APIRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestManager.swift; sourceTree = "<group>"; };
 		9B8E7C0D2B94C216001F3D88 /* APIFetcherInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIFetcherInterface.swift; sourceTree = "<group>"; };
-		9B8E7C102B94C336001F3D88 /* DefaultResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultResponseModel.swift; sourceTree = "<group>"; };
+		9B8E7C102B94C336001F3D88 /* DefaultResponseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultResponseDto.swift; sourceTree = "<group>"; };
 		9B8E7C162B94DAF9001F3D88 /* ShortCapContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortCapContainer.swift; sourceTree = "<group>"; };
 		9B8E7C192B94EC22001F3D88 /* SharedShortForm+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SharedShortForm+CoreDataClass.swift"; path = "ShortCapTest/MyShortForm/Service/CoreData/Manual Classes/SharedShortForm+CoreDataClass.swift"; sourceTree = "<group>"; };
 		9B8E7C1A2B94EC22001F3D88 /* SharedShortForm+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SharedShortForm+CoreDataProperties.swift"; path = "ShortCapTest/MyShortForm/Service/CoreData/Manual Classes/SharedShortForm+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -91,6 +94,7 @@
 		9B8E7C302B94F3CF001F3D88 /* ShareExtensionForShortCap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShareExtensionForShortCap.entitlements; sourceTree = "<group>"; };
 		9B8E7C312B94F3E2001F3D88 /* ShortCapTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShortCapTest.entitlements; sourceTree = "<group>"; };
 		9B8E7C342B94F7B4001F3D88 /* ShortCapTest */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ShortCapTest; sourceTree = "<group>"; };
+		9BE9FC612BA6A30900978501 /* SummaryContentDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryContentDto.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,8 +168,8 @@
 		9B8E7BF42B949702001F3D88 /* VIewModel */ = {
 			isa = PBXGroup;
 			children = (
-				9B8E7BFE2B949AE8001F3D88 /* SFListViewModel.swift */,
-				9B8E7C002B949C53001F3D88 /* SFViewModel.swift */,
+				9B8E7BFE2B949AE8001F3D88 /* SummaryContentListViewModel.swift */,
+				9B8E7C002B949C53001F3D88 /* SummaryContentViewModel.swift */,
 			);
 			path = VIewModel;
 			sourceTree = "<group>";
@@ -173,7 +177,7 @@
 		9B8E7BF52B94970C001F3D88 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				9B8E7C022B949E05001F3D88 /* MySFViewController.swift */,
+				9B8E7C022B949E05001F3D88 /* SummaryContentListViewController.swift */,
 				9B8E7C042B949FCC001F3D88 /* SFRowCell.swift */,
 			);
 			path = View;
@@ -183,7 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				9B8E7C0F2B94C31C001F3D88 /* DTO */,
-				9B8E7BFC2B9499A2001F3D88 /* SFModel.swift */,
+				9B8E7BFC2B9499A2001F3D88 /* SummaryContentModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -200,7 +204,6 @@
 		9B8E7BF82B94979C001F3D88 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				9B8E7C182B94EBFC001F3D88 /* Manual Classes */,
 				9B8E7C092B94A691001F3D88 /* TestSFFetcher.swift */,
 				9B8E7BF92B9497D3001F3D88 /* ShareShortFormModel.xcdatamodeld */,
 				9B8E7C162B94DAF9001F3D88 /* ShortCapContainer.swift */,
@@ -220,7 +223,8 @@
 		9B8E7C0F2B94C31C001F3D88 /* DTO */ = {
 			isa = PBXGroup;
 			children = (
-				9B8E7C102B94C336001F3D88 /* DefaultResponseModel.swift */,
+				9B8E7C102B94C336001F3D88 /* DefaultResponseDto.swift */,
+				9BE9FC612BA6A30900978501 /* SummaryContentDto.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -231,13 +235,6 @@
 				9B8E7C0B2B94C1FA001F3D88 /* APIRequestManager.swift */,
 			);
 			path = NetWork;
-			sourceTree = "<group>";
-		};
-		9B8E7C182B94EBFC001F3D88 /* Manual Classes */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Manual Classes";
 			sourceTree = "<group>";
 		};
 		9B8E7C222B94F3AD001F3D88 /* ShareExtensionForShortCap */ = {
@@ -369,19 +366,20 @@
 				9B8E7C1C2B94EC22001F3D88 /* SharedShortForm+CoreDataProperties.swift in Sources */,
 				9B8E7BFB2B9497D3001F3D88 /* ShareShortFormModel.xcdatamodeld in Sources */,
 				9B8E7C0E2B94C216001F3D88 /* APIFetcherInterface.swift in Sources */,
-				9B8E7C032B949E05001F3D88 /* MySFViewController.swift in Sources */,
-				9B8E7C112B94C336001F3D88 /* DefaultResponseModel.swift in Sources */,
+				9B8E7C032B949E05001F3D88 /* SummaryContentListViewController.swift in Sources */,
+				9B8E7C112B94C336001F3D88 /* DefaultResponseDto.swift in Sources */,
 				9B8E7C1B2B94EC22001F3D88 /* SharedShortForm+CoreDataClass.swift in Sources */,
 				9B8E7BE42B9496D6001F3D88 /* ViewController.swift in Sources */,
 				9B8E7BE02B9496D6001F3D88 /* AppDelegate.swift in Sources */,
-				9B8E7C012B949C53001F3D88 /* SFViewModel.swift in Sources */,
+				9B8E7C012B949C53001F3D88 /* SummaryContentViewModel.swift in Sources */,
 				9B8E7BE22B9496D6001F3D88 /* SceneDelegate.swift in Sources */,
 				9B8E7C0A2B94A691001F3D88 /* TestSFFetcher.swift in Sources */,
 				9B8E7C052B949FCC001F3D88 /* SFRowCell.swift in Sources */,
 				9B8E7C172B94DAF9001F3D88 /* ShortCapContainer.swift in Sources */,
 				9B8E7C082B94A519001F3D88 /* SFFetchInterface.swift in Sources */,
-				9B8E7BFD2B9499A2001F3D88 /* SFModel.swift in Sources */,
-				9B8E7BFF2B949AE8001F3D88 /* SFListViewModel.swift in Sources */,
+				9B8E7BFD2B9499A2001F3D88 /* SummaryContentModel.swift in Sources */,
+				9BE9FC622BA6A30900978501 /* SummaryContentDto.swift in Sources */,
+				9B8E7BFF2B949AE8001F3D88 /* SummaryContentListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,13 +387,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B8E7C3B2B94FFF6001F3D88 /* SFModel.swift in Sources */,
-				9B8E7C3A2B94FFEB001F3D88 /* SFFetchInterface.swift in Sources */,
-				9B8E7C392B94FFC8001F3D88 /* ShortCapContainer.swift in Sources */,
-				9B8E7C362B94FA65001F3D88 /* ShareShortFormModel.xcdatamodeld in Sources */,
-				9B8E7C382B94FA92001F3D88 /* SharedShortForm+CoreDataClass.swift in Sources */,
-				9B8E7C242B94F3AD001F3D88 /* ShareViewController.swift in Sources */,
-				9B8E7C372B94FA92001F3D88 /* SharedShortForm+CoreDataProperties.swift in Sources */,
+				9B8C555A2BA6B83900C61D53 /* SummaryContentDto.swift in Sources */,
+				9B8C55592BA6B82B00C61D53 /* SummaryContentModel.swift in Sources */,
+				9B8C55582BA6B81300C61D53 /* SFFetchInterface.swift in Sources */,
+				9B8C55562BA6B79B00C61D53 /* ShareExtensionForShortCap.entitlements in Sources */,
+				9B8C55572BA6B79B00C61D53 /* ShareViewController.swift in Sources */,
+				9B8C55522BA6B57B00C61D53 /* SharedShortForm+CoreDataClass.swift in Sources */,
+				9B8C55532BA6B57B00C61D53 /* SharedShortForm+CoreDataProperties.swift in Sources */,
+				9B8C55542BA6B57B00C61D53 /* ShareShortFormModel.xcdatamodeld in Sources */,
+				9B8C55552BA6B57B00C61D53 /* ShortCapContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

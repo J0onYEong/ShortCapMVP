@@ -1,5 +1,5 @@
 //
-//  MySFViewController.swift
+//  SummaryListViewController.swift
 //  ShortCapTest
 //
 //  Created by 최준영 on 3/3/24.
@@ -18,7 +18,7 @@ enum SFTableViewConfig {
     }
 }
 
-class MySFViewController: UIViewController {
+class SummaryContentListViewController: UIViewController {
     
     // UIViews
     let sfTableView: UITableView = {
@@ -31,14 +31,13 @@ class MySFViewController: UIViewController {
     
     
     // ViewModel
-    let sFListViewModel: SFListViewModel
+    let summaryListViewModel: SummaryContentListViewModel
     
     
     // ViewController
-    
-    init(sFListViewModel: SFListViewModel) {
+    init(summaryListViewModel: SummaryContentListViewModel) {
         
-        self.sFListViewModel = sFListViewModel
+        self.summaryListViewModel = summaryListViewModel
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -49,11 +48,12 @@ class MySFViewController: UIViewController {
     
     override func viewDidLoad() {
         
-        sFListViewModel.onModelIsModified = {
+        summaryListViewModel.onModelIsModified = {
             
             self.sfTableView.reloadData()
         }
-        sFListViewModel.fetchCellData()
+        
+        summaryListViewModel.fetchLocalData()
         
         setUpAutoLayout()
         
@@ -62,7 +62,7 @@ class MySFViewController: UIViewController {
     
 }
 
-extension MySFViewController {
+extension SummaryContentListViewController {
     
     func setUpAutoLayout() {
         
@@ -91,16 +91,16 @@ extension MySFViewController {
 }
 
 
-extension MySFViewController: UITableViewDelegate {
+extension SummaryContentListViewController: UITableViewDelegate {
     
     
 }
 
-extension MySFViewController: UITableViewDataSource {
+extension SummaryContentListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return sFListViewModel.model.count
+        return summaryListViewModel.model.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -109,7 +109,7 @@ extension MySFViewController: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: sFRowCellId, for: indexPath) as! SFRowCell
         
-        cell.sFViewModel = self.sFListViewModel.generateSFViewModel(index: indexPath.row)
+        cell.summayContentViewModel = self.summaryListViewModel.generateSFViewModel(index: indexPath.row)
         
         cell.setUp()
         

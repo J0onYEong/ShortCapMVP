@@ -1,13 +1,13 @@
 //
-//  SFModel.swift
+//  SummaryContentDto.swift
 //  ShortCapTest
 //
-//  Created by 최준영 on 3/3/24.
+//  Created by 최준영 on 3/17/24.
 //
 
 import Foundation
 
-struct SFModel: Decodable {
+struct SummaryContentDto: Decodable {
     
     let uuid: String?
     let title: String?
@@ -18,8 +18,6 @@ struct SFModel: Decodable {
     let address: String?
     let createdAt: String?
     
-    var isFetched: Bool = false
-    
     init(
         uuid: String? = nil,
         title: String? = nil,
@@ -28,8 +26,7 @@ struct SFModel: Decodable {
         url: String?,
         summary: String? = nil,
         address: String? = nil,
-        createdAt: String? = nil,
-        isFetched: Bool = false
+        createdAt: String? = nil
     ) {
         self.uuid = uuid
         self.title = title
@@ -39,7 +36,6 @@ struct SFModel: Decodable {
         self.summary = summary
         self.address = address
         self.createdAt = createdAt
-        self.isFetched = isFetched
     }
     
     enum CodingKeys: CodingKey {

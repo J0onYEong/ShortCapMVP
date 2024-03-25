@@ -98,7 +98,7 @@ class SummaryContentRowCell: UITableViewCell {
         
         setCellBorder(type: cellType)
         
-//        summayContentViewModel.checkIsFetched()
+        summayContentViewModel.startFetching()
     }
     
     func setTitleText(text: String) {

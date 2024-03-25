@@ -11,16 +11,13 @@ class SCViewModelForDetail: SCDetailInterface {
     
     var model: SummaryContentModel
     
-    var contentTitle: String { model.content.title ?? "제목이 없습니다." }
+    var contentTitle: String { model.entity.title ?? "제목이 없습니다." }
     
-    var contentSummary: String { model.content.summary ?? "요약이 없습니다." }
+    var contentSummary: String { model.entity.summary ?? "요약이 없습니다." }
     
-    var contentUrl: URL { URL(string: model.content.url ?? "")! }
+    var contentUrl: URL { URL(string: model.entity.url ?? "")! }
     
-    var contentKeywords: [String] {
-        
-        model.content.keywords ?? []
-    }
+    var contentKeywords: [String] { model.entity.keywords }
     
     init(model: SummaryContentModel) {
         self.model = model

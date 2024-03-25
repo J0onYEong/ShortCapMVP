@@ -18,14 +18,14 @@ class SummaryContentListViewModel {
     
     var sfFetcher: SFFetcher
     
-    var apiFetcher: APIFetcher
+    var apiService: SummaryService
     
     var onModelIsModified: (() -> Void)?
     
-    init(sfFetcher: SFFetcher, apiFetcher: APIFetcher) {
+    init(sfFetcher: SFFetcher, apiService: SummaryService) {
         
         self.sfFetcher = sfFetcher
-        self.apiFetcher = apiFetcher
+        self.apiService = apiService
     }
     
     func fetchLocalData() {
@@ -44,14 +44,18 @@ class SummaryContentListViewModel {
             }
         }
     }
+}
+
+extension SummaryContentListViewModel {
     
-    func generateSFViewModel(index: Int) -> SummaryContentViewModel {
+    /// List뷰모델의 모델배열로 부터 독립적인 SummaryContentViewModel을 생성한다.
+    func makeViewModelFromList(index: Int) -> SummaryContentViewModel {
         
         let model = model[index]
         
         let viewModel = SummaryContentViewModel(
             model: model,
-            apiFetcher: apiFetcher,
+            apiService: apiService,
             sfFetcher: sfFetcher
         )
         

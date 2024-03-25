@@ -101,19 +101,20 @@ extension SummaryContentListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let viewModel = self.summaryListViewModel.generateSFViewModel(index: indexPath.row)
-        
-        if viewModel.isFetched {
+        if let cell = tableView.cellForRow(at: indexPath) as? SummaryContentRowCell {
             
-            let vm = SCViewModelForDetail(model: viewModel.model)
-            
-            let storyboard = UIStoryboard(name: "Main", bundle: .main)
-            
-            let destinationVC = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-            
-            destinationVC.contentViewModel = vm
-            
-            self.navigationController?.pushViewController(destinationVC, animated: true)
+            if cell.summayContentViewModel.isFetched {
+                
+                let vm = SCViewModelForDetail(model: cell.summayContentViewModel.model)
+                
+                let storyboard = UIStoryboard(name: "Main", bundle: .main)
+                
+                let destinationVC = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+                
+                destinationVC.contentViewModel = vm
+                
+                self.navigationController?.pushViewController(destinationVC, animated: true)
+            }
         }
     }
 }
@@ -131,7 +132,7 @@ extension SummaryContentListViewController: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: sFRowCellId, for: indexPath) as! SummaryContentRowCell
         
-        cell.summayContentViewModel = self.summaryListViewModel.generateSFViewModel(index: indexPath.row)
+        cell.summayContentViewModel = self.summaryListViewModel.makeViewModelFromList(index: indexPath.row)
         
         var cellType: SCRowCellType = .middleCell
         

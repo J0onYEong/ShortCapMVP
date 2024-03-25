@@ -18,12 +18,6 @@
         <attribute name="sfDescription" optional="YES" attributeType="String"/>
         <attribute name="summary" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
-        <attribute name="uuid" optional="YES" attributeType="String"/>
         <relationship name="keyWords" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="FormKeywords"/>
-        <uniquenessConstraints>
-            <uniquenessConstraint>
-                <constraint value="uuid"/>
-            </uniquenessConstraint>
-        </uniquenessConstraints>
     </entity>
 </model>

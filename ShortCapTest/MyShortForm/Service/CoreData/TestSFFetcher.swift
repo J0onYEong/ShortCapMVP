@@ -60,13 +60,12 @@ class TestSFFetcher: SFFetcher {
             
             let ssf = SharedShortForm(context: context)
             
-            ssf.url = model.content.url!
+            ssf.url = model.entity.url!
             
             if model.isFetched {
                 let ssfData = SSFData(context: context)
                 
-                ssfData.title = model.content.title
-                ssfData.uuid = model.content.uuid
+                ssfData.title = model.entity.title
                 
                 ssf.sfData = ssfData
             }
@@ -88,8 +87,7 @@ class TestSFFetcher: SFFetcher {
     let dummyData: [SummaryContentModel] = [
         
         SummaryContentModel(
-            content: SummaryContentDto(
-                uuid: "1",
+            entity: SummaryResultData(
                 title: "유튜브 쇼츠 더미1",
                 description: "더미객체1의 설명입니다.",
                 keywords: ["키워드1", "키워드2", "키워드3"],
@@ -103,8 +101,7 @@ class TestSFFetcher: SFFetcher {
         ),
         
         SummaryContentModel(
-            content: SummaryContentDto(
-                uuid: "2",
+            entity: SummaryResultData(
                 title: "인스타 릴스 더미2",
                 description: "더미객체2의 설명입니다.",
                 keywords: ["키워드1", "키워드2", "키워드3"],
@@ -118,11 +115,10 @@ class TestSFFetcher: SFFetcher {
         ),
         
         SummaryContentModel(
-            content: SummaryContentDto(
-                uuid: "3",
+            entity: SummaryResultData(
                 title: nil,
                 description: nil,
-                keywords: nil,
+                keywords: [],
                 url: "https://youtube.com/shorts/BjjtDjkSlRo?si=Mt_4Sh6L8_tJu-z3",
                 summary: nil,
                 address: nil,
@@ -170,8 +166,7 @@ class TestSFFetcher: SFFetcher {
                         }
                     }
                     
-                    let dto = SummaryContentDto (
-                        uuid: fetchedData.uuid,
+                    let entity = SummaryResultData (
                         title: fetchedData.title,
                         description: fetchedData.sfDescription,
                         keywords: keyWords,
@@ -181,13 +176,13 @@ class TestSFFetcher: SFFetcher {
                         createdAt: fetchedData.createdAt
                     )
                     
-                    return SummaryContentModel(content: dto, isFetched: true)
+                    return SummaryContentModel(entity: entity, isFetched: true)
                     
                 } else {
                     
-                    let dto = SummaryContentDto(url: form.url)
+                    let entity = SummaryResultData(url: form.url)
                     
-                    return SummaryContentModel(content: dto)
+                    return SummaryContentModel(entity: entity)
                 }
             }
             
@@ -202,7 +197,7 @@ class TestSFFetcher: SFFetcher {
     
     func updateLocalSummaryContentWith(model: SummaryContentModel) {
         
-        guard let idForLocalData = model.content.url else {
+        guard let idForLocalData = model.entity.url else {
             
             print("일치하는 데이터를 찾을 수 없습니다.")
             return;
@@ -219,25 +214,21 @@ class TestSFFetcher: SFFetcher {
                 // 로컬에 이미존재하는 SharedShortForm에 요약된 데이터를 주입
                 let sfData = SSFData(context: backContext)
                 
-                let content = model.content
+                let entity = model.entity
+            
+                sfData.title = entity.title
+                sfData.sfDescription = entity.description
+                sfData.summary = entity.summary
+                sfData.address = entity.address
+                sfData.createdAt = entity.createdAt
                 
-                sfData.uuid = content.uuid
-                sfData.title = content.title
-                sfData.sfDescription = content.description
-                sfData.summary = content.summary
-                sfData.address = content.address
-                sfData.createdAt = content.createdAt
-                
-                if let keywords = content.keywords {
+                entity.keywords.forEach { word in
                     
-                    keywords.forEach { word in
-                        
-                        let object = FormKeywords(context: backContext)
-                        
-                        object.keyword = word
-                        
-                        sfData.addToKeyWords(object)
-                    }
+                    let object = FormKeywords(context: backContext)
+                    
+                    object.keyword = word
+                    
+                    sfData.addToKeyWords(object)
                 }
                 
                 target.sfData = sfData

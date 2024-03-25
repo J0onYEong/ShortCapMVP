@@ -21,9 +21,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let dataFetcher = ShortCapContainer()
         
-        let apiFetcher = APIRequestManager()
+        let apiService = DefaultSummaryService()
 
-        let scListViewModel = SummaryContentListViewModel(sfFetcher: dataFetcher, apiFetcher: apiFetcher)
+        let scListViewModel = SummaryContentListViewModel(sfFetcher: dataFetcher, apiService: apiService)
         
         let scListVC = SummaryContentListViewController(summaryListViewModel: scListViewModel)
         let navigationVC = UINavigationController(rootViewController: scListVC)

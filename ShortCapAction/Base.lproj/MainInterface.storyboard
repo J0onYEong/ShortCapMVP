@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MTP-3H-dO8">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Action View Controller-->
+        <scene sceneID="3sy-0d-JsA">
+            <objects>
+                <viewController storyboardIdentifier="ActionVC" id="MTP-3H-dO8" customClass="ActionViewController" customModule="ShortCapAction" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mkP-rV-ICW">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AsV-Yx-HMu">
+                                <rect key="frame" x="175.66666666666666" y="415.66666666666669" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b5b-dA-r0j">
+                                <rect key="frame" x="159" y="69" width="75" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cLa-Ks-yQ0" userLabel="Exit Button">
+                                <rect key="frame" x="159" y="69" width="75" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Button"/>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Jct-Cf-Boh"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="AsV-Yx-HMu" firstAttribute="centerX" secondItem="mkP-rV-ICW" secondAttribute="centerX" id="Aog-xL-KYl"/>
+                            <constraint firstItem="cLa-Ks-yQ0" firstAttribute="top" secondItem="Jct-Cf-Boh" secondAttribute="top" constant="10" id="E6A-Wx-Qq5"/>
+                            <constraint firstItem="b5b-dA-r0j" firstAttribute="top" secondItem="Jct-Cf-Boh" secondAttribute="top" constant="10" id="Jcl-zg-iRh"/>
+                            <constraint firstItem="AsV-Yx-HMu" firstAttribute="centerY" secondItem="mkP-rV-ICW" secondAttribute="centerY" id="MuR-Ik-krO"/>
+                            <constraint firstItem="b5b-dA-r0j" firstAttribute="centerX" secondItem="mkP-rV-ICW" secondAttribute="centerX" id="qUy-O1-6dt"/>
+                            <constraint firstItem="cLa-Ks-yQ0" firstAttribute="centerX" secondItem="mkP-rV-ICW" secondAttribute="centerX" id="tnD-vI-Qet"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="doneButton" destination="b5b-dA-r0j" id="36s-RK-lHO"/>
+                        <outlet property="exitButton" destination="cLa-Ks-yQ0" id="rOz-R8-DeD"/>
+                        <outlet property="urlLabel" destination="AsV-Yx-HMu" id="O95-lF-RwZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t1y-2u-m2p" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1233" y="33"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

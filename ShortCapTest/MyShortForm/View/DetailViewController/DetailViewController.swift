@@ -24,7 +24,6 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // 타이틀 변경
         titleLabel.text = contentViewModel?.contentTitle ?? "제목 없음"
         

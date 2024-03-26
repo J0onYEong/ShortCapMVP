@@ -17,4 +17,6 @@ protocol SFFetcher {
     func getSummaryContentModels(completion: @escaping (Result<SummaryContentListModel, SFFetcherError>) -> Void)
     
     func updateLocalSummaryContentWith(model: SummaryContentModel)
+    
+    func moveFileDataToCoreData()
 }

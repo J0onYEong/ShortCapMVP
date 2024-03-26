@@ -59,7 +59,9 @@ class SummaryContentListViewController: UIViewController {
             self.sfTableView.reloadData()
         }
         
-        summaryListViewModel.fetchLocalData()
+        summaryListViewModel.moveFileDataToCoreData()
+        
+        summaryListViewModel.fetchLocalDataFromCoreData()
         
         setUpAutoLayout()
         

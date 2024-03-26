@@ -21,6 +21,10 @@ class TestPersistentContainer: NSPersistentContainer {
 
 class TestSFFetcher: SFFetcher {
     
+    func moveFileDataToCoreData() {
+        
+    }
+    
     static let modelName = "ShareShortFormModel"
     
     let container: TestPersistentContainer

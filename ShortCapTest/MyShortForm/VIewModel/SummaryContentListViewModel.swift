@@ -28,7 +28,12 @@ class SummaryContentListViewModel {
         self.apiService = apiService
     }
     
-    func fetchLocalData() {
+    func moveFileDataToCoreData() {
+        
+        sfFetcher.moveFileDataToCoreData()
+    }
+    
+    func fetchLocalDataFromCoreData() {
         
         sfFetcher.getSummaryContentModels { result in
             switch result {

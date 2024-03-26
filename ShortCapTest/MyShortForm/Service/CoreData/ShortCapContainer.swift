@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import Core
 
 class ShortCapPersistentContainer: NSPersistentContainer {
     
@@ -74,6 +75,27 @@ public class ShortCapContainer {
 }
 
 extension ShortCapContainer: SFFetcher {
+    
+    func moveFileDataToCoreData() {
+        
+        // 데이터 가져오기 
+        if let extData = FileManager.default.getExtData() {
+            
+            var cnt = 0
+            
+            for url in extData {
+                
+                saveUrlFromSharedExtension(url: url, immediateSave: false)
+                
+                cnt+=1;
+            }
+            
+            if (try? context.save()) != nil { print("✅ \(cnt)개의 외부 데이터를 코어데이터로 이동 성공") }
+            
+            if FileManager.default.makeFileEmpty() { print("✅ 파일디렉토리 내용삭제") }
+        }
+    }
+    
     
     func getSummaryContentModels(completion: @escaping (Result<SummaryContentListModel, SFFetcherError>) -> Void) {
         
@@ -177,12 +199,15 @@ extension ShortCapContainer: SFFetcher {
 
 public extension ShortCapContainer {
     
-    func saveUrlFromSharedExtension(url: String) {
+    func saveUrlFromSharedExtension(url: String, immediateSave: Bool = true) {
         
         let ssf = SharedShortForm(context: context)
         
         ssf.url = url
         
-        try? context.save()
+        if immediateSave {
+            
+            try? context.save()
+        }
     }
 }

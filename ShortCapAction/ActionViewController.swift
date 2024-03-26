@@ -10,13 +10,6 @@ import MobileCoreServices
 import UniformTypeIdentifiers
 import Core
 
-enum ContentValidator {
-    
-    static let instagramRegexStr = "((http|https):\\/\\/)*(www.)*instagram.com\\/reel\\/.*"
-    static let youtubeRegexStr = "((http|https):\\/\\/)*(www.)*youtube.com\\/shorts\\/.*"
-    
-}
-
 class ActionViewController: UIViewController {
     
     @IBOutlet weak var doneButton: UIButton!
@@ -74,7 +67,7 @@ class ActionViewController: UIViewController {
                             urlString = string as? String
                         }
                         
-                        if let urlString, self.checkIsValidUrl(str: urlString) {
+                        if let urlString, ContentValidator.checkIsValidUrl(str: urlString) {
                             
                             OperationQueue.main.addOperation {
                                 
@@ -91,30 +84,6 @@ class ActionViewController: UIViewController {
                 }
             }
         }
-    }
-    
-    func checkIsValidUrl(str: String) -> Bool {
-        
-        print(str)
-        
-        let patterns = [
-            ContentValidator.instagramRegexStr,
-            ContentValidator.youtubeRegexStr
-        ]
-        
-        for pattern in patterns {
-            
-            let regex = try! NSRegularExpression(pattern: pattern)
-            let range = NSRange(str.startIndex..., in: str)
-            let matches = regex.matches(in: str, range: range)
-            
-            if let matchedStr = matches.first, matchedStr.range.length == str.count {
-                
-                return true
-            }
-        }
-        
-        return false
     }
     
     func onValidURL() {

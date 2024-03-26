@@ -8,14 +8,13 @@
 import UIKit
 import SwiftUI
 import UniformTypeIdentifiers
+import Core
 
 struct SwiftUIView: View {
     
-    @State var text: String
+    let text: String
     
     @State var showAlert = false
-    
-    let container = ShortCapContainer()
     
     var body: some View {
         
@@ -31,7 +30,13 @@ struct SwiftUIView: View {
                     
                     Task {
                         
-                        container.saveUrlFromSharedExtension(url: text)
+                        do {
+                            
+                            try FileManager.default.saveUrl(text)
+                        } catch {
+                            
+                            print(error)
+                        }
                     }
                     
                     closeShareView()
@@ -65,8 +70,6 @@ struct SwiftUIView: View {
     
 }
 
-
-
 class MyShareExtensionController: UIViewController {
 
     override func viewDidLoad() {
@@ -76,65 +79,42 @@ class MyShareExtensionController: UIViewController {
             return closeShareWindow()
         }
         
-        
-        
-        var textToSend: String = "\(extensionitem.attachments?.count) 지정된 식별자를 만족하지 않음"
-        
         let identifiers = [
             UTType.text.identifier,
             UTType.url.identifier
         ]
         
-        var isMatched = false
-        
         for identifier in identifiers {
-            
-            
             
             if itemProvider.hasItemConformingToTypeIdentifier(identifier) {
                 
-                isMatched = true
-                
-                itemProvider.loadItem(forTypeIdentifier: identifier, options: nil) { (providedText, error) in
+                itemProvider.loadItem(forTypeIdentifier: identifier, options: nil) { (content, error) in
                     
-                    if error != nil {
+                    if error == nil { return }
+                    
+                    var urlString: String?
+                    
+                    if identifier == UTType.url.identifier {
                         
-                        textToSend = "에러발생"
-                    } else if let text = providedText as? String {
+                        urlString = (content as? URL)?.absoluteString
+                    } else {
                         
-                        textToSend = text
-                        
-                    }else if let url = providedText as? URL {
-                        
-                        textToSend = url.absoluteString
-                    }
-                    else {
-                        
-                        textToSend = "데이터 타입 변환 실패"
+                        urlString = content as? String
                     }
                     
-                    DispatchQueue.main.async {
-                        self.addSwiftUIView(text: textToSend)
+                    if let urlString, ContentValidator.checkIsValidUrl(str: urlString) {
+                        
+                        OperationQueue.main.addOperation {
+                            
+                            self.addSwiftUIView(text: urlString)
+                        }
+                        
                     }
                     
                 }
                 
+                break
             }
-            
-        }
-        
-        // 매치된 타입이 없는 경우
-        if !isMatched {
-            
-            if !itemProvider.registeredContentTypes.isEmpty {
-             
-                textToSend += "UTI: \(itemProvider.registeredContentTypes.first!)"
-            }
-
-            DispatchQueue.main.async {
-                self.addSwiftUIView(text: textToSend)
-            }
-            
         }
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name("ShareDataUpdated"), object: nil, queue: nil) { _ in

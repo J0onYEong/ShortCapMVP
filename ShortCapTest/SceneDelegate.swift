@@ -11,6 +11,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -19,14 +20,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         
-        let dataFetcher = ShortCapContainer()
         
-        let apiService = DefaultSummaryService()
-
-        let scListViewModel = SummaryContentListViewModel(sfFetcher: dataFetcher, apiService: apiService)
+        let viewModel = appDelegate.container.resolve(SummaryContentViewModel.self)!
         
-        let scListVC = SummaryContentListViewController(summaryListViewModel: scListViewModel)
-        let navigationVC = UINavigationController(rootViewController: scListVC)
+        let viewController = SummaryContentListViewController(viewModel: viewModel)
+        
+        let navigationVC = UINavigationController(rootViewController: viewController)
 
         window?.rootViewController = navigationVC
         window?.makeKeyAndVisible()
@@ -56,16 +55,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if let navigationController = window?.rootViewController as? UINavigationController {
             
-            if let scListVc = navigationController.viewControllers.first(where: { vc in
+            if let targetVC = navigationController.viewControllers.first(where: { vc in
                 type(of: vc) == SummaryContentListViewController.self
             }) as? SummaryContentListViewController {
                 
-                // 파일시스템 데이터를 코어데이터로
-                scListVc.summaryListViewModel.moveFileDataToCoreData()
-                
-                // 코어 데이터에서 데이터 다시 가져오기
-                scListVc.summaryListViewModel.fetchLocalDataFromCoreData()
-                
+                targetVC.viewModel.fetchFreshData()
             }
         }
     }

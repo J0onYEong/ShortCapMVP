@@ -1,0 +1,125 @@
+{
+  "" : {
+    "const-values" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/Swinject-master.swiftconstvalues",
+    "dependencies" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/Swinject-master.d",
+    "diagnostics" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/Swinject-master.dia",
+    "emit-module-dependencies" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/Swinject-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/Swinject-master-emit-module.dia",
+    "swift-dependencies" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/Swinject-master.swiftdeps"
+  },
+  "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/Sources/_Resolver.swift" : {
+    "index-unit-output-path" : "/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/_Resolver.o",
+    "llvm-bc" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/_Resolver.bc",
+    "object" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/_Resolver.o"
+  },
+  "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/Sources/Assembler.swift" : {
+    "index-unit-output-path" : "/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/Assembler.o",
+    "llvm-bc" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/Assembler.bc",
+    "object" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/Assembler.o"
+  },
+  "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/Sources/Assembly.swift" : {
+    "index-unit-output-path" : "/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/Assembly.o",
+    "llvm-bc" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/Assembly.bc",
+    "object" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/Assembly.o"
+  },
+  "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/Sources/Behavior.swift" : {
+    "index-unit-output-path" : "/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/Behavior.o",
+    "llvm-bc" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/Behavior.bc",
+    "object" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/Behavior.o"
+  },
+  "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/Sources/Container.Arguments.swift" : {
+    "index-unit-output-path" : "/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/Container.Arguments.o",
+    "llvm-bc" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/Container.Arguments.bc",
+    "object" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/Container.Arguments.o"
+  },
+  "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/Sources/Container.Logging.swift" : {
+    "index-unit-output-path" : "/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/Container.Logging.o",
+    "llvm-bc" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/Container.Logging.bc",
+    "object" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/Container.Logging.o"
+  },
+  "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/Sources/Container.swift" : {
+    "index-unit-output-path" : "/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/Container.o",
+    "llvm-bc" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/Container.bc",
+    "object" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/Container.o"
+  },
+  "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/Sources/Container.TypeForwarding.swift" : {
+    "index-unit-output-path" : "/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/Container.TypeForwarding.o",
+    "llvm-bc" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/Container.TypeForwarding.bc",
+    "object" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/Container.TypeForwarding.o"
+  },
+  "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/Sources/DebugHelper.swift" : {
+    "index-unit-output-path" : "/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/DebugHelper.o",
+    "llvm-bc" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/DebugHelper.bc",
+    "object" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/DebugHelper.o"
+  },
+  "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/Sources/FunctionType.swift" : {
+    "index-unit-output-path" : "/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/FunctionType.o",
+    "llvm-bc" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/FunctionType.bc",
+    "object" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/FunctionType.o"
+  },
+  "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/Sources/GraphIdentifier.swift" : {
+    "index-unit-output-path" : "/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/GraphIdentifier.o",
+    "llvm-bc" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/GraphIdentifier.bc",
+    "object" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/GraphIdentifier.o"
+  },
+  "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/Sources/InstanceStorage.swift" : {
+    "index-unit-output-path" : "/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/InstanceStorage.o",
+    "llvm-bc" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/InstanceStorage.bc",
+    "object" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/InstanceStorage.o"
+  },
+  "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/Sources/InstanceWrapper.swift" : {
+    "index-unit-output-path" : "/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/InstanceWrapper.o",
+    "llvm-bc" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/InstanceWrapper.bc",
+    "object" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/InstanceWrapper.o"
+  },
+  "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/Sources/ObjectScope.Standard.swift" : {
+    "index-unit-output-path" : "/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/ObjectScope.Standard.o",
+    "llvm-bc" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/ObjectScope.Standard.bc",
+    "object" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/ObjectScope.Standard.o"
+  },
+  "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/Sources/ObjectScope.swift" : {
+    "index-unit-output-path" : "/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/ObjectScope.o",
+    "llvm-bc" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/ObjectScope.bc",
+    "object" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/ObjectScope.o"
+  },
+  "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/Sources/ReadWriteLock.swift" : {
+    "index-unit-output-path" : "/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/ReadWriteLock.o",
+    "llvm-bc" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/ReadWriteLock.bc",
+    "object" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/ReadWriteLock.o"
+  },
+  "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/Sources/RecursiveLock.swift" : {
+    "index-unit-output-path" : "/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/RecursiveLock.o",
+    "llvm-bc" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/RecursiveLock.bc",
+    "object" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/RecursiveLock.o"
+  },
+  "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/Sources/Resolver.swift" : {
+    "index-unit-output-path" : "/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/Resolver.o",
+    "llvm-bc" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/Resolver.bc",
+    "object" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/Resolver.o"
+  },
+  "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/Sources/ServiceEntry.swift" : {
+    "index-unit-output-path" : "/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/ServiceEntry.o",
+    "llvm-bc" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/ServiceEntry.bc",
+    "object" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/ServiceEntry.o"
+  },
+  "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/Sources/ServiceEntry.TypeForwarding.swift" : {
+    "index-unit-output-path" : "/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/ServiceEntry.TypeForwarding.o",
+    "llvm-bc" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/ServiceEntry.TypeForwarding.bc",
+    "object" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/ServiceEntry.TypeForwarding.o"
+  },
+  "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/Sources/ServiceKey.swift" : {
+    "index-unit-output-path" : "/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/ServiceKey.o",
+    "llvm-bc" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/ServiceKey.bc",
+    "object" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/ServiceKey.o"
+  },
+  "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/Sources/ThreadSafeDictionary.swift" : {
+    "index-unit-output-path" : "/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/ThreadSafeDictionary.o",
+    "llvm-bc" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/ThreadSafeDictionary.bc",
+    "object" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/ThreadSafeDictionary.o"
+  },
+  "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/Sources/UnavailableItems.swift" : {
+    "index-unit-output-path" : "/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/UnavailableItems.o",
+    "llvm-bc" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/UnavailableItems.bc",
+    "object" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/Swinject/build/Swinject.build/Release-iphoneos/Swinject.build/Objects-normal/arm64/UnavailableItems.o"
+  }
+}

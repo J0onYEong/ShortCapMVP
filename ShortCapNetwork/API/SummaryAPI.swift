@@ -7,7 +7,7 @@ public enum SummaryAPI: BaseAPI {
     
     case excute
     case check(videoId: String)
-    case data(pk: String)
+    case data(id: Int)
 }
 
 extension SummaryAPI {
@@ -44,9 +44,9 @@ extension SummaryAPI {
     
     // MARK: - Parameters
     public var bodyParameters: Parameters? {
-        var params: Parameters = [:]
+//        var params: Parameters = [:]
         
-        return params
+        return nil
     }
     
     public var parameterEncoding: ParameterEncoding {

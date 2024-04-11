@@ -1,0 +1,55 @@
+{
+  "" : {
+    "const-values" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/build/RxSwift.build/Release-iphoneos/RxBlocking.build/Objects-normal/arm64/RxBlocking-master.swiftconstvalues",
+    "dependencies" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/build/RxSwift.build/Release-iphoneos/RxBlocking.build/Objects-normal/arm64/RxBlocking-master.d",
+    "diagnostics" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/build/RxSwift.build/Release-iphoneos/RxBlocking.build/Objects-normal/arm64/RxBlocking-master.dia",
+    "emit-module-dependencies" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/build/RxSwift.build/Release-iphoneos/RxBlocking.build/Objects-normal/arm64/RxBlocking-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/build/RxSwift.build/Release-iphoneos/RxBlocking.build/Objects-normal/arm64/RxBlocking-master-emit-module.dia",
+    "swift-dependencies" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/build/RxSwift.build/Release-iphoneos/RxBlocking.build/Objects-normal/arm64/RxBlocking-master.swiftdeps"
+  },
+  "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/Sources/RxBlocking/AtomicInt.swift" : {
+    "index-unit-output-path" : "/RxSwift.build/Release-iphoneos/RxBlocking.build/Objects-normal/arm64/AtomicInt.o",
+    "llvm-bc" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/build/RxSwift.build/Release-iphoneos/RxBlocking.build/Objects-normal/arm64/AtomicInt.bc",
+    "object" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/build/RxSwift.build/Release-iphoneos/RxBlocking.build/Objects-normal/arm64/AtomicInt.o"
+  },
+  "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/Sources/RxBlocking/BlockingObservable.swift" : {
+    "index-unit-output-path" : "/RxSwift.build/Release-iphoneos/RxBlocking.build/Objects-normal/arm64/BlockingObservable.o",
+    "llvm-bc" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/build/RxSwift.build/Release-iphoneos/RxBlocking.build/Objects-normal/arm64/BlockingObservable.bc",
+    "object" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/build/RxSwift.build/Release-iphoneos/RxBlocking.build/Objects-normal/arm64/BlockingObservable.o"
+  },
+  "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/Sources/RxBlocking/BlockingObservable+Operators.swift" : {
+    "index-unit-output-path" : "/RxSwift.build/Release-iphoneos/RxBlocking.build/Objects-normal/arm64/BlockingObservable+Operators.o",
+    "llvm-bc" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/build/RxSwift.build/Release-iphoneos/RxBlocking.build/Objects-normal/arm64/BlockingObservable+Operators.bc",
+    "object" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/build/RxSwift.build/Release-iphoneos/RxBlocking.build/Objects-normal/arm64/BlockingObservable+Operators.o"
+  },
+  "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/Sources/RxBlocking/ObservableConvertibleType+Blocking.swift" : {
+    "index-unit-output-path" : "/RxSwift.build/Release-iphoneos/RxBlocking.build/Objects-normal/arm64/ObservableConvertibleType+Blocking.o",
+    "llvm-bc" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/build/RxSwift.build/Release-iphoneos/RxBlocking.build/Objects-normal/arm64/ObservableConvertibleType+Blocking.bc",
+    "object" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/build/RxSwift.build/Release-iphoneos/RxBlocking.build/Objects-normal/arm64/ObservableConvertibleType+Blocking.o"
+  },
+  "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/Sources/RxBlocking/Platform.Darwin.swift" : {
+    "index-unit-output-path" : "/RxSwift.build/Release-iphoneos/RxBlocking.build/Objects-normal/arm64/Platform.Darwin.o",
+    "llvm-bc" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/build/RxSwift.build/Release-iphoneos/RxBlocking.build/Objects-normal/arm64/Platform.Darwin.bc",
+    "object" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/build/RxSwift.build/Release-iphoneos/RxBlocking.build/Objects-normal/arm64/Platform.Darwin.o"
+  },
+  "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/Sources/RxBlocking/Platform.Linux.swift" : {
+    "index-unit-output-path" : "/RxSwift.build/Release-iphoneos/RxBlocking.build/Objects-normal/arm64/Platform.Linux.o",
+    "llvm-bc" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/build/RxSwift.build/Release-iphoneos/RxBlocking.build/Objects-normal/arm64/Platform.Linux.bc",
+    "object" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/build/RxSwift.build/Release-iphoneos/RxBlocking.build/Objects-normal/arm64/Platform.Linux.o"
+  },
+  "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/Sources/RxBlocking/RecursiveLock.swift" : {
+    "index-unit-output-path" : "/RxSwift.build/Release-iphoneos/RxBlocking.build/Objects-normal/arm64/RecursiveLock.o",
+    "llvm-bc" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/build/RxSwift.build/Release-iphoneos/RxBlocking.build/Objects-normal/arm64/RecursiveLock.bc",
+    "object" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/build/RxSwift.build/Release-iphoneos/RxBlocking.build/Objects-normal/arm64/RecursiveLock.o"
+  },
+  "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/Sources/RxBlocking/Resources.swift" : {
+    "index-unit-output-path" : "/RxSwift.build/Release-iphoneos/RxBlocking.build/Objects-normal/arm64/Resources.o",
+    "llvm-bc" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/build/RxSwift.build/Release-iphoneos/RxBlocking.build/Objects-normal/arm64/Resources.bc",
+    "object" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/build/RxSwift.build/Release-iphoneos/RxBlocking.build/Objects-normal/arm64/Resources.o"
+  },
+  "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/Sources/RxBlocking/RunLoopLock.swift" : {
+    "index-unit-output-path" : "/RxSwift.build/Release-iphoneos/RxBlocking.build/Objects-normal/arm64/RunLoopLock.o",
+    "llvm-bc" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/build/RxSwift.build/Release-iphoneos/RxBlocking.build/Objects-normal/arm64/RunLoopLock.bc",
+    "object" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/build/RxSwift.build/Release-iphoneos/RxBlocking.build/Objects-normal/arm64/RunLoopLock.o"
+  }
+}

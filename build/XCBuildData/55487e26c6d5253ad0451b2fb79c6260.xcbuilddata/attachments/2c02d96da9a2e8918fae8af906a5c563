@@ -1,0 +1,9 @@
+/Users/choijun-yeong/Desktop/repositories/ShortCapTest/Domain/Sources/Domain/Entitiy/SummaryResultEntity.swift
+/Users/choijun-yeong/Desktop/repositories/ShortCapTest/Domain/Sources/Domain/Entitiy/SummaryIntiationEntitiy.swift
+/Users/choijun-yeong/Desktop/repositories/ShortCapTest/Domain/Sources/Domain/Entitiy/SummaryStatusEntity.swift
+/Users/choijun-yeong/Desktop/repositories/ShortCapTest/Domain/Sources/Domain/UseCase/GetRowDataUseCase.swift
+/Users/choijun-yeong/Desktop/repositories/ShortCapTest/Domain/Sources/Domain/UseCase/SaveVideoCodeUseCase.swift
+/Users/choijun-yeong/Desktop/repositories/ShortCapTest/Domain/Sources/Domain/RepositoryInterface/VideoCodeRepositoryInterface.swift
+/Users/choijun-yeong/Desktop/repositories/ShortCapTest/Domain/Sources/Domain/RepositoryInterface/StoreRepositoryInterface.swift
+/Users/choijun-yeong/Desktop/repositories/ShortCapTest/Domain/Sources/Domain/RepositoryInterface/SummaryRepositoryInterface.swift
+/Users/choijun-yeong/Desktop/repositories/ShortCapTest/Domain/Sources/Domain/UseCase/SaveSummaryDataUseCase.swift

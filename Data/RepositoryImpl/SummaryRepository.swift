@@ -29,9 +29,9 @@ public final class SummaryRepository: SummaryRepositoryInterface {
         return responseDTO.data!.transformToEntity()
     }
     
-    public func requestResultFor(videoCode: String) async throws -> Domain.SummaryResultEntity {
+    public func requestResultFor(videoId: Int) async throws -> Domain.SummaryResultEntity {
         
-        let responseDTO: SummaryResultResponseDTOWithBase = try await SummaryRestAPIService.default.makeRequest(.data(pk: videoCode))
+        let responseDTO: SummaryResultResponseDTOWithBase = try await SummaryRestAPIService.default.makeRequest(.data(id: videoId))
         
         let data = responseDTO.data!
         

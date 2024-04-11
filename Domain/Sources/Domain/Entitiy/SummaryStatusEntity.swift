@@ -22,10 +22,10 @@ public class SummaryStatusEntity {
     }
     
     public var status: Status
-    public var videoCode: Int
+    public var videoId: Int
     
-    public init(status: Status, videoCode: Int) {
+    public init(status: Status, videoId: Int) {
         self.status = status
-        self.videoCode = videoCode
+        self.videoId = videoId
     }
 }

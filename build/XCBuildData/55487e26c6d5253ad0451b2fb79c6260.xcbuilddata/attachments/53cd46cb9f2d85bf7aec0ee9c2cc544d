@@ -1,0 +1,4 @@
+framework module Domain {
+  header "Domain-Swift.h"
+  requires objc
+}

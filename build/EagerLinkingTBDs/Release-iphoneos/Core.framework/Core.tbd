@@ -1,0 +1,51 @@
+{
+  "main_library": {
+    "exported_symbols": [
+      {
+        "data": {
+          "global": [
+            "_$s4Core6ConfigO7NetworkOMn",
+            "_$s4Core6ConfigO7NetworkON",
+            "_$s4Core6ConfigON",
+            "_CoreVersionString",
+            "_$s4Core6ConfigO7NetworkO4baseSSvgZ",
+            "_$s4Core6ConfigOMn",
+            "_$s10Foundation3URLV4CoreE05storeB03for12databaseNameACSS_SStFZ",
+            "_$sSo13NSFileManagerC4CoreE10sharedPath10Foundation3URLVvau",
+            "_$sSo13NSFileManagerC4CoreE10sharedPath10Foundation3URLVvpZ",
+            "_$s4Core6ConfigO7NetworkO4baseSSvpZ",
+            "_$s4Core6ConfigO7NetworkOMa",
+            "_$sSo13NSFileManagerC4CoreE10sharedPath10Foundation3URLVvgZ",
+            "_$s4Core6ConfigOMa",
+            "_CoreVersionNumber",
+            "_$s4Core6ConfigO7NetworkO4baseSSvau"
+          ]
+        }
+      }
+    ],
+    "flags": [
+      {
+        "attributes": [
+          "not_app_extension_safe"
+        ]
+      }
+    ],
+    "install_names": [
+      {
+        "name": "@rpath/Core.framework/Core"
+      }
+    ],
+    "swift_abi": [
+      {
+        "abi": 7
+      }
+    ],
+    "target_info": [
+      {
+        "min_deployment": "16",
+        "target": "arm64-ios"
+      }
+    ]
+  },
+  "tapi_tbd_version": 5
+}

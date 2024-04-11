@@ -31,21 +31,6 @@ class SummaryContentRowCell: UITableViewCell {
         return labelView
     }()
     
-    let stackView: UIStackView = {
-        
-        let view = UIStackView()
-        
-        view.axis = .horizontal
-        view.distribution = .fill
-        view.alignment = .leading
-        view.spacing = 10
-        view.backgroundColor = .white
-        
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
-        return view
-    }()
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
@@ -59,24 +44,19 @@ class SummaryContentRowCell: UITableViewCell {
     
     func setAutoLayout() {
         
-        self.backgroundColor = .gray
+        self.backgroundColor = .systemBlue.withAlphaComponent(0.5)
         
-        self.addSubview(stackView)
-        
-        stackView.addArrangedSubview(thumbNailView)
-        stackView.addArrangedSubview(titleLabel)
+        [thumbNailView, titleLabel].forEach { self.addSubview($0) }
         
         NSLayoutConstraint.activate([
-            
-            stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 1.0),
-            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -1.0),
-            
+
             thumbNailView.widthAnchor.constraint(equalToConstant: SFTableViewConfig.imageWidth),
-            thumbNailView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 5),
-            thumbNailView.topAnchor.constraint(equalTo: stackView.topAnchor, constant: 5),
-            thumbNailView.bottomAnchor.constraint(equalTo: stackView.bottomAnchor, constant: -5),
+            thumbNailView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
+            thumbNailView.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
+            thumbNailView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5),
             
-            titleLabel.topAnchor.constraint(equalTo: stackView.topAnchor, constant: 5),
+            titleLabel.leadingAnchor.constraint(equalTo: thumbNailView.trailingAnchor, constant: 10),
+            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
         ])
     }
     
@@ -95,16 +75,23 @@ class SummaryContentRowCell: UITableViewCell {
         
         Task { [weak self] in
             
-            let result = try await viewModel.getSummaryResultFor(code: entity.videoCode)
-            
-            self?.entity = entity
-            
-            await viewModel.updateStoreWith(entity: result)
-            
-            /// Cell UI업데이트
-            await MainActor.run {
+            do {
                 
-                self?.updateUI()
+                let result = try await viewModel.getSummaryResultFor(code: self?.entity.videoCode ?? "")
+                
+                self?.entity = result
+                
+                await viewModel.updateStoreWith(entity: result)
+                
+                /// Cell UI업데이트
+                await MainActor.run {
+                    
+                    self?.updateUI()
+                }
+                
+            } catch {
+             
+                print(error)
             }
         }
     }

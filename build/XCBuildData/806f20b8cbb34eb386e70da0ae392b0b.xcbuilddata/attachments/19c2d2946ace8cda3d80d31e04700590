@@ -1,0 +1,50 @@
+{
+  "" : {
+    "const-values" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapTest.build/Objects-normal/arm64/ShortCapTest-master.swiftconstvalues",
+    "dependencies" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapTest.build/Objects-normal/arm64/ShortCapTest-master.d",
+    "diagnostics" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapTest.build/Objects-normal/arm64/ShortCapTest-master.dia",
+    "emit-module-dependencies" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapTest.build/Objects-normal/arm64/ShortCapTest-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapTest.build/Objects-normal/arm64/ShortCapTest-master-emit-module.dia",
+    "swift-dependencies" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapTest.build/Objects-normal/arm64/ShortCapTest-master.swiftdeps"
+  },
+  "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapTest.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "index-unit-output-path" : "/ShortCapTest.build/Release-iphoneos/ShortCapTest.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapTest.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapTest.build/Objects-normal/arm64/GeneratedAssetSymbols.o"
+  },
+  "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/ShortCapTest/AppDelegate.swift" : {
+    "index-unit-output-path" : "/ShortCapTest.build/Release-iphoneos/ShortCapTest.build/Objects-normal/arm64/AppDelegate.o",
+    "llvm-bc" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapTest.build/Objects-normal/arm64/AppDelegate.bc",
+    "object" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapTest.build/Objects-normal/arm64/AppDelegate.o"
+  },
+  "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/ShortCapTest/SceneDelegate.swift" : {
+    "index-unit-output-path" : "/ShortCapTest.build/Release-iphoneos/ShortCapTest.build/Objects-normal/arm64/SceneDelegate.o",
+    "llvm-bc" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapTest.build/Objects-normal/arm64/SceneDelegate.bc",
+    "object" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapTest.build/Objects-normal/arm64/SceneDelegate.o"
+  },
+  "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/ShortCapTest/Sources/View/DetailViewController/DetailViewController.swift" : {
+    "index-unit-output-path" : "/ShortCapTest.build/Release-iphoneos/ShortCapTest.build/Objects-normal/arm64/DetailViewController.o",
+    "llvm-bc" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapTest.build/Objects-normal/arm64/DetailViewController.bc",
+    "object" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapTest.build/Objects-normal/arm64/DetailViewController.o"
+  },
+  "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/ShortCapTest/Sources/View/DetailViewController/TableViewController/Cell/SummaryContentRowCell.swift" : {
+    "index-unit-output-path" : "/ShortCapTest.build/Release-iphoneos/ShortCapTest.build/Objects-normal/arm64/SummaryContentRowCell.o",
+    "llvm-bc" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapTest.build/Objects-normal/arm64/SummaryContentRowCell.bc",
+    "object" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapTest.build/Objects-normal/arm64/SummaryContentRowCell.o"
+  },
+  "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/ShortCapTest/Sources/View/DetailViewController/TableViewController/SummaryContentListViewController.swift" : {
+    "index-unit-output-path" : "/ShortCapTest.build/Release-iphoneos/ShortCapTest.build/Objects-normal/arm64/SummaryContentListViewController.o",
+    "llvm-bc" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapTest.build/Objects-normal/arm64/SummaryContentListViewController.bc",
+    "object" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapTest.build/Objects-normal/arm64/SummaryContentListViewController.o"
+  },
+  "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/ShortCapTest/Sources/VIewModel/SummaryContentViewModel.swift" : {
+    "index-unit-output-path" : "/ShortCapTest.build/Release-iphoneos/ShortCapTest.build/Objects-normal/arm64/SummaryContentViewModel.o",
+    "llvm-bc" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapTest.build/Objects-normal/arm64/SummaryContentViewModel.bc",
+    "object" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapTest.build/Objects-normal/arm64/SummaryContentViewModel.o"
+  },
+  "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/ShortCapTest/ViewController.swift" : {
+    "index-unit-output-path" : "/ShortCapTest.build/Release-iphoneos/ShortCapTest.build/Objects-normal/arm64/ViewController.o",
+    "llvm-bc" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapTest.build/Objects-normal/arm64/ViewController.bc",
+    "object" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapTest.build/Objects-normal/arm64/ViewController.o"
+  }
+}

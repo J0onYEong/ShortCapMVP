@@ -1,0 +1,10 @@
+framework module Data {
+  umbrella header "Data.h"
+  export *
+
+  module * { export * }
+}
+
+module Data.__Swift {
+  exclude header "Data-Swift.h"
+}

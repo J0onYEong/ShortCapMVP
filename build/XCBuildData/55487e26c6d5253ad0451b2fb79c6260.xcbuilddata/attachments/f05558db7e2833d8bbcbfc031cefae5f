@@ -1,0 +1,35 @@
+{
+  "" : {
+    "const-values" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/build/RxSwift.build/Release-iphoneos/RxRelay.build/Objects-normal/arm64/RxRelay-master.swiftconstvalues",
+    "dependencies" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/build/RxSwift.build/Release-iphoneos/RxRelay.build/Objects-normal/arm64/RxRelay-master.d",
+    "diagnostics" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/build/RxSwift.build/Release-iphoneos/RxRelay.build/Objects-normal/arm64/RxRelay-master.dia",
+    "emit-module-dependencies" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/build/RxSwift.build/Release-iphoneos/RxRelay.build/Objects-normal/arm64/RxRelay-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/build/RxSwift.build/Release-iphoneos/RxRelay.build/Objects-normal/arm64/RxRelay-master-emit-module.dia",
+    "swift-dependencies" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/build/RxSwift.build/Release-iphoneos/RxRelay.build/Objects-normal/arm64/RxRelay-master.swiftdeps"
+  },
+  "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/Sources/RxRelay/BehaviorRelay.swift" : {
+    "index-unit-output-path" : "/RxSwift.build/Release-iphoneos/RxRelay.build/Objects-normal/arm64/BehaviorRelay.o",
+    "llvm-bc" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/build/RxSwift.build/Release-iphoneos/RxRelay.build/Objects-normal/arm64/BehaviorRelay.bc",
+    "object" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/build/RxSwift.build/Release-iphoneos/RxRelay.build/Objects-normal/arm64/BehaviorRelay.o"
+  },
+  "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/Sources/RxRelay/Observable+Bind.swift" : {
+    "index-unit-output-path" : "/RxSwift.build/Release-iphoneos/RxRelay.build/Objects-normal/arm64/Observable+Bind.o",
+    "llvm-bc" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/build/RxSwift.build/Release-iphoneos/RxRelay.build/Objects-normal/arm64/Observable+Bind.bc",
+    "object" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/build/RxSwift.build/Release-iphoneos/RxRelay.build/Objects-normal/arm64/Observable+Bind.o"
+  },
+  "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/Sources/RxRelay/PublishRelay.swift" : {
+    "index-unit-output-path" : "/RxSwift.build/Release-iphoneos/RxRelay.build/Objects-normal/arm64/PublishRelay.o",
+    "llvm-bc" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/build/RxSwift.build/Release-iphoneos/RxRelay.build/Objects-normal/arm64/PublishRelay.bc",
+    "object" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/build/RxSwift.build/Release-iphoneos/RxRelay.build/Objects-normal/arm64/PublishRelay.o"
+  },
+  "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/Sources/RxRelay/ReplayRelay.swift" : {
+    "index-unit-output-path" : "/RxSwift.build/Release-iphoneos/RxRelay.build/Objects-normal/arm64/ReplayRelay.o",
+    "llvm-bc" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/build/RxSwift.build/Release-iphoneos/RxRelay.build/Objects-normal/arm64/ReplayRelay.bc",
+    "object" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/build/RxSwift.build/Release-iphoneos/RxRelay.build/Objects-normal/arm64/ReplayRelay.o"
+  },
+  "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/Sources/RxRelay/Utils.swift" : {
+    "index-unit-output-path" : "/RxSwift.build/Release-iphoneos/RxRelay.build/Objects-normal/arm64/Utils.o",
+    "llvm-bc" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/build/RxSwift.build/Release-iphoneos/RxRelay.build/Objects-normal/arm64/Utils.bc",
+    "object" : "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/build/RxSwift.build/Release-iphoneos/RxRelay.build/Objects-normal/arm64/Utils.o"
+  }
+}

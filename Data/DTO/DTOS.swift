@@ -34,19 +34,19 @@ typealias InitiateSummaryResponseDTOWithBase = BaseDTO<InitiateSummaryResponseDT
 struct SummaryStatusResponseDTO: Decodable {
     
     var status: String
-    var videoCode: Int
+    var videoId: Int
     
     enum CodingKeys: String, CodingKey {
         
         case status = "status"
-        case videoCode = "videoSummaryId"
+        case videoId = "videoSummaryId"
     }
     
     func transformToEntity() -> SummaryStatusEntity {
         
         SummaryStatusEntity(
             status: SummaryStatusEntity.Status.status(self.status),
-            videoCode: self.videoCode
+            videoId: self.videoId
         )
     }
 }

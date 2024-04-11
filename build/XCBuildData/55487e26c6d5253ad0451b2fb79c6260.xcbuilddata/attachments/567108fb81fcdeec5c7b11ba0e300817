@@ -1,0 +1,50 @@
+{
+  "" : {
+    "const-values" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/Data.build/Objects-normal/arm64/Data-master.swiftconstvalues",
+    "dependencies" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/Data.build/Objects-normal/arm64/Data-master.d",
+    "diagnostics" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/Data.build/Objects-normal/arm64/Data-master.dia",
+    "emit-module-dependencies" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/Data.build/Objects-normal/arm64/Data-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/Data.build/Objects-normal/arm64/Data-master-emit-module.dia",
+    "swift-dependencies" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/Data.build/Objects-normal/arm64/Data-master.swiftdeps"
+  },
+  "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/Data.build/DerivedSources/CoreDataGenerated/CoreDataModel/CoreDataModel+CoreDataModel.swift" : {
+    "index-unit-output-path" : "/ShortCapTest.build/Release-iphoneos/Data.build/Objects-normal/arm64/CoreDataModel+CoreDataModel.o",
+    "llvm-bc" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/Data.build/Objects-normal/arm64/CoreDataModel+CoreDataModel.bc",
+    "object" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/Data.build/Objects-normal/arm64/CoreDataModel+CoreDataModel.o"
+  },
+  "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/Data.build/DerivedSources/CoreDataGenerated/CoreDataModel/SummaryLD+CoreDataClass.swift" : {
+    "index-unit-output-path" : "/ShortCapTest.build/Release-iphoneos/Data.build/Objects-normal/arm64/SummaryLD+CoreDataClass.o",
+    "llvm-bc" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/Data.build/Objects-normal/arm64/SummaryLD+CoreDataClass.bc",
+    "object" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/Data.build/Objects-normal/arm64/SummaryLD+CoreDataClass.o"
+  },
+  "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/Data.build/DerivedSources/CoreDataGenerated/CoreDataModel/SummaryLD+CoreDataProperties.swift" : {
+    "index-unit-output-path" : "/ShortCapTest.build/Release-iphoneos/Data.build/Objects-normal/arm64/SummaryLD+CoreDataProperties.o",
+    "llvm-bc" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/Data.build/Objects-normal/arm64/SummaryLD+CoreDataProperties.bc",
+    "object" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/Data.build/Objects-normal/arm64/SummaryLD+CoreDataProperties.o"
+  },
+  "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/Data/DTO/DTOS.swift" : {
+    "index-unit-output-path" : "/ShortCapTest.build/Release-iphoneos/Data.build/Objects-normal/arm64/DTOS.o",
+    "llvm-bc" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/Data.build/Objects-normal/arm64/DTOS.bc",
+    "object" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/Data.build/Objects-normal/arm64/DTOS.o"
+  },
+  "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/Data/RepositoryImpl/CoreDataContainer(Excuse)/Container.swift" : {
+    "index-unit-output-path" : "/ShortCapTest.build/Release-iphoneos/Data.build/Objects-normal/arm64/Container.o",
+    "llvm-bc" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/Data.build/Objects-normal/arm64/Container.bc",
+    "object" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/Data.build/Objects-normal/arm64/Container.o"
+  },
+  "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/Data/RepositoryImpl/StoreRepository.swift" : {
+    "index-unit-output-path" : "/ShortCapTest.build/Release-iphoneos/Data.build/Objects-normal/arm64/StoreRepository.o",
+    "llvm-bc" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/Data.build/Objects-normal/arm64/StoreRepository.bc",
+    "object" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/Data.build/Objects-normal/arm64/StoreRepository.o"
+  },
+  "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/Data/RepositoryImpl/SummaryRepository.swift" : {
+    "index-unit-output-path" : "/ShortCapTest.build/Release-iphoneos/Data.build/Objects-normal/arm64/SummaryRepository.o",
+    "llvm-bc" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/Data.build/Objects-normal/arm64/SummaryRepository.bc",
+    "object" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/Data.build/Objects-normal/arm64/SummaryRepository.o"
+  },
+  "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/Data/RepositoryImpl/VideoCodeRepository.swift" : {
+    "index-unit-output-path" : "/ShortCapTest.build/Release-iphoneos/Data.build/Objects-normal/arm64/VideoCodeRepository.o",
+    "llvm-bc" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/Data.build/Objects-normal/arm64/VideoCodeRepository.bc",
+    "object" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/Data.build/Objects-normal/arm64/VideoCodeRepository.o"
+  }
+}

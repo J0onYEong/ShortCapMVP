@@ -7,6 +7,11 @@
 		<key>Core.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
+		<key>Core2.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
 			<integer>7</integer>
 		</dict>
 		<key>Data+Domain.xcscheme_^#shared#^_</key>
@@ -22,7 +27,7 @@
 		<key>Domain.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>6</integer>
+			<integer>8</integer>
 		</dict>
 		<key>ReelsDownLoader.xcscheme_^#shared#^_</key>
 		<dict>
@@ -71,11 +76,6 @@
 			<key>orderHint</key>
 			<integer>13</integer>
 		</dict>
-		<key>ShareExtensionForShortCap.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>0</integer>
-		</dict>
 		<key>ShortCapAction.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
@@ -89,7 +89,7 @@
 		<key>ShortCapNetwork.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>8</integer>
+			<integer>6</integer>
 		</dict>
 		<key>ShortCapTestAction.xcscheme_^#shared#^_</key>
 		<dict>

@@ -1,0 +1,20 @@
+{
+  "" : {
+    "const-values" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapAction.build/Objects-normal/arm64/ShortCapAction-master.swiftconstvalues",
+    "dependencies" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapAction.build/Objects-normal/arm64/ShortCapAction-master.d",
+    "diagnostics" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapAction.build/Objects-normal/arm64/ShortCapAction-master.dia",
+    "emit-module-dependencies" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapAction.build/Objects-normal/arm64/ShortCapAction-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapAction.build/Objects-normal/arm64/ShortCapAction-master-emit-module.dia",
+    "swift-dependencies" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapAction.build/Objects-normal/arm64/ShortCapAction-master.swiftdeps"
+  },
+  "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapAction.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "index-unit-output-path" : "/ShortCapTest.build/Release-iphoneos/ShortCapAction.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapAction.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapAction.build/Objects-normal/arm64/GeneratedAssetSymbols.o"
+  },
+  "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/ShortCapAction/ActionViewController.swift" : {
+    "index-unit-output-path" : "/ShortCapTest.build/Release-iphoneos/ShortCapAction.build/Objects-normal/arm64/ActionViewController.o",
+    "llvm-bc" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapAction.build/Objects-normal/arm64/ActionViewController.bc",
+    "object" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapAction.build/Objects-normal/arm64/ActionViewController.o"
+  }
+}

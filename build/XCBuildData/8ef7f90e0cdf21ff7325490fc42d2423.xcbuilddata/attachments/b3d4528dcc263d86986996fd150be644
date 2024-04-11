@@ -1,0 +1,4 @@
+module Swinject {
+header "Swinject-Swift.h"
+export *
+}

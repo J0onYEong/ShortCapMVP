@@ -62,22 +62,23 @@ class SummaryContentViewModel {
     }
     
     /// 요약상태확인후 데이터를 가져옵니다.
-    func getSummaryResultFor(code: String, seconds: CGFloat = 0.5) async throws -> SummaryResultEntity {
+    func getSummaryResultFor(code: String, seconds: CGFloat = 1.5) async throws -> SummaryResultEntity {
         
         while(true) {
             
             print("👀 \(code) 요약상태 확인중...")
             
-            let status = try await checkStatusFor(code: code)
+            let entity = try await checkStatusFor(code: code)
             
-            if status.status == .complete {
+            if entity.status == .complete {
                 
-                print("✅ \(code) 요약완료")
+                let id = entity.videoId
                 
-                return try await getRowDataUseCase.getSummaryResultFor(code: code)
+                print("✅ \(code) 요약완료, id: \(id)")
+                
+                return try await getRowDataUseCase.getSummaryResultFor(id: id)
             }
-            
-            try await Task.sleep(nanoseconds: UInt64(seconds * 1000))
+            try await Task.sleep(for: .seconds(seconds))
         }
     }
     

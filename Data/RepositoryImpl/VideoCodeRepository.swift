@@ -73,25 +73,11 @@ public final class VideoCodeRepository: VideoCodeRepositoryInterface {
             
             guard let data: Data = try? Data(contentsOf: filePath) else { fatalError() }
             
-            if let decoded = try? JSONDecoder().decode(DTO.self, from: data) {
-                
-                let entities = decoded.codes.map { code in
-                    
-                    return SummaryResultEntity(
-                        title: "",
-                        description: "",
-                        keywords: [],
-                        url: "",
-                        summary: "",
-                        address: "",
-                        createdAt: "",
-                        platform: "",
-                        mainCategory: "",
-                        videoCode: code,
-                        isFetched: false
-                    )
-                }
-            }
+            if data.isEmpty { return [] }
+            
+            guard let decoded = try? JSONDecoder().decode(DTO.self, from: data) else { fatalError() }
+            
+            let entities = decoded.codes.map { SummaryIntiationEntitiy(videoCode: $0) }
             
             // 파일 내용 추출후 파일을 비운다.
             if let fileHandle = try? FileHandle(forWritingTo: URL(fileURLWithPath: filePath.path())) {
@@ -102,6 +88,8 @@ public final class VideoCodeRepository: VideoCodeRepositoryInterface {
                 // 파일 닫기
                 fileHandle.closeFile()
             }
+            
+            return entities
         }
         
         return []

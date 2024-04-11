@@ -1,0 +1,30 @@
+{
+  "" : {
+    "const-values" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapNetwork.build/Objects-normal/arm64/ShortCapNetwork-master.swiftconstvalues",
+    "dependencies" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapNetwork.build/Objects-normal/arm64/ShortCapNetwork-master.d",
+    "diagnostics" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapNetwork.build/Objects-normal/arm64/ShortCapNetwork-master.dia",
+    "emit-module-dependencies" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapNetwork.build/Objects-normal/arm64/ShortCapNetwork-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapNetwork.build/Objects-normal/arm64/ShortCapNetwork-master-emit-module.dia",
+    "swift-dependencies" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapNetwork.build/Objects-normal/arm64/ShortCapNetwork-master.swiftdeps"
+  },
+  "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/ShortCapNetwork/API/BaseAPI.swift" : {
+    "index-unit-output-path" : "/ShortCapTest.build/Release-iphoneos/ShortCapNetwork.build/Objects-normal/arm64/BaseAPI.o",
+    "llvm-bc" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapNetwork.build/Objects-normal/arm64/BaseAPI.bc",
+    "object" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapNetwork.build/Objects-normal/arm64/BaseAPI.o"
+  },
+  "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/ShortCapNetwork/API/SummaryAPI.swift" : {
+    "index-unit-output-path" : "/ShortCapTest.build/Release-iphoneos/ShortCapNetwork.build/Objects-normal/arm64/SummaryAPI.o",
+    "llvm-bc" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapNetwork.build/Objects-normal/arm64/SummaryAPI.bc",
+    "object" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapNetwork.build/Objects-normal/arm64/SummaryAPI.o"
+  },
+  "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/ShortCapNetwork/Service/BaseRestAPIService.swift" : {
+    "index-unit-output-path" : "/ShortCapTest.build/Release-iphoneos/ShortCapNetwork.build/Objects-normal/arm64/BaseRestAPIService.o",
+    "llvm-bc" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapNetwork.build/Objects-normal/arm64/BaseRestAPIService.bc",
+    "object" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapNetwork.build/Objects-normal/arm64/BaseRestAPIService.o"
+  },
+  "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/ShortCapNetwork/Service/SummaryRestService.swift" : {
+    "index-unit-output-path" : "/ShortCapTest.build/Release-iphoneos/ShortCapNetwork.build/Objects-normal/arm64/SummaryRestService.o",
+    "llvm-bc" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapNetwork.build/Objects-normal/arm64/SummaryRestService.bc",
+    "object" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/ShortCapNetwork.build/Objects-normal/arm64/SummaryRestService.o"
+  }
+}

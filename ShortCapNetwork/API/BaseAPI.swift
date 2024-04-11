@@ -1,13 +1,6 @@
-//
-//  BaseAPI.swift
-//  ShortCapTest
-//
-//  Created by 최준영 on 3/21/24.
-//
-
 import Foundation
 import Alamofire
-import Core
+import Core2
 
 public enum APIType {
     

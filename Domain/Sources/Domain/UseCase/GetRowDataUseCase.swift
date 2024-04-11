@@ -4,7 +4,7 @@ public protocol GetRowDataUseCaseInterface {
     
     func moveVideoCodeToStore() throws
     func checkSummaryStateFor(code: String) async throws -> SummaryStatusEntity
-    func getSummaryResultFor(code: String) async throws -> SummaryResultEntity
+    func getSummaryResultFor(id: Int) async throws -> SummaryResultEntity
     func getDataFromStore() async -> [SummaryResultEntity]
 }
 
@@ -35,9 +35,9 @@ public final class GetRowDataUseCase: GetRowDataUseCaseInterface {
         try await summaryRepo.requestStatusFor(videoCode: code)
     }
     
-    public func getSummaryResultFor(code: String) async throws -> SummaryResultEntity {
+    public func getSummaryResultFor(id: Int) async throws -> SummaryResultEntity {
         
-        try await summaryRepo.requestResultFor(videoCode: code)
+        try await summaryRepo.requestResultFor(videoId: id)
     }
     
     public func getDataFromStore() async -> [SummaryResultEntity] {

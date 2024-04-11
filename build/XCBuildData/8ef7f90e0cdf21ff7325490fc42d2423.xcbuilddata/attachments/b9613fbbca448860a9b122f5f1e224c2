@@ -1,0 +1,10 @@
+framework module ShortCapNetwork {
+  umbrella header "ShortCapNetwork.h"
+  export *
+
+  module * { export * }
+}
+
+module ShortCapNetwork.__Swift {
+  exclude header "ShortCapNetwork-Swift.h"
+}

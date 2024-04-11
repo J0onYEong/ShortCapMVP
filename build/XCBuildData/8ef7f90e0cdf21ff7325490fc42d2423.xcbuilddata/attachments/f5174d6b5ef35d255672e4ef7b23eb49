@@ -1,0 +1,25 @@
+{
+  "" : {
+    "const-values" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/Core.build/Objects-normal/arm64/Core-master.swiftconstvalues",
+    "dependencies" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/Core.build/Objects-normal/arm64/Core-master.d",
+    "diagnostics" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/Core.build/Objects-normal/arm64/Core-master.dia",
+    "emit-module-dependencies" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/Core.build/Objects-normal/arm64/Core-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/Core.build/Objects-normal/arm64/Core-master-emit-module.dia",
+    "swift-dependencies" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/Core.build/Objects-normal/arm64/Core-master.swiftdeps"
+  },
+  "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/Core/Sources/Config.swift" : {
+    "index-unit-output-path" : "/ShortCapTest.build/Release-iphoneos/Core.build/Objects-normal/arm64/Config.o",
+    "llvm-bc" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/Core.build/Objects-normal/arm64/Config.bc",
+    "object" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/Core.build/Objects-normal/arm64/Config.o"
+  },
+  "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/Core/Sources/Extensions/FileManager+Extension.swift" : {
+    "index-unit-output-path" : "/ShortCapTest.build/Release-iphoneos/Core.build/Objects-normal/arm64/FileManager+Extension.o",
+    "llvm-bc" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/Core.build/Objects-normal/arm64/FileManager+Extension.bc",
+    "object" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/Core.build/Objects-normal/arm64/FileManager+Extension.o"
+  },
+  "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/Core/Sources/Extensions/URL+Extension.swift" : {
+    "index-unit-output-path" : "/ShortCapTest.build/Release-iphoneos/Core.build/Objects-normal/arm64/URL+Extension.o",
+    "llvm-bc" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/Core.build/Objects-normal/arm64/URL+Extension.bc",
+    "object" : "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/Core.build/Objects-normal/arm64/URL+Extension.o"
+  }
+}

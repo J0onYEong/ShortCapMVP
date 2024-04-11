@@ -1,7 +1,7 @@
 import UIKit
 import MobileCoreServices
 import UniformTypeIdentifiers
-import Core
+import Core2
 import Domain
 import Data
 

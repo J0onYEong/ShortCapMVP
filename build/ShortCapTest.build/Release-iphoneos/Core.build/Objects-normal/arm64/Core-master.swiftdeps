@@ -1,0 +1,8 @@
+version: "Apple Swift version 5.9 (swiftlang-5.9.0.128.108 clang-1500.0.40.1)"
+options: "9b565e966916e700237f47d6cc7cb3a80109d0dc6207ffe2135ae27e29e47aed"
+build_start_time: [1712814216, 590757000]
+build_end_time: [1712814218, 294033000]
+inputs:
+  "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/Core/Sources/Config.swift": [1712721867, 667200701]
+  "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/Core/Sources/Extensions/FileManager+Extension.swift": [1712476241, 606158103]
+  "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/Core/Sources/Extensions/URL+Extension.swift": [1712416692, 32097007]

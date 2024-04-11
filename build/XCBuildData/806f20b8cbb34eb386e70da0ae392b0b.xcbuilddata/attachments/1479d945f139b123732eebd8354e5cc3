@@ -1,0 +1,11 @@
+framework module ShortCapNetwork {
+  umbrella header "ShortCapNetwork.h"
+  export *
+
+  module * { export * }
+}
+
+module ShortCapNetwork.Swift {
+  header "ShortCapNetwork-Swift.h"
+  requires objc
+}

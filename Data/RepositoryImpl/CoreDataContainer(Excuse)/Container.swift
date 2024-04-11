@@ -1,7 +1,7 @@
 import Foundation
 import CoreData
 import RxCocoa
-import Core
+import Core2
 import Domain
 
 
@@ -18,9 +18,9 @@ public class ShortCapPersistentContainer: NSPersistentContainer {
 
 public class ShortCapContainer {
     
-    private static let modelName = "ShareShortFormModel"
+    private static let modelName = "CoreDataModel"
     
-    private static let identifier = "choijunyeong.ShortCapNetwork"
+    private static let identifier = "choijunyeong.ShortCapData"
     
     private let container: ShortCapPersistentContainer
     
@@ -51,6 +51,16 @@ public class ShortCapContainer {
             
             print("✅ 영구 저장소 로딩 성공")
         }
+        
+//        print("테스트 떄문에 전부 비웁니다.")
+//        
+//        let fetchRequest = SummaryLD.fetchRequest()
+//        
+//        let objects = try! context.fetch(fetchRequest)
+//        
+//        objects.forEach { context.delete($0) }
+//        
+//        try! context.save()
     }
     
     static func model(for name: String, bundle: Bundle) -> NSManagedObjectModel {
@@ -153,6 +163,7 @@ public extension ShortCapContainer {
             object.platform = item.platform
             object.mainCategory = item.mainCategory
             object.videoCode = item.videoCode
+            object.isFetched = item.isFetched
         }
         
         try? context.save()

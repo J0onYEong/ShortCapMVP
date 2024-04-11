@@ -1,0 +1,23 @@
+{
+  'version': 0,
+  'use-external-names': 'false',
+  'case-sensitive': 'false',
+  'roots': [{
+    'type': 'directory',
+    'name': "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/Release-iphoneos/Core.framework/Modules"
+    'contents': [{
+      'type': 'file',
+      'name': "module.modulemap",
+      'external-contents': "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/Core.build/unextended-module.modulemap",
+    }]
+    },
+    {
+    'type': 'directory',
+    'name': "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/Release-iphoneos/Core.framework/Headers"
+    'contents': [{
+      'type': 'file',
+      'name': "Core-Swift.h",
+      'external-contents': "/Users/choijun-yeong/Desktop/repositories/ShortCapTest/build/ShortCapTest.build/Release-iphoneos/Core.build/unextended-interface-header.h",
+    }]
+    }]
+}

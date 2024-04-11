@@ -1,0 +1,4 @@
+module RxCocoaRuntime {
+umbrella header "/Users/choijun-yeong/Library/Developer/Xcode/DerivedData/ShortCapTest-cxnfomkxdgyazkdxtgexweeuilsa/SourcePackages/checkouts/RxSwift/Sources/RxCocoaRuntime/include/RxCocoaRuntime.h"
+export *
+}

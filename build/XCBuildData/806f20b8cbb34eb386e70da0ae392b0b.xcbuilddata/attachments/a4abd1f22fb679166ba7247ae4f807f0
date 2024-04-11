@@ -1,0 +1,5 @@
+ extern const unsigned char DataVersionString[];
+ extern const double DataVersionNumber;
+
+ const unsigned char DataVersionString[] __attribute__ ((used)) = "@(#)PROGRAM:Data  PROJECT:ShortCapTest-1" "\n";
+ const double DataVersionNumber __attribute__ ((used)) = (double)1.;

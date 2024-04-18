@@ -2,6 +2,7 @@ import UIKit
 import Swinject
 import Data
 import Domain
+import Presentation
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {

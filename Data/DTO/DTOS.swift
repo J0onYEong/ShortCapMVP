@@ -85,9 +85,3 @@ struct SummaryResultResponseDTO: Decodable {
 
 typealias SummaryResultResponseDTOWithBase = BaseDTO<SummaryResultResponseDTO>
 
-
-// MARK: - DTO for Local
-struct VideoCodesDTO: Codable {
-    
-    var codes: [String]
-}

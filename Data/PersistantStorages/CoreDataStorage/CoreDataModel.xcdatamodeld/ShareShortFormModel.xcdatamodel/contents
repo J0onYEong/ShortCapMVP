@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22222" systemVersion="23E224" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="SummaryDetailEntity" representedClassName="SummaryDetailEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="address" optional="YES" attributeType="String"/>
+        <attribute name="createdAt" optional="YES" attributeType="String"/>
+        <attribute name="des" optional="YES" attributeType="String"/>
+        <attribute name="isFetched" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="keywords" optional="YES" attributeType="String"/>
+        <attribute name="mainCategory" optional="YES" attributeType="String"/>
+        <attribute name="platform" optional="YES" attributeType="String"/>
+        <attribute name="summary" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="videoCode"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="VideoCodeEntity" representedClassName="VideoCodeEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="code" optional="YES" attributeType="String"/>
+        <relationship name="summaryDetailEntity" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SummaryDetailEntity"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="videoCode"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+</model>

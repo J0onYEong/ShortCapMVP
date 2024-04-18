@@ -1,5 +1,4 @@
 import Foundation
-import ShortCapNetwork
 import Domain
 
 public final class SummaryRepository: SummaryRepositoryInterface {

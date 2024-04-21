@@ -1,4 +1,9 @@
 import Foundation
+import Core
+
+protocol Cancellable {
+    func cancel()
+}
 
 class RepositoryTask: Cancellable {
     var networkTask: NetworkCancellable?

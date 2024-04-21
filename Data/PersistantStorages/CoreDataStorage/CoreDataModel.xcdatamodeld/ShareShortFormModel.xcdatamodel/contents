@@ -11,18 +11,13 @@
         <attribute name="summary" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="url" optional="YES" attributeType="String"/>
-        <uniquenessConstraints>
-            <uniquenessConstraint>
-                <constraint value="videoCode"/>
-            </uniquenessConstraint>
-        </uniquenessConstraints>
     </entity>
     <entity name="VideoCodeEntity" representedClassName="VideoCodeEntity" syncable="YES" codeGenerationType="class">
         <attribute name="code" optional="YES" attributeType="String"/>
         <relationship name="summaryDetailEntity" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SummaryDetailEntity"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
-                <constraint value="videoCode"/>
+                <constraint value="code"/>
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>

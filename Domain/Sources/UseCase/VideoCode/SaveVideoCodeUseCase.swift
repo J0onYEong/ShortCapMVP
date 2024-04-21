@@ -18,17 +18,17 @@ public protocol FetchVideoCodeUseCase {
 
 public final class DefaultSaveVideoCodeUseCase: SaveVideoCodeUseCase {
     
-    let videoCodeRepository: VideoCodeRepository
+    let saveVideoCodeRepository: SaveVideoCodeRepository
     
     public func execute(videoCode: VideoCode, completion: @escaping (VideoCode?) -> Void) {
         
-        videoCodeRepository.save(
+        saveVideoCodeRepository.save(
             videoCode: videoCode,
             completion: completion
         )
     }
     
-    init(videoCodeRepository: VideoCodeRepository) {
-        self.videoCodeRepository = videoCodeRepository
+    public init(saveVideoCodeRepository: SaveVideoCodeRepository) {
+        self.saveVideoCodeRepository = saveVideoCodeRepository
     }
 }

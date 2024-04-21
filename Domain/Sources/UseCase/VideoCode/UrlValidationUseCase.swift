@@ -1,6 +1,6 @@
 import Foundation
 
-protocol UrlValidationUseCase {
+public protocol UrlValidationUseCase {
     
     func excute(url: String) -> Bool
 }
@@ -10,7 +10,9 @@ public final class DefaultUrlValidationUseCase: UrlValidationUseCase {
     static let instagramRegexStr = "((http|https):\\/\\/)*(www.)*instagram.com\\/reel\\/.*"
     static let youtubeRegexStr = "((http|https):\\/\\/)*(www.)*(m.)*youtube.com\\/shorts\\/.*"
     
-    func excute(url: String) -> Bool {
+    public init() { }
+    
+    public func excute(url: String) -> Bool {
         
         let patterns = [
             Self.instagramRegexStr,

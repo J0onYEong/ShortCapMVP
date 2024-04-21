@@ -71,34 +71,34 @@ class ActionViewController: UIViewController {
         button.loading()
         
         // 리소를 찾을 수 없을 시 화면을 드랍
-        fetchUrl { [weak self] result in
+        fetchUrl { [weak self] urlString in
             
-            switch result {
-            case .success(let urlString):
+            guard let urlString else {
                 
-                print("✅ 추출된URL: \(urlString)")
+                print("‼️url후보 획득 실패:")
                 
-                // 비디오 코드 확인
-                Task {
+                self?.dropActivityView()
+                
+                return
+            }
+            
+            print("✅url후보 획득 성공: \(urlString)")
+            
+            self?.viewModel.validateUrl(urlStr: urlString) { result in
+                
+                DispatchQueue.main.async {
                     
-                    do {
-                        
-                        try await self?.viewModel.saveData(urlStr: urlString)
+                    switch result {
+                    case .success(_):
                         
                         self?.whenComplete(isSuccess: true)
+                    case .failure(let failure):
                         
-                    } catch {
-                        
-                        print("‼️ 요약시작 오류 \(error)")
+                        debugPrint("‼️비디오 코드 저장 실패: \(failure.localizedDescription)")
                         
                         self?.whenComplete(isSuccess: false)
                     }
                 }
-            case .failure(let failure):
-                
-                print("‼️ \(failure.localizedDescription)")
-                
-                self?.dropActivityView()
             }
         }
     }
@@ -137,11 +137,11 @@ class ActionViewController: UIViewController {
         self.extensionContext?.completeRequest(returningItems: nil)
     }
     
-    func fetchUrl(completion: @escaping ((Result<String, ActionViewError>) -> Void)) {
+    func fetchUrl(completion: @escaping ((String?) -> Void)) {
         
         guard let item = (self.extensionContext?.inputItems as? [NSExtensionItem])?.first, let providers = item.attachments else {
             
-            return completion(.failure(.matchedDataNotFound))
+            return completion(nil)
         }
         
         var checkFlag = false
@@ -161,7 +161,7 @@ class ActionViewController: UIViewController {
                         
                         if error != nil {
                             
-                            return completion(.failure(.matchedDataNotFound))
+                            return completion(nil)
                         }
                         
                         var urlString: String?
@@ -176,7 +176,7 @@ class ActionViewController: UIViewController {
                         
                         if let urlString {
                             
-                            completion(.success(urlString))
+                            completion(urlString)
                         }
                     }
                 }
@@ -185,7 +185,7 @@ class ActionViewController: UIViewController {
         
         if !checkFlag {
             
-            completion(.failure(.matchedDataNotFound))
+            completion(nil)
         }
     }
 }

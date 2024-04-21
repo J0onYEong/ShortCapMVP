@@ -1,38 +1,75 @@
 import Foundation
 import Domain
+import Core
 import Data
 
 enum ActionViewError: Error {
     
-    case invalidStringForUrl
-    case retrievingFailedWithUrl
-    
-    case matchedDataNotFound
+    case urlInvalidation
+    case saveFailure
 }
 
 class ActionViewModel {
     
-    let useCase = SaveVideoCodeUseCase(
-        summaryRepo: SummaryRepository(),
-        videoRepo: VideoCodeRepository()
-    )
+    let saveVideoCodeUseCase: SaveVideoCodeUseCase
+    let convertUrlUseCase: ConvertUrlToVideoCodeUseCase
+    let urlValidationUseCase: UrlValidationUseCase
+    
+    init(
+        saveVideoCodeUseCase: SaveVideoCodeUseCase = DefaultSaveVideoCodeUseCase(
+            saveVideoCodeRepository: DefaultSaveVideoCodeRepository(
+                storage: CoreDataVideoCodeStorage()
+            )
+        ),
+        convertUrlUseCase: ConvertUrlToVideoCodeUseCase = DefaultConvertUrlToVideoCodeUseCase(
+            convertUrlRepository: DefaultConvertVideoCodeRepository(
+                dataTransferService: DefaultDataTransferService(
+                    with: DefaultNetworkService(
+                        config: ApiDataNetworkConfig.default,
+                        sessionManager: DefaultNetworkSessionManager()
+                    )
+                )
+            )
+        ),
+        urlValidationUseCase: UrlValidationUseCase = DefaultUrlValidationUseCase()
+    ) {
+        self.saveVideoCodeUseCase = saveVideoCodeUseCase
+        self.convertUrlUseCase = convertUrlUseCase
+        self.urlValidationUseCase = urlValidationUseCase
+    }
 
-    func saveData(urlStr: String) async throws {
+    func validateUrl(urlStr: String, completion: @escaping (Result<VideoCode, Error>) -> Void) {
         
         // 유효한 url인지 확인하기
-        guard useCase.checkUrlFormIsValid(urlString: urlStr) else { throw  ActionViewError.invalidStringForUrl }
+        guard urlValidationUseCase.excute(url: urlStr) else {
+            
+            printIfDebug("‼️유요하지 않은 url형식: \(urlStr)")
+            
+            return completion(.failure(ActionViewError.urlInvalidation))
+        }
         
         // url로 부터 비디오 코드 획득
-        do {
-            let code = try await useCase.getVideoCodeFrom(urlString: urlStr).videoCode
+        Task {
             
-            // 도출한 코드를 저장
-            useCase.saveVideoCode(videoCode: code)
-            
-        } catch {
-            print("비디오코드 획득 오류 \(error.localizedDescription)")
-            
-            throw ActionViewError.retrievingFailedWithUrl
+            do {
+                
+                let videoCode = try await convertUrlUseCase.execute(url: urlStr)
+                
+                printIfDebug("✅획득코드: \(videoCode.code)")
+                
+                // 획득한 코드를 저장
+                saveVideoCodeUseCase.execute(videoCode: videoCode) { viedoCode in
+                    
+                    printIfDebug("✅저장된 비디오 코드: \(videoCode.code)")
+                    
+                    return completion(.success(videoCode))
+                }
+            } catch {
+                
+                printIfDebug("비디오 코드 획득 실패: \(urlStr)")
+                
+                completion(.failure(error))
+            }
         }
     }
 }

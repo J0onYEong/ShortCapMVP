@@ -21,14 +21,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         
         
-        let viewModel = appDelegate.container.resolve(SummaryContentViewModel.self)!
+//        let viewModel = appDelegate.container.resolve(SummaryContentViewModel.self)!
         
-        let viewController = SummaryContentListViewController(viewModel: viewModel)
+//        let viewController = SummaryContentListViewController(viewModel: viewModel)
         
-        let navigationVC = UINavigationController(rootViewController: viewController)
-
-        window?.rootViewController = navigationVC
-        window?.makeKeyAndVisible()
+//        let navigationVC = UINavigationController(rootViewController: viewController)
+//
+//        window?.rootViewController = navigationVC
+//        window?.makeKeyAndVisible()
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

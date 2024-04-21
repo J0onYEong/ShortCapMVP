@@ -4,7 +4,7 @@ public final class CoreDataVideoCodeStorage: VideoCodeStorage {
     
     private let coreDataStorage: CoreDataStorage
 
-    init(coreDataStorage: CoreDataStorage = CoreDataStorage.shared) {
+    public init(coreDataStorage: CoreDataStorage = CoreDataStorage.shared) {
         self.coreDataStorage = coreDataStorage
     }
     

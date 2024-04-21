@@ -15,7 +15,6 @@
 		9B0025532BC1870F0050D3E5 /* Domain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9B00253D2BC186BC0050D3E5 /* Domain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9B0025D72BC288A80050D3E5 /* Data.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B0025D62BC288A80050D3E5 /* Data.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9B0025DB2BC288A80050D3E5 /* Data.framework in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9B0025D42BC288A80050D3E5 /* Data.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		9B0025E02BC288C40050D3E5 /* DTOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9651EB2BC1706400CE0600 /* DTOS.swift */; };
 		9B0025F52BC28B710050D3E5 /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B00253D2BC186BC0050D3E5 /* Domain.framework */; };
 		9B0025F62BC28B710050D3E5 /* Domain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9B00253D2BC186BC0050D3E5 /* Domain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9B0026002BC2F6800050D3E5 /* Data.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B0025D42BC288A80050D3E5 /* Data.framework */; };
@@ -29,6 +28,24 @@
 		9B4A83782BD0C8BF00614160 /* VideoCodeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83772BD0C8BF00614160 /* VideoCodeEntity.swift */; };
 		9B4A837A2BD0C95F00614160 /* CoreDataVideoCodeStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83792BD0C95F00614160 /* CoreDataVideoCodeStorage.swift */; };
 		9B4A837C2BD0CAB800614160 /* CoreDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A837B2BD0CAB800614160 /* CoreDataStorage.swift */; };
+		9B4A837F2BD13E9200614160 /* DefaultConvertVideoCodeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A837E2BD13E9200614160 /* DefaultConvertVideoCodeRepository.swift */; };
+		9B4A83822BD2A22000614160 /* EntPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83812BD2A22000614160 /* EntPoint.swift */; };
+		9B4A83852BD2A65A00614160 /* BodyEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83842BD2A65A00614160 /* BodyEncoder.swift */; };
+		9B4A83882BD2A6B900614160 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83872BD2A6B900614160 /* NetworkError.swift */; };
+		9B4A838A2BD2A6CF00614160 /* DataTransferError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83892BD2A6CF00614160 /* DataTransferError.swift */; };
+		9B4A838C2BD2A73900614160 /* ResponseDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A838B2BD2A73900614160 /* ResponseDecoder.swift */; };
+		9B4A838F2BD2A7DC00614160 /* NetworkConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A838E2BD2A7DC00614160 /* NetworkConfigurable.swift */; };
+		9B4A83912BD4013E00614160 /* RequestGenError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83902BD4013E00614160 /* RequestGenError.swift */; };
+		9B4A83932BD403A400614160 /* ConvertUrlRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83922BD403A400614160 /* ConvertUrlRepository.swift */; };
+		9B4A83962BD405E600614160 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83952BD405E600614160 /* NetworkService.swift */; };
+		9B4A83992BD40A1A00614160 /* NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83982BD40A1A00614160 /* NetworkLogger.swift */; };
+		9B4A839B2BD410F400614160 /* APIEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A839A2BD410F400614160 /* APIEndpoints.swift */; };
+		9B4A839E2BD4115100614160 /* VideoCodeRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A839D2BD4115100614160 /* VideoCodeRequestDTO.swift */; };
+		9B4A83A22BD411E200614160 /* ResponseDTOWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83A12BD411E200614160 /* ResponseDTOWrapper.swift */; };
+		9B4A83A62BD4176D00614160 /* DataTransferService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83A52BD4176D00614160 /* DataTransferService.swift */; };
+		9B4A83A72BD4C72500614160 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BA7EBAF2BC8202600053C3D /* Core.framework */; };
+		9B4A83A92BD4C9A000614160 /* NetworkSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83A82BD4C9A000614160 /* NetworkSessionManager.swift */; };
+		9B4A83AB2BD4D0E400614160 /* VideoCodeResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83AA2BD4D0E400614160 /* VideoCodeResponseDTO.swift */; };
 		9B5CD7EC2BB196D40041988A /* UniformTypeIdentifiers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B5CD7B52BB18F0E0041988A /* UniformTypeIdentifiers.framework */; };
 		9B5CD7F42BB196D40041988A /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B5CD7F22BB196D40041988A /* MainInterface.storyboard */; };
 		9B5CD7F82BB196D40041988A /* ShortCapAction.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 9B5CD7EB2BB196D40041988A /* ShortCapAction.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -40,7 +57,6 @@
 		9B68A8302BCA1521006903EC /* SummaryRestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2431FC2BABDF9E0089CB6D /* SummaryRestService.swift */; };
 		9B68A8312BCA1521006903EC /* BaseRestAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2431FE2BABDFAC0089CB6D /* BaseRestAPIService.swift */; };
 		9B68A8322BCA152C006903EC /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7BF92B9497D3001F3D88 /* CoreDataModel.xcdatamodeld */; };
-		9B68A8332BCA152F006903EC /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C162B94DAF9001F3D88 /* Container.swift */; };
 		9B68A8352BCA1571006903EC /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BA7EBAF2BC8202600053C3D /* Core.framework */; };
 		9B68A8362BCA1571006903EC /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9BA7EBAF2BC8202600053C3D /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9B68A83A2BCA16EF006903EC /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 9B68A8392BCA16EF006903EC /* Alamofire */; };
@@ -72,15 +88,12 @@
 		9B9E6F642BC3D6E6005DB13B /* SaveVideoCodeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9E6F632BC3D6E6005DB13B /* SaveVideoCodeUseCase.swift */; };
 		9B9E6F662BC3D7BF005DB13B /* GetRowDataUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9E6F652BC3D7BF005DB13B /* GetRowDataUseCase.swift */; };
 		9B9E6F682BC3D8D7005DB13B /* SaveSummaryDataUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9E6F672BC3D8D7005DB13B /* SaveSummaryDataUseCase.swift */; };
-		9B9E6F6A2BC3D9CA005DB13B /* SummaryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9E6F692BC3D9CA005DB13B /* SummaryRepository.swift */; };
 		9B9E6F6C2BC3DA4A005DB13B /* SaveVideoCodeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9E6F6B2BC3DA4A005DB13B /* SaveVideoCodeRepository.swift */; };
 		9B9E6F6E2BC3DAAC005DB13B /* StoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9E6F6D2BC3DAAC005DB13B /* StoreRepository.swift */; };
-		9B9E6F702BC3DB8F005DB13B /* SummaryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9E6F6F2BC3DB8F005DB13B /* SummaryRepository.swift */; };
 		9B9E6F722BC3DBAF005DB13B /* DefaultSaveVideoCodeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9E6F712BC3DBAF005DB13B /* DefaultSaveVideoCodeRepository.swift */; };
-		9B9E6F742BC3DBBD005DB13B /* StoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9E6F732BC3DBBD005DB13B /* StoreRepository.swift */; };
 		9B9E6F782BC4F1BF005DB13B /* SummaryContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9E6F772BC4F1BF005DB13B /* SummaryContentViewModel.swift */; };
 		9B9E6F7B2BC4FC1A005DB13B /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 9B9E6F7A2BC4FC1A005DB13B /* Swinject */; };
-		9BA7EBB22BC8202600053C3D /* Core2.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BA7EBB12BC8202600053C3D /* Core2.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9BA7EBB22BC8202600053C3D /* Core.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BA7EBB12BC8202600053C3D /* Core.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9BA7EBB62BC8202600053C3D /* Core.framework in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9BA7EBAF2BC8202600053C3D /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9BA7EBBB2BC8203A00053C3D /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5CD8222BB27B450041988A /* Config.swift */; };
 		9BA7EBBC2BC8203A00053C3D /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0025992BC19F2E0050D3E5 /* URL+Extension.swift */; };
@@ -252,6 +265,23 @@
 		9B4A83772BD0C8BF00614160 /* VideoCodeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCodeEntity.swift; sourceTree = "<group>"; };
 		9B4A83792BD0C95F00614160 /* CoreDataVideoCodeStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataVideoCodeStorage.swift; sourceTree = "<group>"; };
 		9B4A837B2BD0CAB800614160 /* CoreDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStorage.swift; sourceTree = "<group>"; };
+		9B4A837E2BD13E9200614160 /* DefaultConvertVideoCodeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultConvertVideoCodeRepository.swift; sourceTree = "<group>"; };
+		9B4A83812BD2A22000614160 /* EntPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntPoint.swift; sourceTree = "<group>"; };
+		9B4A83842BD2A65A00614160 /* BodyEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyEncoder.swift; sourceTree = "<group>"; };
+		9B4A83872BD2A6B900614160 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		9B4A83892BD2A6CF00614160 /* DataTransferError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTransferError.swift; sourceTree = "<group>"; };
+		9B4A838B2BD2A73900614160 /* ResponseDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseDecoder.swift; sourceTree = "<group>"; };
+		9B4A838E2BD2A7DC00614160 /* NetworkConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfigurable.swift; sourceTree = "<group>"; };
+		9B4A83902BD4013E00614160 /* RequestGenError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestGenError.swift; sourceTree = "<group>"; };
+		9B4A83922BD403A400614160 /* ConvertUrlRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertUrlRepository.swift; sourceTree = "<group>"; };
+		9B4A83952BD405E600614160 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		9B4A83982BD40A1A00614160 /* NetworkLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLogger.swift; sourceTree = "<group>"; };
+		9B4A839A2BD410F400614160 /* APIEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoints.swift; sourceTree = "<group>"; };
+		9B4A839D2BD4115100614160 /* VideoCodeRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCodeRequestDTO.swift; sourceTree = "<group>"; };
+		9B4A83A12BD411E200614160 /* ResponseDTOWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseDTOWrapper.swift; sourceTree = "<group>"; };
+		9B4A83A52BD4176D00614160 /* DataTransferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTransferService.swift; sourceTree = "<group>"; };
+		9B4A83A82BD4C9A000614160 /* NetworkSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSessionManager.swift; sourceTree = "<group>"; };
+		9B4A83AA2BD4D0E400614160 /* VideoCodeResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCodeResponseDTO.swift; sourceTree = "<group>"; };
 		9B5411C02BABD33E00D32F07 /* BaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAPI.swift; sourceTree = "<group>"; };
 		9B5411C22BABD3C100D32F07 /* SummaryAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryAPI.swift; sourceTree = "<group>"; };
 		9B5CD7B52BB18F0E0041988A /* UniformTypeIdentifiers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UniformTypeIdentifiers.framework; path = System/Library/Frameworks/UniformTypeIdentifiers.framework; sourceTree = SDKROOT; };
@@ -280,22 +310,17 @@
 		9B8E7BFA2B9497D3001F3D88 /* ShareShortFormModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ShareShortFormModel.xcdatamodel; sourceTree = "<group>"; };
 		9B8E7C022B949E05001F3D88 /* SummaryContentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryContentListViewController.swift; sourceTree = "<group>"; };
 		9B8E7C042B949FCC001F3D88 /* SummaryContentRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryContentRowCell.swift; sourceTree = "<group>"; };
-		9B8E7C162B94DAF9001F3D88 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 		9B8E7C312B94F3E2001F3D88 /* ShortCapTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShortCapTest.entitlements; sourceTree = "<group>"; };
 		9B8E7C342B94F7B4001F3D88 /* ShortCapTest */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ShortCapTest; sourceTree = "<group>"; };
-		9B9651EB2BC1706400CE0600 /* DTOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTOS.swift; sourceTree = "<group>"; };
 		9B9E6F632BC3D6E6005DB13B /* SaveVideoCodeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveVideoCodeUseCase.swift; sourceTree = "<group>"; };
 		9B9E6F652BC3D7BF005DB13B /* GetRowDataUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRowDataUseCase.swift; sourceTree = "<group>"; };
 		9B9E6F672BC3D8D7005DB13B /* SaveSummaryDataUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveSummaryDataUseCase.swift; sourceTree = "<group>"; };
-		9B9E6F692BC3D9CA005DB13B /* SummaryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryRepository.swift; sourceTree = "<group>"; };
 		9B9E6F6B2BC3DA4A005DB13B /* SaveVideoCodeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveVideoCodeRepository.swift; sourceTree = "<group>"; };
 		9B9E6F6D2BC3DAAC005DB13B /* StoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreRepository.swift; sourceTree = "<group>"; };
-		9B9E6F6F2BC3DB8F005DB13B /* SummaryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryRepository.swift; sourceTree = "<group>"; };
 		9B9E6F712BC3DBAF005DB13B /* DefaultSaveVideoCodeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSaveVideoCodeRepository.swift; sourceTree = "<group>"; };
-		9B9E6F732BC3DBBD005DB13B /* StoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreRepository.swift; sourceTree = "<group>"; };
 		9B9E6F772BC4F1BF005DB13B /* SummaryContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryContentViewModel.swift; sourceTree = "<group>"; };
 		9BA7EBAF2BC8202600053C3D /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9BA7EBB12BC8202600053C3D /* Core2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Core2.h; sourceTree = "<group>"; };
+		9BA7EBB12BC8202600053C3D /* Core.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Core.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -320,6 +345,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B4A83A72BD4C72500614160 /* Core.framework in Frameworks */,
 				9B0025522BC1870F0050D3E5 /* Domain.framework in Frameworks */,
 				9B0026002BC2F6800050D3E5 /* Data.framework in Frameworks */,
 				9B5CD7EC2BB196D40041988A /* UniformTypeIdentifiers.framework in Frameworks */,
@@ -373,23 +399,12 @@
 			path = Domain;
 			sourceTree = "<group>";
 		};
-		9B0025722BC18DD80050D3E5 /* Domain */ = {
-			isa = PBXGroup;
-			children = (
-				9B2432002BABE7410089CB6D /* Entitiy */,
-				9B9651ED2BC171E500CE0600 /* Interface */,
-				9B00259C2BC1A40E0050D3E5 /* UseCase */,
-			);
-			path = Domain;
-			sourceTree = "<group>";
-		};
 		9B00259B2BC1A3DE0050D3E5 /* RepositoryImpl */ = {
 			isa = PBXGroup;
 			children = (
 				9B4A836D2BD0BEFE00614160 /* Utils */,
-				9B9E6F6F2BC3DB8F005DB13B /* SummaryRepository.swift */,
 				9B9E6F712BC3DBAF005DB13B /* DefaultSaveVideoCodeRepository.swift */,
-				9B9E6F732BC3DBBD005DB13B /* StoreRepository.swift */,
+				9B4A837E2BD13E9200614160 /* DefaultConvertVideoCodeRepository.swift */,
 			);
 			path = RepositoryImpl;
 			sourceTree = "<group>";
@@ -410,7 +425,6 @@
 				9B68A82D2BCA14F1006903EC /* Network */,
 				9B68A82C2BCA14DE006903EC /* PersistantStorages */,
 				9B00259B2BC1A3DE0050D3E5 /* RepositoryImpl */,
-				9B9651EA2BC1705600CE0600 /* DTO */,
 				9B0025D62BC288A80050D3E5 /* Data.h */,
 			);
 			path = Data;
@@ -420,7 +434,6 @@
 			isa = PBXGroup;
 			children = (
 				9B8E7BF92B9497D3001F3D88 /* CoreDataModel.xcdatamodeld */,
-				9B8E7C162B94DAF9001F3D88 /* Container.swift */,
 				9B4A837B2BD0CAB800614160 /* CoreDataStorage.swift */,
 			);
 			path = CoreDataStorage;
@@ -457,7 +470,7 @@
 			isa = PBXGroup;
 			children = (
 				9B9E6F6B2BC3DA4A005DB13B /* SaveVideoCodeRepository.swift */,
-				9B9E6F692BC3D9CA005DB13B /* SummaryRepository.swift */,
+				9B4A83922BD403A400614160 /* ConvertUrlRepository.swift */,
 				9B9E6F6D2BC3DAAC005DB13B /* StoreRepository.swift */,
 			);
 			path = Repositories;
@@ -507,6 +520,82 @@
 			path = Impl;
 			sourceTree = "<group>";
 		};
+		9B4A83802BD2A20800614160 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				9B4A83942BD405BA00614160 /* Service */,
+				9B4A838D2BD2A7B600614160 /* Configuration */,
+				9B4A83862BD2A6AB00614160 /* Error */,
+				9B4A83832BD2A64A00614160 /* DecoderEncoder */,
+				9B4A83812BD2A22000614160 /* EntPoint.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		9B4A83832BD2A64A00614160 /* DecoderEncoder */ = {
+			isa = PBXGroup;
+			children = (
+				9B4A83842BD2A65A00614160 /* BodyEncoder.swift */,
+				9B4A838B2BD2A73900614160 /* ResponseDecoder.swift */,
+			);
+			path = DecoderEncoder;
+			sourceTree = "<group>";
+		};
+		9B4A83862BD2A6AB00614160 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				9B4A83872BD2A6B900614160 /* NetworkError.swift */,
+				9B4A83892BD2A6CF00614160 /* DataTransferError.swift */,
+				9B4A83902BD4013E00614160 /* RequestGenError.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		9B4A838D2BD2A7B600614160 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				9B4A838E2BD2A7DC00614160 /* NetworkConfigurable.swift */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		9B4A83942BD405BA00614160 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				9B4A83A42BD4175500614160 /* DataTransferService */,
+				9B4A83A32BD4174A00614160 /* NetworkService */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		9B4A839F2BD4116C00614160 /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				9B4A83A12BD411E200614160 /* ResponseDTOWrapper.swift */,
+				9B4A839D2BD4115100614160 /* VideoCodeRequestDTO.swift */,
+				9B4A83AA2BD4D0E400614160 /* VideoCodeResponseDTO.swift */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		9B4A83A32BD4174A00614160 /* NetworkService */ = {
+			isa = PBXGroup;
+			children = (
+				9B4A83952BD405E600614160 /* NetworkService.swift */,
+				9B4A83982BD40A1A00614160 /* NetworkLogger.swift */,
+				9B4A83A82BD4C9A000614160 /* NetworkSessionManager.swift */,
+			);
+			path = NetworkService;
+			sourceTree = "<group>";
+		};
+		9B4A83A42BD4175500614160 /* DataTransferService */ = {
+			isa = PBXGroup;
+			children = (
+				9B4A83A52BD4176D00614160 /* DataTransferService.swift */,
+			);
+			path = DataTransferService;
+			sourceTree = "<group>";
+		};
 		9B5411BE2BABD31600D32F07 /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -519,6 +608,7 @@
 		9B5411BF2BABD31B00D32F07 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				9B4A839A2BD410F400614160 /* APIEndpoints.swift */,
 				9B5411C02BABD33E00D32F07 /* BaseAPI.swift */,
 				9B5411C22BABD3C100D32F07 /* SummaryAPI.swift */,
 			);
@@ -541,6 +631,7 @@
 		9B5CD8212BB27B1B0041988A /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				9B4A83802BD2A20800614160 /* Network */,
 				9B5CD8242BB27B500041988A /* Extensions */,
 				9B5CD8222BB27B450041988A /* Config.swift */,
 			);
@@ -585,6 +676,7 @@
 		9B68A82D2BCA14F1006903EC /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				9B4A839F2BD4116C00614160 /* DTO */,
 				9B5411BF2BABD31B00D32F07 /* API */,
 				9B5411BE2BABD31600D32F07 /* Service */,
 			);
@@ -705,7 +797,9 @@
 		9B8E7C152B94DAA1001F3D88 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				9B0025722BC18DD80050D3E5 /* Domain */,
+				9B2432002BABE7410089CB6D /* Entitiy */,
+				9B9651ED2BC171E500CE0600 /* Interface */,
+				9B00259C2BC1A40E0050D3E5 /* UseCase */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -717,14 +811,6 @@
 				9B5CD7B52BB18F0E0041988A /* UniformTypeIdentifiers.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		9B9651EA2BC1705600CE0600 /* DTO */ = {
-			isa = PBXGroup;
-			children = (
-				9B9651EB2BC1706400CE0600 /* DTOS.swift */,
-			);
-			path = DTO;
 			sourceTree = "<group>";
 		};
 		9B9651ED2BC171E500CE0600 /* Interface */ = {
@@ -739,7 +825,7 @@
 			isa = PBXGroup;
 			children = (
 				9B5CD8212BB27B1B0041988A /* Sources */,
-				9BA7EBB12BC8202600053C3D /* Core2.h */,
+				9BA7EBB12BC8202600053C3D /* Core.h */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -775,7 +861,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9BA7EBB22BC8202600053C3D /* Core2.h in Headers */,
+				9BA7EBB22BC8202600053C3D /* Core.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1046,11 +1132,11 @@
 				9B0025492BC186F20050D3E5 /* VideoCode.swift in Sources */,
 				9B4A83662BD0BAF100614160 /* UrlValidationUseCase.swift in Sources */,
 				9B00254F2BC186F20050D3E5 /* SummaryStatusEntity.swift in Sources */,
+				9B4A83932BD403A400614160 /* ConvertUrlRepository.swift in Sources */,
 				9B9E6F662BC3D7BF005DB13B /* GetRowDataUseCase.swift in Sources */,
 				9B9E6F642BC3D6E6005DB13B /* SaveVideoCodeUseCase.swift in Sources */,
 				9B9E6F6C2BC3DA4A005DB13B /* SaveVideoCodeRepository.swift in Sources */,
 				9B9E6F6E2BC3DAAC005DB13B /* StoreRepository.swift in Sources */,
-				9B9E6F6A2BC3D9CA005DB13B /* SummaryRepository.swift in Sources */,
 				9B9E6F682BC3D8D7005DB13B /* SaveSummaryDataUseCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1060,8 +1146,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B9E6F722BC3DBAF005DB13B /* DefaultSaveVideoCodeRepository.swift in Sources */,
-				9B9E6F742BC3DBBD005DB13B /* StoreRepository.swift in Sources */,
-				9B0025E02BC288C40050D3E5 /* DTOS.swift in Sources */,
+				9B4A839B2BD410F400614160 /* APIEndpoints.swift in Sources */,
 				9B68A82F2BCA151D006903EC /* BaseAPI.swift in Sources */,
 				9B4A837A2BD0C95F00614160 /* CoreDataVideoCodeStorage.swift in Sources */,
 				9B68A82E2BCA151D006903EC /* SummaryAPI.swift in Sources */,
@@ -1069,10 +1154,12 @@
 				9B68A8322BCA152C006903EC /* CoreDataModel.xcdatamodeld in Sources */,
 				9B4A837C2BD0CAB800614160 /* CoreDataStorage.swift in Sources */,
 				9B4A83742BD0C30F00614160 /* VideoCodeDTO.swift in Sources */,
+				9B4A83AB2BD4D0E400614160 /* VideoCodeResponseDTO.swift in Sources */,
+				9B4A839E2BD4115100614160 /* VideoCodeRequestDTO.swift in Sources */,
+				9B4A83A22BD411E200614160 /* ResponseDTOWrapper.swift in Sources */,
 				9B4A836F2BD0BF5500614160 /* RepositoryTask.swift in Sources */,
+				9B4A837F2BD13E9200614160 /* DefaultConvertVideoCodeRepository.swift in Sources */,
 				9B4A83722BD0C1D100614160 /* VideoCodeStorage.swift in Sources */,
-				9B68A8332BCA152F006903EC /* Container.swift in Sources */,
-				9B9E6F702BC3DB8F005DB13B /* SummaryRepository.swift in Sources */,
 				9B4A83782BD0C8BF00614160 /* VideoCodeEntity.swift in Sources */,
 				9B68A8312BCA1521006903EC /* BaseRestAPIService.swift in Sources */,
 			);
@@ -1113,8 +1200,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B4A83992BD40A1A00614160 /* NetworkLogger.swift in Sources */,
+				9B4A83962BD405E600614160 /* NetworkService.swift in Sources */,
+				9B4A838F2BD2A7DC00614160 /* NetworkConfigurable.swift in Sources */,
 				9BA7EBBB2BC8203A00053C3D /* Config.swift in Sources */,
+				9B4A83A62BD4176D00614160 /* DataTransferService.swift in Sources */,
 				9BA7EBBC2BC8203A00053C3D /* URL+Extension.swift in Sources */,
+				9B4A838A2BD2A6CF00614160 /* DataTransferError.swift in Sources */,
+				9B4A83822BD2A22000614160 /* EntPoint.swift in Sources */,
+				9B4A83912BD4013E00614160 /* RequestGenError.swift in Sources */,
+				9B4A83882BD2A6B900614160 /* NetworkError.swift in Sources */,
+				9B4A838C2BD2A73900614160 /* ResponseDecoder.swift in Sources */,
+				9B4A83A92BD4C9A000614160 /* NetworkSessionManager.swift in Sources */,
+				9B4A83852BD2A65A00614160 /* BodyEncoder.swift in Sources */,
 				9BA7EBBD2BC8203A00053C3D /* FileManager+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

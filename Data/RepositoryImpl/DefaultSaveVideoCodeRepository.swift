@@ -5,7 +5,7 @@ public final class DefaultSaveVideoCodeRepository: SaveVideoCodeRepository {
     
     let storage: VideoCodeStorage
     
-    init(storage: VideoCodeStorage) {
+    public init(storage: VideoCodeStorage) {
         self.storage = storage
     }
     

@@ -8,14 +8,6 @@ public protocol SaveVideoCodeUseCase {
     )
 }
 
-public protocol FetchVideoCodeUseCase {
-    
-    func fetch(
-        url: String,
-        cached: @escaping (VideoCode) -> Void
-    )
-}
-
 public final class DefaultSaveVideoCodeUseCase: SaveVideoCodeUseCase {
     
     let saveVideoCodeRepository: SaveVideoCodeRepository

@@ -2,51 +2,94 @@ import UIKit
 import Swinject
 import Data
 import Domain
+import Core
 import Presentation
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-//    let container: Container = {
-//       
-//        let container = Container()
-//        
-//        // Repository
-//        container.register(SummaryRepositoryInterface.self) { _ in SummaryRepository() }
-//        container.register(VideoCodeRepositoryInterface.self) { _ in VideoCodeRepository() }
-//        container.register(StoreRepositoryInterface.self) { _ in StoreRepository() }
-//        
-//        // UserCase
-//        container.register(SaveVideoCodeUseCaseInterface.self) { resolver in
-//            SaveVideoCodeUseCase(
-//                summaryRepo: resolver.resolve(SummaryRepositoryInterface.self)!,
-//                videoRepo: resolver.resolve(VideoCodeRepositoryInterface.self)!
-//            )
-//        }
-//        container.register(GetRowDataUseCaseInterface.self) { resolver in
-//            GetRowDataUseCase(
-//                summaryRepo: resolver.resolve(SummaryRepositoryInterface.self)!,
-//                videoCodeRepo: resolver.resolve(VideoCodeRepositoryInterface.self)!,
-//                storeRepo: resolver.resolve(StoreRepositoryInterface.self)!
-//            )
-//        }
-//        container.register(SaveSummaryDataUseCaseInterface.self) { resolver in
-//            SaveSummaryDataUseCase(
-//                storeRepo: resolver.resolve(StoreRepositoryInterface.self)!
-//            )
-//        }
-//        
-//        // ViewModel
-//        container.register(SummaryContentViewModel.self) { resolver in
-//            
-//            SummaryContentViewModel(
-//                getRowDataUseCase: resolver.resolve(GetRowDataUseCaseInterface.self)!,
-//                saveSummaryDataUseCase: resolver.resolve(SaveSummaryDataUseCaseInterface.self)!
-//            )
-//        }
-//        
-//        return container
-//    }()
+    let container: Container = {
+       
+        let container = Container()
+        
+        // Storage
+        container.register(VideoCodeStorage.self) { _ in CoreDataVideoCodeStorage() }
+        container.register(VideoDetailStorage.self) { _ in CoreDataVideoDetailStorage() }
+        
+        // Service
+        container.register(NetworkService.self) { _ in DefaultNetworkService() }
+        container.register(DataTransferService.self) { resolver in
+            
+            DefaultDataTransferService(
+                with: resolver.resolve(NetworkService.self)!
+            )
+        }
+        
+        // Repo
+        container.register(SaveVideoCodeRepository.self) { resolver in
+            
+            DefaultSaveVideoCodeRepository(
+                storage: resolver.resolve(VideoCodeStorage.self)!
+            )
+        }
+        container.register(ConvertUrlRepository.self) { resolver in
+            DefaultConvertUrlRepository(
+                dataTransferService: resolver.resolve(DataTransferService.self)!
+            )
+        }
+        container.register(FetchVideoCodesRepository.self) { resolver in
+            DefaultFetchVideoCodesRepository(
+                storage: resolver.resolve(VideoCodeStorage.self)!
+            )
+        }
+        container.register(SummaryProcessRepository.self) { resolver in
+            DefaultSummaryProcessRepository(
+                dataTransferService: resolver.resolve(DataTransferService.self)!
+            )
+        }
+        container.register(VideoDetailRepository.self) { resolver in
+            DefaultVideoDetailRepository(
+                storage: resolver.resolve(VideoDetailStorage.self)!
+            )
+        }
+        
+        // UseCase
+        container.register(UrlValidationUseCase.self) { _ in
+            DefaultUrlValidationUseCase()
+        }
+        container.register(SaveVideoCodeUseCase.self) { resolver in
+            DefaultSaveVideoCodeUseCase(
+                saveVideoCodeRepository: resolver.resolve(SaveVideoCodeRepository.self)!
+            )
+        }
+        container.register(ConvertUrlToVideoCodeUseCase.self) { resolver in
+            DefaultConvertUrlToVideoCodeUseCase(
+                convertUrlRepository: resolver.resolve(ConvertUrlRepository.self)!
+            )
+        }
+        container.register(FetchVideoCodesUseCase.self) { resolver in
+            DefaultFetchVideoCodesUseCase(
+                fetchVideoCodeRepository: resolver.resolve(FetchVideoCodesRepository.self)!
+            )
+        }
+        container.register(VideoDetailUseCase.self) { resolver in
+            DefaultVideoDetailUseCase(
+                summaryProcessRepository: resolver.resolve(SummaryProcessRepository.self)!,
+                videoDetailRepository: resolver.resolve(VideoDetailRepository.self)!
+            )
+        }
+        
+        // ViewModel
+        container.register(SummaryContentViewModel.self) { resolver in
+            
+            DefaultSummaryContentViewModel(
+                fetchVideoCodeUseCase: resolver.resolve(FetchVideoCodesUseCase.self)!,
+                videoDetailUseCase: resolver.resolve(VideoDetailUseCase.self)!
+            )
+        }
+        
+        return container
+    }()
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {

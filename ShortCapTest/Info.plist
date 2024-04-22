@@ -2,12 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>App Group</key>
+	<string>$(APP_GROUP)</string>
 	<key>BASE_URL</key>
 	<string>$(BASE_URL)</string>
-	<key>CFBundleDisplayName</key>
-	<string>$(ShortCap_App_Name)</string>
-	<key>CFBundleIdentifier</key>
-	<string>$(ShortCap_Bundle_Id)</string>
 	<key>INIntentsRestrictedWhileLocked</key>
 	<array/>
 	<key>NSAppTransportSecurity</key>

@@ -1,5 +1,6 @@
 import Foundation
 import Domain
+import Core
 
 public final class DefaultSaveVideoCodeRepository: SaveVideoCodeRepository {
     
@@ -23,7 +24,7 @@ public final class DefaultSaveVideoCodeRepository: SaveVideoCodeRepository {
                 }
                 
                 // 중복이 없는 경우
-                if !filtered.isEmpty {
+                if filtered.isEmpty {
                     
                     // 엔티티를 DTO로 변경
                     let videoCodeDTO = VideoCodeDTO(code: videoCode.code)
@@ -36,7 +37,7 @@ public final class DefaultSaveVideoCodeRepository: SaveVideoCodeRepository {
                             completion(VideoCode(code: videoCodeDTO.code))
                             
                         case .failure(let failure):
-                            print("‼️비디오 코드 저장실패: \(failure) \n \(failure.localizedDescription)")
+                            printIfDebug("‼️비디오 코드 저장실패: \(failure) \n \(failure.localizedDescription)")
                             
                             completion(nil)
                         }
@@ -49,7 +50,7 @@ public final class DefaultSaveVideoCodeRepository: SaveVideoCodeRepository {
                 
             case .failure(let failure):
                 
-                print("‼️데이터 불러오기 실패: \(failure) \n \(failure.localizedDescription)")
+                printIfDebug("‼️데이터 불러오기 실패: \(failure) \n \(failure.localizedDescription)")
                 
                 completion(nil)
             }

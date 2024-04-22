@@ -3,8 +3,12 @@ import Domain
 
 class SummaryContentRowCell: UITableViewCell {
     
-    var entity: SummaryResultEntity!
+    var videoDetail: VideoDetail?
+    private var videoCode: VideoCode!
+    
     var viewModel: SummaryContentViewModel!
+    
+    private var fetchingTask: Task<Void, Never>?
     
     // View
     let thumbNailView: UIImageView = {
@@ -31,6 +35,17 @@ class SummaryContentRowCell: UITableViewCell {
         return labelView
     }()
     
+    var activityIndicator: UIActivityIndicatorView = {
+        
+        let activityIndicator = UIActivityIndicatorView()
+        
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.color = .lightGray
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        return activityIndicator
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
@@ -44,9 +59,10 @@ class SummaryContentRowCell: UITableViewCell {
     
     func setAutoLayout() {
         
-        self.backgroundColor = .systemBlue.withAlphaComponent(0.5)
+        self.backgroundColor = .purple.withAlphaComponent(0.5)
+        self.layer.cornerRadius = 12.0
         
-        [thumbNailView, titleLabel].forEach { self.addSubview($0) }
+        [thumbNailView, titleLabel, activityIndicator].forEach { self.addSubview($0) }
         
         NSLayoutConstraint.activate([
 
@@ -57,51 +73,78 @@ class SummaryContentRowCell: UITableViewCell {
             
             titleLabel.leadingAnchor.constraint(equalTo: thumbNailView.trailingAnchor, constant: 10),
             titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
+            
+            activityIndicator.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: self.centerYAnchor),
         ])
     }
     
-    func setUp(
-        entity: SummaryResultEntity,
-        viewModel: SummaryContentViewModel
-    ) {
+    func setUp(videoCode: VideoCode, viewModel: SummaryContentViewModel) {
         
-        self.entity = entity
         self.viewModel = viewModel
+        self.videoCode = videoCode
+    }
+    
+    override func prepareForReuse() {
         
-        if entity.isFetched { return updateUI() }
+        fetchingTask?.cancel()
+        videoDetail = nil
+        videoCode = nil
+        titleLabel.text = ""
         
-        // UIUpdate
-        titleLabel.text = "로딩중..."
+        stopShowingIndicator()
+    }
+    
+    func getDetail() {
         
-        Task { [weak self] in
+        if videoDetail == nil {
             
-            do {
+            // 인디케이터 시작
+            startShowingIndicator()
+            
+            fetchingTask = Task {
                 
-                let result = try await viewModel.getSummaryResultFor(code: self?.entity.videoCode ?? "")
-                
-                self?.entity = result
-                
-                await viewModel.updateStoreWith(entity: result)
-                
-                /// Cell UI업데이트
-                await MainActor.run {
+                self.viewModel.fetchDetailForRow(videoCode: videoCode) { result in
                     
-                    self?.updateUI()
+                    switch result {
+                    case .success(let success):
+                        
+                        DispatchQueue.main.async {
+                            
+                            self.videoDetail = success
+                            self.updateUI()
+                            
+                            // 인디케이터 종료
+                            self.stopShowingIndicator()
+                        }
+                        
+                    case .failure(let failure):
+                        
+                        print("Cell, 디테일 데이터 가져오가 실패: \(failure.localizedDescription)")
+                    }
                 }
-                
-            } catch {
-             
-                print(error)
             }
         }
     }
     
     func updateUI() {
         
-        titleLabel.text = self.entity.title
+        titleLabel.text = self.videoDetail?.title
+    }
+    
+    func startShowingIndicator() {
+        
+        activityIndicator.startAnimating()
+    }
+    
+    func stopShowingIndicator() {
+        
+        activityIndicator.stopAnimating()
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
+        
     }
 }

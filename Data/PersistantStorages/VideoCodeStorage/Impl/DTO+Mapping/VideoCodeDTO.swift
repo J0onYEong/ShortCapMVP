@@ -1,4 +1,5 @@
 import Foundation
+import Domain
 import CoreData
 
 public struct VideoCodeDTO {
@@ -13,5 +14,7 @@ public struct VideoCodeDTO {
         
         return entity
     }
+    
+    func toDomain() -> VideoCode { VideoCode(code: code) }
 }
 

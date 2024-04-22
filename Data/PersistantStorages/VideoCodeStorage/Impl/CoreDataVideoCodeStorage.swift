@@ -4,7 +4,7 @@ public final class CoreDataVideoCodeStorage: VideoCodeStorage {
     
     private let coreDataStorage: CoreDataStorage
 
-    public init(coreDataStorage: CoreDataStorage = CoreDataStorage.shared) {
+    public init(coreDataStorage: CoreDataStorage = .shared) {
         self.coreDataStorage = coreDataStorage
     }
     
@@ -13,7 +13,7 @@ public final class CoreDataVideoCodeStorage: VideoCodeStorage {
         coreDataStorage.performBackgroundTask { context in
             
             do {
-                let entity = videoCodeDTO.toCoreDataEntity(context: context)
+                let _ = videoCodeDTO.toCoreDataEntity(context: context)
                 
                 try context.save()
                 

@@ -1,6 +1,7 @@
 import UIKit
 import MobileCoreServices
 import UniformTypeIdentifiers
+import Core
 
 class ActionViewController: UIViewController {
     
@@ -75,16 +76,16 @@ class ActionViewController: UIViewController {
             
             guard let urlString else {
                 
-                print("‼️url후보 획득 실패:")
+                printIfDebug("‼️url후보 획득 실패:")
                 
                 self?.dropActivityView()
                 
                 return
             }
             
-            print("✅url후보 획득 성공: \(urlString)")
+            printIfDebug("✅url후보 획득 성공: \(urlString)")
             
-            self?.viewModel.validateUrl(urlStr: urlString) { result in
+            self?.viewModel.validateAndSaveUrl(urlStr: urlString) { result in
                 
                 DispatchQueue.main.async {
                     
@@ -94,7 +95,7 @@ class ActionViewController: UIViewController {
                         self?.whenComplete(isSuccess: true)
                     case .failure(let failure):
                         
-                        debugPrint("‼️비디오 코드 저장 실패: \(failure.localizedDescription)")
+                        printIfDebug("‼️비디오 코드 저장 실패: \(failure.localizedDescription)")
                         
                         self?.whenComplete(isSuccess: false)
                     }

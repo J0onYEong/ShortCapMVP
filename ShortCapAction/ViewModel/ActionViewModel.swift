@@ -22,7 +22,7 @@ class ActionViewModel {
             )
         ),
         convertUrlUseCase: ConvertUrlToVideoCodeUseCase = DefaultConvertUrlToVideoCodeUseCase(
-            convertUrlRepository: DefaultConvertVideoCodeRepository(
+            convertUrlRepository: DefaultConvertUrlRepository(
                 dataTransferService: DefaultDataTransferService(
                     with: DefaultNetworkService(
                         config: ApiDataNetworkConfig.default,
@@ -38,7 +38,7 @@ class ActionViewModel {
         self.urlValidationUseCase = urlValidationUseCase
     }
 
-    func validateUrl(urlStr: String, completion: @escaping (Result<VideoCode, Error>) -> Void) {
+    func validateAndSaveUrl(urlStr: String, completion: @escaping (Result<VideoCode, Error>) -> Void) {
         
         // 유효한 url인지 확인하기
         guard urlValidationUseCase.excute(url: urlStr) else {
@@ -66,7 +66,7 @@ class ActionViewModel {
                 }
             } catch {
                 
-                printIfDebug("비디오 코드 획득 실패: \(urlStr)")
+                printIfDebug("‼️비디오 코드 획득 실패: \(urlStr)")
                 
                 completion(.failure(error))
             }

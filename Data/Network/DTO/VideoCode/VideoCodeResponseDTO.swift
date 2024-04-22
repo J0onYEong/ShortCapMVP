@@ -8,6 +8,6 @@ struct VideoCodeResponseDTO: Decodable {
     
     func toDomain() -> VideoCode {
         
-        VideoCode(code: videoCode ?? "Uknown code")
+        VideoCode(code: videoCode ?? "Unknown code")
     }
 }

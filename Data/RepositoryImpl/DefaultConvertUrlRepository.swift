@@ -2,7 +2,7 @@ import Foundation
 import Domain
 import Core
 
-public class DefaultConvertVideoCodeRepository: ConvertUrlRepository {
+public class DefaultConvertUrlRepository: ConvertUrlRepository {
     
     var dataTransferService: DataTransferService
     

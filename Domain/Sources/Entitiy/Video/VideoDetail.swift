@@ -1,6 +1,6 @@
 import Foundation
 
-public class SummaryResultEntity {
+public class VideoDetail {
     
     public var title: String
     public var description: String
@@ -12,9 +12,19 @@ public class SummaryResultEntity {
     public var platform: String
     public var mainCategory: String
     public var videoCode: String
-    public var isFetched: Bool
     
-    public init(title: String, description: String, keywords: [String], url: String, summary: String, address: String, createdAt: String, platform: String, mainCategory: String, videoCode: String, isFetched: Bool) {
+    public init(
+        title: String,
+        description: String,
+        keywords: [String],
+        url: String,
+        summary: String,
+        address: String,
+        createdAt: String,
+        platform: String,
+        mainCategory: String,
+        videoCode: String
+    ) {
         self.title = title
         self.description = description
         self.keywords = keywords
@@ -25,21 +35,18 @@ public class SummaryResultEntity {
         self.platform = platform
         self.mainCategory = mainCategory
         self.videoCode = videoCode
-        self.isFetched = isFetched
     }
     
-    public init(videoCode: String) {
-        
-        self.title = ""
-        self.description = ""
-        self.keywords = []
-        self.url = ""
-        self.summary = ""
-        self.address = ""
-        self.createdAt = ""
-        self.platform = ""
-        self.mainCategory = ""
-        self.videoCode = videoCode
-        self.isFetched = false
-    }
+    public static let mock: VideoDetail = .init(
+        title: "서버오류",
+        description: "서버오류",
+        keywords: [],
+        url: "서버오류",
+        summary: "서버오류",
+        address: "서버오류",
+        createdAt: "",
+        platform: "서버오류",
+        mainCategory: "서버오류",
+        videoCode: ""
+    )
 }

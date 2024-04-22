@@ -1,90 +1,118 @@
 import UIKit
-import Domain
 import RxSwift
 import RxCocoa
+import Core
+import Domain
+import Data
 
-public class SummaryContentViewModel {
+public protocol SummaryContentViewModel {
     
-    private let getRowDataUseCase: GetRowDataUseCaseInterface
-    private let saveSummaryDataUseCase: SaveSummaryDataUseCaseInterface
+    var rowDataRelay: BehaviorRelay<[VideoCode]> { get set }
     
-    let rowDataRelay: BehaviorRelay<[SummaryResultEntity]> = BehaviorRelay(value: [])
+    func bindWith(tableView: UITableView)
     
-    let disposeBag = DisposeBag()
+    func fetchList()
     
-    public init(
-        getRowDataUseCase: GetRowDataUseCaseInterface,
-        saveSummaryDataUseCase: SaveSummaryDataUseCaseInterface
-    ) {
-        self.getRowDataUseCase = getRowDataUseCase
-        self.saveSummaryDataUseCase = saveSummaryDataUseCase
+    func fetchDetailForRow(videoCode: VideoCode, completion: @escaping (Result<VideoDetail, Error>) -> Void)
+}
+
+public class DefaultSummaryContentViewModel: SummaryContentViewModel {
+    
+    let fetchVideoCodeUseCase: FetchVideoCodesUseCase
+    let videoDetailUseCase: VideoDetailUseCase
+    
+    public var rowDataRelay: BehaviorRelay<[VideoCode]> = BehaviorRelay(value: [])
+    
+    init(fetchVideoCodeUseCase: FetchVideoCodesUseCase, videoDetailUseCase: VideoDetailUseCase) {
+        self.fetchVideoCodeUseCase = fetchVideoCodeUseCase
+        self.videoDetailUseCase = videoDetailUseCase
     }
     
-    func initialBindingForRx(tableView: UITableView) {
+    
+    public func fetchList() {
+        
+        fetchVideoCodeUseCase.execute { result in
+            
+            switch result {
+            case .success(let videoCodes):
+                
+                self.rowDataRelay
+                    .accept(videoCodes)
+                
+            case .failure(let failure):
+                
+                printIfDebug("‼️비디오 코드 불러오기 실패: \(failure.localizedDescription)")
+            }
+        }
+    }
+    
+    public func fetchDetailForRow(videoCode: VideoCode, completion: @escaping (Result<VideoDetail, Error>) -> Void) {
+        
+        videoDetailUseCase.getDetailFromLocal(videoCode: videoCode) { result in
+            
+            switch result {
+            case .success(let detail):
+                
+                printIfDebug("✅ \(videoCode.code) 캐싱 데이터 사용")
+                
+                completion(.success(detail))
+            case .failure(let failure):
+                
+                if let error = failure as? FetchVideoDetailFromLocalError, error == .dataNotFound {
+                    
+                    printIfDebug("🥲 \(videoCode.code) 로컬에 데이터가 없음")
+                    
+                    // 네트워크 요청 시작
+                    self.fetchDetailForRow(videoCode: videoCode, fetchingCount: 1, completion: completion)
+                                        
+                } else {
+                    
+                    completion(.failure(failure))
+                }
+            }
+        }
+    }
+    
+    private func fetchDetailForRow(videoCode: VideoCode, fetchingCount: Int, completion: @escaping (Result<VideoDetail, Error>) -> Void) {
+        
+        printIfDebug("👀 \(videoCode.code) \(fetchingCount)번째 요청시작")
+        
+        self.videoDetailUseCase.getDetail(videoCode: videoCode) { result in
+            
+            switch result {
+            case .success(let success):
+                
+                // 비디오 디테일 저장
+                self.videoDetailUseCase.saveDetail(videoCode: videoCode, videoDetail: success) { _ in }
+                
+                completion(.success(success))
+                
+            case .failure(let failure):
+                
+                if let error = failure as? FetchVideoDetailError, error == .videoIsProcessing {
+                    
+                    DispatchQueue.global().asyncAfter(deadline: .now()+2) {
+                        
+                        self.fetchDetailForRow(videoCode: videoCode, fetchingCount: fetchingCount+1, completion: completion)
+                    }
+                } else {
+                    
+                    completion(.failure(failure))
+                }
+            }
+        }
+
+    }
+    
+    public func bindWith(tableView: UITableView) {
         
         _ = rowDataRelay
+            .observe(on: MainScheduler.instance)
             .bind(to: tableView.rx.items(cellIdentifier: String(describing: SummaryContentRowCell.self), cellType: SummaryContentRowCell.self)) { _, item, cell in
                 
-                cell.setUp(entity: item, viewModel: self)
+                cell.setUp(videoCode: item, viewModel: self)
+                cell.selectionStyle = .none
             }
     }
     
-    /// 확장앱에서 저장한 비디오 코드를 영구저장소로 옮깁니다. 그 후 저장된 데이터를 방출합니다.
-    func fetchFreshData() {
-        
-        Task {
-            
-            try getRowDataUseCase.moveVideoCodeToStore()
-            
-            fetchDataFromStore()
-        }
-    }
-    
-    /// 영구저장소에 저정된 정보를 로드합니다.
-    func fetchDataFromStore() {
-        
-        Task {
-            
-            let entities = await getRowDataUseCase.getDataFromStore()
-            
-            rowDataRelay
-                .accept(entities)
-        }
-    }
-    
-    
-    // MARK: - For Cell
-    
-    /// 요약상태를 확인합니다.
-    func checkStatusFor(code: String) async throws -> SummaryStatusEntity {
-        
-        try await getRowDataUseCase.checkSummaryStateFor(code: code)
-    }
-    
-    /// 요약상태확인후 데이터를 가져옵니다.
-    func getSummaryResultFor(code: String, seconds: CGFloat = 1.5) async throws -> SummaryResultEntity {
-        
-        while(true) {
-            
-            print("👀 \(code) 요약상태 확인중...")
-            
-            let entity = try await checkStatusFor(code: code)
-            
-            if entity.status == .complete {
-                
-                let id = entity.videoId
-                
-                print("✅ \(code) 요약완료, id: \(id)")
-                
-                return try await getRowDataUseCase.getSummaryResultFor(id: id)
-            }
-            try await Task.sleep(for: .seconds(seconds))
-        }
-    }
-    
-    /// 요약된 정보를 저장합니다.
-    func updateStoreWith(entity: SummaryResultEntity) async {
-        
-        await saveSummaryDataUseCase.updateStore(entity: entity)
-    }
 }

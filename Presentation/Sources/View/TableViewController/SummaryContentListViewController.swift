@@ -27,7 +27,6 @@ public class SummaryContentListViewController: UIViewController {
         view.showsVerticalScrollIndicator = false
         
         view.separatorStyle = .none
-        view.layer.borderColor = UIColor.gray.cgColor
         
         return view
     }()
@@ -54,9 +53,9 @@ public class SummaryContentListViewController: UIViewController {
         
         configureTableView()
         
-        viewModel.initialBindingForRx(tableView: tableView)
+        viewModel.bindWith(tableView: tableView)
         
-        viewModel.fetchFreshData()
+        viewModel.fetchList()
     }
 }
 
@@ -93,16 +92,24 @@ extension SummaryContentListViewController: UITableViewDelegate {
         
         if let cell = tableView.cellForRow(at: indexPath) as? SummaryContentRowCell {
             
-            if cell.entity.isFetched {
+            if let detail = cell.videoDetail {
                 
                 let storyboard = UIStoryboard(name: "Main", bundle: .main)
                 
                 let destinationVC = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
                 
-                destinationVC.entity = cell.entity
+                destinationVC.entity = detail
                 
                 self.navigationController?.pushViewController(destinationVC, animated: true)
             }
+        }
+    }
+    
+    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        if let summaryRowCell = cell as? SummaryContentRowCell {
+            
+            summaryRowCell.getDetail()
         }
     }
 }

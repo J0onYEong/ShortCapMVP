@@ -36,5 +36,9 @@ public final class DefaultNetworkErrorLogger: NetworkErrorLogger {
 public func printIfDebug(_ string: String) {
     #if Device_Debug || Local_Debug
     print(string)
+    #elseif Release
+    print("Release")
+    #else
+    print("WTF: \(string)")
     #endif
 }

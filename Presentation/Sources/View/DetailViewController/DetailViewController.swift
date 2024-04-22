@@ -14,15 +14,15 @@ public class DetailViewController: UIViewController {
     
     @IBOutlet weak var keyWordStack: UIStackView!
     
-    var entity: SummaryResultEntity?
+    var entity: VideoDetail!
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         // 타이틀 변경
-        titleLabel.text = entity?.title ?? "제목 없음"
+        titleLabel.text = entity.title
         
         // webView설정
-        if let urlString = entity?.url, let contentUrl = URL(string: urlString) {
+        if let contentUrl = URL(string: entity.url) {
             
             webView.load(URLRequest(url: contentUrl))
         } else {
@@ -32,12 +32,12 @@ public class DetailViewController: UIViewController {
         
         // summary text
         summaryTextView.delegate = self
-        summaryTextView.text = entity?.summary ?? ""
+        summaryTextView.text = entity.summary
         summaryTextView.isScrollEnabled = false
         
         // keywords
         
-        entity?.keywords.forEach({ keyword in
+        entity.keywords.forEach({ keyword in
             
             let labelView = UILabel()
             
@@ -46,11 +46,6 @@ public class DetailViewController: UIViewController {
             keyWordStack.addArrangedSubview(labelView)
         })
     }
-    
-
-    
-    // MARK: - Navigation
-
 }
 
 extension DetailViewController: UITextViewDelegate {

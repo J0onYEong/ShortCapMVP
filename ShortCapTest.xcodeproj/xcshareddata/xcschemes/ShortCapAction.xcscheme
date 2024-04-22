@@ -58,8 +58,8 @@
       launchAutomaticallySubstyle = "2">
       <RemoteRunnable
          runnableDebuggingMode = "0"
-         BundleIdentifier = "com.burbn.instagram"
-         RemotePath = "/var/containers/Bundle/Application/111E6448-9EA4-4A40-B2E3-CB536E798023/Instagram.app">
+         BundleIdentifier = "com.google.ios.youtube"
+         RemotePath = "/var/containers/Bundle/Application/B85816D3-F064-46B7-8FB0-B8E805ABEE54/YouTube.app">
       </RemoteRunnable>
       <MacroExpansion>
          <BuildableReference

@@ -19,8 +19,8 @@ public class DefaultNetworkService {
     private let logger: NetworkErrorLogger
     
     public init(
-        config: NetworkConfigurable,
-        sessionManager: NetworkSessionManager,
+        config: NetworkConfigurable = ApiDataNetworkConfig.default,
+        sessionManager: NetworkSessionManager = DefaultNetworkSessionManager(),
         networkLogger: NetworkErrorLogger = DefaultNetworkErrorLogger()
     ) {
         self.config = config

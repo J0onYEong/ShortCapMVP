@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		9B0025402BC186BC0050D3E5 /* Domain.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B00253F2BC186BC0050D3E5 /* Domain.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9B0025492BC186F20050D3E5 /* VideoCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2432032BABE7FC0089CB6D /* VideoCode.swift */; };
-		9B00254B2BC186F20050D3E5 /* SummaryResultEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2432072BABE8940089CB6D /* SummaryResultEntity.swift */; };
-		9B00254F2BC186F20050D3E5 /* SummaryStatusEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2432052BABE8800089CB6D /* SummaryStatusEntity.swift */; };
 		9B0025522BC1870F0050D3E5 /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B00253D2BC186BC0050D3E5 /* Domain.framework */; };
 		9B0025532BC1870F0050D3E5 /* Domain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9B00253D2BC186BC0050D3E5 /* Domain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9B0025D72BC288A80050D3E5 /* Data.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B0025D62BC288A80050D3E5 /* Data.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -28,7 +26,7 @@
 		9B4A83782BD0C8BF00614160 /* VideoCodeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83772BD0C8BF00614160 /* VideoCodeEntity.swift */; };
 		9B4A837A2BD0C95F00614160 /* CoreDataVideoCodeStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83792BD0C95F00614160 /* CoreDataVideoCodeStorage.swift */; };
 		9B4A837C2BD0CAB800614160 /* CoreDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A837B2BD0CAB800614160 /* CoreDataStorage.swift */; };
-		9B4A837F2BD13E9200614160 /* DefaultConvertVideoCodeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A837E2BD13E9200614160 /* DefaultConvertVideoCodeRepository.swift */; };
+		9B4A837F2BD13E9200614160 /* DefaultConvertUrlRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A837E2BD13E9200614160 /* DefaultConvertUrlRepository.swift */; };
 		9B4A83822BD2A22000614160 /* EntPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83812BD2A22000614160 /* EntPoint.swift */; };
 		9B4A83852BD2A65A00614160 /* BodyEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83842BD2A65A00614160 /* BodyEncoder.swift */; };
 		9B4A83882BD2A6B900614160 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83872BD2A6B900614160 /* NetworkError.swift */; };
@@ -46,6 +44,22 @@
 		9B4A83A72BD4C72500614160 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BA7EBAF2BC8202600053C3D /* Core.framework */; };
 		9B4A83A92BD4C9A000614160 /* NetworkSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83A82BD4C9A000614160 /* NetworkSessionManager.swift */; };
 		9B4A83AB2BD4D0E400614160 /* VideoCodeResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83AA2BD4D0E400614160 /* VideoCodeResponseDTO.swift */; };
+		9B4A83AD2BD50CC400614160 /* FetchVideoCodesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83AC2BD50CC400614160 /* FetchVideoCodesUseCase.swift */; };
+		9B4A83AF2BD50E1900614160 /* FetchVideoCodeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83AE2BD50E1900614160 /* FetchVideoCodeRepository.swift */; };
+		9B4A83B12BD50E9D00614160 /* DefaultFetchVideoCodesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83B02BD50E9D00614160 /* DefaultFetchVideoCodesRepository.swift */; };
+		9B4A83B42BD5102100614160 /* VideoDetailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83B32BD5102100614160 /* VideoDetailUseCase.swift */; };
+		9B4A83B62BD510CA00614160 /* VideoDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83B52BD510CA00614160 /* VideoDetail.swift */; };
+		9B4A83B82BD5112700614160 /* SummaryProcessRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83B72BD5112700614160 /* SummaryProcessRepository.swift */; };
+		9B4A83BA2BD5120000614160 /* VideoSummaryState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83B92BD5120000614160 /* VideoSummaryState.swift */; };
+		9B4A83BD2BD513AF00614160 /* DefaultSummaryProcessRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83BC2BD513AF00614160 /* DefaultSummaryProcessRepository.swift */; };
+		9B4A83C12BD515F100614160 /* VideoSummaryStateResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83C02BD515F100614160 /* VideoSummaryStateResponseDTO.swift */; };
+		9B4A83C32BD518FB00614160 /* VideoDetailResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83C22BD518FB00614160 /* VideoDetailResponseDTO.swift */; };
+		9B4A83C52BD5232F00614160 /* VideoDetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83C42BD5232F00614160 /* VideoDetailRepository.swift */; };
+		9B4A83C72BD5239F00614160 /* DefaultVideoDetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83C62BD5239F00614160 /* DefaultVideoDetailRepository.swift */; };
+		9B4A83CA2BD523FF00614160 /* VideoDetailStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83C92BD523FF00614160 /* VideoDetailStorage.swift */; };
+		9B4A83CD2BD5244500614160 /* CoreDataVideoDetailStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83CC2BD5244500614160 /* CoreDataVideoDetailStorage.swift */; };
+		9B4A83D12BD5249E00614160 /* VideoDetailDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83D02BD5249E00614160 /* VideoDetailDTO.swift */; };
+		9B4A83D62BD52DB700614160 /* VideoDetailEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83D52BD52DB700614160 /* VideoDetailEntity.swift */; };
 		9B5CD7EC2BB196D40041988A /* UniformTypeIdentifiers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B5CD7B52BB18F0E0041988A /* UniformTypeIdentifiers.framework */; };
 		9B5CD7F42BB196D40041988A /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B5CD7F22BB196D40041988A /* MainInterface.storyboard */; };
 		9B5CD7F82BB196D40041988A /* ShortCapAction.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 9B5CD7EB2BB196D40041988A /* ShortCapAction.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -86,10 +100,7 @@
 		9B8E7C032B949E05001F3D88 /* SummaryContentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C022B949E05001F3D88 /* SummaryContentListViewController.swift */; };
 		9B8E7C052B949FCC001F3D88 /* SummaryContentRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7C042B949FCC001F3D88 /* SummaryContentRowCell.swift */; };
 		9B9E6F642BC3D6E6005DB13B /* SaveVideoCodeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9E6F632BC3D6E6005DB13B /* SaveVideoCodeUseCase.swift */; };
-		9B9E6F662BC3D7BF005DB13B /* GetRowDataUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9E6F652BC3D7BF005DB13B /* GetRowDataUseCase.swift */; };
-		9B9E6F682BC3D8D7005DB13B /* SaveSummaryDataUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9E6F672BC3D8D7005DB13B /* SaveSummaryDataUseCase.swift */; };
 		9B9E6F6C2BC3DA4A005DB13B /* SaveVideoCodeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9E6F6B2BC3DA4A005DB13B /* SaveVideoCodeRepository.swift */; };
-		9B9E6F6E2BC3DAAC005DB13B /* StoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9E6F6D2BC3DAAC005DB13B /* StoreRepository.swift */; };
 		9B9E6F722BC3DBAF005DB13B /* DefaultSaveVideoCodeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9E6F712BC3DBAF005DB13B /* DefaultSaveVideoCodeRepository.swift */; };
 		9B9E6F782BC4F1BF005DB13B /* SummaryContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9E6F772BC4F1BF005DB13B /* SummaryContentViewModel.swift */; };
 		9B9E6F7B2BC4FC1A005DB13B /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 9B9E6F7A2BC4FC1A005DB13B /* Swinject */; };
@@ -254,8 +265,6 @@
 		9B2431FC2BABDF9E0089CB6D /* SummaryRestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryRestService.swift; sourceTree = "<group>"; };
 		9B2431FE2BABDFAC0089CB6D /* BaseRestAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRestAPIService.swift; sourceTree = "<group>"; };
 		9B2432032BABE7FC0089CB6D /* VideoCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCode.swift; sourceTree = "<group>"; };
-		9B2432052BABE8800089CB6D /* SummaryStatusEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryStatusEntity.swift; sourceTree = "<group>"; };
-		9B2432072BABE8940089CB6D /* SummaryResultEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryResultEntity.swift; sourceTree = "<group>"; };
 		9B4A83652BD0BAF100614160 /* UrlValidationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlValidationUseCase.swift; sourceTree = "<group>"; };
 		9B4A83682BD0BD4C00614160 /* ConvertUrlToVideoCodeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertUrlToVideoCodeUseCase.swift; sourceTree = "<group>"; };
 		9B4A836B2BD0BED300614160 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
@@ -265,7 +274,7 @@
 		9B4A83772BD0C8BF00614160 /* VideoCodeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCodeEntity.swift; sourceTree = "<group>"; };
 		9B4A83792BD0C95F00614160 /* CoreDataVideoCodeStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataVideoCodeStorage.swift; sourceTree = "<group>"; };
 		9B4A837B2BD0CAB800614160 /* CoreDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStorage.swift; sourceTree = "<group>"; };
-		9B4A837E2BD13E9200614160 /* DefaultConvertVideoCodeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultConvertVideoCodeRepository.swift; sourceTree = "<group>"; };
+		9B4A837E2BD13E9200614160 /* DefaultConvertUrlRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultConvertUrlRepository.swift; sourceTree = "<group>"; };
 		9B4A83812BD2A22000614160 /* EntPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntPoint.swift; sourceTree = "<group>"; };
 		9B4A83842BD2A65A00614160 /* BodyEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyEncoder.swift; sourceTree = "<group>"; };
 		9B4A83872BD2A6B900614160 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
@@ -282,6 +291,22 @@
 		9B4A83A52BD4176D00614160 /* DataTransferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTransferService.swift; sourceTree = "<group>"; };
 		9B4A83A82BD4C9A000614160 /* NetworkSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSessionManager.swift; sourceTree = "<group>"; };
 		9B4A83AA2BD4D0E400614160 /* VideoCodeResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCodeResponseDTO.swift; sourceTree = "<group>"; };
+		9B4A83AC2BD50CC400614160 /* FetchVideoCodesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchVideoCodesUseCase.swift; sourceTree = "<group>"; };
+		9B4A83AE2BD50E1900614160 /* FetchVideoCodeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchVideoCodeRepository.swift; sourceTree = "<group>"; };
+		9B4A83B02BD50E9D00614160 /* DefaultFetchVideoCodesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultFetchVideoCodesRepository.swift; sourceTree = "<group>"; };
+		9B4A83B32BD5102100614160 /* VideoDetailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailUseCase.swift; sourceTree = "<group>"; };
+		9B4A83B52BD510CA00614160 /* VideoDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetail.swift; sourceTree = "<group>"; };
+		9B4A83B72BD5112700614160 /* SummaryProcessRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryProcessRepository.swift; sourceTree = "<group>"; };
+		9B4A83B92BD5120000614160 /* VideoSummaryState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoSummaryState.swift; sourceTree = "<group>"; };
+		9B4A83BC2BD513AF00614160 /* DefaultSummaryProcessRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSummaryProcessRepository.swift; sourceTree = "<group>"; };
+		9B4A83C02BD515F100614160 /* VideoSummaryStateResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoSummaryStateResponseDTO.swift; sourceTree = "<group>"; };
+		9B4A83C22BD518FB00614160 /* VideoDetailResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailResponseDTO.swift; sourceTree = "<group>"; };
+		9B4A83C42BD5232F00614160 /* VideoDetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailRepository.swift; sourceTree = "<group>"; };
+		9B4A83C62BD5239F00614160 /* DefaultVideoDetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultVideoDetailRepository.swift; sourceTree = "<group>"; };
+		9B4A83C92BD523FF00614160 /* VideoDetailStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailStorage.swift; sourceTree = "<group>"; };
+		9B4A83CC2BD5244500614160 /* CoreDataVideoDetailStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataVideoDetailStorage.swift; sourceTree = "<group>"; };
+		9B4A83D02BD5249E00614160 /* VideoDetailDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailDTO.swift; sourceTree = "<group>"; };
+		9B4A83D52BD52DB700614160 /* VideoDetailEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailEntity.swift; sourceTree = "<group>"; };
 		9B5411C02BABD33E00D32F07 /* BaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAPI.swift; sourceTree = "<group>"; };
 		9B5411C22BABD3C100D32F07 /* SummaryAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryAPI.swift; sourceTree = "<group>"; };
 		9B5CD7B52BB18F0E0041988A /* UniformTypeIdentifiers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UniformTypeIdentifiers.framework; path = System/Library/Frameworks/UniformTypeIdentifiers.framework; sourceTree = SDKROOT; };
@@ -299,6 +324,8 @@
 		9B68A8422BCE1B92006903EC /* Presentation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Presentation.h; sourceTree = "<group>"; };
 		9B68A86A2BCE32D1006903EC /* ActionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionViewController.swift; sourceTree = "<group>"; };
 		9B68A86B2BCE32D1006903EC /* CloseButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
+		9B78F6842BD6950D00C0A0DC /* ShortCapTestDevice_Debug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShortCapTestDevice_Debug.entitlements; sourceTree = "<group>"; };
+		9B78F6852BD6952200C0A0DC /* ShortCapActionDevice_Debug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShortCapActionDevice_Debug.entitlements; sourceTree = "<group>"; };
 		9B8AD7872BA73AE700F1CD49 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		9B8E7BDC2B9496D6001F3D88 /* ShortCapTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShortCapTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B8E7BDF2B9496D6001F3D88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -313,10 +340,7 @@
 		9B8E7C312B94F3E2001F3D88 /* ShortCapTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShortCapTest.entitlements; sourceTree = "<group>"; };
 		9B8E7C342B94F7B4001F3D88 /* ShortCapTest */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ShortCapTest; sourceTree = "<group>"; };
 		9B9E6F632BC3D6E6005DB13B /* SaveVideoCodeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveVideoCodeUseCase.swift; sourceTree = "<group>"; };
-		9B9E6F652BC3D7BF005DB13B /* GetRowDataUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRowDataUseCase.swift; sourceTree = "<group>"; };
-		9B9E6F672BC3D8D7005DB13B /* SaveSummaryDataUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveSummaryDataUseCase.swift; sourceTree = "<group>"; };
 		9B9E6F6B2BC3DA4A005DB13B /* SaveVideoCodeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveVideoCodeRepository.swift; sourceTree = "<group>"; };
-		9B9E6F6D2BC3DAAC005DB13B /* StoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreRepository.swift; sourceTree = "<group>"; };
 		9B9E6F712BC3DBAF005DB13B /* DefaultSaveVideoCodeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSaveVideoCodeRepository.swift; sourceTree = "<group>"; };
 		9B9E6F772BC4F1BF005DB13B /* SummaryContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryContentViewModel.swift; sourceTree = "<group>"; };
 		9BA7EBAF2BC8202600053C3D /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -404,7 +428,10 @@
 			children = (
 				9B4A836D2BD0BEFE00614160 /* Utils */,
 				9B9E6F712BC3DBAF005DB13B /* DefaultSaveVideoCodeRepository.swift */,
-				9B4A837E2BD13E9200614160 /* DefaultConvertVideoCodeRepository.swift */,
+				9B4A837E2BD13E9200614160 /* DefaultConvertUrlRepository.swift */,
+				9B4A83B02BD50E9D00614160 /* DefaultFetchVideoCodesRepository.swift */,
+				9B4A83BC2BD513AF00614160 /* DefaultSummaryProcessRepository.swift */,
+				9B4A83C62BD5239F00614160 /* DefaultVideoDetailRepository.swift */,
 			);
 			path = RepositoryImpl;
 			sourceTree = "<group>";
@@ -412,9 +439,8 @@
 		9B00259C2BC1A40E0050D3E5 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				9B4A83B22BD5101000614160 /* VideoDetail */,
 				9B4A83672BD0BD2400614160 /* VideoCode */,
-				9B9E6F652BC3D7BF005DB13B /* GetRowDataUseCase.swift */,
-				9B9E6F672BC3D8D7005DB13B /* SaveSummaryDataUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -442,9 +468,7 @@
 		9B2432002BABE7410089CB6D /* Entitiy */ = {
 			isa = PBXGroup;
 			children = (
-				9B2432032BABE7FC0089CB6D /* VideoCode.swift */,
-				9B2432052BABE8800089CB6D /* SummaryStatusEntity.swift */,
-				9B2432072BABE8940089CB6D /* SummaryResultEntity.swift */,
+				9B4A83BB2BD5120400614160 /* Video */,
 			);
 			path = Entitiy;
 			sourceTree = "<group>";
@@ -469,9 +493,11 @@
 		9B4A83632BD0B7E800614160 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				9B9E6F6B2BC3DA4A005DB13B /* SaveVideoCodeRepository.swift */,
 				9B4A83922BD403A400614160 /* ConvertUrlRepository.swift */,
-				9B9E6F6D2BC3DAAC005DB13B /* StoreRepository.swift */,
+				9B4A83AE2BD50E1900614160 /* FetchVideoCodeRepository.swift */,
+				9B9E6F6B2BC3DA4A005DB13B /* SaveVideoCodeRepository.swift */,
+				9B4A83B72BD5112700614160 /* SummaryProcessRepository.swift */,
+				9B4A83C42BD5232F00614160 /* VideoDetailRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -482,6 +508,7 @@
 				9B4A83652BD0BAF100614160 /* UrlValidationUseCase.swift */,
 				9B9E6F632BC3D6E6005DB13B /* SaveVideoCodeUseCase.swift */,
 				9B4A83682BD0BD4C00614160 /* ConvertUrlToVideoCodeUseCase.swift */,
+				9B4A83AC2BD50CC400614160 /* FetchVideoCodesUseCase.swift */,
 			);
 			path = VideoCode;
 			sourceTree = "<group>";
@@ -571,9 +598,9 @@
 		9B4A839F2BD4116C00614160 /* DTO */ = {
 			isa = PBXGroup;
 			children = (
+				9B4A83BF2BD515DD00614160 /* VideoDetail */,
+				9B4A83BE2BD514C600614160 /* VideoCode */,
 				9B4A83A12BD411E200614160 /* ResponseDTOWrapper.swift */,
-				9B4A839D2BD4115100614160 /* VideoCodeRequestDTO.swift */,
-				9B4A83AA2BD4D0E400614160 /* VideoCodeResponseDTO.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -594,6 +621,77 @@
 				9B4A83A52BD4176D00614160 /* DataTransferService.swift */,
 			);
 			path = DataTransferService;
+			sourceTree = "<group>";
+		};
+		9B4A83B22BD5101000614160 /* VideoDetail */ = {
+			isa = PBXGroup;
+			children = (
+				9B4A83B32BD5102100614160 /* VideoDetailUseCase.swift */,
+			);
+			path = VideoDetail;
+			sourceTree = "<group>";
+		};
+		9B4A83BB2BD5120400614160 /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				9B2432032BABE7FC0089CB6D /* VideoCode.swift */,
+				9B4A83B52BD510CA00614160 /* VideoDetail.swift */,
+				9B4A83B92BD5120000614160 /* VideoSummaryState.swift */,
+			);
+			path = Video;
+			sourceTree = "<group>";
+		};
+		9B4A83BE2BD514C600614160 /* VideoCode */ = {
+			isa = PBXGroup;
+			children = (
+				9B4A839D2BD4115100614160 /* VideoCodeRequestDTO.swift */,
+				9B4A83AA2BD4D0E400614160 /* VideoCodeResponseDTO.swift */,
+			);
+			path = VideoCode;
+			sourceTree = "<group>";
+		};
+		9B4A83BF2BD515DD00614160 /* VideoDetail */ = {
+			isa = PBXGroup;
+			children = (
+				9B4A83C02BD515F100614160 /* VideoSummaryStateResponseDTO.swift */,
+				9B4A83C22BD518FB00614160 /* VideoDetailResponseDTO.swift */,
+			);
+			path = VideoDetail;
+			sourceTree = "<group>";
+		};
+		9B4A83C82BD523EC00614160 /* VideoDetailStorage */ = {
+			isa = PBXGroup;
+			children = (
+				9B4A83C92BD523FF00614160 /* VideoDetailStorage.swift */,
+				9B4A83CB2BD5242F00614160 /* Impl */,
+			);
+			path = VideoDetailStorage;
+			sourceTree = "<group>";
+		};
+		9B4A83CB2BD5242F00614160 /* Impl */ = {
+			isa = PBXGroup;
+			children = (
+				9B4A83CC2BD5244500614160 /* CoreDataVideoDetailStorage.swift */,
+				9B4A83D42BD52DA000614160 /* Entity+Mapping */,
+				9B4A83CF2BD5245500614160 /* DTO+Mapping */,
+			);
+			path = Impl;
+			sourceTree = "<group>";
+		};
+		9B4A83CF2BD5245500614160 /* DTO+Mapping */ = {
+			isa = PBXGroup;
+			children = (
+				9B4A83D02BD5249E00614160 /* VideoDetailDTO.swift */,
+			);
+			path = "DTO+Mapping";
+			sourceTree = "<group>";
+		};
+		9B4A83D42BD52DA000614160 /* Entity+Mapping */ = {
+			isa = PBXGroup;
+			children = (
+				9B4A83D52BD52DB700614160 /* VideoDetailEntity.swift */,
+			);
+			path = "Entity+Mapping";
 			sourceTree = "<group>";
 		};
 		9B5411BE2BABD31600D32F07 /* Service */ = {
@@ -618,6 +716,7 @@
 		9B5CD7ED2BB196D40041988A /* ShortCapAction */ = {
 			isa = PBXGroup;
 			children = (
+				9B78F6852BD6952200C0A0DC /* ShortCapActionDevice_Debug.entitlements */,
 				9B68A8692BCE32D1006903EC /* View */,
 				9B68A8162BC93C9A006903EC /* ViewModel */,
 				9B5CD82C2BB285DC0041988A /* ShortCapAction.entitlements */,
@@ -667,6 +766,7 @@
 		9B68A82C2BCA14DE006903EC /* PersistantStorages */ = {
 			isa = PBXGroup;
 			children = (
+				9B4A83C82BD523EC00614160 /* VideoDetailStorage */,
 				9B4A83612BCFE1FD00614160 /* VideoCodeStorage */,
 				9B0025ED2BC28B170050D3E5 /* CoreDataStorage */,
 			);
@@ -757,6 +857,7 @@
 		9B8E7BDE2B9496D6001F3D88 /* ShortCapTest */ = {
 			isa = PBXGroup;
 			children = (
+				9B78F6842BD6950D00C0A0DC /* ShortCapTestDevice_Debug.entitlements */,
 				9B8E7C312B94F3E2001F3D88 /* ShortCapTest.entitlements */,
 				9B8E7BDF2B9496D6001F3D88 /* AppDelegate.swift */,
 				9B8E7BE12B9496D6001F3D88 /* SceneDelegate.swift */,
@@ -1127,17 +1228,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B4A83692BD0BD4C00614160 /* ConvertUrlToVideoCodeUseCase.swift in Sources */,
-				9B00254B2BC186F20050D3E5 /* SummaryResultEntity.swift in Sources */,
+				9B4A83C52BD5232F00614160 /* VideoDetailRepository.swift in Sources */,
+				9B4A83B62BD510CA00614160 /* VideoDetail.swift in Sources */,
 				9B4A83702BD0C04E00614160 /* Network.swift in Sources */,
 				9B0025492BC186F20050D3E5 /* VideoCode.swift in Sources */,
+				9B4A83AD2BD50CC400614160 /* FetchVideoCodesUseCase.swift in Sources */,
+				9B4A83B82BD5112700614160 /* SummaryProcessRepository.swift in Sources */,
+				9B4A83BA2BD5120000614160 /* VideoSummaryState.swift in Sources */,
 				9B4A83662BD0BAF100614160 /* UrlValidationUseCase.swift in Sources */,
-				9B00254F2BC186F20050D3E5 /* SummaryStatusEntity.swift in Sources */,
+				9B4A83B42BD5102100614160 /* VideoDetailUseCase.swift in Sources */,
 				9B4A83932BD403A400614160 /* ConvertUrlRepository.swift in Sources */,
-				9B9E6F662BC3D7BF005DB13B /* GetRowDataUseCase.swift in Sources */,
 				9B9E6F642BC3D6E6005DB13B /* SaveVideoCodeUseCase.swift in Sources */,
 				9B9E6F6C2BC3DA4A005DB13B /* SaveVideoCodeRepository.swift in Sources */,
-				9B9E6F6E2BC3DAAC005DB13B /* StoreRepository.swift in Sources */,
-				9B9E6F682BC3D8D7005DB13B /* SaveSummaryDataUseCase.swift in Sources */,
+				9B4A83AF2BD50E1900614160 /* FetchVideoCodeRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1146,22 +1249,31 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B9E6F722BC3DBAF005DB13B /* DefaultSaveVideoCodeRepository.swift in Sources */,
+				9B4A83C32BD518FB00614160 /* VideoDetailResponseDTO.swift in Sources */,
+				9B4A83D12BD5249E00614160 /* VideoDetailDTO.swift in Sources */,
+				9B4A83D62BD52DB700614160 /* VideoDetailEntity.swift in Sources */,
 				9B4A839B2BD410F400614160 /* APIEndpoints.swift in Sources */,
 				9B68A82F2BCA151D006903EC /* BaseAPI.swift in Sources */,
+				9B4A83B12BD50E9D00614160 /* DefaultFetchVideoCodesRepository.swift in Sources */,
 				9B4A837A2BD0C95F00614160 /* CoreDataVideoCodeStorage.swift in Sources */,
+				9B4A83CA2BD523FF00614160 /* VideoDetailStorage.swift in Sources */,
+				9B4A83C12BD515F100614160 /* VideoSummaryStateResponseDTO.swift in Sources */,
 				9B68A82E2BCA151D006903EC /* SummaryAPI.swift in Sources */,
 				9B68A8302BCA1521006903EC /* SummaryRestService.swift in Sources */,
 				9B68A8322BCA152C006903EC /* CoreDataModel.xcdatamodeld in Sources */,
 				9B4A837C2BD0CAB800614160 /* CoreDataStorage.swift in Sources */,
 				9B4A83742BD0C30F00614160 /* VideoCodeDTO.swift in Sources */,
+				9B4A83BD2BD513AF00614160 /* DefaultSummaryProcessRepository.swift in Sources */,
 				9B4A83AB2BD4D0E400614160 /* VideoCodeResponseDTO.swift in Sources */,
 				9B4A839E2BD4115100614160 /* VideoCodeRequestDTO.swift in Sources */,
 				9B4A83A22BD411E200614160 /* ResponseDTOWrapper.swift in Sources */,
 				9B4A836F2BD0BF5500614160 /* RepositoryTask.swift in Sources */,
-				9B4A837F2BD13E9200614160 /* DefaultConvertVideoCodeRepository.swift in Sources */,
+				9B4A83CD2BD5244500614160 /* CoreDataVideoDetailStorage.swift in Sources */,
+				9B4A837F2BD13E9200614160 /* DefaultConvertUrlRepository.swift in Sources */,
 				9B4A83722BD0C1D100614160 /* VideoCodeStorage.swift in Sources */,
 				9B4A83782BD0C8BF00614160 /* VideoCodeEntity.swift in Sources */,
 				9B68A8312BCA1521006903EC /* BaseRestAPIService.swift in Sources */,
+				9B4A83C72BD5239F00614160 /* DefaultVideoDetailRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1376,7 +1488,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = choijunyeong.ShortCapDomain;
+				PRODUCT_BUNDLE_IDENTIFIER = choijunyeong.ShortCap.Domain;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1539,7 +1651,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = choijunyeong.ShortCapData;
+				PRODUCT_BUNDLE_IDENTIFIER = choijunyeong.ShortCap.Data;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1636,6 +1748,7 @@
 				DEVELOPMENT_TEAM = XHRN62S9RK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShortCapAction/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "숏캡으로 요약하기";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1733,6 +1846,7 @@
 				DEVELOPMENT_TEAM = XHRN62S9RK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShortCapTest/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "$(ShortCap_App_Name)";
 				INFOPLIST_KEY_LSApplicationCategoryType = NSExtensionActivationRule;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -1767,6 +1881,7 @@
 				DEVELOPMENT_TEAM = XHRN62S9RK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShortCapAction/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "숏캡으로 요약하기";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1856,13 +1971,14 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = ShortCapTest/ShortCapTest.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ShortCapTest/ShortCapTestDevice_Debug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = XHRN62S9RK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShortCapTest/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "$(ShortCap_App_Name)";
 				INFOPLIST_KEY_LSApplicationCategoryType = NSExtensionActivationRule;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -1875,7 +1991,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = choijunyeong.ShortCapTest;
+				PRODUCT_BUNDLE_IDENTIFIER = choijunyeong.ShortCap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1890,13 +2006,14 @@
 			baseConfigurationReference = 9B5CD8432BB3D7950041988A /* Device_Debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = IconForAction;
-				CODE_SIGN_ENTITLEMENTS = ShortCapAction/ShortCapAction.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ShortCapAction/ShortCapActionDevice_Debug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = XHRN62S9RK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShortCapAction/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "숏캡으로 요약하기";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1905,7 +2022,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = choijunyeong.ShortCapTest.ShortCapAction;
+				PRODUCT_BUNDLE_IDENTIFIER = choijunyeong.ShortCap.action;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1991,7 +2108,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = choijunyeong.Presentation;
+				PRODUCT_BUNDLE_IDENTIFIER = choijunyeong.ShortCap.Presentation;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2150,6 +2267,7 @@
 				DEVELOPMENT_TEAM = XHRN62S9RK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShortCapTest/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "$(ShortCap_App_Name)";
 				INFOPLIST_KEY_LSApplicationCategoryType = NSExtensionActivationRule;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -2250,7 +2368,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = choijunyeong.Core2;
+				PRODUCT_BUNDLE_IDENTIFIER = choijunyeong.ShortCap.Core;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;

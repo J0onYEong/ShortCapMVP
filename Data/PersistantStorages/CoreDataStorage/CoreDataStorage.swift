@@ -1,5 +1,6 @@
 import Foundation
 import CoreData
+import Core
 
 enum CoreDataStorageError: Error {
     case readError(Error)
@@ -29,10 +30,12 @@ public final class CoreDataStorage {
         
         // 앱그룹 공유저장소를 저장소의 위치로 지정
         if let appGroupIdentifier = Bundle.main.infoDictionary?["App Group"] as? String {
-         
+            
             let storeURL = URL.storeURL(for: appGroupIdentifier, databaseName: "DataModel")
             
             container.persistentStoreDescriptions = [NSPersistentStoreDescription(url: storeURL)]
+            
+            printIfDebug("✅ \(appGroupIdentifier)저장소")
         }
         
         container.loadPersistentStores { _, error in
@@ -41,7 +44,7 @@ public final class CoreDataStorage {
                 assertionFailure("CoreDataStorage Unresolved error \(error), \(error.userInfo)")
             }
             
-            print("✅ 영구 저장소 로딩 성공")
+            printIfDebug("✅ 영구 저장소 로딩 성공")
         }
         return container
     }()

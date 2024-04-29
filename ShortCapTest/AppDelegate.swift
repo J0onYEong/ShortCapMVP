@@ -47,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 dataTransferService: resolver.resolve(DataTransferService.self)!
             )
         }
-        container.register(VideoDetailRepository.self) { resolver in
+        container.register(VideoDetailLocalRepository.self) { resolver in
             DefaultVideoDetailRepository(
                 storage: resolver.resolve(VideoDetailStorage.self)!
             )
@@ -75,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         container.register(VideoDetailUseCase.self) { resolver in
             DefaultVideoDetailUseCase(
                 summaryProcessRepository: resolver.resolve(SummaryProcessRepository.self)!,
-                videoDetailRepository: resolver.resolve(VideoDetailRepository.self)!
+                videoDetailRepository: resolver.resolve(VideoDetailLocalRepository.self)!
             )
         }
         

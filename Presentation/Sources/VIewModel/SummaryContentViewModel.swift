@@ -9,7 +9,9 @@ public protocol SummaryContentViewModel {
     
     var rowDataRelay: BehaviorRelay<[VideoCode]> { get set }
     
-    func bindWith(tableView: UITableView)
+    func bindWith<T: UITableViewCell>(
+        tableView: UITableView,
+        completion: @escaping (Int, VideoCode, T) -> Void)
     
     func fetchList()
     
@@ -104,15 +106,14 @@ public class DefaultSummaryContentViewModel: SummaryContentViewModel {
 
     }
     
-    public func bindWith(tableView: UITableView) {
+    public func bindWith<T: UITableViewCell>(
+        tableView: UITableView,
+        completion: @escaping (Int, VideoCode, T) -> Void) {
         
         _ = rowDataRelay
             .observe(on: MainScheduler.instance)
-            .bind(to: tableView.rx.items(cellIdentifier: String(describing: SummaryContentRowCell.self), cellType: SummaryContentRowCell.self)) { _, item, cell in
-                
-                cell.setUp(videoCode: item, viewModel: self)
-                cell.selectionStyle = .none
-            }
+            .bind(to: tableView.rx.items(cellIdentifier: String(describing: T.self),
+                                         cellType: T.self), curriedArgument: completion)
     }
     
 }

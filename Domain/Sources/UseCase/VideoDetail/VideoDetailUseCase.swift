@@ -10,11 +10,11 @@ public protocol VideoDetailUseCase {
 public final class DefaultVideoDetailUseCase: VideoDetailUseCase {
     
     let summaryProcessRepository: SummaryProcessRepository
-    let videoDetailRepository: VideoDetailRepository
+    let videoDetailRepository: VideoDetailLocalRepository
     
     public init(
         summaryProcessRepository: SummaryProcessRepository,
-        videoDetailRepository: VideoDetailRepository
+        videoDetailRepository: VideoDetailLocalRepository
     ) {
         self.summaryProcessRepository = summaryProcessRepository
         self.videoDetailRepository = videoDetailRepository

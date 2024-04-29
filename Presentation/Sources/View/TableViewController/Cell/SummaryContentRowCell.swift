@@ -59,9 +59,6 @@ class SummaryContentRowCell: UITableViewCell {
     
     func setAutoLayout() {
         
-        self.backgroundColor = .purple.withAlphaComponent(0.5)
-        self.layer.cornerRadius = 12.0
-        
         [thumbNailView, titleLabel, activityIndicator].forEach { self.addSubview($0) }
         
         NSLayoutConstraint.activate([

@@ -26,7 +26,7 @@ public class SummaryContentListViewController: UIViewController {
         // 스크롤 제거
         view.showsVerticalScrollIndicator = false
         
-        view.separatorStyle = .none
+        view.separatorStyle = .singleLine
         
         return view
     }()
@@ -53,7 +53,11 @@ public class SummaryContentListViewController: UIViewController {
         
         configureTableView()
         
-        viewModel.bindWith(tableView: tableView)
+        viewModel.bindWith(tableView: tableView) { (index: Int, item: VideoCode, cell: SummaryContentRowCell) in
+            
+            cell.setUp(videoCode: item, viewModel: self.viewModel)
+            cell.selectionStyle = .gray
+        }
         
         viewModel.fetchList()
     }

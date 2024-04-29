@@ -1,7 +1,7 @@
 import Foundation
 import Domain
 
-public final class DefaultVideoDetailRepository: VideoDetailRepository {
+public final class DefaultVideoDetailRepository: VideoDetailLocalRepository {
     
     let storage: VideoDetailStorage
     

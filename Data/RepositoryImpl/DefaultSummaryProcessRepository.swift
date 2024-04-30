@@ -2,11 +2,6 @@ import Foundation
 import Domain
 import Core
 
-enum SummaryProcessError: Error {
-    
-    case serverMessageError(message: String)
-}
-
 public class DefaultSummaryProcessRepository: SummaryProcessRepository {
     
     let dataTransferService: DataTransferService

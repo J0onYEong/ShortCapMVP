@@ -66,7 +66,7 @@ class ActionViewModel {
                 }
             } catch {
                 
-                printIfDebug("‼️비디오 코드 획득 실패: \(urlStr)")
+                printIfDebug("‼️비디오 코드 획득 실패: \(urlStr), \(error.localizedDescription)")
                 
                 completion(.failure(error))
             }

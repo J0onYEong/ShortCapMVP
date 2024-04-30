@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Presentation
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -20,8 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         
-        
-        let viewModel = appDelegate.container.resolve(SummaryContentViewModel.self)!
+        let viewModel = appDelegate.container.resolve(VideoTableViewModel.self)!
         
         let viewController = SummaryContentListViewController(viewModel: viewModel)
         
@@ -51,7 +51,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneWillEnterForeground(_ scene: UIScene) {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
-        
         
         if let navigationController = window?.rootViewController as? UINavigationController {
             

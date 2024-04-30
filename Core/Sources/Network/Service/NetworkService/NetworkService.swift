@@ -28,6 +28,7 @@ public class DefaultNetworkService {
         self.logger = networkLogger
     }
     
+    /// 콜백 요청
     func request(request: URLRequest, completion: @escaping CompletionHandler) -> NetworkCancellable {
         
         let sessionDataTask = sessionManager.request(request) { data, response, error in
@@ -54,13 +55,30 @@ public class DefaultNetworkService {
         return sessionDataTask
     }
     
+    /// Async/Await 요청
     func request(request: URLRequest) async throws -> Data {
         
-        let (data, response) = try await sessionManager.request(request)
-        
-        self.logger.log(responseData: data, response: response)
-        
-        return data
+        do {
+            
+            let (data, response) = try await sessionManager.request(request)
+            
+            if let response = response as? HTTPURLResponse, !(200..<300).contains(response.statusCode) {
+                
+                throw NetworkError.error(statusCode: response.statusCode, data: data)
+            }
+            
+            self.logger.log(responseData: data, response: response)
+            
+            return data
+            
+        } catch {
+            
+            self.logger.log(error: error)
+            
+            let error = self.resolve(error: error)
+            
+            throw error
+        }
     }
     
     private func resolve(error: Error) -> NetworkError {

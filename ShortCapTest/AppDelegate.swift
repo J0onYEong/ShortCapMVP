@@ -17,11 +17,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         container.register(VideoDetailStorage.self) { _ in CoreDataVideoDetailStorage() }
         
         // Service
-        container.register(NetworkService.self) { _ in DefaultNetworkService() }
-        container.register(DataTransferService.self) { resolver in
+        container.register(NetworkService.self, name: "default") { _ in DefaultNetworkService() }
+        container.register(NetworkService.self, name: "googleAPi") { _ in
+            
+            DefaultNetworkService(config: ApiDataNetworkConfig.googleApi)
+        }
+        container.register(DataTransferService.self, name: "default") { resolver in
             
             DefaultDataTransferService(
-                with: resolver.resolve(NetworkService.self)!
+                with: resolver.resolve(NetworkService.self, name: "default")!
+            )
+        }
+        container.register(DataTransferService.self, name: "googleAPi") { resolver in
+            
+            DefaultDataTransferService(
+                with: resolver.resolve(NetworkService.self, name: "googleAPi")!
             )
         }
         
@@ -34,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         container.register(ConvertUrlRepository.self) { resolver in
             DefaultConvertUrlRepository(
-                dataTransferService: resolver.resolve(DataTransferService.self)!
+                dataTransferService: resolver.resolve(DataTransferService.self, name: "default")!
             )
         }
         container.register(FetchVideoCodesRepository.self) { resolver in
@@ -44,12 +54,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         container.register(SummaryProcessRepository.self) { resolver in
             DefaultSummaryProcessRepository(
-                dataTransferService: resolver.resolve(DataTransferService.self)!
+                dataTransferService: resolver.resolve(DataTransferService.self, name: "default")!
             )
         }
         container.register(VideoDetailLocalRepository.self) { resolver in
             DefaultVideoDetailRepository(
                 storage: resolver.resolve(VideoDetailStorage.self)!
+            )
+        }
+        
+        // Youtube ThumbNail
+        container.register(VideoThumbNailRepository.self, name: "youtube") { resolver in
+            
+            YoutubeThumbNailRepository(
+                dataTransferService: resolver.resolve(DataTransferService.self, name: "googleAPi")!
             )
         }
         
@@ -78,13 +96,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 videoDetailRepository: resolver.resolve(VideoDetailLocalRepository.self)!
             )
         }
+        container.register(VideoThumbNailUseCase.self) { resolver in
+            
+            DefaultVideoThumbNailUseCase(
+                youtubeThumbNailRepository: resolver.resolve(VideoThumbNailRepository.self, name: "youtube")!
+            )
+        }
         
         // ViewModel
-        container.register(SummaryContentViewModel.self) { resolver in
+        container.register(VideoCellViewModel.self) { resolver in
+            DefaultVideoCellViewModel(
+                videoDetailUseCase: resolver.resolve(VideoDetailUseCase.self)!,
+                videoThumbNailUseCase: resolver.resolve(VideoThumbNailUseCase.self)!
+            )
+        }
+        container.register(VideoTableViewModel.self) { resolver in
             
-            DefaultSummaryContentViewModel(
+            DefaultVideoTableViewModel(
                 fetchVideoCodeUseCase: resolver.resolve(FetchVideoCodesUseCase.self)!,
-                videoDetailUseCase: resolver.resolve(VideoDetailUseCase.self)!
+                videoCellViewModel: resolver.resolve(VideoCellViewModel.self)!
             )
         }
         
@@ -99,11 +129,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: UISceneSession Lifecycle
 
-//    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-//        // Called when a new scene session is being created.
-//        // Use this method to select a configuration to create the new scene with.
-//        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
-//    }
+    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+        // Called when a new scene session is being created.
+        // Use this method to select a configuration to create the new scene with.
+        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+    }
 
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
         // Called when the user discards a scene session.

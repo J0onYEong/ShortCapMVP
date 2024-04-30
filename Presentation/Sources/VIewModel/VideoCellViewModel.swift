@@ -1,51 +1,25 @@
-import UIKit
-import RxSwift
-import RxCocoa
-import Core
+import Foundation
 import Domain
-import Data
+import Core
+import UIKit
 
-public protocol SummaryContentViewModel {
-    
-    var rowDataRelay: BehaviorRelay<[VideoCode]> { get set }
-    
-    func bindWith<T: UITableViewCell>(
-        tableView: UITableView,
-        completion: @escaping (Int, VideoCode, T) -> Void)
-    
-    func fetchList()
+public protocol VideoCellViewModel {
     
     func fetchDetailForRow(videoCode: VideoCode, completion: @escaping (Result<VideoDetail, Error>) -> Void)
+    func fetchThumbNail(videoInfo: VideoInformation, completion: @escaping (Result<VideoThumbNailInformation, Error>) -> Void)
 }
 
-public class DefaultSummaryContentViewModel: SummaryContentViewModel {
+public class DefaultVideoCellViewModel: VideoCellViewModel {
     
-    let fetchVideoCodeUseCase: FetchVideoCodesUseCase
     let videoDetailUseCase: VideoDetailUseCase
+    let videoThumbNailUseCase: VideoThumbNailUseCase
     
-    public var rowDataRelay: BehaviorRelay<[VideoCode]> = BehaviorRelay(value: [])
-    
-    init(fetchVideoCodeUseCase: FetchVideoCodesUseCase, videoDetailUseCase: VideoDetailUseCase) {
-        self.fetchVideoCodeUseCase = fetchVideoCodeUseCase
+    public init(
+        videoDetailUseCase: VideoDetailUseCase,
+        videoThumbNailUseCase: VideoThumbNailUseCase
+    ) {
         self.videoDetailUseCase = videoDetailUseCase
-    }
-    
-    
-    public func fetchList() {
-        
-        fetchVideoCodeUseCase.execute { result in
-            
-            switch result {
-            case .success(let videoCodes):
-                
-                self.rowDataRelay
-                    .accept(videoCodes)
-                
-            case .failure(let failure):
-                
-                printIfDebug("‼️비디오 코드 불러오기 실패: \(failure.localizedDescription)")
-            }
-        }
+        self.videoThumbNailUseCase = videoThumbNailUseCase
     }
     
     public func fetchDetailForRow(videoCode: VideoCode, completion: @escaping (Result<VideoDetail, Error>) -> Void) {
@@ -103,17 +77,27 @@ public class DefaultSummaryContentViewModel: SummaryContentViewModel {
                 }
             }
         }
+    }
+}
 
-    }
+extension DefaultVideoCellViewModel {
     
-    public func bindWith<T: UITableViewCell>(
-        tableView: UITableView,
-        completion: @escaping (Int, VideoCode, T) -> Void) {
+    public func fetchThumbNail(videoInfo: VideoInformation, completion: @escaping (Result<VideoThumbNailInformation, Error>) -> Void) {
         
-        _ = rowDataRelay
-            .observe(on: MainScheduler.instance)
-            .bind(to: tableView.rx.items(cellIdentifier: String(describing: T.self),
-                                         cellType: T.self), curriedArgument: completion)
+        let screenScale = UIScreen.main.scale
+        
+        Task {
+            
+            do {
+                
+                let thumbNailInfo = try await videoThumbNailUseCase.fetch(videoInfo: videoInfo, screenScale: screenScale)
+                
+                completion(.success(thumbNailInfo))
+                
+            } catch {
+                
+                completion(.failure(error))
+            }
+        }
     }
-    
 }

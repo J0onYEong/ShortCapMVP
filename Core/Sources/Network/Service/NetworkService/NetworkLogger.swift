@@ -39,6 +39,6 @@ public func printIfDebug(_ string: String) {
     #elseif Release
     print("Release")
     #else
-    print("WTF: \(string)")
+    print("알수없는 Config: \(string)")
     #endif
 }

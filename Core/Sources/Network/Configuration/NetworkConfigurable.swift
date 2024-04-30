@@ -24,6 +24,13 @@ public struct ApiDataNetworkConfig: NetworkConfigurable {
         
     }()
     
+    public static let googleApi: Self = {
+        
+        guard let url = URL(string: "https://www.googleapis.com") else { fatalError() }
+        
+        return .init(baseURL: url)
+    }()
+    
     public init(
         baseURL: URL,
         headers: [String: String] = [:],

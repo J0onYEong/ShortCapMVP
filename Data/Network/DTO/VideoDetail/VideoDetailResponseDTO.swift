@@ -61,7 +61,7 @@ struct VideoDetailResponseDTO: Decodable {
             summary: summary,
             address: address,
             createdAt: createdAt,
-            platform: platform,
+            platform: VideoPlatform(rawValue: platform) ?? .unknown,
             mainCategory: mainCategory,
             videoCode: videoCode
         )

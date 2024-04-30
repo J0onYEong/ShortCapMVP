@@ -22,7 +22,7 @@ public final class DefaultVideoDetailRepository: VideoDetailLocalRepository {
             summary: detail.summary,
             address: detail.address,
             createdAt: detail.createdAt,
-            platform: detail.platform,
+            platform: detail.platform.rawValue,
             mainCategory: detail.mainCategory,
             videoCode: detail.videoCode
         )
@@ -64,9 +64,4 @@ public final class DefaultVideoDetailRepository: VideoDetailLocalRepository {
             }
         }
     }
-}
-
-public enum FetchVideoDetailFromLocalError: Error {
-    
-    case dataNotFound
 }

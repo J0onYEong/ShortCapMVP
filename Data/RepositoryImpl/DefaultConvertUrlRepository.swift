@@ -33,10 +33,36 @@ public class DefaultConvertUrlRepository: ConvertUrlRepository {
         
         let endPoint = APIEndpoints.getVideoCode(with: VideoCodeRequestDTO(url: urlString, categoryId: nil, categoryIncluded: false))
         
-        let dto: ResponseDTOWrapper<VideoCodeResponseDTO> = try await dataTransferService.request(with: endPoint)
+        do {
+            
+            let dto: ResponseDTOWrapper<VideoCodeResponseDTO> = try await dataTransferService.request(with: endPoint)
+            
+            guard let response = dto.data else { throw ConvertUrlToVideoCodeUseCaseError.networkError }
+            
+            return response.toDomain()
+            
+        } catch {
+            
+            if let dataTransferError = error as? DataTransferError {
+                
+                let resolvedError = self.resolve(error: dataTransferError)
+                
+                throw resolvedError
+            }
+            
+            throw error
+        }
+    }
+    
+    private func resolve(error: DataTransferError) -> ConvertUrlToVideoCodeUseCaseError {
         
-        let response = dto.data ?? VideoCodeResponseDTO(videoCode: "Unknown error")
-        
-        return response.toDomain()
+        switch error {
+        case .noResponse:
+            return .networkError
+        case .parsing( _ ):
+            return .applicationError
+        default:
+            return .unknownError
+        }
     }
 }

@@ -17,15 +17,15 @@ public final class DefaultNetworkSessionManager: NetworkSessionManager {
     
     public init() { }
     
-    public func request(
-        _ request: URLRequest,
-        completion: @escaping CompletionHandler
-    ) -> NetworkCancellable {
+    /// 콜백 요청
+    public func request(_ request: URLRequest, completion: @escaping CompletionHandler) -> NetworkCancellable {
+        
         let task = URLSession.shared.dataTask(with: request, completionHandler: completion)
         task.resume()
         return task
     }
     
+    /// Async/Await 요청
     public func request(_ request: URLRequest) async throws -> CompletionTuple {
         
         return try await URLSession.shared.data(for: request)

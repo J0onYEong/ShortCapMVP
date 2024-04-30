@@ -4,17 +4,6 @@ import Data
 import RxSwift
 import RxCocoa
 
-enum SFTableViewConfig {
-    static var rowHeight: CGFloat {
-        return 112
-    }
-    
-    static var imageWidth: CGFloat {
-        
-        return 56
-    }
-}
-
 public class SummaryContentListViewController: UIViewController {
     
     // UIViews
@@ -26,17 +15,18 @@ public class SummaryContentListViewController: UIViewController {
         // 스크롤 제거
         view.showsVerticalScrollIndicator = false
         
+        // Cell 간격
         view.separatorStyle = .singleLine
+        view.separatorColor = .clear
         
         return view
     }()
     
-    
     // ViewModel
-    let viewModel: SummaryContentViewModel
+    public let viewModel: VideoTableViewModel
     
     // ViewController
-    init(viewModel: SummaryContentViewModel) {
+    public init(viewModel: VideoTableViewModel) {
         
         self.viewModel = viewModel
         
@@ -49,17 +39,14 @@ public class SummaryContentListViewController: UIViewController {
     
     public override func viewDidLoad() {
         
+        // 오토레이아웃 설정
         setUpAutoLayout()
         
+        // 테이블뷰 설정
         configureTableView()
         
-        viewModel.bindWith(tableView: tableView) { (index: Int, item: VideoCode, cell: SummaryContentRowCell) in
-            
-            cell.setUp(videoCode: item, viewModel: self.viewModel)
-            cell.selectionStyle = .gray
-        }
-        
-        viewModel.fetchList()
+        // 옵저버블과 테이블셀 바인딩
+        viewModel.bindWith(tableView: tableView)
     }
 }
 
@@ -73,8 +60,8 @@ extension SummaryContentListViewController {
         
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 21),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -21),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
@@ -82,7 +69,7 @@ extension SummaryContentListViewController {
     func configureTableView() {
         
         tableView.delegate = self
-        tableView.rowHeight = SFTableViewConfig.rowHeight
+        tableView.rowHeight = VideoTableRowConfig.rowHeight
         
         // Cell registration
         tableView.register(SummaryContentRowCell.self, forCellReuseIdentifier: String(describing: SummaryContentRowCell.self))
@@ -98,7 +85,7 @@ extension SummaryContentListViewController: UITableViewDelegate {
             
             if let detail = cell.videoDetail {
                 
-                let storyboard = UIStoryboard(name: "Main", bundle: .main)
+                let storyboard = UIStoryboard(name: "Main", bundle: Bundle(for: SummaryContentListViewController.self))
                 
                 let destinationVC = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
                 

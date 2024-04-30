@@ -41,9 +41,10 @@ public protocol DataTransferService {
         completion: @escaping CompletionHandler<Void>
     ) -> NetworkCancellable? where E.Response == Void
     
-    
     // MARK: - Swift Concurrency
-    func request<T: Decodable, E: ResponseRequestable>(with endpoint: E) async throws -> T
+    func request<T: Decodable, E: ResponseRequestable>(
+        with endpoint: E
+    ) async throws -> T where E.Response == T
 }
 
 public protocol DataTransferErrorResolver {
@@ -77,6 +78,7 @@ public final class DefaultDataTransferService {
 
 extension DefaultDataTransferService: DataTransferService {
     
+    /// 응답바디 있고, 콜백
     public func request<T: Decodable, E: ResponseRequestable>(
         with endpoint: E,
         on queue: DataTransferDispatchQueue,
@@ -99,6 +101,7 @@ extension DefaultDataTransferService: DataTransferService {
         }
     }
     
+    /// 응답바디 있고, 콜백
     public func request<T: Decodable, E: ResponseRequestable>(
         with endpoint: E,
         completion: @escaping CompletionHandler<T>
@@ -106,6 +109,7 @@ extension DefaultDataTransferService: DataTransferService {
         request(with: endpoint, on: DispatchQueue.main, completion: completion)
     }
 
+    /// 응답바디 없고, 콜백
     public func request<E>(
         with endpoint: E,
         on queue: DataTransferDispatchQueue,
@@ -123,6 +127,7 @@ extension DefaultDataTransferService: DataTransferService {
         }
     }
 
+    /// 응답바디 없고, 콜백
     public func request<E>(
         with endpoint: E,
         completion: @escaping CompletionHandler<Void>
@@ -132,18 +137,31 @@ extension DefaultDataTransferService: DataTransferService {
     
     
     // MARK: - Swift concurrency impl
-    public func request<T, E>(with endpoint: E) async throws -> T where T : Decodable, E : ResponseRequestable {
+    /// 응답바디 있고, Async, Await호출
+    public func request<T: Decodable, E>(with endpoint: E) async throws -> T where E : ResponseRequestable, E.Response == T {
         
-        let data = try await networkService.request(endpoint: endpoint)
-        let result: Result<T, DataTransferError> = decode(data: data, decoder: endpoint.responseDecoder)
-        
-        switch result {
-        case .success(let decoded):
+        do {
+            
+            // NetworkServiceError
+            let data = try await networkService.request(endpoint: endpoint)
+            
+            // DataTransferError
+            let decoded: T = try decode(data: data, decoder: endpoint.responseDecoder)
             
             return decoded
-        case .failure(let failure):
             
-            throw failure
+        } catch {
+            
+            self.errorLogger.log(error: error)
+            
+            if let networkError = error as? NetworkError {
+                
+                // 네트워크 서비스 에러 -> 데이터 트렌스퍼 에러로 리졸브
+                throw self.resolve(networkError: networkError)
+            }
+            
+            // 파싱에러
+            throw error
         }
     }
 
@@ -163,11 +181,20 @@ extension DefaultDataTransferService: DataTransferService {
         }
     }
     
+    private func decode<T: Decodable>(
+        data: Data?,
+        decoder: ResponseDecoder
+    ) throws -> T {
+        
+        guard let data = data else { throw DataTransferError.noResponse }
+        let result: T = try decoder.decode(data: data)
+        
+        return result
+    }
+    
     private func resolve(networkError error: NetworkError) -> DataTransferError {
-        let resolvedError = self.errorResolver.resolve(error: error)
-        return resolvedError is NetworkError
-        ? .networkFailure(error)
-        : .resolvedNetworkFailure(resolvedError)
+        
+        return .networkFailure(error)
     }
 }
 
@@ -176,8 +203,9 @@ public final class DefaultDataTransferErrorLogger: DataTransferErrorLogger {
     public init() { }
     
     public func log(error: Error) {
-        printIfDebug("-------------")
+        printIfDebug("-------------DataTransferErrorLogger-------------")
         printIfDebug("\(error)")
+        printIfDebug("-------------------------------------------------")
     }
 }
 

@@ -9,7 +9,7 @@ public class VideoDetail {
     public var summary: String
     public var address: String
     public var createdAt: String
-    public var platform: String
+    public var platform: VideoPlatform
     public var mainCategory: String
     public var videoCode: String
     
@@ -21,7 +21,7 @@ public class VideoDetail {
         summary: String,
         address: String,
         createdAt: String,
-        platform: String,
+        platform: VideoPlatform,
         mainCategory: String,
         videoCode: String
     ) {
@@ -45,7 +45,7 @@ public class VideoDetail {
         summary: "서버오류",
         address: "서버오류",
         createdAt: "",
-        platform: "서버오류",
+        platform: .youtube,
         mainCategory: "서버오류",
         videoCode: ""
     )

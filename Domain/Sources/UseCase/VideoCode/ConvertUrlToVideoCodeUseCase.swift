@@ -17,6 +17,15 @@ public final class DefaultConvertUrlToVideoCodeUseCase: ConvertUrlToVideoCodeUse
     
     public func execute(url: String) async throws -> VideoCode {
         
-        try await convertUrlRepository.convert(urlString: url)
+        do {
+            
+            let videoCode = try await convertUrlRepository.convert(urlString: url)
+            
+            return videoCode
+            
+        } catch {
+            
+            throw error
+        }
     }
 }

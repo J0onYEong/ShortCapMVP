@@ -1,6 +1,9 @@
 import Foundation
 
-enum VideoTableRowConfig {
+enum VideoCollectionRowConfig {
+    
+    // TableInset
+    static let horizontalInset: CGFloat = 20
     
     // RowHeight
     static let rowHeight: CGFloat = 160

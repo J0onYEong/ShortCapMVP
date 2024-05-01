@@ -3,13 +3,12 @@ import RxSwift
 import RxCocoa
 import Core
 import Domain
-import Data
 
 public protocol VideoTableViewModel {
     
     var rowDataRelay: BehaviorRelay<[VideoCode]> { get set }
     
-    func bindWith(tableView: UITableView)
+    func bindWith(collectionView: UICollectionView)
     
     func fetchList()
 }
@@ -46,19 +45,16 @@ public class DefaultVideoTableViewModel: VideoTableViewModel {
         }
     }
     
-    public func bindWith(
-        tableView: UITableView) {
+    public func bindWith(collectionView: UICollectionView) {
             
-        typealias CellType = SummaryContentRowCell
+        typealias CellType = VideoCollectionViewCell
         
         _ = rowDataRelay
             .observe(on: MainScheduler.instance)
-            .bind(to: tableView.rx.items(cellIdentifier: String(describing: CellType.self),
+            .bind(to: collectionView.rx.items(cellIdentifier: String(describing: CellType.self),
                                          cellType: CellType.self)) { (index: Int, item: VideoCode, cell: CellType) in
                 
                 cell.setUp(videoCode: item, viewModel: self.videoCellViewModel)
-                cell.selectionStyle = .gray
             }
-            
     }
 }

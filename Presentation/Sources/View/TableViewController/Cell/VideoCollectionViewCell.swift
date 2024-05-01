@@ -1,8 +1,8 @@
 import UIKit
 import Domain
-import Kingfisher
+import Core
 
-class SummaryContentRowCell: UITableViewCell {
+class VideoCollectionViewCell: UICollectionViewCell {
     
     var viewModel: VideoCellViewModel!
     
@@ -52,9 +52,8 @@ class SummaryContentRowCell: UITableViewCell {
         return activityIndicator
     }()
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        
-        super.init(style: .default, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: .zero)
         
         setAutoLayout()
     }
@@ -65,20 +64,20 @@ class SummaryContentRowCell: UITableViewCell {
     
     func setAutoLayout() {
         
-        [thumbNailView, titleLabel, activityIndicator].forEach { self.addSubview($0) }
+        [thumbNailView, titleLabel, activityIndicator].forEach { contentView.addSubview($0) }
         
         NSLayoutConstraint.activate([
             
-            thumbNailView.widthAnchor.constraint(equalToConstant: VideoTableRowConfig.thumbNailWidth),
-            thumbNailView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-            thumbNailView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
-            thumbNailView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
+            thumbNailView.widthAnchor.constraint(equalToConstant: VideoCollectionRowConfig.thumbNailWidth),
+            thumbNailView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
+            thumbNailView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
+            thumbNailView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0),
             
             titleLabel.leadingAnchor.constraint(equalTo: thumbNailView.trailingAnchor, constant: 10),
-            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
             
-            activityIndicator.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            activityIndicator.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
         ])
     }
     
@@ -182,44 +181,4 @@ class SummaryContentRowCell: UITableViewCell {
     }
 }
 
-extension UIImageView {
-    
-    func setImage(with urlString: String) {
-        
-        ImageCache.default.retrieveImage(forKey: urlString, options: nil) { result in
-            
-            switch result {
-            case .success(let value):
-                
-                if let image = value.image {
-                    
-                    //캐시가 존재하는 경우
-                    self.image = image
-                    
-                } else {
-                    
-                    //캐시가 존재하지 않는 경우
-                    guard let url = URL(string: urlString) else { return }
-                    
-                    print("kingFisehr: \(urlString)")
-                    
-                    let resource = ImageResource(downloadURL: url, cacheKey: urlString)
-                    
-                    let processor = DownsamplingImageProcessor(size: self.bounds.size)
-                    
-                    self.kf.setImage(
-                        with: resource,
-                        options: [
-                            .processor(processor),
-                            .scaleFactor(UIScreen.main.scale),
-                            .transition(.fade(0.5)),
-                            .cacheOriginalImage,
-                        ]
-                    )
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-}
+

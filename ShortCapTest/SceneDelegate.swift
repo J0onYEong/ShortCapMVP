@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let viewModel = appDelegate.container.resolve(VideoTableViewModel.self)!
         
-        let viewController = SummaryContentListViewController(viewModel: viewModel)
+        let viewController = MainScreenViewController(viewModel: viewModel)
         
         let navigationVC = UINavigationController(rootViewController: viewController)
 
@@ -55,8 +55,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let navigationController = window?.rootViewController as? UINavigationController {
             
             if let targetVC = navigationController.viewControllers.first(where: { vc in
-                type(of: vc) == SummaryContentListViewController.self
-            }) as? SummaryContentListViewController {
+                type(of: vc) == MainScreenViewController.self
+            }) as? MainScreenViewController {
                 
                 targetVC.viewModel.fetchList()
             }

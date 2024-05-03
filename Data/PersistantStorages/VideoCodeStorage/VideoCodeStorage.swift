@@ -3,11 +3,11 @@ import Foundation
 public protocol VideoCodeStorage {
     
     func save(
-        videoCodeDTO: VideoCodeDTO,
-        completion: @escaping (Result<VideoCodeDTO, Error>) -> Void
+        videoCode: String,
+        completion: @escaping (Result<String, Error>) -> Void
     )
     
-    func getResponse(
-        completion: @escaping (Result<[VideoCodeDTO], Error>) -> Void
+    func fetch(
+        completion: @escaping (Result<[String], Error>) -> Void
     )
 }

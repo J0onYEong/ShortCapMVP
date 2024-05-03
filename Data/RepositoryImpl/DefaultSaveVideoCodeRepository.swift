@@ -10,31 +10,25 @@ public final class DefaultSaveVideoCodeRepository: SaveVideoCodeRepository {
         self.storage = storage
     }
     
-    public func save(videoCode: VideoCode, completion: @escaping (VideoCode?) -> Void) {
+    public func save(videoCode: String, completion: @escaping (String?) -> Void) {
         
         // 이미 존재하는지 확인
-        storage.getResponse { result in
+        storage.fetch { result in
             
             switch result {
-            case .success(let localVideoCodeDTOS):
+            case .success(let videoCodes):
                 
-                let filtered = localVideoCodeDTOS.filter { localVideoCodeDTO in
-                    
-                    localVideoCodeDTO.code == videoCode.code
-                }
+                let filtered = videoCodes.filter { $0 == videoCode }
                 
                 // 중복이 없는 경우
                 if filtered.isEmpty {
                     
-                    // 엔티티를 DTO로 변경
-                    let videoCodeDTO = VideoCodeDTO(code: videoCode.code)
-                    
-                    self.storage.save(videoCodeDTO: videoCodeDTO) { result in
+                    self.storage.save(videoCode: videoCode) { result in
                         
                         switch result {
-                        case .success(let videoCodeDTO):
+                        case .success(let videoCode):
                             
-                            completion(VideoCode(code: videoCodeDTO.code))
+                            completion(videoCode)
                             
                         case .failure(let failure):
                             printIfDebug("‼️비디오 코드 저장실패: \(failure) \n \(failure.localizedDescription)")

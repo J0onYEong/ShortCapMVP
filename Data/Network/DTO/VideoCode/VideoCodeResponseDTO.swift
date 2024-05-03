@@ -5,9 +5,4 @@ import Domain
 struct VideoCodeResponseDTO: Decodable {
     
     var videoCode: String?
-    
-    func toDomain() -> VideoCode {
-        
-        VideoCode(code: videoCode ?? "Unknown code")
-    }
 }

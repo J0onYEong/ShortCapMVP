@@ -3,8 +3,8 @@ import Foundation
 public protocol SaveVideoCodeUseCase {
     
     func execute(
-        videoCode: VideoCode,
-        completion: @escaping (VideoCode?) -> Void
+        videoCode: String,
+        completion: @escaping (String?) -> Void
     )
 }
 
@@ -12,7 +12,7 @@ public final class DefaultSaveVideoCodeUseCase: SaveVideoCodeUseCase {
     
     let saveVideoCodeRepository: SaveVideoCodeRepository
     
-    public func execute(videoCode: VideoCode, completion: @escaping (VideoCode?) -> Void) {
+    public func execute(videoCode: String, completion: @escaping (String?) -> Void) {
         
         saveVideoCodeRepository.save(
             videoCode: videoCode,

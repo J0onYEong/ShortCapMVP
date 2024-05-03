@@ -8,16 +8,19 @@ public final class CoreDataVideoCodeStorage: VideoCodeStorage {
         self.coreDataStorage = coreDataStorage
     }
     
-    public func save(videoCodeDTO: VideoCodeDTO, completion: @escaping (Result<VideoCodeDTO, Error>) -> Void) {
+    public func save(videoCode: String, completion: @escaping (Result<String, Error>) -> Void) {
         
         coreDataStorage.performBackgroundTask { context in
             
             do {
-                let _ = videoCodeDTO.toCoreDataEntity(context: context)
+                
+                let entity = VideoCodeEntity(context: context)
+                
+                entity.videoCode = videoCode
                 
                 try context.save()
                 
-                completion(.success(videoCodeDTO))
+                completion(.success(videoCode))
                 
             } catch {
                 
@@ -26,7 +29,7 @@ public final class CoreDataVideoCodeStorage: VideoCodeStorage {
         }
     }
     
-    public func getResponse(completion: @escaping (Result<[VideoCodeDTO], Error>) -> Void) {
+    public func fetch(completion: @escaping (Result<[String], Error>) -> Void) {
         
         coreDataStorage.performBackgroundTask { context in
             
@@ -36,7 +39,7 @@ public final class CoreDataVideoCodeStorage: VideoCodeStorage {
                 
                 let objects = try context.fetch(fetchRequest)
                 
-                let mapped = objects.compactMap { $0.code }.map { VideoCodeDTO(code: $0) }
+                let mapped = objects.compactMap { $0.videoCode }
                 
                 completion(.success(mapped))
                 

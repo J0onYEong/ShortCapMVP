@@ -3,7 +3,7 @@ import Foundation
 public protocol SaveVideoCodeRepository {
     
     func save(
-        videoCode: VideoCode,
-        completion: @escaping (VideoCode?) -> Void
+        videoCode: String,
+        completion: @escaping (String?) -> Void
     )
 }

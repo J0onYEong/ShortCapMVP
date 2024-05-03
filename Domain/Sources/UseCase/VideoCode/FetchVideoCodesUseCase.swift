@@ -2,7 +2,7 @@ import Foundation
 
 public protocol FetchVideoCodesUseCase {
     
-    func execute(completion: @escaping (Result<[VideoCode], Error>) -> Void)
+    func execute(completion: @escaping (Result<[String], Error>) -> Void)
 }
 
 public final class DefaultFetchVideoCodesUseCase: FetchVideoCodesUseCase {
@@ -14,7 +14,7 @@ public final class DefaultFetchVideoCodesUseCase: FetchVideoCodesUseCase {
         self.fetchVideoCodeRepository = fetchVideoCodeRepository
     }
     
-    public func execute(completion: @escaping (Result<[VideoCode], Error>) -> Void) {
+    public func execute(completion: @escaping (Result<[String], Error>) -> Void) {
         
         fetchVideoCodeRepository.fetch(completion: completion)
     }

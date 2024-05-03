@@ -4,7 +4,7 @@ public protocol ConvertUrlToVideoCodeUseCase {
     
     func execute(
         url: String
-    ) async throws -> VideoCode
+    ) async throws -> String
 }
 
 public final class DefaultConvertUrlToVideoCodeUseCase: ConvertUrlToVideoCodeUseCase {
@@ -15,7 +15,7 @@ public final class DefaultConvertUrlToVideoCodeUseCase: ConvertUrlToVideoCodeUse
         self.convertUrlRepository = convertUrlRepository
     }
     
-    public func execute(url: String) async throws -> VideoCode {
+    public func execute(url: String) async throws -> String {
         
         do {
             

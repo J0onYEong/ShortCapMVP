@@ -10,31 +10,24 @@ public class DefaultSummaryProcessRepository: SummaryProcessRepository {
         self.dataTransferService = dataTransferService
     }
     
-    private func checkServerMessage<T>(_ response: ResponseDTOWrapper<T>) throws where T: Decodable {
+    public func state(videoCode: String, completion: @escaping ((Result<VideoSummaryState, Error>) -> Void)) {
         
-        if response.result == "error" {
-            
-            throw SummaryProcessError.serverMessageError(message: response.message ?? "no message")
-        }
-    }
-    
-    public func state(videoCode: VideoCode, completion: @escaping ((Result<VideoSummaryState, Error>) -> Void)) {
-        
-        let endPoint = APIEndpoints.getVideoSummaryState(with: videoCode.code)
+        let endPoint = APIEndpoints.getVideoSummaryState(with: videoCode)
         
         dataTransferService.request(with: endPoint, on: DispatchQueue.global()) { result in
             
             switch result {
             case .success(let responseDTO):
                 
-                do {
-                    try self.checkServerMessage(responseDTO)
+                if let videoState = responseDTO.data?.toDomain() {
                     
-                    completion(.success(responseDTO.data?.toDomain() ?? .init(status: .processing, videoId: -1)))
-                    
-                } catch { completion(.failure(error)) }
+                    return completion(.success(videoState))
+                }
+                
+                completion(.failure(SummaryProcessError.unknownError))
                                                                                
             case .failure(let failure):
+                
                 completion(.failure(failure))
             }
         }
@@ -49,12 +42,12 @@ public class DefaultSummaryProcessRepository: SummaryProcessRepository {
             switch result {
             case .success(let responseDTO):
                 
-                do {
-                    try self.checkServerMessage(responseDTO)
+                if let videoDetail = responseDTO.data?.toDomain() {
                     
-                    completion(.success(responseDTO.data?.toDomain() ?? VideoDetail.mock))
-                    
-                } catch { completion(.failure(error)) }
+                    return completion(.success(videoDetail))
+                }
+                
+                completion(.failure(SummaryProcessError.unknownError))
                                                                                
             case .failure(let failure):
                 completion(.failure(failure))

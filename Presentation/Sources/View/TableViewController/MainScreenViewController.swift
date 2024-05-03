@@ -93,7 +93,7 @@ extension MainScreenViewController: UICollectionViewDelegateFlowLayout {
         
         if let cell = collectionView.cellForItem(at: indexPath) as? VideoCollectionViewCell {
             
-            if let detail = cell.videoDetail {
+            if let detail = cell.viewModel.videoDetail {
                 
                 let storyboard = UIStoryboard(name: "Main", bundle: Bundle(for: MainScreenViewController.self))
                 
@@ -110,13 +110,5 @@ extension MainScreenViewController: UICollectionViewDelegateFlowLayout {
         
         // Cell width를 컬랙션뷰와 같게한다 = 1열로 고정
         .init(width: collectionView.bounds.width-VideoCollectionRowConfig.horizontalInset*2, height: VideoCollectionRowConfig.rowHeight)
-    }
-    
-    public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        
-        if let rowCell = cell as? VideoCollectionViewCell {
-            
-            rowCell.getDetail()
-        }
     }
 }

@@ -2,5 +2,5 @@ import Foundation
 
 public protocol FetchVideoCodesRepository {
     
-    func fetch(completion: @escaping (Result<[VideoCode], Error>) -> Void)
+    func fetch(completion: @escaping (Result<[String], Error>) -> Void)
 }

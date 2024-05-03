@@ -20,8 +20,6 @@ public extension UIImageView {
                     //캐시가 존재하지 않는 경우
                     guard let url = URL(string: urlString) else { return }
                     
-                    print("kingFisehr: \(urlString)")
-                    
                     let resource = ImageResource(downloadURL: url, cacheKey: urlString)
                     
                     let processor = DownsamplingImageProcessor(size: self.bounds.size)

@@ -38,7 +38,7 @@ class ActionViewModel {
         self.urlValidationUseCase = urlValidationUseCase
     }
 
-    func validateAndSaveUrl(urlStr: String, completion: @escaping (Result<VideoCode, Error>) -> Void) {
+    func validateAndSaveUrl(urlStr: String, completion: @escaping (Result<String, Error>) -> Void) {
         
         // 유효한 url인지 확인하기
         guard urlValidationUseCase.excute(url: urlStr) else {
@@ -55,12 +55,12 @@ class ActionViewModel {
                 
                 let videoCode = try await convertUrlUseCase.execute(url: urlStr)
                 
-                printIfDebug("✅획득코드: \(videoCode.code)")
+                printIfDebug("✅획득코드: \(videoCode)")
                 
                 // 획득한 코드를 저장
                 saveVideoCodeUseCase.execute(videoCode: videoCode) { viedoCode in
                     
-                    printIfDebug("✅저장된 비디오 코드: \(videoCode.code)")
+                    printIfDebug("✅저장된 비디오 코드: \(videoCode)")
                     
                     return completion(.success(videoCode))
                 }

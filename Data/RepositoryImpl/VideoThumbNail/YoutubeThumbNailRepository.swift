@@ -1,7 +1,7 @@
 import Domain
 import Core
 
-public class YoutubeThumbNailRepository: VideoThumbNailRepository {
+public class YoutubeThumbNailRepository: FetchThumbNailRepository {
     
     let dataTransferService: DataTransferService
     
@@ -9,9 +9,9 @@ public class YoutubeThumbNailRepository: VideoThumbNailRepository {
         self.dataTransferService = dataTransferService
     }
     
-    public func fetch(videoId: String, screenScale: CGFloat) async throws -> VideoThumbNailInformation {
+    public func fetch(videoIdForPlatform: String, screenScale: CGFloat) async throws -> VideoThumbNailInformation {
                 
-        let endPoint = APIEndpoints.getYoutubeThumbNail(youtubeVideoId: videoId)
+        let endPoint = APIEndpoints.getYoutubeThumbNail(youtubeVideoId: videoIdForPlatform)
         
         let dto = try await dataTransferService.request(with: endPoint)
         

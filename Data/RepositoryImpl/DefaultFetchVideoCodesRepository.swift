@@ -9,14 +9,14 @@ public final class DefaultFetchVideoCodesRepository: FetchVideoCodesRepository {
         self.storage = storage
     }
     
-    public func fetch(completion: @escaping (Result<[VideoCode], Error>) -> Void) {
+    public func fetch(completion: @escaping (Result<[String], Error>) -> Void) {
         
-        storage.getResponse { result in
+        storage.fetch { result in
             
             switch result {
             case .success(let videoCodes):
                 
-                completion(.success(videoCodes.map { $0.toDomain() }))
+                completion(.success(videoCodes))
                 
             case .failure(let failure):
                 

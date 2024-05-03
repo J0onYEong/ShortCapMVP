@@ -1,16 +1,11 @@
 import UIKit
 import Domain
+import RxSwift
 import Core
 
 class VideoCollectionViewCell: UICollectionViewCell {
     
     var viewModel: VideoCellViewModel!
-    
-    private var videoCode: VideoCode!
-    
-    var videoDetail: VideoDetail?
-    
-    private var fetchingTask: Task<Void, Never>?
     
     // View
     let thumbNailView: UIImageView = {
@@ -52,6 +47,8 @@ class VideoCollectionViewCell: UICollectionViewCell {
         return activityIndicator
     }()
     
+    let disposeBag: DisposeBag = .init()
+    
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
@@ -81,98 +78,48 @@ class VideoCollectionViewCell: UICollectionViewCell {
         ])
     }
     
-    func setUp(videoCode: VideoCode, viewModel: VideoCellViewModel) {
+    /// Cell이 컬랙션 뷰에 추가될 시 호출
+    func setUp(viewModel: VideoCellViewModel) {
         
         self.viewModel = viewModel
-        self.videoCode = videoCode
+        
+        startShowingIndicator()
+        
+        viewModel.videoDetailRelay
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { detail in
+                
+                self.titleLabel.text = detail.title
+                
+                self.stopShowingIndicator()
+            })
+            .disposed(by: disposeBag)
+        
+        
+        viewModel.thumbNailUrlRelay
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { urlStr in
+                
+                self.thumbNailView.setImage(with: urlStr)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.fetchDetail()
     }
     
+    /// 셀이 재사용 대기를 하며 호출
     override func prepareForReuse() {
         
-        fetchingTask?.cancel()
-        videoDetail = nil
-        videoCode = nil
         titleLabel.text = ""
         
         stopShowingIndicator()
+        
+        viewModel = nil
     }
     
-    func getDetail() {
-        
-        if videoDetail == nil {
-            
-            // 인디케이터 시작
-            startShowingIndicator()
-            
-            fetchingTask = Task {
-                
-                self.viewModel.fetchDetailForRow(videoCode: videoCode) { result in
-                    
-                    switch result {
-                    case .success(let videoDetail):
-                        
-                        DispatchQueue.main.async {
-                            
-                            self.videoDetail = videoDetail
-                            self.updateUI()
-                            
-                            // 인디케이터 종료
-                            self.stopShowingIndicator()
-                            
-                            // 썸네일 업데이트
-                            self.updateThumbNail(videoDetail: videoDetail)
-                        }
-                        
-                    case .failure(let failure):
-                        
-                        print("Cell, 디테일 데이터 가져오가 실패: \(failure.localizedDescription)")
-                    }
-                }
-            }
-        }
-    }
+    func startShowingIndicator() { activityIndicator.startAnimating() }
     
-    func updateUI() {
-        
-        titleLabel.text = self.videoDetail?.title
-    }
-    
-    func startShowingIndicator() {
-        
-        activityIndicator.startAnimating()
-    }
-    
-    func stopShowingIndicator() {
-        
-        activityIndicator.stopAnimating()
-    }
-    
-    func updateThumbNail(videoDetail: VideoDetail) {
-        
-        if videoDetail.platform != .youtube { return }
-        
-        let videoInfo = VideoInformation(url: videoDetail.url, platform: videoDetail.platform)
-        
-        viewModel.fetchThumbNail(videoInfo: videoInfo) { result in
-            
-            switch result {
-            case .success(let thumbNailInfo):
-                
-                let urlString = thumbNailInfo.url
-                
-                print("✅ 비디오 썸네일 가져오기 성공: \(urlString)")
-                
-                OperationQueue.main.addOperation {
-                    
-                    self.thumbNailView.setImage(with: urlString)
-                }
-                
-            case .failure(let failure):
-                
-                print("썸네일 가져오기 실패, \(failure)")
-            }
-        }
-    }
+    func stopShowingIndicator() { activityIndicator.stopAnimating() }
     
     override func layoutSubviews() {
         super.layoutSubviews()

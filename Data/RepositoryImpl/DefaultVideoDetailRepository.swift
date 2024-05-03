@@ -1,5 +1,6 @@
 import Foundation
 import Domain
+import Core
 
 public final class DefaultVideoDetailRepository: VideoDetailLocalRepository {
     
@@ -10,9 +11,8 @@ public final class DefaultVideoDetailRepository: VideoDetailLocalRepository {
     }
     
     public func save(
-        videoCode: VideoCode,
         detail: VideoDetail,
-        completion: @escaping (Result<Domain.VideoDetail, Error>) -> Void) {
+        completion: @escaping (Bool) -> Void) {
         
         let detailDto = VideoDetailDTO(
             title: detail.title,
@@ -26,41 +26,32 @@ public final class DefaultVideoDetailRepository: VideoDetailLocalRepository {
             mainCategory: detail.mainCategory,
             videoCode: detail.videoCode
         )
-        
-        let codeDto = VideoCodeDTO(code: videoCode.code)
             
-        storage.save(
-            videoCode: codeDto,
-            detail: detailDto) { result in
+        storage.save(detail: detailDto) { result in
             
             switch result {
-            case .success(let dto):
+            case .success(_):
                 
-                completion(.success(dto.toDomain()))
-            case .failure(let failure):
+                completion(true)
+            case .failure(_):
                 
-                completion(.failure(failure))
+                completion(false)
             }
         }
     }
     
-    public func fetch(videoCode: VideoCode, completion: @escaping (Result<VideoDetail, Error>) -> Void) {
+    public func fetch(videoCode: String, completion: @escaping (Result<VideoDetail?, Error>) -> Void) {
         
-        storage.fetch(videoCode: VideoCodeDTO(code: videoCode.code)) { result in
+        storage.fetch(videoCode: videoCode) { result in
             
             switch result {
             case .success(let detailDTO):
-                if let dto = detailDTO {
-                    
-                    completion(.success(dto.toDomain()))
-                } else {
-                    
-                    completion(.failure(FetchVideoDetailFromLocalError.dataNotFound))
-                }
                 
-            case .failure(let failure):
+                completion(.success(detailDTO?.toDomain()))
                 
-                completion(.failure(failure))
+            case .failure(let error):
+                
+                completion(.failure(error))
             }
         }
     }

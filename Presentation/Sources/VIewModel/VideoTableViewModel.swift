@@ -6,7 +6,7 @@ import Domain
 
 public protocol VideoTableViewModel {
     
-    var rowDataRelay: BehaviorRelay<[VideoCode]> { get set }
+    var rowDataRelay: BehaviorRelay<[String]> { get set }
     
     func bindWith(collectionView: UICollectionView)
     
@@ -16,16 +16,16 @@ public protocol VideoTableViewModel {
 public class DefaultVideoTableViewModel: VideoTableViewModel {
     
     let fetchVideoCodeUseCase: FetchVideoCodesUseCase
-    let videoCellViewModel: VideoCellViewModel
+    let cellVMFactory: VideoCellViewModelFactory
     
-    public var rowDataRelay: BehaviorRelay<[VideoCode]> = BehaviorRelay(value: [])
+    public var rowDataRelay: BehaviorRelay<[String]> = BehaviorRelay(value: [])
     
     public init(
         fetchVideoCodeUseCase: FetchVideoCodesUseCase,
-        videoCellViewModel: VideoCellViewModel
+        cellVMFactory: VideoCellViewModelFactory
     ) {
         self.fetchVideoCodeUseCase = fetchVideoCodeUseCase
-        self.videoCellViewModel = videoCellViewModel
+        self.cellVMFactory = cellVMFactory
     }
     
     public func fetchList() {
@@ -52,9 +52,11 @@ public class DefaultVideoTableViewModel: VideoTableViewModel {
         _ = rowDataRelay
             .observe(on: MainScheduler.instance)
             .bind(to: collectionView.rx.items(cellIdentifier: String(describing: CellType.self),
-                                         cellType: CellType.self)) { (index: Int, item: VideoCode, cell: CellType) in
+                                         cellType: CellType.self)) { (index: Int, item: String, cell: CellType) in
                 
-                cell.setUp(videoCode: item, viewModel: self.videoCellViewModel)
+                let vm = self.cellVMFactory.create(item: item)
+                
+                cell.setUp(viewModel: vm)
             }
     }
 }

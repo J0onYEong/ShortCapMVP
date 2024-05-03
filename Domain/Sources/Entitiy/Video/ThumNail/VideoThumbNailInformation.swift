@@ -1,4 +1,5 @@
 
+/// 화면에 표시할 비디오 정보를 서버로 부터 가져올 때 사용하는 엔티티입니다.
 public class VideoThumbNailInformation {
     
     public let url: String

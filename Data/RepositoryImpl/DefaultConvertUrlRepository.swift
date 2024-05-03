@@ -10,7 +10,7 @@ public class DefaultConvertUrlRepository: ConvertUrlRepository {
         self.dataTransferService = dataTransferService
     }
     
-    public func convert(urlString: String, completion: @escaping (Result<VideoCode, Error>) -> Void) {
+    public func convert(urlString: String, completion: @escaping (Result<String, Error>) -> Void) {
         
         let endPoint = APIEndpoints.getVideoCode(with: VideoCodeRequestDTO(url: urlString, categoryId: nil, categoryIncluded: false))
         
@@ -19,9 +19,9 @@ public class DefaultConvertUrlRepository: ConvertUrlRepository {
             switch result {
             case .success(let responseDTO):
                 
-                guard let innerDTO = responseDTO.data else { return completion(.success(VideoCode(code: "Error code"))) }
+                guard let videoCode = responseDTO.data?.videoCode else { return completion(.success("Error code")) }
                 
-                completion(.success(innerDTO.toDomain()))
+                completion(.success(videoCode))
                 
             case .failure(let failure):
                 completion(.failure(failure))
@@ -29,7 +29,7 @@ public class DefaultConvertUrlRepository: ConvertUrlRepository {
         }
     }
     
-    public func convert(urlString: String) async throws -> VideoCode {
+    public func convert(urlString: String) async throws -> String {
         
         let endPoint = APIEndpoints.getVideoCode(with: VideoCodeRequestDTO(url: urlString, categoryId: nil, categoryIncluded: false))
         
@@ -37,9 +37,9 @@ public class DefaultConvertUrlRepository: ConvertUrlRepository {
             
             let dto: ResponseDTOWrapper<VideoCodeResponseDTO> = try await dataTransferService.request(with: endPoint)
             
-            guard let response = dto.data else { throw ConvertUrlToVideoCodeUseCaseError.networkError }
+            guard let videoCode = dto.data?.videoCode else { throw ConvertUrlToVideoCodeUseCaseError.networkError }
             
-            return response.toDomain()
+            return videoCode
             
         } catch {
             

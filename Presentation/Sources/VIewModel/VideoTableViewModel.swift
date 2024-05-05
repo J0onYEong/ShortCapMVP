@@ -6,7 +6,7 @@ import Domain
 
 public protocol VideoTableViewModel {
     
-    var rowDataRelay: BehaviorRelay<[String]> { get set }
+    var rowDataRelay: BehaviorRelay<[String]> { get }
     
     func bindWith(collectionView: UICollectionView)
     
@@ -18,7 +18,7 @@ public class DefaultVideoTableViewModel: VideoTableViewModel {
     let fetchVideoCodeUseCase: FetchVideoCodesUseCase
     let cellVMFactory: VideoCellViewModelFactory
     
-    public var rowDataRelay: BehaviorRelay<[String]> = BehaviorRelay(value: [])
+    public let rowDataRelay: BehaviorRelay<[String]> = BehaviorRelay(value: [])
     
     public init(
         fetchVideoCodeUseCase: FetchVideoCodesUseCase,
@@ -46,13 +46,13 @@ public class DefaultVideoTableViewModel: VideoTableViewModel {
     }
     
     public func bindWith(collectionView: UICollectionView) {
-            
+        
         typealias CellType = VideoCollectionViewCell
         
         _ = rowDataRelay
-            .observe(on: MainScheduler.instance)
-            .bind(to: collectionView.rx.items(cellIdentifier: String(describing: CellType.self),
-                                         cellType: CellType.self)) { (index: Int, item: String, cell: CellType) in
+            .asDriver()
+            .drive(collectionView.rx.items(cellIdentifier: String(describing: CellType.self),
+                                           cellType: CellType.self)) { (index: Int, item: String, cell: CellType) in
                 
                 cell.setUp(viewModel: self.cellVMFactory.create(item: item))
             }

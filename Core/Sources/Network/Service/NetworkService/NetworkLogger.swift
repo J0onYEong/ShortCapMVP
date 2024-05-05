@@ -35,10 +35,6 @@ public final class DefaultNetworkErrorLogger: NetworkErrorLogger {
 
 public func printIfDebug(_ string: String) {
     #if Device_Debug || Local_Debug
-    print(string)
-    #elseif Release
-    print("Release")
-    #else
-    print("알수없는 Config: \(string)")
+    print("Device_Debug: \(string)")
     #endif
 }

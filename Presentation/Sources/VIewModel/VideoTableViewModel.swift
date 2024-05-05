@@ -54,9 +54,7 @@ public class DefaultVideoTableViewModel: VideoTableViewModel {
             .bind(to: collectionView.rx.items(cellIdentifier: String(describing: CellType.self),
                                          cellType: CellType.self)) { (index: Int, item: String, cell: CellType) in
                 
-                let vm = self.cellVMFactory.create(item: item)
-                
-                cell.setUp(viewModel: vm)
+                cell.setUp(viewModel: self.cellVMFactory.create(item: item))
             }
     }
 }

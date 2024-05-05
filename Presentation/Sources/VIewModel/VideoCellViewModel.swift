@@ -42,19 +42,15 @@ public class DefaultVideoCellViewModelFactory: VideoCellViewModelFactory {
     }
 }
 
-
 public class VideoCellViewModel {
     
     private var videoCode: String
-    private var videoId: Int?
-    
-    public var onNetworkError: (() -> Void)?
+    public var videoDetail: VideoDetail?
     
     // Ovservables
-    public let videoDetailRelay: PublishRelay<VideoDetail> = .init()
-    public let thumbNailUrlRelay: PublishRelay<String> = .init()
+    public let videoDetailSubject: PublishSubject<VideoDetail> = .init()
+    public let thumbNailUrlSubject: PublishSubject<String> = .init()
     
-    public var videoDetail: VideoDetail?
     private let summaryStateSubject: PublishSubject<VideoSummaryState> = .init()
     
     public let disposebag: DisposeBag = .init()
@@ -78,8 +74,6 @@ public class VideoCellViewModel {
         self.fetchVideoDetailUseCase = fetchVideoDetailUseCase
         self.saveVideoDetailUseCase = saveVideoDetailUseCase
         self.videoThumbNailUseCase = videoThumbNailUseCase
-        
-        stateSub()
     }
     
     deinit {
@@ -87,7 +81,7 @@ public class VideoCellViewModel {
         printIfDebug("cell ViewModel deinit")
     }
     
-    private func stateSub() {
+    private func makeSubscription() {
         
         summaryStateSubject
             .subscribe(
@@ -95,7 +89,7 @@ public class VideoCellViewModel {
                     
                     if state.status == .complete {
                         
-                        self.videoId = state.videoId
+                        self.fetchDetail(videoId: state.videoId)
                         self.summaryStateSubject.onCompleted()
                         
                         return
@@ -105,48 +99,52 @@ public class VideoCellViewModel {
                         
                         self.checkSummaryState(videoCode: self.videoCode)
                     }
-                },
-                onCompleted: {
-                    
-                    // 요약완료, 디데일정보 가져오기 시작
-                    self.fetchDetail(videoId: self.videoId!)
                 }
             )
             .disposed(by: disposebag)
         
-        videoDetailRelay
+        /// 내부처리를 위한 부분으로 백그라운드에서 실행된다.
+        videoDetailSubject
             .subscribe(
                 onNext: { detail in
                     
+                    // 내부적으로 값을 저장합니다.
                     self.videoDetail = detail
                     
+                    // 디테일 정보를 바탕으로 썸네일을 가져옵니다.
                     self.fetchThumbNail(url: detail.url, platform: detail.platform)
+                },
+                onError: { error in
+                        
+                    // Network Error발생시 내부처리
+                    
                 })
             .disposed(by: disposebag)
     }
 
-    /// #1. 로컬저장소 요청
+    /// #1. 로컬저장소로부터 디테일 정보를 요청하는 것을 가장먼저 수행
     public func fetchDetail() {
+        
+        self.makeSubscription()
         
         fetchVideoDetailUseCase.cache(videoCode: videoCode) { result in
             
             switch result {
             case .success(let videoDetail):
                 
-                if let videoDetail {
+                self.videoDetailSubject
+                    .onNext(videoDetail)
+                
+            case .failure(let error):
+                
+                if let ucError = error as? FetchVideoDetailUseCaseError {
                     
-                    self.videoDetailRelay
-                        .accept(videoDetail)
-                    
-                    return
+                    // 요약 상태 확인 시작
+                    return self.checkSummaryState(videoCode: self.videoCode)
                 }
                 
-                // 요약 상태 확인 시작
-                self.checkSummaryState(videoCode: self.videoCode)
-                
-            case .failure(_):
-                
-                self.onNetworkError?()
+                self.videoDetailSubject
+                    .onError(error)
             }
         }
     }
@@ -164,16 +162,18 @@ public class VideoCellViewModel {
                     printIfDebug(isSuccess ? "비디오 디테일 저장성공" : "비디오 디테일 저장실패")
                 }
                 
-                self.videoDetailRelay
-                    .accept(videoDetail)
+                self.videoDetailSubject
+                    .onNext(videoDetail)
                 
-            case .failure(_):
+            case .failure(let error):
                 
-                self.onNetworkError?()
+                self.videoDetailSubject
+                    .onError(error)
             }
         }
     }
     
+    /// 요약 상태 확인
     private func checkSummaryState(videoCode: String) {
         
         checkSummaryStateUseCase
@@ -185,9 +185,10 @@ public class VideoCellViewModel {
                     self.summaryStateSubject
                         .onNext(state)
                     
-                case .failure(_):
+                case .failure(let error):
                         
-                    self.onNetworkError?()
+                    self.videoDetailSubject
+                        .onError(error)
                 }
             }
     }
@@ -201,8 +202,8 @@ extension VideoCellViewModel {
             
             if let url = videoThumbNailUseCase.fetchFromLocal(videoCode: videoCode) {
                 
-                thumbNailUrlRelay
-                    .accept(url)
+                self.thumbNailUrlSubject
+                    .onNext(url)
                 
                 return
             }
@@ -213,15 +214,16 @@ extension VideoCellViewModel {
                 
                 let thumbNailInfo = try await videoThumbNailUseCase.fetch(videoInfo: videoInfo, screenScale: UIScreen.main.scale)
                 
-                thumbNailUrlRelay
-                    .accept(thumbNailInfo.url)
+                thumbNailUrlSubject
+                    .onNext(thumbNailInfo.url)
                 
                 // 썸네일 주소 저장
                 videoThumbNailUseCase.save(videoCode: videoCode, url: thumbNailInfo.url)
                 
             } catch {
                 
-                printIfDebug("썸네일을 가져오는 도중 문제발생 url: \(url)")
+                self.thumbNailUrlSubject
+                    .onError(error)
             }
         }
     }

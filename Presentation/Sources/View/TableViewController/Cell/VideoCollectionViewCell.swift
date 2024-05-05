@@ -1,6 +1,7 @@
 import UIKit
 import Domain
 import RxSwift
+import RxCocoa
 import Core
 
 class VideoCollectionViewCell: UICollectionViewCell {
@@ -85,9 +86,14 @@ class VideoCollectionViewCell: UICollectionViewCell {
         
         startShowingIndicator()
         
-        viewModel.videoDetailRelay
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { detail in
+        viewModel.videoDetailSubject
+            .asDriver(onErrorRecover: { error in
+                
+                // TODO: Detail을 가져오는 도중 에러발생, UI처리
+                
+                return Driver.just(.mock)
+            })
+            .drive(onNext: { detail in
                 
                 self.titleLabel.text = detail.title
                 
@@ -95,10 +101,14 @@ class VideoCollectionViewCell: UICollectionViewCell {
             })
             .disposed(by: disposeBag)
         
-        
-        viewModel.thumbNailUrlRelay
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { urlStr in
+        viewModel.thumbNailUrlSubject
+            .asDriver(onErrorRecover: { error in
+                
+                // TODO: 기본 이미지 제공
+                
+                return Driver.just("")
+            })
+            .drive(onNext: { urlStr in
                 
                 self.thumbNailView.setImage(with: urlStr)
             })

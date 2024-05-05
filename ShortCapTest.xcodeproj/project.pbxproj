@@ -72,7 +72,6 @@
 		9B4A83AD2BD50CC400614160 /* FetchVideoCodesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83AC2BD50CC400614160 /* FetchVideoCodesUseCase.swift */; };
 		9B4A83AF2BD50E1900614160 /* FetchVideoCodeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83AE2BD50E1900614160 /* FetchVideoCodeRepository.swift */; };
 		9B4A83B12BD50E9D00614160 /* DefaultFetchVideoCodesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83B02BD50E9D00614160 /* DefaultFetchVideoCodesRepository.swift */; };
-		9B4A83B42BD5102100614160 /* VideoDetailUseCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83B32BD5102100614160 /* VideoDetailUseCases.swift */; };
 		9B4A83B62BD510CA00614160 /* VideoDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83B52BD510CA00614160 /* VideoDetail.swift */; };
 		9B4A83B82BD5112700614160 /* SummaryProcessRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83B72BD5112700614160 /* SummaryProcessRepository.swift */; };
 		9B4A83BA2BD5120000614160 /* VideoSummaryState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83B92BD5120000614160 /* VideoSummaryState.swift */; };
@@ -119,6 +118,9 @@
 		9B8E7BE22B9496D6001F3D88 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E7BE12B9496D6001F3D88 /* SceneDelegate.swift */; };
 		9B8E7BE92B9496D9001F3D88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B8E7BE82B9496D9001F3D88 /* Assets.xcassets */; };
 		9B8E7BEC2B9496D9001F3D88 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B8E7BEA2B9496D9001F3D88 /* LaunchScreen.storyboard */; };
+		9B9B28322BE7552F000134E3 /* CheckSummaryStateUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9B28312BE7552F000134E3 /* CheckSummaryStateUseCase.swift */; };
+		9B9B28342BE7553C000134E3 /* FetchVideoDetailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9B28332BE7553C000134E3 /* FetchVideoDetailUseCase.swift */; };
+		9B9B28362BE75545000134E3 /* SaveVideoDetailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9B28352BE75545000134E3 /* SaveVideoDetailUseCase.swift */; };
 		9B9E6F642BC3D6E6005DB13B /* SaveVideoCodeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9E6F632BC3D6E6005DB13B /* SaveVideoCodeUseCase.swift */; };
 		9B9E6F6C2BC3DA4A005DB13B /* SaveVideoCodeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9E6F6B2BC3DA4A005DB13B /* SaveVideoCodeRepository.swift */; };
 		9B9E6F722BC3DBAF005DB13B /* DefaultSaveVideoCodeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9E6F712BC3DBAF005DB13B /* DefaultSaveVideoCodeRepository.swift */; };
@@ -344,7 +346,6 @@
 		9B4A83AC2BD50CC400614160 /* FetchVideoCodesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchVideoCodesUseCase.swift; sourceTree = "<group>"; };
 		9B4A83AE2BD50E1900614160 /* FetchVideoCodeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchVideoCodeRepository.swift; sourceTree = "<group>"; };
 		9B4A83B02BD50E9D00614160 /* DefaultFetchVideoCodesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultFetchVideoCodesRepository.swift; sourceTree = "<group>"; };
-		9B4A83B32BD5102100614160 /* VideoDetailUseCases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailUseCases.swift; sourceTree = "<group>"; };
 		9B4A83B52BD510CA00614160 /* VideoDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetail.swift; sourceTree = "<group>"; };
 		9B4A83B72BD5112700614160 /* SummaryProcessRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryProcessRepository.swift; sourceTree = "<group>"; };
 		9B4A83B92BD5120000614160 /* VideoSummaryState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoSummaryState.swift; sourceTree = "<group>"; };
@@ -389,6 +390,9 @@
 		9B8E7C022B949E05001F3D88 /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
 		9B8E7C312B94F3E2001F3D88 /* ShortCapTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShortCapTest.entitlements; sourceTree = "<group>"; };
 		9B8E7C342B94F7B4001F3D88 /* ShortCapTest */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ShortCapTest; sourceTree = "<group>"; };
+		9B9B28312BE7552F000134E3 /* CheckSummaryStateUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckSummaryStateUseCase.swift; sourceTree = "<group>"; };
+		9B9B28332BE7553C000134E3 /* FetchVideoDetailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchVideoDetailUseCase.swift; sourceTree = "<group>"; };
+		9B9B28352BE75545000134E3 /* SaveVideoDetailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveVideoDetailUseCase.swift; sourceTree = "<group>"; };
 		9B9E6F632BC3D6E6005DB13B /* SaveVideoCodeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveVideoCodeUseCase.swift; sourceTree = "<group>"; };
 		9B9E6F6B2BC3DA4A005DB13B /* SaveVideoCodeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveVideoCodeRepository.swift; sourceTree = "<group>"; };
 		9B9E6F712BC3DBAF005DB13B /* DefaultSaveVideoCodeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSaveVideoCodeRepository.swift; sourceTree = "<group>"; };
@@ -752,7 +756,9 @@
 		9B4A83B22BD5101000614160 /* VideoDetail */ = {
 			isa = PBXGroup;
 			children = (
-				9B4A83B32BD5102100614160 /* VideoDetailUseCases.swift */,
+				9B9B28312BE7552F000134E3 /* CheckSummaryStateUseCase.swift */,
+				9B9B28332BE7553C000134E3 /* FetchVideoDetailUseCase.swift */,
+				9B9B28352BE75545000134E3 /* SaveVideoDetailUseCase.swift */,
 			);
 			path = VideoDetail;
 			sourceTree = "<group>";
@@ -1402,14 +1408,16 @@
 				9B4A83B62BD510CA00614160 /* VideoDetail.swift in Sources */,
 				9B4A83702BD0C04E00614160 /* Network.swift in Sources */,
 				9B4A83AD2BD50CC400614160 /* FetchVideoCodesUseCase.swift in Sources */,
+				9B9B28342BE7553C000134E3 /* FetchVideoDetailUseCase.swift in Sources */,
 				9B3E83372BDF603F00CF61D1 /* VideoThumbNailQuality.swift in Sources */,
 				9B3E83392BDF631500CF61D1 /* FetchThumbNailRepository.swift in Sources */,
 				9B4A83B82BD5112700614160 /* SummaryProcessRepository.swift in Sources */,
 				9B0F97FB2BE368A6005FF1FE /* LocalThumbNailSourceRepository.swift in Sources */,
 				9B3E832D2BDF5CD400CF61D1 /* ThumbNailUseCase.swift in Sources */,
 				9B4A83BA2BD5120000614160 /* VideoSummaryState.swift in Sources */,
+				9B9B28322BE7552F000134E3 /* CheckSummaryStateUseCase.swift in Sources */,
 				9B4A83662BD0BAF100614160 /* UrlValidationUseCase.swift in Sources */,
-				9B4A83B42BD5102100614160 /* VideoDetailUseCases.swift in Sources */,
+				9B9B28362BE75545000134E3 /* SaveVideoDetailUseCase.swift in Sources */,
 				9B4A83932BD403A400614160 /* ConvertUrlRepository.swift in Sources */,
 				9B9E6F642BC3D6E6005DB13B /* SaveVideoCodeUseCase.swift in Sources */,
 				9B9E6F6C2BC3DA4A005DB13B /* SaveVideoCodeRepository.swift in Sources */,

@@ -28,8 +28,14 @@ public class DefaultVideoThumbNailUseCase: VideoThumbNailUseCase {
             guard let videoId = extractYouTubeID(target: videoUrl) else { fatalError() }
             
             return try await youtubeRepository.fetch(videoIdForPlatform: videoId, screenScale: screenScale)
+            
         default:
-            fatalError("해당 플랫폼의 구현이 아직 진행되지 않았음")
+            
+            #if Device_Debug
+            print("썸네일을 가져오는 도중 문제발생 url: \(videoInfo.url)")
+            #endif
+            
+            throw VideoThumbNailUseCaseError.notImplemented
         }
     }
     
@@ -54,4 +60,9 @@ public class DefaultVideoThumbNailUseCase: VideoThumbNailUseCase {
         
         return (target as NSString).substring(with: match.range)
     }
+}
+
+public enum VideoThumbNailUseCaseError: Error {
+    
+    case notImplemented
 }

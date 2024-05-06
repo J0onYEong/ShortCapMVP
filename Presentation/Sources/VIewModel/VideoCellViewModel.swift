@@ -1,230 +1,271 @@
-import Foundation
-import Domain
-import Core
 import UIKit
 import RxCocoa
 import RxSwift
+import Kingfisher
 
-public protocol VideoCellViewModelFactory {
+import Domain
+
+public protocol VideoCellViewModel {
     
-    func create(item: String) -> VideoCellViewModel
+    var videoIdentity: VideoIdentity { get }
+    var detail: VideoDetail! { get }
+    
+    var detailSubject: ReplaySubject<VideoDetail> { get }
+    var thumbNailSubject: ReplaySubject<UIImage> { get }
+    
+    func fetchDetailAndThumbNail()
 }
 
-public class DefaultVideoCellViewModelFactory: VideoCellViewModelFactory {
+public final class DefaultVideoCellViewModel: VideoCellViewModel {
     
-    private let checkSummaryStateUseCase: CheckSummaryStateUseCase
-    private let fetchVideoDetailUseCase: FetchVideoDetailUseCase
-    private let saveVideoDetailUseCase: SaveVideoDetailUseCase
-
-    private let videoThumbNailUseCase: VideoThumbNailUseCase
-    
-    public init(
-        checkSummaryStateUseCase: CheckSummaryStateUseCase,
-        fetchVideoDetailUseCase: FetchVideoDetailUseCase,
-        saveVideoDetailUseCase: SaveVideoDetailUseCase,
-        videoThumbNailUseCase: VideoThumbNailUseCase
-    ) {
-        self.checkSummaryStateUseCase = checkSummaryStateUseCase
-        self.fetchVideoDetailUseCase = fetchVideoDetailUseCase
-        self.saveVideoDetailUseCase = saveVideoDetailUseCase
-        self.videoThumbNailUseCase = videoThumbNailUseCase
-    }
-    
-    public func create(item: String) -> VideoCellViewModel {
-        
-        VideoCellViewModel(
-            videoCode: item,
-            checkSummaryStateUseCase: checkSummaryStateUseCase,
-            fetchVideoDetailUseCase: fetchVideoDetailUseCase,
-            saveVideoDetailUseCase: saveVideoDetailUseCase,
-            videoThumbNailUseCase: videoThumbNailUseCase
-        )
-    }
-}
-
-public class VideoCellViewModel {
-    
-    private var videoCode: String
-    public var videoDetail: VideoDetail?
-    
-    // Ovservables
-    public let videoDetailSubject: PublishSubject<VideoDetail> = .init()
-    public let thumbNailUrlSubject: PublishSubject<String> = .init()
-    
-    private let summaryStateSubject: PublishSubject<VideoSummaryState> = .init()
-    
-    public let disposebag: DisposeBag = .init()
+    public let videoIdentity: VideoIdentity
+    public var detail: VideoDetail!
     
     // UseCases
-    private let checkSummaryStateUseCase: CheckSummaryStateUseCase
-    private let fetchVideoDetailUseCase: FetchVideoDetailUseCase
-    private let saveVideoDetailUseCase: SaveVideoDetailUseCase
-
-    private let videoThumbNailUseCase: VideoThumbNailUseCase
+    private let checkStateUC: CheckSummaryStateUseCase
+    private let fetchDetailUC: FetchVideoDetailUseCase
+    private let saveDetailUC: SaveVideoDetailUseCase
+    private let thumbNailUC: VideoThumbNailUseCase
     
     init(
-        videoCode: String,
-        checkSummaryStateUseCase: CheckSummaryStateUseCase,
-        fetchVideoDetailUseCase: FetchVideoDetailUseCase,
-        saveVideoDetailUseCase: SaveVideoDetailUseCase,
-        videoThumbNailUseCase: VideoThumbNailUseCase
+        videoIdentity: VideoIdentity,
+        checkSummaryStateUseCase checkStateUC: CheckSummaryStateUseCase,
+        fetchVideoDetailUseCase fetchDetailUC: FetchVideoDetailUseCase,
+        saveVideoDetailUseCase saveDetailUC: SaveVideoDetailUseCase,
+        videoThumbNailUseCase thumbNailUC: VideoThumbNailUseCase
     ) {
-        self.videoCode = videoCode
-        self.checkSummaryStateUseCase = checkSummaryStateUseCase
-        self.fetchVideoDetailUseCase = fetchVideoDetailUseCase
-        self.saveVideoDetailUseCase = saveVideoDetailUseCase
-        self.videoThumbNailUseCase = videoThumbNailUseCase
+        self.videoIdentity = videoIdentity
+        self.checkStateUC = checkStateUC
+        self.fetchDetailUC = fetchDetailUC
+        self.saveDetailUC = saveDetailUC
+        self.thumbNailUC = thumbNailUC
     }
     
-    deinit {
-        
-        printIfDebug("cell ViewModel deinit")
-    }
+    public let detailSubject: ReplaySubject<VideoDetail> = .create(bufferSize: 1)
+    
+    public let thumbNailSubject: ReplaySubject<UIImage> = .create(bufferSize: 1)
+    
+    private let stateSubject: PublishSubject<VideoSummaryState> = .init()
+    
+    private let disposeBag: DisposeBag = .init()
     
     private func makeSubscription() {
         
-        summaryStateSubject
+        stateSubject
+            .observe(on: ConcurrentDispatchQueueScheduler.init(qos: .background))
             .subscribe(
                 onNext: { state in
                     
                     if state.status == .complete {
                         
                         self.fetchDetail(videoId: state.videoId)
-                        self.summaryStateSubject.onCompleted()
+                        self.stateSubject.onCompleted()
                         
                         return
                     }
                     
                     DispatchQueue.global().asyncAfter(deadline: .now()+2) {
                         
-                        self.checkSummaryState(videoCode: self.videoCode)
+                        let code = self.videoIdentity.videoCode
+                        
+                        self.checkSummaryState(videoCode: code)
                     }
                 }
             )
-            .disposed(by: disposebag)
+            .disposed(by: disposeBag)
         
-        /// 내부처리를 위한 부분으로 백그라운드에서 실행된다.
-        videoDetailSubject
+        // 내부처리를 위한 부분으로 백그라운드에서 실행된다.
+        detailSubject
+            .observe(on: MainScheduler.asyncInstance)
             .subscribe(
                 onNext: { detail in
                     
-                    // 내부적으로 값을 저장합니다.
-                    self.videoDetail = detail
-                    
-                    // 디테일 정보를 바탕으로 썸네일을 가져옵니다.
-                    self.fetchThumbNail(url: detail.url, platform: detail.platform)
+                    // detail 설정완료
                 },
                 onError: { error in
                         
                     // Network Error발생시 내부처리
                     
                 })
-            .disposed(by: disposebag)
+            .disposed(by: disposeBag)
     }
-
-    /// #1. 로컬저장소로부터 디테일 정보를 요청하는 것을 가장먼저 수행
-    public func fetchDetail() {
+    
+    
+    /// #1. Video Detail과 ThumbNail을 Fetch합니다.
+    public func fetchDetailAndThumbNail() {
         
         self.makeSubscription()
         
-        fetchVideoDetailUseCase.cache(videoCode: videoCode) { result in
+        let code = videoIdentity.videoCode
+        
+        fetchThumbNail()
+        
+        fetchDetailUC.cache(videoCode: code) { result in
             
             switch result {
             case .success(let videoDetail):
                 
-                self.videoDetailSubject
+                // 로컬에 저장된 정보를 사용함
+                self.detail = videoDetail
+                
+                self.detailSubject
                     .onNext(videoDetail)
                 
             case .failure(let error):
                 
-                if let ucError = error as? FetchVideoDetailUseCaseError {
+                // 로컬에 저장된 정보가 없는 경우
+                
+                if let _ = error as? FetchVideoDetailUseCaseError {
                     
                     // 요약 상태 확인 시작
-                    return self.checkSummaryState(videoCode: self.videoCode)
+                    return self.checkSummaryState(videoCode: code)
                 }
                 
-                self.videoDetailSubject
+                self.detailSubject
                     .onError(error)
             }
         }
     }
     
-    /// 네트워크로 부터 요청
+    /// 비디오 디테일을 네트워크로 부터 요청
     private func fetchDetail(videoId: Int) {
         
-        fetchVideoDetailUseCase.fetch(videoId: videoId) { result in
+        fetchDetailUC.fetch(videoId: videoId) { result in
             
             switch result {
             case .success(let videoDetail):
                 
-                self.saveVideoDetailUseCase.save(videoDetail: videoDetail) { isSuccess in
-                    
-                    printIfDebug(isSuccess ? "비디오 디테일 저장성공" : "비디오 디테일 저장실패")
-                }
+                self.saveDetailUC.save(videoDetail: videoDetail)
                 
-                self.videoDetailSubject
+                self.detail = videoDetail
+                
+                self.detailSubject
                     .onNext(videoDetail)
                 
             case .failure(let error):
                 
-                self.videoDetailSubject
+                self.detailSubject
                     .onError(error)
             }
         }
     }
     
-    /// 요약 상태 확인
+    /// 비디오 요약 상태 확인
     private func checkSummaryState(videoCode: String) {
         
-        checkSummaryStateUseCase
+        checkStateUC
             .check(videoCode: videoCode) { result in
                 
                 switch result {
                 case .success(let state):
                     
-                    self.summaryStateSubject
+                    self.stateSubject
                         .onNext(state)
                     
                 case .failure(let error):
                         
-                    self.videoDetailSubject
+                    self.detailSubject
                         .onError(error)
                 }
             }
     }
-}
-
-extension VideoCellViewModel {
     
-    private func fetchThumbNail(url: String, platform: VideoPlatform) {
+    /// 썸네일을 로드합니다.
+    private func fetchThumbNail() {
         
         Task {
             
-            if let url = videoThumbNailUseCase.fetchFromLocal(videoCode: videoCode) {
-                
-                self.thumbNailUrlSubject
-                    .onNext(url)
-                
-                return
-            }
+            let code = videoIdentity.videoCode
             
-            let videoInfo = VideoInformation(url: url, platform: platform)
+            // 로컬저장소에 저장된 정보를 가져옵니다.
+            if let savedUrl = thumbNailUC.fetchFromLocal(videoCode: code) {
+                
+                return retrieveImage(
+                    urlStr: savedUrl,
+                    size: VideoCollectionViewConfig.thumbNailSize) { result in
+                        
+                        switch result {
+                        case .success(let image):
+                            
+                            self.thumbNailSubject
+                                .onNext(image)
+                        case .failure(_):
+                            
+                            self.thumbNailSubject
+                                .onNext(UIImage())
+                        }
+                    }
+            }
             
             do {
                 
-                let thumbNailInfo = try await videoThumbNailUseCase.fetch(videoInfo: videoInfo, screenScale: UIScreen.main.scale)
+                let thumbNailInfo = try await thumbNailUC.fetch(
+                    videoIdentity: videoIdentity,
+                    screenScale: UIScreen.main.scale
+                )
                 
-                thumbNailUrlSubject
-                    .onNext(thumbNailInfo.url)
-                
-                // 썸네일 주소 저장
-                videoThumbNailUseCase.save(videoCode: videoCode, url: thumbNailInfo.url)
+                retrieveImage(
+                    urlStr: thumbNailInfo.url,
+                    size: VideoCollectionViewConfig.thumbNailSize) { result in
+                        
+                        switch result {
+                        case .success(let image):
+                            
+                            self.thumbNailSubject
+                                .onNext(image)
+                        case .failure(_):
+                            
+                            self.thumbNailSubject
+                                .onNext(UIImage())
+                        }
+                    }
+
+                // 썸네일 정보 저장
+                thumbNailUC.save(videoCode: code, url: thumbNailInfo.url)
                 
             } catch {
                 
-                self.thumbNailUrlSubject
-                    .onError(error)
+                self.thumbNailSubject
+                    .onNext(UIImage())
             }
         }
+    }
+    
+    /// 이미지 url정보와 Kingfisher를 사용하여 UIImage를 획득합니다.
+    private func retrieveImage(urlStr: String, size: CGSize, completion: @escaping ((Result<UIImage, Error>) -> Void)) {
+        
+        let url = URL(string: urlStr)!
+        let processor = ResizingImageProcessor(
+            referenceSize: CGSize(width: 100, height: 100),
+            mode: .aspectFill
+        )
+
+        KingfisherManager.shared.retrieveImage(
+            with: url,
+            options: [
+                .processor(processor),
+                .cacheOriginalImage
+            ]) { result in
+            switch result {
+            case .success(let value):
+                let resizedImage = value.image
+                completion(.success(resizedImage))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+}
+
+extension DefaultVideoCellViewModel: Hashable {
+    
+    public static func == (lhs: DefaultVideoCellViewModel, rhs: DefaultVideoCellViewModel) -> Bool {
+        
+        lhs.videoIdentity == rhs.videoIdentity
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        
+        hasher.combine(videoIdentity)
     }
 }

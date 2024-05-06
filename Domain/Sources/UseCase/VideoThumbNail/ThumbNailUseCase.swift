@@ -2,7 +2,7 @@ import Foundation
 
 public protocol VideoThumbNailUseCase {
     
-    func fetch(videoInfo: VideoInformation, screenScale: CGFloat) async throws -> VideoThumbNailInformation
+    func fetch(videoIdentity: VideoIdentity, screenScale: CGFloat) async throws -> VideoThumbNailInformation
     func fetchFromLocal(videoCode: String) -> String?
     func save(videoCode: String, url: String)
 }
@@ -18,21 +18,26 @@ public class DefaultVideoThumbNailUseCase: VideoThumbNailUseCase {
         self.localRepository = localRepository
     }
     
-    public func fetch(videoInfo: VideoInformation, screenScale: CGFloat) async throws -> VideoThumbNailInformation {
+    public func fetch(
+        videoIdentity: VideoIdentity,
+        screenScale: CGFloat) async throws -> VideoThumbNailInformation {
+
+        let splited = videoIdentity.videoCode.split(separator: "_")
+            
+        let platform = VideoPlatform(rawValue: String(splited[0]))!
+        let platform_id = splited[1]
         
-        switch videoInfo.platform {
+        switch platform {
         case .youtube:
             
-            let videoUrl = videoInfo.url
-            
-            guard let videoId = extractYouTubeID(target: videoUrl) else { fatalError() }
+            guard let videoId = extractYouTubeID(target: videoIdentity.originUrl) else { fatalError() }
             
             return try await youtubeRepository.fetch(videoIdForPlatform: videoId, screenScale: screenScale)
             
         default:
             
             #if Device_Debug
-            print("썸네일을 가져오는 도중 문제발생 url: \(videoInfo.url)")
+            print("썸네일을 가져오는 도중 문제발생 url: \(videoIdentity.originUrl)")
             #endif
             
             throw VideoThumbNailUseCaseError.notImplemented

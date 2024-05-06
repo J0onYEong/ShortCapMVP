@@ -12,7 +12,7 @@ final class DIContainer {
         let container = Container()
         
         // Storage
-        container.register(VideoCodeStorage.self) { _ in CoreDataVideoCodeStorage() }
+        container.register(VideoIdentityStorage.self) { _ in CoreDataVideoIdentityStorage(coreDataStorage: .shared) }
         container.register(VideoDetailStorage.self) { _ in CoreDataVideoDetailStorage(coreDataStorage: .shared) }
         container.register(VideoThumbNailSourceStorage.self) { _ in DefaultVideoThumbNailSourceStorage(storage: .shared) }
         
@@ -36,10 +36,10 @@ final class DIContainer {
         }
         
         // Repo
-        container.register(SaveVideoCodeRepository.self) { resolver in
+        container.register(SaveVideoIdentityRepository.self) { resolver in
             
-            DefaultSaveVideoCodeRepository(
-                storage: resolver.resolve(VideoCodeStorage.self)!
+            DefaultSaveVideoIdentityRepository(
+                videoIdentityStorage: resolver.resolve(VideoIdentityStorage.self)!
             )
         }
         container.register(ConvertUrlRepository.self) { resolver in
@@ -47,11 +47,13 @@ final class DIContainer {
                 dataTransferService: resolver.resolve(DataTransferService.self, name: "default")!
             )
         }
-        container.register(FetchVideoCodesRepository.self) { resolver in
-            DefaultFetchVideoCodesRepository(
-                storage: resolver.resolve(VideoCodeStorage.self)!
+        container.register(FetchVideoIdentityRepository.self) { resolver in
+            DefaultFetchVideoIdentityRepository(
+                videoIdentityStorage: resolver.resolve(VideoIdentityStorage.self)!
             )
         }
+        
+        
         container.register(SummaryProcessRepository.self) { resolver in
             DefaultSummaryProcessRepository(
                 dataTransferService: resolver.resolve(DataTransferService.self, name: "default")!
@@ -82,9 +84,9 @@ final class DIContainer {
         container.register(UrlValidationUseCase.self) { _ in
             DefaultUrlValidationUseCase()
         }
-        container.register(SaveVideoCodeUseCase.self) { resolver in
-            DefaultSaveVideoCodeUseCase(
-                saveVideoCodeRepository: resolver.resolve(SaveVideoCodeRepository.self)!
+        container.register(SaveVideoIndentityUserCase.self) { resolver in
+            DefualtSaveVideoIndentityUseCase(
+                saveVideoIdentityRepository: resolver.resolve(SaveVideoIdentityRepository.self)!
             )
         }
         container.register(ConvertUrlToVideoCodeUseCase.self) { resolver in
@@ -92,9 +94,9 @@ final class DIContainer {
                 convertUrlRepository: resolver.resolve(ConvertUrlRepository.self)!
             )
         }
-        container.register(FetchVideoCodesUseCase.self) { resolver in
-            DefaultFetchVideoCodesUseCase(
-                fetchVideoCodeRepository: resolver.resolve(FetchVideoCodesRepository.self)!
+        container.register(FetchVideoIdentityUseCase.self) { resolver in
+            DefaultFetchVideoIdentityUseCase(
+                fetchVideoIdentityRepository: resolver.resolve(FetchVideoIdentityRepository.self)!
             )
         }
 
@@ -128,11 +130,11 @@ final class DIContainer {
         
         
         // ViewModel
-        container.register(VideoTableViewModel.self) { resolver in
+        container.register(VideoCollectionViewModel.self) { resolver in
             
-            DefaultVideoTableViewModel(
-                fetchVideoCodeUseCase: resolver.resolve(FetchVideoCodesUseCase.self)!,
-                cellVMFactory: DefaultVideoCellViewModelFactory(
+            DefaultVideoCollectionViewModel(
+                fetchVideoIdentityUseCase: resolver.resolve(FetchVideoIdentityUseCase.self)!,
+                cellVMFactory: VideoCellViewModelFactory(
                     checkSummaryStateUseCase: resolver.resolve(CheckSummaryStateUseCase.self)!,
                     fetchVideoDetailUseCase: resolver.resolve(FetchVideoDetailUseCase.self)!,
                     saveVideoDetailUseCase: resolver.resolve(SaveVideoDetailUseCase.self)!,

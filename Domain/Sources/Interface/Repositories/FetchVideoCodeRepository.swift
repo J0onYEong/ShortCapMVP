@@ -1,6 +1,6 @@
 import Foundation
 
-public protocol FetchVideoCodesRepository {
+public protocol FetchVideoIdentityRepository {
     
-    func fetch(completion: @escaping (Result<[String], Error>) -> Void)
+    func fetch(completion: @escaping (Result<[VideoIdentity], Error>) -> Void)
 }

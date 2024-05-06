@@ -1,15 +1,15 @@
 import Foundation
 import Domain
 
-public final class DefaultFetchVideoCodesRepository: FetchVideoCodesRepository {
+public final class DefaultFetchVideoIdentityRepository: FetchVideoIdentityRepository {
     
-    let storage: VideoCodeStorage
+    let storage: VideoIdentityStorage
     
-    public init(storage: VideoCodeStorage) {
+    public init(videoIdentityStorage storage: VideoIdentityStorage) {
         self.storage = storage
     }
     
-    public func fetch(completion: @escaping (Result<[String], Error>) -> Void) {
+    public func fetch(completion: @escaping (Result<[VideoIdentity], Error>) -> Void) {
         
         storage.fetch { result in
             

@@ -2,7 +2,7 @@ import Foundation
 
 public protocol SaveVideoDetailUseCase {
     
-    func save(videoDetail: VideoDetail, completion: @escaping (Bool) -> Void)
+    func save(videoDetail: VideoDetail)
 }
 
 public final class DefaultSaveVideoDetailUseCase: SaveVideoDetailUseCase {
@@ -13,8 +13,13 @@ public final class DefaultSaveVideoDetailUseCase: SaveVideoDetailUseCase {
         self.videoDetailRepository = videoDetailRepository
     }
     
-    public func save(videoDetail: VideoDetail, completion: @escaping (Bool) -> Void) {
+    public func save(videoDetail: VideoDetail) {
         
-        videoDetailRepository.save(detail: videoDetail, completion: completion)
+        videoDetailRepository.save(detail: videoDetail) { isSuccess in
+            
+            #if Device_Debug || Local_DEbug
+            print(isSuccess ? "✅ 비디오 디테일 저장성공: \(videoDetail.videoCode)" : "비디오 디테일 저장실패 \(videoDetail.videoCode)")
+            #endif
+        }
     }
 }

@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22222" systemVersion="23E224" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
-    <entity name="VideoCodeEntity" representedClassName="VideoCodeEntity" syncable="YES" codeGenerationType="class">
-        <attribute name="videoCode" optional="YES" attributeType="String"/>
-        <fetchedProperty name="fetchedProperty" optional="YES">
-            <fetchRequest name="fetchedPropertyFetchRequest" entity="VideoCodeEntity"/>
-        </fetchedProperty>
-        <uniquenessConstraints>
-            <uniquenessConstraint>
-                <constraint value="videoCode"/>
-            </uniquenessConstraint>
-        </uniquenessConstraints>
-    </entity>
     <entity name="VideoDetailEntity" representedClassName="VideoDetailEntity" syncable="YES" codeGenerationType="class">
         <attribute name="address" optional="YES" attributeType="String"/>
         <attribute name="createdAt" optional="YES" attributeType="String"/>
@@ -22,6 +11,18 @@
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="url" optional="YES" attributeType="String"/>
         <attribute name="videoCode" optional="YES" attributeType="String"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="videoCode"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="VideoIdentityEntity" representedClassName="VideoIdentityEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="originUrl" optional="YES" attributeType="String"/>
+        <attribute name="videoCode" optional="YES" attributeType="String"/>
+        <fetchedProperty name="fetchedProperty" optional="YES">
+            <fetchRequest name="fetchedPropertyFetchRequest" entity="VideoIdentityEntity"/>
+        </fetchedProperty>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="videoCode"/>

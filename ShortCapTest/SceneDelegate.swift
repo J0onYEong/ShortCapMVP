@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         
-        let viewModel = DIContainer.container.resolve(VideoTableViewModel.self)!
+        let viewModel = DIContainer.container.resolve(VideoCollectionViewModel.self)!
         
         let viewController = MainScreenViewController(viewModel: viewModel)
         
@@ -56,7 +56,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 type(of: vc) == MainScreenViewController.self
             }) as? MainScreenViewController {
                 
-                targetVC.viewModel.fetchList()
+                targetVC.viewModel.fetchVideoIdentities()
             }
         }
     }

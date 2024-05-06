@@ -37,16 +37,16 @@ class VideoCollectionViewCell: UICollectionViewCell {
         return labelView
     }()
     
-    var activityIndicator: UIActivityIndicatorView = {
-        
-        let activityIndicator = UIActivityIndicatorView()
-        
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.color = .lightGray
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        
-        return activityIndicator
-    }()
+//    var activityIndicator: UIActivityIndicatorView = {
+//        
+//        let activityIndicator = UIActivityIndicatorView()
+//        
+//        activityIndicator.hidesWhenStopped = true
+//        activityIndicator.color = .lightGray
+//        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+//        
+//        return activityIndicator
+//    }()
     
     let disposeBag: DisposeBag = .init()
     
@@ -62,11 +62,11 @@ class VideoCollectionViewCell: UICollectionViewCell {
     
     func setAutoLayout() {
         
-        [thumbNailView, titleLabel, activityIndicator].forEach { contentView.addSubview($0) }
+        [thumbNailView, titleLabel].forEach { contentView.addSubview($0) }
         
         NSLayoutConstraint.activate([
             
-            thumbNailView.widthAnchor.constraint(equalToConstant: VideoCollectionRowConfig.thumbNailWidth),
+            thumbNailView.widthAnchor.constraint(equalToConstant: VideoCollectionViewConfig.thumbNailWidth),
             thumbNailView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
             thumbNailView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
             thumbNailView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0),
@@ -74,8 +74,8 @@ class VideoCollectionViewCell: UICollectionViewCell {
             titleLabel.leadingAnchor.constraint(equalTo: thumbNailView.trailingAnchor, constant: 10),
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
             
-            activityIndicator.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+//            activityIndicator.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+//            activityIndicator.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
         ])
     }
     
@@ -84,58 +84,28 @@ class VideoCollectionViewCell: UICollectionViewCell {
         
         self.viewModel = viewModel
         
-        startShowingIndicator()
-        
-        viewModel.videoDetailSubject
-            .asDriver(onErrorRecover: { error in
-                
-                // TODO: Detail을 가져오는 도중 에러발생, UI처리
-                
-                return Driver.just(.mock)
-            })
+        viewModel.detailSubject
+            .asDriver(onErrorJustReturn: .mock)
             .drive(onNext: { detail in
                 
                 self.titleLabel.text = detail.title
-                
-                self.stopShowingIndicator()
             })
             .disposed(by: disposeBag)
         
-        viewModel.thumbNailUrlSubject
-            .asDriver(onErrorRecover: { error in
-                
-                // TODO: 기본 이미지 제공
-                
-                return Driver.just("")
-            })
-            .drive(onNext: { urlStr in
-                
-                self.thumbNailView.setImage(with: urlStr)
-            })
+        viewModel.thumbNailSubject
+            .asDriver(onErrorJustReturn: UIImage())
+            .drive(self.thumbNailView.rx.image)
             .disposed(by: disposeBag)
-        
-        viewModel.fetchDetail()
     }
-    
-    /// 셀이 재사용 대기를 하며 호출
-    override func prepareForReuse() {
-        
-        titleLabel.text = ""
-        
-        stopShowingIndicator()
-        
-        viewModel = nil
-    }
-    
-    func startShowingIndicator() { activityIndicator.startAnimating() }
-    
-    func stopShowingIndicator() { activityIndicator.stopAnimating() }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 7.0, left: 0, bottom: 7, right: 0))
     }
+    
+    /// 셀이 재사용 대기를 하며 호출
+    override func prepareForReuse() {
+
+    }
 }
-
-

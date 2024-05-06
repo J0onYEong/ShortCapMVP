@@ -1,9 +1,9 @@
 import Foundation
 
-public protocol SaveVideoCodeRepository {
+public protocol SaveVideoIdentityRepository {
     
     func save(
-        videoCode: String,
-        completion: @escaping (String?) -> Void
+        videoIdentity: VideoIdentity,
+        completion: @escaping (Bool) -> Void
     )
 }

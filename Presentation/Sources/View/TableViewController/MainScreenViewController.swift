@@ -5,7 +5,7 @@ import RxCocoa
 
 public class MainScreenViewController: UIViewController {
     
-    let videoCollectionView: UICollectionView = {
+    let collectionView: UICollectionView = {
         
         let layout = UICollectionViewFlowLayout()
           
@@ -38,19 +38,22 @@ public class MainScreenViewController: UIViewController {
     }()
     
     // ViewModel
-    public let viewModel: VideoTableViewModel
+    public let viewModel: VideoCollectionViewModel
     
-    // ViewController
-    public init(viewModel: VideoTableViewModel) {
+    private typealias DataSource = UICollectionViewDiffableDataSource<Section, DefaultVideoCellViewModel>
+    
+    private var diffableDataSource: DataSource?
+    
+    private let disposebag: DisposeBag = .init()
+
+    public init(viewModel: VideoCollectionViewModel) {
         
         self.viewModel = viewModel
         
         super.init(nibName: nil, bundle: nil)
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     public override func viewDidLoad() {
         
@@ -59,31 +62,57 @@ public class MainScreenViewController: UIViewController {
         
         // 컬렉션뷰 설정
         configureTableView()
-        
-        // 옵저버블과 테이블셀 바인딩
-        viewModel.bindWith(collectionView: videoCollectionView)
     }
-}
-
-extension MainScreenViewController {
     
     func setUpAutoLayout() {
         
-        self.view.addSubview(videoCollectionView)
+        self.view.addSubview(collectionView)
         
         self.view.layer.backgroundColor = UIColor.white.cgColor
         
         NSLayoutConstraint.activate([
-            videoCollectionView.topAnchor.constraint(equalTo: view.topAnchor),
-            videoCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            videoCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            videoCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
     
     func configureTableView() {
         
-        videoCollectionView.delegate = self
+        collectionView.delegate = self
+        
+        collectionView.register(
+            VideoCollectionViewCell.self,
+            forCellWithReuseIdentifier: String(describing: VideoCollectionViewCell.self)
+        )
+        
+        self.diffableDataSource = DataSource(
+            collectionView: self.collectionView,
+            cellProvider: { collectionView, indexPath, item in
+            
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: VideoCollectionViewCell.self), for: indexPath) as? VideoCollectionViewCell else { preconditionFailure() }
+                
+            cell.setUp(viewModel: item)
+                
+            return cell
+        })
+        
+        viewModel
+            .displayCellViewModel
+            .map({ $0.sorted { lhs, rhs in lhs.detail.createdAt > rhs.detail.createdAt } })
+            .asDriver(onErrorJustReturn: [])
+            .drive(onNext: { models in
+
+                guard let vms = models as? [DefaultVideoCellViewModel] else { fatalError() }
+
+                var snapshot = NSDiffableDataSourceSnapshot<Section, DefaultVideoCellViewModel>()
+                snapshot.appendSections([.main])
+                snapshot.appendItems(vms, toSection: .main)
+                
+                self.diffableDataSource?.apply(snapshot, animatingDifferences: true)
+            })
+            .disposed(by: disposebag)
     }
 }
 
@@ -93,22 +122,21 @@ extension MainScreenViewController: UICollectionViewDelegateFlowLayout {
         
         if let cell = collectionView.cellForItem(at: indexPath) as? VideoCollectionViewCell {
             
-            if let detail = cell.viewModel.videoDetail {
-                
-                let storyboard = UIStoryboard(name: "Main", bundle: Bundle(for: MainScreenViewController.self))
-                
-                let destinationVC = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-                
-                destinationVC.entity = detail
-                
-                self.navigationController?.pushViewController(destinationVC, animated: true)
-            }
+            let detail = cell.viewModel.detail
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: Bundle(for: MainScreenViewController.self))
+            
+            let destinationVC = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+            
+            destinationVC.entity = detail
+            
+            self.navigationController?.pushViewController(destinationVC, animated: true)
         }
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         // Cell width를 컬랙션뷰와 같게한다 = 1열로 고정
-        .init(width: collectionView.bounds.width-VideoCollectionRowConfig.horizontalInset*2, height: VideoCollectionRowConfig.rowHeight)
+        .init(width: collectionView.bounds.width-VideoCollectionViewConfig.horizontalInset*2, height: VideoCollectionViewConfig.rowHeight)
     }
 }

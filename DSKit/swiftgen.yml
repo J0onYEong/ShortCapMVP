@@ -1,0 +1,7 @@
+input_dir: Resources
+output_dir: Sources/AutoGeneration
+xcassets:
+    inputs: Colors.xcassets
+    outputs:
+        templateName: swift5
+        output: Assets+Color.swift

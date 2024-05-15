@@ -13,7 +13,7 @@ public class MainViewModel {
     
     private let videoFilter = BehaviorRelay<VideoFilter>(value: .all)
     
-    public let mainCategoryViewModels = BehaviorRelay<[MainCategoryViewModel]>(value: [])
+    public let mainCategoryViewModels = BehaviorRelay<[VideoMainCategoryViewModel]>(value: [])
     
     init(
         getVideoMainCategoryRepository: GetVideoMainCategoryRepository,

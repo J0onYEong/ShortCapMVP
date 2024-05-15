@@ -59,7 +59,7 @@ public class MainViewModel {
         videoFilter
             .subscribe(onNext: { filter in
                 
-                NotificationCenter.default.post(name: .mainCategoryIsChanged, userInfo: [.videoFilter : filter])
+                NotificationCenter.mainFeature.post(name: .mainCategoryIsChanged, userInfo: [.videoFilter : filter])
             })
             .disposed(by: disposeBag)
     }

@@ -9,7 +9,7 @@ public class VideoMainCategoryViewModelFactory {
         self.repository = repository
     }
     
-    func create(category: VideoMainCategory, filterClosure: @escaping (Int) -> Void) -> VideoMainCategoryViewModel {
+    func create(category: VideoMainCategory, filterClosure: @escaping (VideoFilter) -> Void) -> VideoMainCategoryViewModel {
         
         return .init(
             getVideoSubCategoryRepository: repository,

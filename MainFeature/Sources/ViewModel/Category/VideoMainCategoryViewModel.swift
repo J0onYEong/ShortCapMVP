@@ -9,7 +9,7 @@ public class VideoMainCategoryViewModel {
     
     public let category: VideoMainCategory
     
-    private let filterClosure: (Int) -> Void
+    private let filterClosure: (VideoFilter) -> Void
     
     public let subCategories = BehaviorRelay<[VideoSubCategory]>(value: [])
     
@@ -20,7 +20,7 @@ public class VideoMainCategoryViewModel {
     init(
         getVideoSubCategoryRepository: GetVideoSubCategoryRepository,
         category: VideoMainCategory,
-        filterClosure: @escaping (Int) -> Void
+        filterClosure: @escaping (VideoFilter) -> Void
     ) {
         self.getVideoSubCategoryRepository = getVideoSubCategoryRepository
         self.category = category
@@ -37,7 +37,7 @@ public class VideoMainCategoryViewModel {
     }
     
     /// 서브카테고리 정보를 가져옵니다.
-    private func fetchCategories() {
+    private func fetchCategories()  {
         
         getVideoSubCategoryRepository
             .fetch(mainCategory: category) { [weak self] result in

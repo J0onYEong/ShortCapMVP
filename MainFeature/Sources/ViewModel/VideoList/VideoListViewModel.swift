@@ -87,7 +87,7 @@ public class VideoListViewModel {
         
         
         // MARK: - NotificationCenter, 메인카테고리의 변경을 수신합니다.
-        let filterObservable = NotificationCenter.default.rx.notification(.mainCategoryIsChanged)
+        let filterObservable = NotificationCenter.mainFeature.rx.notification(.mainCategoryIsChanged)
             .map { notification in
                 
                 guard let videoFilter: VideoFilter = notification[.videoFilter] else { fatalError() }

@@ -1,0 +1,7 @@
+input_dir: ExternalData
+output_dir: AutoGeneration
+json:
+    inputs: JSON/
+    outputs:
+        templateName: inline-swift5
+        output: JSON.swift

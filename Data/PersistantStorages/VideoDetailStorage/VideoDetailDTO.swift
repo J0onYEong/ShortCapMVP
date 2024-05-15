@@ -13,6 +13,9 @@ public struct VideoDetailDTO {
     public var createdAt: String
     public var platform: String
     public var mainCategory: String
+    public var mainCategoryId: Int
+    public var subCategory: String
+    public var subCategoryId: Int
     public var videoCode: String
     
     func toCoreDataEntity(context: NSManagedObjectContext) -> VideoDetailEntity {
@@ -28,6 +31,9 @@ public struct VideoDetailDTO {
         object.createdAt = createdAt
         object.platform = platform
         object.mainCategory = mainCategory
+        object.mainCategoryId = Int16(mainCategoryId)
+        object.subCategory = subCategory
+        object.subCategoryId = Int16(subCategoryId)
         object.videoCode = videoCode
         
         return object
@@ -44,6 +50,9 @@ public struct VideoDetailDTO {
             createdAt: createdAt,
             platform: VideoPlatform(rawValue: platform) ?? .unknown,
             mainCategory: mainCategory,
+            mainCategoryId: mainCategoryId,
+            subCategory: subCategory,
+            subCategoryId: subCategoryId,
             videoCode: videoCode
         )
     }

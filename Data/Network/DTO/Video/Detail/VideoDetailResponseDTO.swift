@@ -12,6 +12,9 @@ struct VideoDetailResponseDTO: Decodable {
     public var createdAt: String
     public var platform: String
     public var mainCategory: String
+    public var mainCategoryId: Int
+    public var subCategory: String
+    public var subCategoryId: Int
     public var videoCode: String
     
     enum CodingKeys: String, CodingKey {
@@ -24,6 +27,9 @@ struct VideoDetailResponseDTO: Decodable {
         case createdAt
         case platform
         case mainCategory
+        case mainCategoryId = "mainCategoryIndex"
+        case subCategory
+        case subCategoryId
         case videoCode = "video_code"
     }
     
@@ -37,6 +43,9 @@ struct VideoDetailResponseDTO: Decodable {
         createdAt: String,
         platform: String,
         mainCategory: String,
+        mainCategoryId: Int,
+        subCategory: String,
+        subCategoryId: Int,
         videoCode: String
     ) {
         self.title = title
@@ -48,6 +57,9 @@ struct VideoDetailResponseDTO: Decodable {
         self.createdAt = createdAt
         self.platform = platform
         self.mainCategory = mainCategory
+        self.mainCategoryId = mainCategoryId
+        self.subCategory = subCategory
+        self.subCategoryId = subCategoryId
         self.videoCode = videoCode
     }
     
@@ -63,6 +75,9 @@ struct VideoDetailResponseDTO: Decodable {
             createdAt: createdAt,
             platform: VideoPlatform(rawValue: platform) ?? .unknown,
             mainCategory: mainCategory,
+            mainCategoryId: mainCategoryId,
+            subCategory: subCategory,
+            subCategoryId: subCategoryId,
             videoCode: videoCode
         )
     }

@@ -11,6 +11,9 @@ public class VideoDetail {
     public var createdAt: String
     public var platform: VideoPlatform
     public var mainCategory: String
+    public var mainCategoryId: Int
+    public var subCategory: String
+    public var subCategoryId: Int
     public var videoCode: String
     
     public init(
@@ -23,6 +26,9 @@ public class VideoDetail {
         createdAt: String,
         platform: VideoPlatform,
         mainCategory: String,
+        mainCategoryId: Int,
+        subCategory: String,
+        subCategoryId: Int,
         videoCode: String
     ) {
         self.title = title
@@ -34,6 +40,9 @@ public class VideoDetail {
         self.createdAt = createdAt
         self.platform = platform
         self.mainCategory = mainCategory
+        self.mainCategoryId = mainCategoryId
+        self.subCategory = subCategory
+        self.subCategoryId = subCategoryId
         self.videoCode = videoCode
     }
     
@@ -47,6 +56,9 @@ public class VideoDetail {
         createdAt: "",
         platform: .youtube,
         mainCategory: "서버오류",
+        mainCategoryId: 0,
+        subCategory: "서버오류",
+        subCategoryId: 0,
         videoCode: ""
     )
 }

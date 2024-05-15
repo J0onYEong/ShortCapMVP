@@ -1,0 +1,52 @@
+[
+    {
+        "enName": "SCIENCE_TECHNOLOGY",
+        "korName": "과학/기술",
+        "index": 0
+    },
+    {
+        "enName": "FASHION_BEAUTY",
+        "korName": "패션/뷰티",
+        "index": 1
+    },
+    {
+        "enName": "COOK",
+        "korName": "요리",
+        "index": 2
+    },
+    {
+        "enName": "LIVING",
+        "korName": "리빙",
+        "index": 3
+    },
+    {
+        "enName": "HEALTH",
+        "korName": "건강",
+        "index": 4
+    },
+    {
+        "enName": "TRAVEL",
+        "korName": "여행",
+        "index": 5
+    },
+    {
+        "enName": "ART",
+        "korName": "예술",
+        "index": 6
+    },
+    {
+        "enName": "NEWS",
+        "korName": "뉴스",
+        "index": 7
+    },
+    {
+        "enName": "ENTERTAINMENT",
+        "korName": "엔터테인먼트",
+        "index": 8
+    },
+    {
+        "enName": "OTHER",
+        "korName": "기타",
+        "index": 9
+    }
+]

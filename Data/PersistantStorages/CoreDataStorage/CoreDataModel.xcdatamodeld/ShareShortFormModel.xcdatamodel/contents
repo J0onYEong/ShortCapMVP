@@ -6,7 +6,10 @@
         <attribute name="des" optional="YES" attributeType="String"/>
         <attribute name="keywords" optional="YES" attributeType="String"/>
         <attribute name="mainCategory" optional="YES" attributeType="String"/>
+        <attribute name="mainCategoryId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="platform" optional="YES" attributeType="String"/>
+        <attribute name="subCategory" optional="YES" attributeType="String"/>
+        <attribute name="subCategoryId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="summary" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="url" optional="YES" attributeType="String"/>

@@ -40,6 +40,17 @@
                ReferencedContainer = "container:ShortCapTest.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "9B52C23F2BF37CCC00053A71"
+               BuildableName = "MainFeature1.xctest"
+               BlueprintName = "MainFeature1"
+               ReferencedContainer = "container:ShortCapTest.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

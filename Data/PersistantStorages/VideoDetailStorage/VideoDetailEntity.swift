@@ -14,6 +14,9 @@ extension VideoDetailEntity {
             createdAt: createdAt ?? "",
             platform: platform ?? "",
             mainCategory: mainCategory ?? "",
+            mainCategoryId: Int(mainCategoryId),
+            subCategory: subCategory ?? "",
+            subCategoryId: Int(subCategoryId),
             videoCode: videoCode ?? ""
         )
     }

@@ -13,7 +13,7 @@ public class MainViewModel {
     
     private let videoFilter = BehaviorRelay<VideoFilter>(value: .all)
     
-    public let mainCategoryViewModels = BehaviorRelay<[MainCategoryViewModel]>(value: [])
+    public let mainCategoryViewModels = BehaviorRelay<[VideoMainCategoryViewModel]>(value: [])
     
     init(
         getVideoMainCategoryRepository: GetVideoMainCategoryRepository,
@@ -59,7 +59,7 @@ public class MainViewModel {
         videoFilter
             .subscribe(onNext: { filter in
                 
-                NotificationCenter.default.postWithUserInfo(name: .mainCategoryIsChanged, key: .videoFilter, value: filter)
+                NotificationCenter.default.post(name: .mainCategoryIsChanged, userInfo: [.videoFilter : filter])
             })
             .disposed(by: disposeBag)
     }

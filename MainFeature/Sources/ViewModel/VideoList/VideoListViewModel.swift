@@ -90,7 +90,7 @@ public class VideoListViewModel {
         let filterObservable = NotificationCenter.default.rx.notification(.mainCategoryIsChanged)
             .map { notification in
                 
-                guard let videoFilter: VideoFilter = notification.getUserInfo(key: .videoFilter) else { fatalError() }
+                guard let videoFilter: VideoFilter = notification[.videoFilter] else { fatalError() }
                 
                 return videoFilter
             }

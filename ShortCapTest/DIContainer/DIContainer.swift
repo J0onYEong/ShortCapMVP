@@ -2,68 +2,111 @@ import Foundation
 import Swinject
 import Domain
 import Data
-import Presentation
 import Core
+import MainFeature
 
-final class DIContainer {
+enum Dependencies {
     
-    public static let container: Container = {
-       
-        let container = Container()
+    enum NetworkService {
         
-        // Storage
-        container.register(VideoIdentityStorage.self) { _ in CoreDataVideoIdentityStorage(coreDataStorage: .shared) }
-        container.register(VideoDetailStorage.self) { _ in CoreDataVideoDetailStorage(coreDataStorage: .shared) }
-        container.register(VideoThumbNailSourceStorage.self) { _ in DefaultVideoThumbNailSourceStorage(storage: .shared) }
+        static let `default` = "default"
+        static let googleApi = "googleApi"
+    }
+    
+    enum DataTransferService {
         
-        // Service
-        container.register(NetworkService.self, name: "default") { _ in DefaultNetworkService() }
-        container.register(NetworkService.self, name: "googleAPi") { _ in
+        static let `default` = "default"
+        static let googleApi = "googleApi"
+    }
+    
+    enum ThumbnailRepository {
+        
+        static let youtube = "youtube"
+    }
+}
+
+class DIContainer {
+    
+    static let `default`: DIContainer = .init()
+    
+    private let container = Container()
+    
+    private init() {
+        
+        
+        // MARK: - Storage
+        container.register(VideoIdentityStorage.self) { _ in CoreDataVideoIdentityStorage(coreDataStorage: .shared)
+        }
+        
+        container.register(VideoDetailStorage.self) { _ in CoreDataVideoDetailStorage(coreDataStorage: .shared)
+        }
+        
+        container.register(VideoThumbNailSourceStorage.self) { _ in DefaultVideoThumbNailSourceStorage(storage: .shared)
+        }
+        
+        
+        // MARK: - Service
+        container.register(NetworkService.self, name: Dependencies.NetworkService.default) { _ in DefaultNetworkService() }
+        
+        container.register(NetworkService.self, name: Dependencies.NetworkService.googleApi) { _ in
             
             DefaultNetworkService(config: ApiDataNetworkConfig.googleApi)
         }
-        container.register(DataTransferService.self, name: "default") { resolver in
+        
+        container.register(DataTransferService.self, name: Dependencies.DataTransferService.default) { resolver in
             
             DefaultDataTransferService(
-                with: resolver.resolve(NetworkService.self, name: "default")!
-            )
-        }
-        container.register(DataTransferService.self, name: "googleAPi") { resolver in
-            
-            DefaultDataTransferService(
-                with: resolver.resolve(NetworkService.self, name: "googleAPi")!
+                with: resolver.resolve(NetworkService.self, name: Dependencies.NetworkService.default)!
             )
         }
         
-        // Repo
-        container.register(SaveVideoIdentityRepository.self) { resolver in
+        container.register(DataTransferService.self, name: Dependencies.NetworkService.googleApi) { resolver in
             
-            DefaultSaveVideoIdentityRepository(
-                videoIdentityStorage: resolver.resolve(VideoIdentityStorage.self)!
+            DefaultDataTransferService(
+                with: resolver.resolve(NetworkService.self, name: Dependencies.NetworkService.googleApi)!
             )
         }
-        container.register(ConvertUrlRepository.self) { resolver in
-            DefaultConvertUrlRepository(
-                dataTransferService: resolver.resolve(DataTransferService.self, name: "default")!
+        
+        
+        
+        // MARK: - Repository
+        container.register(GetVideoMainCategoryRepository.self) { _ in
+            
+            DefaultGetMainVideoCategoryRepository()
+        }
+        
+        container.register(GetVideoSubCategoryRepository.self) { resolver in
+            
+            DefaultGetVideoSubCategoryRepository(
+                dataTransferService: resolver.resolve(DataTransferService.self, name: Dependencies.DataTransferService.default)!
             )
         }
+        
         container.register(FetchVideoIdentityRepository.self) { resolver in
             DefaultFetchVideoIdentityRepository(
                 videoIdentityStorage: resolver.resolve(VideoIdentityStorage.self)!
             )
         }
         
-        
         container.register(SummaryProcessRepository.self) { resolver in
             DefaultSummaryProcessRepository(
-                dataTransferService: resolver.resolve(DataTransferService.self, name: "default")!
+                dataTransferService: resolver.resolve(DataTransferService.self, name: Dependencies.DataTransferService.default)!
             )
         }
+        
         container.register(VideoDetailLocalRepository.self) { resolver in
             DefaultVideoDetailRepository(
                 storage: resolver.resolve(VideoDetailStorage.self)!
             )
         }
+        
+        container.register(FetchThumbNailRepository.self, name: Dependencies.ThumbnailRepository.youtube) { resolver in
+            
+            YoutubeThumbNailRepository(
+                dataTransferService: resolver.resolve(DataTransferService.self, name: Dependencies.DataTransferService.googleApi)!
+            )
+        }
+        
         container.register(LocalThumbNailSourceRepository.self) { resolver in
             
             DefaultLocalThumbNailSourceRepository(
@@ -72,35 +115,14 @@ final class DIContainer {
         }
         
         
-        // Youtube ThumbNail
-        container.register(FetchThumbNailRepository.self, name: "youtube") { resolver in
-            
-            YoutubeThumbNailRepository(
-                dataTransferService: resolver.resolve(DataTransferService.self, name: "googleAPi")!
-            )
-        }
         
-        // UseCase
-        container.register(UrlValidationUseCase.self) { _ in
-            DefaultUrlValidationUseCase()
-        }
-        container.register(SaveVideoIndentityUserCase.self) { resolver in
-            DefualtSaveVideoIndentityUseCase(
-                saveVideoIdentityRepository: resolver.resolve(SaveVideoIdentityRepository.self)!
-            )
-        }
-        container.register(ConvertUrlToVideoCodeUseCase.self) { resolver in
-            DefaultConvertUrlToVideoCodeUseCase(
-                convertUrlRepository: resolver.resolve(ConvertUrlRepository.self)!
-            )
-        }
+        // MARK: - UseCase
         container.register(FetchVideoIdentityUseCase.self) { resolver in
             DefaultFetchVideoIdentityUseCase(
                 fetchVideoIdentityRepository: resolver.resolve(FetchVideoIdentityRepository.self)!
             )
         }
-
-        // detail
+        
         container.register(CheckSummaryStateUseCase.self) { resolver in
             DefaultCheckSummaryStateUseCase(
                 summaryProcessRepository: resolver.resolve(SummaryProcessRepository.self)!
@@ -123,30 +145,65 @@ final class DIContainer {
         container.register(VideoThumbNailUseCase.self) { resolver in
             
             DefaultVideoThumbNailUseCase(
-                youtubeRepository: resolver.resolve(FetchThumbNailRepository.self, name: "youtube")!,
+                youtubeRepository: resolver.resolve(FetchThumbNailRepository.self, name: Dependencies.ThumbnailRepository.youtube)!,
                 localRepository: resolver.resolve(LocalThumbNailSourceRepository.self)!
             )
         }
         
         
-        // ViewModel
-        container.register(VideoCollectionViewModel.self) { resolver in
+        
+        // MARK: - Factory
+        container.register(SubCategoryCellViewModelFactory.self) { _ in
             
-            DefaultVideoCollectionViewModel(
-                fetchVideoIdentityUseCase: resolver.resolve(FetchVideoIdentityUseCase.self)!,
-                cellVMFactory: VideoCellViewModelFactory(
-                    checkSummaryStateUseCase: resolver.resolve(CheckSummaryStateUseCase.self)!,
-                    fetchVideoDetailUseCase: resolver.resolve(FetchVideoDetailUseCase.self)!,
-                    saveVideoDetailUseCase: resolver.resolve(SaveVideoDetailUseCase.self)!,
-                    videoThumbNailUseCase: resolver.resolve(VideoThumbNailUseCase.self)!
-                )
+            SubCategoryCellViewModelFactory()
+        }
+        
+        container.register(VideoMainCategoryViewModelFactory.self) { resolver in
+            VideoMainCategoryViewModelFactory(
+                getVideoSubCategoryRepository: resolver.resolve(GetVideoSubCategoryRepository.self)!,
+                subCategoryCellViewModelFactory: resolver.resolve(SubCategoryCellViewModelFactory.self)!
             )
         }
         
-        return container
-    }()
-
+        container.register(MainCategoryViewControllerFactory.self) { resolver in
+            
+            MainCategoryViewControllerFactory()
+        }
+        
+        container.register(VideoCellViewModelFactory.self) { resolver in
+            
+            VideoCellViewModelFactory(
+                checkSummaryStateUseCase: resolver.resolve(CheckSummaryStateUseCase.self)!,
+                fetchVideoDetailUseCase: resolver.resolve(FetchVideoDetailUseCase.self)!,
+                saveVideoDetailUseCase: resolver.resolve(SaveVideoDetailUseCase.self)!,
+                videoThumbNailUseCase: resolver.resolve(VideoThumbNailUseCase.self)!)
+        }
+        
+    }
     
-    private init() { }
+    func createMainViewController() -> MainViewController {
+        
+        return MainViewController(
+            mainViewModel: createMainViewModel(),
+            videoListViewModel: createVideoListViewModel()
+        )
+    }
+    
+    private func createMainViewModel() -> MainViewModel {
+        
+        MainViewModel(
+            getVideoMainCategoryRepository: container.resolve(GetVideoMainCategoryRepository.self)!,
+            videoMainCategoryViewModelFactory: container.resolve(VideoMainCategoryViewModelFactory.self)!,
+            mainCategoryViewControllerFactory: container.resolve(MainCategoryViewControllerFactory.self)!
+        )
+    }
+    
+    private func createVideoListViewModel() -> VideoListViewModelInterface {
+        
+        DefaultVideoListViewModel(
+            fetchVideoIdentityUseCase: container.resolve(FetchVideoIdentityUseCase.self)!,
+            videoCellViewModelFactory: container.resolve(VideoCellViewModelFactory.self)!
+        )
+    }
 
 }

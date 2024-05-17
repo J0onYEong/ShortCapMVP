@@ -1,11 +1,311 @@
 import UIKit
+import RxSwift
+import RxCocoa
+import Domain
+import DSKit
 
-class MainViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+public class MainViewController: UIViewController {
+    
+    private let mainViewModel: MainViewModel
+    private let videoListViewModel: VideoListViewModelInterface
+    
+    public var videoListViewController: VideoListViewController
+    
+    private let applicationLogo: UIView = {
+        
+        let imageView = UIImageView()
+        
+        imageView.image = UIImage(named: "shortCapLogo", in: Bundle(for: MainViewController.self), with: nil)
+        
+        imageView.contentMode = .scaleAspectFit
+        
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let view = UIView()
+        
+        view.addSubview(imageView)
+        
+        NSLayoutConstraint.activate([
+            imageView.widthAnchor.constraint(equalToConstant: 100),
+            imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+        ])
+        
+        return view
+    }()
+    
+    private let indicator: UIView = {
+       
+        let indicatorBackgroundView = UIView()
+        
+        let indicator = UIActivityIndicatorView()
+        
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        indicator.startAnimating()
+        
+        indicatorBackgroundView.addSubview(indicator)
+        
+        NSLayoutConstraint.activate([
+            indicator.widthAnchor.constraint(equalToConstant: 75),
+            indicator.centerXAnchor.constraint(equalTo: indicatorBackgroundView.centerXAnchor),
+            indicator.centerYAnchor.constraint(equalTo: indicatorBackgroundView.centerYAnchor),
+        ])
+        
+        indicatorBackgroundView.backgroundColor = .lightGray.withAlphaComponent(0.25)
+        
+        indicatorBackgroundView.alpha = 0.0
+        
+        return indicatorBackgroundView
+    }()
+    
+    private let categoryTabBarView: UICollectionView = {
+        
+        let layout = UICollectionViewFlowLayout()
+          
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 0.0
+        layout.minimumInteritemSpacing = 0
+        layout.itemSize = .init(width: UIScreen.main.bounds.width/7.0, height: 28.0)
+       
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        
+        // 페이징 기능을 사용하지 않는다.
+        collectionView.isPrefetchingEnabled = true
+        collectionView.isPagingEnabled = false
+        
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
+        
+        return collectionView
+    }()
+    
+    private let tempSearchView: UIView = {
+        
+        let searchView = UIView()
+        
+        searchView.backgroundColor = DSColor.black100.color
+        searchView.layer.cornerRadius = 7.38
+        
+        let label = PretendardLabel(text: "저장했던 숏폼을 키워드로 검색해보세요!", fontSize: 13, fontWeight: .regular)
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        searchView.addSubview(label)
+        
+        NSLayoutConstraint.activate([
+            
+            label.centerYAnchor.constraint(equalTo: searchView.centerYAnchor),
+            label.leadingAnchor.constraint(equalTo: searchView.leadingAnchor, constant: 18),
+        ])
+        
+        return searchView
+    }()
+    
+    private let disposeBag = DisposeBag()
+    
+    public init(mainViewModel: MainViewModel, videoListViewModel: VideoListViewModelInterface) {
+        
+        self.mainViewModel = mainViewModel
+        self.videoListViewModel = videoListViewModel
+        self.videoListViewController = VideoListViewController(viewModel: videoListViewModel)
+        
+        super.init(nibName: nil, bundle: nil)
+        
+        // 카테고리 탭바(컬렉션 뷰)
+        setVideoCategoryCollectionView()
     }
     
+    public required init?(coder: NSCoder) { fatalError() }
+
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        [indicator, applicationLogo, categoryTabBarView, tempSearchView].forEach {
+            view.addSubview($0)
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
+        
+        view.backgroundColor = .white
+        
+        // 탭바, 인디케이터 오토레이아웃
+        setAutoLayout()
+        
+        // 비디오 리스트 뷰컨트롤러
+        setVideoListViewController()
+        
+        // 인디케이터 가동
+        showUpIndicator()
+        
+        // 메인카테고리 뷰모델 옵저버
+        setMainCategoryViewModelObserver()
+        
+        // 화면전환 옵저버
+        setViewChangerObserver()
+    }
+    
+    private func setVideoListViewController() {
+        
+        self.addChild(videoListViewController)
+        
+        videoListViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(videoListViewController.view)
+        
+        view.bringSubviewToFront(videoListViewController.view)
+        
+        NSLayoutConstraint.activate([
+            
+            videoListViewController.view.topAnchor.constraint(equalTo: tempSearchView.bottomAnchor, constant: 20),
+            videoListViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            videoListViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            videoListViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        ])
+    }
+    
+    private func setViewChangerObserver() {
+        
+        NotificationCenter.mainFeature.rx.notification(.videoSubCategoryClicked)
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { notification in
+                
+                self.showVideoListView()
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    /// 비디오 리스트를 화면에 표시합니다.
+    private func showVideoListView() {
+        
+        view.bringSubviewToFront(videoListViewController.view)
+    }
+    
+    private func setMainCategoryViewModelObserver() {
+        
+        let viewControllerObservable = mainViewModel
+            .mainCategoryViewModels
+            .observe(on: MainScheduler.instance)
+            .map({ mainCategoryViewModels in
+                
+                self.dismissIndicator()
+                
+                return mainCategoryViewModels.map { viewModel in
+                    
+                    let viewController = self.mainViewModel.mainCategoryViewControllerFactory.create(viewModel: viewModel)
+                    
+                    self.insertViewController(viewController)
+                    
+                    return viewController
+                }
+            })
+        
+        // 선택된 메인카테고리와 메인카테고리 뷰컨트롤러의 생성이 완료되었을 때 필터링을 시작한다.
+        Observable.combineLatest(
+            viewControllerObservable,
+            mainViewModel.selectedMainCategory
+        )
+        .observe(on: MainScheduler.instance)
+        .subscribe(onNext: { (viewControllers, selectedCategory) in
+            
+            if selectedCategory.categoryId == VideoMainCategory.all.categoryId {
+                
+                self.showVideoListView()
+            } else {
+                
+                let willShowViewController = viewControllers.first(where: { $0.viewModel.category.categoryId == selectedCategory.categoryId })!
+                
+                self.view.bringSubviewToFront(willShowViewController.view)
+            }
+        })
+        .disposed(by: disposeBag)
+        
+    }
+    
+    private func setVideoCategoryCollectionView() {
+        
+        let videoCategoryCellId = String(describing: VideoMainCategoryCell.self)
+        
+//        categoryTabBarView.delegate = self
+        
+        categoryTabBarView.register(VideoMainCategoryCell.self, forCellWithReuseIdentifier: videoCategoryCellId)
+        
+        //탭바 설정
+        mainViewModel
+            .mainCategories
+            .asDriver()
+            .drive(categoryTabBarView.rx.items(cellIdentifier: videoCategoryCellId, cellType: VideoMainCategoryCell.self)) { index, category, cell in
+                
+                cell.setUp(category: category, selectedMainCategory: self.mainViewModel.selectedMainCategory)
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    private func setAutoLayout() {
+        
+        NSLayoutConstraint.activate([
+            
+            indicator.topAnchor.constraint(equalTo: view.topAnchor),
+            indicator.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            indicator.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            indicator.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            applicationLogo.heightAnchor.constraint(equalToConstant: 56.0),
+            applicationLogo.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            applicationLogo.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            applicationLogo.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            categoryTabBarView.heightAnchor.constraint(equalToConstant: 28.0),
+            categoryTabBarView.topAnchor.constraint(equalTo: applicationLogo.bottomAnchor),
+            categoryTabBarView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            categoryTabBarView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            tempSearchView.topAnchor.constraint(equalTo: categoryTabBarView.bottomAnchor, constant: 20),
+            tempSearchView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            tempSearchView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            tempSearchView.heightAnchor.constraint(equalToConstant: 52),
+        ])
+    }
+    
+    private func showUpIndicator() {
+        
+        view.bringSubviewToFront(indicator)
+        indicator.alpha = 1.0
+    }
+    
+    private func dismissIndicator() {
+        
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            
+            self?.indicator.alpha = 0.0
+        }
+    }
+    
+    public override func viewWillAppear(_ animated: Bool) {
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    private func insertViewController(_ viewController: UIViewController) {
+        
+        // willMove를 자동으로 호출한다.
+        
+        // 현재 뷰컨트롤러의 자식뷰컨트롤러를 지정하는 경우에 호출된다
+        self.addChild(viewController)
+        
+        // ✅ 커스텀 컨테이너 구현시, addChild이후에 반드시 호출해야한다.
+        viewController.didMove(toParent: self)
+        
+        view.insertSubview(viewController.view, belowSubview: videoListViewController.view)
+        
+        viewController.view.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            
+            viewController.view.topAnchor.constraint(equalTo: tempSearchView.bottomAnchor, constant: 20),
+            viewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            viewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            viewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        ])
+    }
 }

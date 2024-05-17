@@ -19,7 +19,12 @@ public class DefaultGetVideoSubCategoryRepository: GetVideoSubCategoryRepository
             switch result {
             case .success(let dto):
                 
-                completion(.success(dto.toEntity()))
+                if let subCategories = dto.data?.toEntity() {
+                    
+                    completion(.success(subCategories))
+                }
+                
+                completion(.failure(.networkError))
                 
             case .failure(let error):
                 

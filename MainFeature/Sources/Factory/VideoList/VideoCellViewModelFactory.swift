@@ -20,7 +20,7 @@ public class VideoCellViewModelFactory {
         self.thumbNailUC = thumbNailUC
     }
     
-    func create(videoIdentity: VideoIdentity) -> VideoCellViewModel {
+    func create(videoIdentity: VideoIdentity) -> VideoCellViewModelInterface {
         
         DefaultVideoCellViewModel(
             videoIdentity: videoIdentity,

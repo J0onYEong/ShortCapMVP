@@ -59,7 +59,7 @@ extension APIEndpoints {
 // MARK: - VideoSubCategories
 extension APIEndpoints {
     
-    static func getVideoSubCategories(mainCategory main: String) -> Endpoint<VideoSubCategoryDTO> {
+    static func getVideoSubCategories(mainCategory main: String) -> Endpoint<ResponseDTOWrapper<VideoSubCategoryDTO>> {
         
         return Endpoint(
             path: "api/categories",

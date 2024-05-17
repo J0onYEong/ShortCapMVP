@@ -61,4 +61,23 @@ public class VideoDetail {
         subCategoryId: 0,
         videoCode: ""
     )
+    
+    public static func mockInstance() -> VideoDetail {
+        
+        return .init(
+            title: "서버오류",
+            description: "서버오류",
+            keywords: [],
+            url: "서버오류",
+            summary: "서버오류",
+            address: "서버오류",
+            createdAt: "",
+            platform: .youtube,
+            mainCategory: "서버오류",
+            mainCategoryId: 0,
+            subCategory: "서버오류",
+            subCategoryId: 0,
+            videoCode: ""
+        )
+    }
 }

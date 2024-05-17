@@ -11,4 +11,6 @@ public class VideoMainCategory {
         self.enName = enName
         self.categoryId = categoryId
     }
+    
+    public static let all = VideoMainCategory(korName: "전체", enName: "ALL", categoryId: 100)
 }

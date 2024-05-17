@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import Presentation
+import MainFeature
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -19,11 +19,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         
-        let viewModel = DIContainer.container.resolve(VideoCollectionViewModel.self)!
+        let mainViewController = DIContainer.default.createMainViewController()
         
-        let viewController = MainScreenViewController(viewModel: viewModel)
-        
-        let navigationVC = UINavigationController(rootViewController: viewController)
+        let navigationVC = UINavigationController(rootViewController: mainViewController)
 
         window?.rootViewController = navigationVC
         window?.makeKeyAndVisible()
@@ -53,10 +51,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let navigationController = window?.rootViewController as? UINavigationController {
             
             if let targetVC = navigationController.viewControllers.first(where: { vc in
-                type(of: vc) == MainScreenViewController.self
-            }) as? MainScreenViewController {
+                type(of: vc) == MainViewController.self
+            }) as? MainViewController {
                 
-                targetVC.viewModel.fetchVideoIdentities()
+                targetVC.videoListViewController.viewModel.fetchVideoIdentities()
             }
         }
     }

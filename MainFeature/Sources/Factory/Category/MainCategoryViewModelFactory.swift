@@ -4,17 +4,19 @@ import Domain
 public class VideoMainCategoryViewModelFactory {
     
     private let repository: GetVideoSubCategoryRepository
+    private let factory: SubCategoryCellViewModelFactory
     
-    public init(getVideoSubCategoryRepository repository: GetVideoSubCategoryRepository) {
+    public init(getVideoSubCategoryRepository repository: GetVideoSubCategoryRepository, subCategoryCellViewModelFactory factory: SubCategoryCellViewModelFactory) {
         self.repository = repository
+        self.factory = factory
     }
     
-    func create(category: VideoMainCategory, filterClosure: @escaping (VideoFilter) -> Void) -> VideoMainCategoryViewModel {
+    func create(category: VideoMainCategory) -> VideoMainCategoryViewModel {
         
         return .init(
             getVideoSubCategoryRepository: repository,
-            category: category,
-            filterClosure: filterClosure
+            subCategoryCellViewModelFactory: factory,
+            category: category
         )
     }
 }

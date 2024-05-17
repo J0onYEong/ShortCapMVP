@@ -2,14 +2,15 @@ import Foundation
 import Domain
 import RxSwift
 import RxCocoa
+import Core
 
 public class VideoMainCategoryViewModel {
     
     private let getVideoSubCategoryRepository: GetVideoSubCategoryRepository
     
-    public let category: VideoMainCategory
+    public let subCategoryCellViewModelFactory: SubCategoryCellViewModelFactory
     
-    private let filterClosure: (VideoFilter) -> Void
+    public let category: VideoMainCategory
     
     public let subCategories = BehaviorRelay<[VideoSubCategory]>(value: [])
     
@@ -19,12 +20,12 @@ public class VideoMainCategoryViewModel {
     
     init(
         getVideoSubCategoryRepository: GetVideoSubCategoryRepository,
-        category: VideoMainCategory,
-        filterClosure: @escaping (VideoFilter) -> Void
+        subCategoryCellViewModelFactory: SubCategoryCellViewModelFactory,
+        category: VideoMainCategory
     ) {
         self.getVideoSubCategoryRepository = getVideoSubCategoryRepository
+        self.subCategoryCellViewModelFactory = subCategoryCellViewModelFactory
         self.category = category
-        self.filterClosure = filterClosure
         
         setObserver()
         
@@ -33,7 +34,8 @@ public class VideoMainCategoryViewModel {
     
     private func setObserver() {
         
-        // TODO: 컬렉션뷰의 셀 생성
+        
+        
     }
     
     /// 서브카테고리 정보를 가져옵니다.
@@ -44,6 +46,9 @@ public class VideoMainCategoryViewModel {
                 
                 switch result {
                 case .success(let subCategories):
+                    
+                    printIfDebug("\(self?.category.korName ?? "no self:")  카테고리의 서브카테고리 수: \(subCategories.count)")
+                    
                     self?.subCategories.accept(subCategories)
                 case .failure(let error):
                     self?.errorPublisher.accept(error)

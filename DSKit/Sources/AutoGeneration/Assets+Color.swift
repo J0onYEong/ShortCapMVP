@@ -21,40 +21,40 @@ internal typealias AssetColorTypeAlias = ColorAsset.Color
 // MARK: - Asset Catalogs
 
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
-internal enum Asset {
-  internal static let black100 = ColorAsset(name: "black100")
-  internal static let black200 = ColorAsset(name: "black200")
-  internal static let black300 = ColorAsset(name: "black300")
-  internal static let black400 = ColorAsset(name: "black400")
-  internal static let g2Blue100 = ColorAsset(name: "G2Blue100")
-  internal static let g2Blue200 = ColorAsset(name: "G2Blue200")
-  internal static let g4Blue100 = ColorAsset(name: "G4Blue100")
-  internal static let g4Blue200 = ColorAsset(name: "G4Blue200")
-  internal static let g4Blue300 = ColorAsset(name: "G4Blue300")
-  internal static let g4Blue400 = ColorAsset(name: "G4Blue400")
-  internal static let mainBlue100 = ColorAsset(name: "mainBlue100")
-  internal static let mainBlue200 = ColorAsset(name: "mainBlue200")
-  internal static let mainBlue300 = ColorAsset(name: "mainBlue300")
-  internal static let mainAqua100 = ColorAsset(name: "mainAqua100")
-  internal static let mainAqua200 = ColorAsset(name: "mainAqua200")
-  internal static let subLightGreen = ColorAsset(name: "subLightGreen")
-  internal static let subLightYellow = ColorAsset(name: "subLightYellow")
+public enum DSColor {
+  public static let black100 = ColorAsset(name: "black100")
+  public static let black200 = ColorAsset(name: "black200")
+  public static let black300 = ColorAsset(name: "black300")
+  public static let black400 = ColorAsset(name: "black400")
+  public static let g2Blue100 = ColorAsset(name: "G2Blue100")
+  public static let g2Blue200 = ColorAsset(name: "G2Blue200")
+  public static let g4Blue100 = ColorAsset(name: "G4Blue100")
+  public static let g4Blue200 = ColorAsset(name: "G4Blue200")
+  public static let g4Blue300 = ColorAsset(name: "G4Blue300")
+  public static let g4Blue400 = ColorAsset(name: "G4Blue400")
+  public static let mainBlue100 = ColorAsset(name: "mainBlue100")
+  public static let mainBlue200 = ColorAsset(name: "mainBlue200")
+  public static let mainBlue300 = ColorAsset(name: "mainBlue300")
+  public static let mainAqua100 = ColorAsset(name: "mainAqua100")
+  public static let mainAqua200 = ColorAsset(name: "mainAqua200")
+  public static let subLightGreen = ColorAsset(name: "subLightGreen")
+  public static let subLightYellow = ColorAsset(name: "subLightYellow")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 
 // MARK: - Implementation Details
 
-internal final class ColorAsset {
+public final class ColorAsset {
   internal fileprivate(set) var name: String
 
   #if os(macOS)
   internal typealias Color = NSColor
   #elseif os(iOS) || os(tvOS) || os(watchOS)
-  internal typealias Color = UIColor
+  public typealias Color = UIColor
   #endif
 
   @available(iOS 11.0, tvOS 11.0, watchOS 4.0, macOS 10.13, *)
-  internal private(set) lazy var color: Color = {
+  public lazy var color: Color = {
     guard let color = Color(asset: self) else {
       fatalError("Unable to load color asset named \(name).")
     }
@@ -84,7 +84,7 @@ internal final class ColorAsset {
   }
 }
 
-internal extension ColorAsset.Color {
+public extension ColorAsset.Color {
   @available(iOS 11.0, tvOS 11.0, watchOS 4.0, macOS 10.13, *)
   convenience init?(asset: ColorAsset) {
     let bundle = BundleToken.bundle

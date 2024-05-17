@@ -1,18 +1,21 @@
 import Foundation
 import Domain
+import RxSwift
+import RxCocoa
 
-extension Notification.Name {
+public extension Notification.Name {
     
     static let mainCategoryIsChanged: Self = .init("mainCategoryIsChanged")
     static let videoSubCategoryInformationIsChanged: Self = .init("videoSubCategoryInformationIsChanged")
+    static let videoSubCategoryClicked: Self = .init("videoSubCategoryClicked")
 }
 
-extension Notification {
+public extension Notification {
     
     subscript<T>(_ key: NotificationUserInfoKey) -> T? { self.userInfo?[key.rawValue] as? T }
 }
 
-extension NotificationCenter {
+public extension NotificationCenter {
     
     static let mainFeature = NotificationCenter()
     
@@ -26,10 +29,22 @@ extension NotificationCenter {
     }
 }
 
-enum NotificationUserInfoKey: String, Hashable {
+public extension NotificationCenter {
+    
+    static let globalDisposeBag = DisposeBag()
+    
+    static let videoCategoryInformation: BehaviorRelay<VideoCategoryInformation> = {
+        
+        let relay = BehaviorRelay<VideoCategoryInformation>(value: [:])
+        
+        return relay
+    }()
+}
+
+public enum NotificationUserInfoKey: String, Hashable {
     
     case videoFilter = "videoFilter"
     case videoSubCategoryInformation = "videoSubCategoryInformation"
 }
 
-typealias VideoCategoryInformation = [Int: [Int: VideoSubCategoryInformation]]
+public typealias VideoCategoryInformation = [Int: [Int: VideoSubCategoryInformation]]

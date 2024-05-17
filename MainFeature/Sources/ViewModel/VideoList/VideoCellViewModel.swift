@@ -18,10 +18,10 @@ enum VideoCollectionViewConfig {
     static var thumbNailSize: CGSize { CGSize(width: thumbNailWidth, height: thumbNailHeight) }
 }
 
-public protocol VideoCellViewModel {
+public protocol VideoCellViewModelInterface {
     
     var videoIdentity: VideoIdentity { get }
-    var detail: VideoDetail! { get }
+    var detail: VideoDetail? { get }
     
     var detailSubject: ReplaySubject<VideoDetail> { get }
     var thumbNailSubject: ReplaySubject<UIImage> { get }
@@ -29,10 +29,10 @@ public protocol VideoCellViewModel {
     func fetchDetailAndThumbNail()
 }
 
-public final class DefaultVideoCellViewModel: VideoCellViewModel {
+public final class DefaultVideoCellViewModel: VideoCellViewModelInterface {
     
     public let videoIdentity: VideoIdentity
-    public var detail: VideoDetail!
+    public var detail: VideoDetail?
     
     // UseCases
     private let checkStateUC: CheckSummaryStateUseCase
@@ -270,7 +270,7 @@ public final class DefaultVideoCellViewModel: VideoCellViewModel {
     }
 }
 
-extension DefaultVideoCellViewModel: Hashable {
+extension DefaultVideoCellViewModel {
     
     public static func == (lhs: DefaultVideoCellViewModel, rhs: DefaultVideoCellViewModel) -> Bool {
         
@@ -282,4 +282,3 @@ extension DefaultVideoCellViewModel: Hashable {
         hasher.combine(videoIdentity)
     }
 }
-

@@ -17,7 +17,7 @@ public class VideoFilter {
         self.state = state
     }
     
-    public static let all: VideoFilter = .init(mainCategoryId: -1, subCategoryId: -1, state: .all)
+    public static let all: VideoFilter = .init(mainCategoryId: 100, subCategoryId: 100, state: .all)
 }
 
 extension VideoFilter: Equatable {

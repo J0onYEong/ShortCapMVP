@@ -5,3 +5,10 @@ xcassets:
     outputs:
         templateName: swift5
         output: Assets+Color.swift
+        params:
+            enumName: DSColor
+fonts:
+    inputs: Font/pretendard
+    outputs: 
+        templateName: swift5
+        output: Fonts+Pretendard.swift

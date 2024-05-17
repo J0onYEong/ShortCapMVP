@@ -3,12 +3,13 @@ import Domain
 
 public class SubCategoryCellViewModelFactory {
     
-    public func create(mainCategory: VideoMainCategory, subCategory: VideoSubCategory, filteringClosure: @escaping (VideoFilter) -> Void) -> SubCategoryCellViewModel {
+    public init() { }
+    
+    public func create(mainCategory: VideoMainCategory, subCategory: VideoSubCategory) -> SubCategoryCellViewModel {
         
         return SubCategoryCellViewModel(
             mainCategory: mainCategory,
-            subCategory: subCategory,
-            filteringClosure: filteringClosure
+            subCategory: subCategory
         )
     }
 }

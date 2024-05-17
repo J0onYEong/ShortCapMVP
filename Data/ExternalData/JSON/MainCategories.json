@@ -1,12 +1,12 @@
 [
     {
-        "enName": "SCIENCE_TECHNOLOGY",
-        "korName": "과학/기술",
+        "enName": "TECHNOLOGY",
+        "korName": "기술",
         "index": 0
     },
     {
-        "enName": "FASHION_BEAUTY",
-        "korName": "패션/뷰티",
+        "enName": "BEAUTY",
+        "korName": "뷰티",
         "index": 1
     },
     {
@@ -41,7 +41,7 @@
     },
     {
         "enName": "ENTERTAINMENT",
-        "korName": "엔터테인먼트",
+        "korName": "엔터",
         "index": 8
     },
     {

@@ -5,7 +5,15 @@ import Core
 import Domain
 import Data
 
-public class VideoListViewModel {
+public protocol VideoListViewModelInterface {
+    
+    var displayingVideoCellViewModel: BehaviorRelay<[VideoCellViewModelInterface]> { get }
+    var filterdVideoCellViewModel: BehaviorRelay<[VideoCellViewModelInterface]> { get }
+    
+    func fetchVideoIdentities()
+}
+
+public class DefaultVideoListViewModel: VideoListViewModelInterface {
     
     private let fetchVideoIdentityUseCase: FetchVideoIdentityUseCase
     private let videoCellViewModelFactory: VideoCellViewModelFactory
@@ -17,13 +25,13 @@ public class VideoListViewModel {
     private var currentVideoIdentities = Set<VideoIdentity>()
     
     /// 패치된 아이덴티티로 부터 디테일과 썸네일이 획득된 ViewModel입니다.
-    private let createdVideoCellViewModel = PublishRelay<VideoCellViewModel>()
+    private let createdVideoCellViewModel = PublishRelay<VideoCellViewModelInterface>()
     
     /// 화면에 표시가능한 뷰모델 배열입니다.
-    private let displayingVideoCellViewModel = BehaviorRelay<[VideoCellViewModel]>(value: [])
+    public let displayingVideoCellViewModel = BehaviorRelay<[VideoCellViewModelInterface]>(value: [])
     
     /// 필터링이 적용된 뷰묘델 배열입니다, 이 옵저버블이 최종적으로 UI구성에 사용됩니다.
-    public let filterdVideoCellViewModel = BehaviorRelay<[VideoCellViewModel]>(value: [])
+    public let filterdVideoCellViewModel = BehaviorRelay<[VideoCellViewModelInterface]>(value: [])
     
     private let disposeBag: DisposeBag = .init()
     
@@ -34,10 +42,12 @@ public class VideoListViewModel {
         self.fetchVideoIdentityUseCase = fetchVideoIdentityUseCase
         self.videoCellViewModelFactory = videoCellViewModelFactory
         
-        setOnserver()
+        setObserver()
+        
+        fetchVideoIdentities()
     }
     
-    private func setOnserver() {
+    private func setObserver() {
         
         fetchedVideoIdentites
             .subscribe(onNext: { identities in
@@ -70,7 +80,7 @@ public class VideoListViewModel {
         
         
         createdVideoCellViewModel
-            .scan([]) { (viewModels: [VideoCellViewModel], viewModel) in
+            .scan([]) { (viewModels: [VideoCellViewModelInterface], viewModel) in
                 
                 var copy = viewModels
                 
@@ -78,6 +88,7 @@ public class VideoListViewModel {
                 
                 return copy
             }
+            .map({ $0.sorted { lhs, rhs in lhs.detail!.createdAt > rhs.detail!.createdAt } })
             .subscribe(onNext: {
                 
                 self.displayingVideoCellViewModel
@@ -87,7 +98,7 @@ public class VideoListViewModel {
         
         
         // MARK: - NotificationCenter, 메인카테고리의 변경을 수신합니다.
-        let filterObservable = NotificationCenter.mainFeature.rx.notification(.mainCategoryIsChanged)
+        let filterObservable = NotificationCenter.mainFeature.rx.notification(.videoSubCategoryClicked)
             .map { notification in
                 
                 guard let videoFilter: VideoFilter = notification[.videoFilter] else { fatalError() }
@@ -100,15 +111,57 @@ public class VideoListViewModel {
             .combineLatest(filterObservable, displayingVideoCellViewModel)
             .subscribe(onNext: { [weak self] (filter, viewModels) in
                 
-                let filetered = viewModels.filter { viewModel in
+                if filter.state == .all {
                     
-                    let mainCategoryId = viewModel.detail.mainCategoryId
-                    let subCategoryId = viewModel.detail.subCategoryId
-                    
-                    return filter.mainCategoryId == mainCategoryId && filter.subCategoryId == subCategoryId
+                    self?.filterdVideoCellViewModel.accept(viewModels)
                 }
                 
-                self?.filterdVideoCellViewModel.accept(filetered)
+                if filter.state != .all {
+                    
+                    let filetered = viewModels.filter { viewModel in
+                        
+                        let mainCategoryId = viewModel.detail!.mainCategoryId
+                        let subCategoryId = viewModel.detail!.subCategoryId
+                        
+                        return filter.mainCategoryId == mainCategoryId && filter.subCategoryId == subCategoryId
+                    }
+                    
+                    self?.filterdVideoCellViewModel.accept(filetered)
+                }
+                
+            })
+            .disposed(by: disposeBag)
+        
+        
+        // 현재 어떤 메인카테고리의 서브카테고리에 포함된 비디오가 몇개인지 정보 전송
+        displayingVideoCellViewModel
+            .subscribe(onNext: { activeViewModels in
+                
+                var information: VideoCategoryInformation = [:]
+                
+                activeViewModels.forEach { viewModel in
+                    
+                    let mainCategoryId = viewModel.detail!.mainCategoryId
+                    let subCategoryId = viewModel.detail!.subCategoryId
+                    let creationDateString = viewModel.detail!.createdAt
+                    
+                    if let mainInfo = information[mainCategoryId] {
+                        
+                        if let subInfo = mainInfo[subCategoryId] {
+                                
+                            subInfo.count+=1
+                        } else {
+                            
+                            information[mainCategoryId]![subCategoryId] = VideoSubCategoryInformation(count: 1, creationDateString: creationDateString)
+                        }
+                        
+                    } else {
+                        
+                        information[mainCategoryId] = [subCategoryId : VideoSubCategoryInformation(count: 1, creationDateString: creationDateString)]
+                    }
+                }
+                
+                NotificationCenter.videoCategoryInformation.accept(information)
             })
             .disposed(by: disposeBag)
     }

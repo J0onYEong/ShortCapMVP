@@ -2,14 +2,20 @@ import Foundation
 
 public class VideoSubCategoryInformation {
     
-    public let count: Int
-    public let creationDate: Date
+    public enum State { case complete, processing }
+    
+    public var count: Int
+    public var creationDate: Date
+    public private(set) var state: State
+    
+    public static let processing: VideoSubCategoryInformation = .init(count: -1, creationDate: .now, state: .processing)
     
     private static let dateFormatter = ISO8601DateFormatter()
     
-    public init(count: Int, creationDate: Date) {
+    public init(count: Int, creationDate: Date, state: State = .complete) {
         self.count = count
         self.creationDate = creationDate
+        self.state = state
     }
     
     public convenience init(count: Int, creationDateString: String) {

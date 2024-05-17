@@ -1,0 +1,16 @@
+//
+//  Release.xcconfig
+//  ShortCapTest
+//
+//  Created by 최준영 on 5/17/24.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+BASE_URL = http:/$()/15.165.250.47:8080
+ShortCap_App_Name = ShortCap
+APP_GROUP = group.choijunyeong.ShortCap
+
+// Google API KEY for youtube thumbnail
+GOOGLE_API_KEY = AIzaSyB4X4UbeSxYMUrk2j5LPyDvB5PxrIxCaks

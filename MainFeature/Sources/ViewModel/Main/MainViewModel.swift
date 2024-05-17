@@ -2,6 +2,7 @@ import Foundation
 import Domain
 import RxSwift
 import RxRelay
+import Core
 
 public class MainViewModel {
     
@@ -11,19 +12,27 @@ public class MainViewModel {
     
     public let mainCategories = BehaviorRelay<[VideoMainCategory]>(value: [])
     
-    private let videoFilter = BehaviorRelay<VideoFilter>(value: .all)
-    
     public let mainCategoryViewModels = BehaviorRelay<[VideoMainCategoryViewModel]>(value: [])
+     
+    public let selectedMainCategory = BehaviorRelay<VideoMainCategory>(value: .all)
     
-    init(
+    // Factory
+    public let mainCategoryViewControllerFactory: MainCategoryViewControllerFactory
+    
+    public init(
         getVideoMainCategoryRepository: GetVideoMainCategoryRepository,
-        videoMainCategoryViewModelFactory: VideoMainCategoryViewModelFactory
+        videoMainCategoryViewModelFactory: VideoMainCategoryViewModelFactory,
+        mainCategoryViewControllerFactory: MainCategoryViewControllerFactory
     ) {
         self.getVideoMainCategoryRepository = getVideoMainCategoryRepository
         self.videoMainCategoryViewModelFactory = videoMainCategoryViewModelFactory
+        self.mainCategoryViewControllerFactory = mainCategoryViewControllerFactory
         
         setObserver()
+        
+        fetchCategories()
     }
+    
     private let disposeBag = DisposeBag()
     
     private func setObserver() {
@@ -34,32 +43,12 @@ public class MainViewModel {
                 
                 items.compactMap { mainCategory in
                     
-                    self?.videoMainCategoryViewModelFactory.create(category: mainCategory) { [weak self] subCategoryId in
-                            
-                        let newFiler = VideoFilter(
-                            mainCategoryId: mainCategory.categoryId,
-                            subCategoryId: subCategoryId
-                        )
-                        
-                        // 이전필터와 값이 다른 경우만 이벤트를 전송합니다.
-                        if let prevFilter = self?.videoFilter.value, prevFilter != newFiler {
-                            
-                            self?.videoFilter.accept(newFiler)
-                        }
-                    }
+                    self?.videoMainCategoryViewModelFactory.create(category: mainCategory)
                 }
             }
             .subscribe(onNext: { [weak self] in
                 
                 self?.mainCategoryViewModels.accept($0)
-            })
-            .disposed(by: disposeBag)
-        
-        
-        videoFilter
-            .subscribe(onNext: { filter in
-                
-                NotificationCenter.mainFeature.post(name: .mainCategoryIsChanged, userInfo: [.videoFilter : filter])
             })
             .disposed(by: disposeBag)
     }
@@ -71,6 +60,8 @@ public class MainViewModel {
             
             switch result {
             case .success(let categories):
+                
+                printIfDebug("✅가져온 메인카테고리 \(categories.count)개")
                 
                 self.mainCategories.accept(categories)
                 

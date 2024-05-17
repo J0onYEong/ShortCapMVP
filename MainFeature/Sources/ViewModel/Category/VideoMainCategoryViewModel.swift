@@ -29,14 +29,10 @@ public class VideoMainCategoryViewModel {
         
         setObserver()
         
-        fetchCategories()
+        if category != .all { fetchCategories() }
     }
     
-    private func setObserver() {
-        
-        
-        
-    }
+    private func setObserver() { }
     
     /// 서브카테고리 정보를 가져옵니다.
     private func fetchCategories()  {

@@ -25,8 +25,8 @@ public final class DefaultVideoDetailRepository: VideoDetailLocalRepository {
             platform: detail.platform.rawValue,
             mainCategory: detail.mainCategory,
             mainCategoryId: detail.mainCategoryId,
-            subCategory: detail.mainCategory,
-            subCategoryId: detail.mainCategoryId,
+            subCategory: detail.subCategory,
+            subCategoryId: detail.subCategoryId,
             videoCode: detail.videoCode
         )
             

@@ -30,6 +30,8 @@ public class DefaultVideoListViewModel: VideoListViewModelInterface {
     /// 화면에 표시가능한 뷰모델 배열입니다.
     public let displayingVideoCellViewModel = BehaviorRelay<[VideoCellViewModelInterface]>(value: [])
     
+    private let filterObservable = BehaviorRelay<VideoFilter>(value: .all)
+    
     /// 필터링이 적용된 뷰묘델 배열입니다, 이 옵저버블이 최종적으로 UI구성에 사용됩니다.
     public let filterdVideoCellViewModel = BehaviorRelay<[VideoCellViewModelInterface]>(value: [])
     
@@ -50,35 +52,34 @@ public class DefaultVideoListViewModel: VideoListViewModelInterface {
     private func setObserver() {
         
         fetchedVideoIdentites
-            .subscribe(onNext: { identities in
+            .flatMap { identities in
                 
                 printIfDebug("✅ \(identities.count)개의 비디오가 추가될 예정입니다.")
                 
-                identities
-                    .forEach { identity in
-                        
-                        let cellViewModel = self.videoCellViewModelFactory.create(videoIdentity: identity)
-                        
-                        Observable.zip(
-                            cellViewModel.detailSubject,
-                            cellViewModel.thumbNailSubject
-                        )
-                        .observe(on: MainScheduler.asyncInstance)
-                        .subscribe(onNext: { _ in
-                            
-                            self.createdVideoCellViewModel
-                                .accept(cellViewModel)
-                        })
-                        .disposed(by: self.disposeBag)
-                        
-                        // 옵저버를 설정한 이후 디테일정보를 가져오는 작업을 실행
-                        cellViewModel.fetchDetailAndThumbNail()
-                    }
+                return Observable.from(identities)
+            }
+            .compactMap { [weak self] identity in
+                self?.videoCellViewModelFactory.create(videoIdentity: identity)
+            }
+            .flatMap { cellViewModel in
                 
+                let observable = Observable.zip(
+                    cellViewModel.detailSubject,
+                    cellViewModel.thumbNailSubject
+                ).map { _ in cellViewModel }
+                
+                cellViewModel.fetchDetailAndThumbNail()
+                
+                return observable
+            }
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] loadedCellViewModel in
+                            
+                self?.createdVideoCellViewModel
+                    .accept(loadedCellViewModel)
             })
             .disposed(by: disposeBag)
-        
-        
+            
         createdVideoCellViewModel
             .scan([]) { (viewModels: [VideoCellViewModelInterface], viewModel) in
                 
@@ -89,22 +90,25 @@ public class DefaultVideoListViewModel: VideoListViewModelInterface {
                 return copy
             }
             .map({ $0.sorted { lhs, rhs in lhs.detail!.createdAt > rhs.detail!.createdAt } })
-            .subscribe(onNext: {
+            .subscribe(onNext: { [weak self] in
                 
-                self.displayingVideoCellViewModel
+                self?.displayingVideoCellViewModel
                     .accept($0)
             })
             .disposed(by: disposeBag)
         
         
         // MARK: - NotificationCenter, 메인카테고리의 변경을 수신합니다.
-        let filterObservable = NotificationCenter.mainFeature.rx.notification(.videoSubCategoryClicked)
+        NotificationCenter.mainFeature.rx.notification(.videoSubCategoryClicked)
             .map { notification in
                 
                 guard let videoFilter: VideoFilter = notification[.videoFilter] else { fatalError() }
                 
                 return videoFilter
-            }
+            }.subscribe(onNext: { [weak self] in
+                self?.filterObservable.accept($0)
+            })
+            .disposed(by: disposeBag)
         
         // 필터링
         Observable
@@ -117,6 +121,8 @@ public class DefaultVideoListViewModel: VideoListViewModelInterface {
                 }
                 
                 if filter.state != .all {
+                    
+                    print(filter.mainCategoryId, filter.subCategoryId)
                     
                     let filetered = viewModels.filter { viewModel in
                         

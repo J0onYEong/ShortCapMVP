@@ -49,11 +49,8 @@ public class VideoListViewController: UIViewController {
         self.viewModel = viewModel
         
         super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-    
-    public override func viewDidLoad() {
+        
+        self.view.addSubview(videoListView)
         
         // 오토레이아웃 설정
         setUpAutoLayout()
@@ -62,11 +59,13 @@ public class VideoListViewController: UIViewController {
         setCollectionView()
     }
     
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    
+    public override func viewDidLoad() {
+        
+    }
+    
     func setUpAutoLayout() {
-        
-        self.view.addSubview(videoListView)
-        
-        self.view.layer.backgroundColor = UIColor.white.cgColor
         
         NSLayoutConstraint.activate([
             videoListView.topAnchor.constraint(equalTo: view.topAnchor),

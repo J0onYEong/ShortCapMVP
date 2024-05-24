@@ -183,9 +183,11 @@ class DIContainer {
     
     func createMainViewController() -> MainViewController {
         
+        let mainViewModel = createMainViewModel()
+        
         return MainViewController(
-            mainViewModel: createMainViewModel(),
-            videoListViewModel: createVideoListViewModel()
+            mainViewModel: mainViewModel,
+            videoListViewModel: createVideoListViewModel(mainViewModel: mainViewModel)
         )
     }
     
@@ -198,11 +200,12 @@ class DIContainer {
         )
     }
     
-    private func createVideoListViewModel() -> VideoListViewModelInterface {
+    private func createVideoListViewModel(mainViewModel: MainViewModel) -> VideoListViewModelInterface {
         
         DefaultVideoListViewModel(
             fetchVideoIdentityUseCase: container.resolve(FetchVideoIdentityUseCase.self)!,
-            videoCellViewModelFactory: container.resolve(VideoCellViewModelFactory.self)!
+            videoCellViewModelFactory: container.resolve(VideoCellViewModelFactory.self)!,
+            filterObservable: mainViewModel.getVideoFilterObservable()
         )
     }
 

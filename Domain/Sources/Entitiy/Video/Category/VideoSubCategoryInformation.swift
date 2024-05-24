@@ -1,6 +1,6 @@
 import Foundation
 
-public class VideoSubCategoryInformation {
+public class VideoSubCategoryMappingResult {
     
     public enum State { case complete, processing }
     
@@ -8,7 +8,7 @@ public class VideoSubCategoryInformation {
     public var creationDate: Date
     public private(set) var state: State
     
-    public static let processing: VideoSubCategoryInformation = .init(count: -1, creationDate: .now, state: .processing)
+    public static let processing: VideoSubCategoryMappingResult = .init(count: -1, creationDate: .now, state: .processing)
     
     private static let dateFormatter = ISO8601DateFormatter()
     

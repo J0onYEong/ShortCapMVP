@@ -226,11 +226,6 @@ extension VideoMainCategoryCell {
         if let cellCategory = self.category {
             
             self.selectedMainCategory?.accept(cellCategory)
-            
-            if cellCategory.categoryId == VideoMainCategory.all.categoryId {
-                
-                NotificationCenter.mainFeature.post(name: .videoSubCategoryClicked, userInfo: [.videoFilter : VideoFilter.all])
-            }
         }
         
         self.tabBarTouchEventFilter.alpha = 1.0

@@ -101,13 +101,10 @@ extension MainCategoryViewController: UICollectionViewDelegateFlowLayout {
         
         if let subCategoryCell = collectionView.cellForItem(at: indexPath) as? SubCategoryCollectionViewCell {
             
-            guard let subCategoryId = subCategoryCell.viewModel?.subCategory.categoryId,
-                  let mainCategoryOd = subCategoryCell.viewModel?.mainCategory.categoryId else { return }
+            guard let cellSubCategory = subCategoryCell.viewModel?.subCategory else { return }
             
-            let filter = VideoFilter(mainCategoryId: mainCategoryOd, subCategoryId: subCategoryId)
-            
-            // 필터전달 + 화면전환
-            NotificationCenter.mainFeature.post(name: .videoSubCategoryClicked, userInfo: [.videoFilter : filter])
+            // 선택된 서브카테고리 전달
+            viewModel.selectedSubCategory?.accept(cellSubCategory)
         }
     }
 }

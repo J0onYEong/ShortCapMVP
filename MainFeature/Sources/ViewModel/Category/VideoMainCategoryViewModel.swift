@@ -12,8 +12,13 @@ public class VideoMainCategoryViewModel {
     
     public let category: VideoMainCategory
     
+    // (View) 획든한 서브카테고리
     public let subCategories = BehaviorRelay<[VideoSubCategory]>(value: [])
     
+    // 선택된 서브카테고리 emit
+    public var selectedSubCategory: PublishRelay<VideoSubCategory>?
+    
+    // 에러 퍼피블리셔(미구현)
     public let errorPublisher = PublishRelay<GetVideoSubCategoryRepositoryError>()
     
     private let disposeBag = DisposeBag()

@@ -100,7 +100,7 @@ public class SubCategoryCollectionViewCell: UICollectionViewCell {
     
     private func setObserver() {
         
-        NotificationCenter.videoCategoryInformation
+        NotificationCenter.videoCategoryMappingResult
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] information in
 

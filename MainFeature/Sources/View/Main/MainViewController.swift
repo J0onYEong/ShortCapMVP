@@ -138,11 +138,8 @@ public class MainViewController: UIViewController {
         // 인디케이터 가동
         showUpIndicator()
         
-        // 메인카테고리 뷰모델 옵저버
-        setMainCategoryViewModelObserver()
-        
-        // 화면전환 옵저버
-        setViewChangerObserver()
+        // 옵저버 설정
+        setObserver()
     }
     
     private func setVideoListViewController() {
@@ -164,31 +161,27 @@ public class MainViewController: UIViewController {
         ])
     }
     
-    private func setViewChangerObserver() {
+    private func setObserver() {
         
-        NotificationCenter.mainFeature.rx.notification(.videoSubCategoryClicked)
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { notification in
+        // 서브카테고리가 선택(핫)됬을 때, 비디오 리스트를 표출
+        mainViewModel
+            .selectedSubCategory
+            .asSignal()
+            .emit(onNext: { subCategory in
                 
                 self.showVideoListView()
             })
             .disposed(by: disposeBag)
-    }
-    
-    /// 비디오 리스트를 화면에 표시합니다.
-    private func showVideoListView() {
         
-        view.bringSubviewToFront(videoListViewController.view)
-    }
-    
-    private func setMainCategoryViewModelObserver() {
-        
-        let viewControllerObservable = mainViewModel
+        // 비디오 카테괴를 최초 1회생성
+        let mainCategoryViewControllerObservable = mainViewModel
             .mainCategoryViewModels
+            .take(2)
             .observe(on: MainScheduler.instance)
             .map({ mainCategoryViewModels in
                 
-                self.dismissIndicator()
+                // 두번째 emit: 메인카테고리들 전송완료
+                if !mainCategoryViewModels.isEmpty { self.dismissIndicator() }
                 
                 return mainCategoryViewModels.map { viewModel in
                     
@@ -200,15 +193,16 @@ public class MainViewController: UIViewController {
                 }
             })
         
+        
         // 선택된 메인카테고리와 메인카테고리 뷰컨트롤러의 생성이 완료되었을 때 필터링을 시작한다.
         Observable.combineLatest(
-            viewControllerObservable,
+            mainCategoryViewControllerObservable,
             mainViewModel.selectedMainCategory
         )
         .observe(on: MainScheduler.instance)
         .subscribe(onNext: { (viewControllers, selectedCategory) in
             
-            if selectedCategory.categoryId == VideoMainCategory.all.categoryId {
+            if selectedCategory == .all {
                 
                 self.showVideoListView()
             } else {
@@ -219,7 +213,13 @@ public class MainViewController: UIViewController {
             }
         })
         .disposed(by: disposeBag)
+
+    }
+    
+    /// 비디오 리스트를 화면에 표시합니다.
+    private func showVideoListView() {
         
+        view.bringSubviewToFront(videoListViewController.view)
     }
     
     private func setVideoCategoryCollectionView() {

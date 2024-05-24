@@ -27,6 +27,8 @@
 		9B3E83392BDF631500CF61D1 /* FetchThumbNailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E83382BDF631500CF61D1 /* FetchThumbNailRepository.swift */; };
 		9B3E833C2BDF662600CF61D1 /* YoutubeThumbNailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E833B2BDF662600CF61D1 /* YoutubeThumbNailRepository.swift */; };
 		9B3E833F2BDF6D0400CF61D1 /* VideoThumbNailDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E833E2BDF6D0400CF61D1 /* VideoThumbNailDTO.swift */; };
+		9B45C4CE2BFB599E008548BF /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B00253D2BC186BC0050D3E5 /* Domain.framework */; };
+		9B45C4D12BFB599F008548BF /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BA7EBAF2BC8202600053C3D /* Core.framework */; };
 		9B4A83662BD0BAF100614160 /* UrlValidationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83652BD0BAF100614160 /* UrlValidationUseCase.swift */; };
 		9B4A83692BD0BD4C00614160 /* ConvertUrlToVideoCodeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A83682BD0BD4C00614160 /* ConvertUrlToVideoCodeUseCase.swift */; };
 		9B4A83702BD0C04E00614160 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A836B2BD0BED300614160 /* Network.swift */; };
@@ -166,8 +168,6 @@
 		9B6F19392BF699E300AA2F14 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8AD7872BA73AE700F1CD49 /* DetailViewController.swift */; };
 		9B6F193B2BF6A7FB00AA2F14 /* shortCapLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B6F193A2BF6A7FB00AA2F14 /* shortCapLogo.png */; };
 		9B6F19402BF6B9F400AA2F14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B6F193F2BF6B9F400AA2F14 /* Assets.xcassets */; };
-		9B6F19412BF6C62800AA2F14 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BA7EBAF2BC8202600053C3D /* Core.framework */; };
-		9B6F19452BF6C62900AA2F14 /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B00253D2BC186BC0050D3E5 /* Domain.framework */; };
 		9B6F194A2BF7258A00AA2F14 /* DSKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B3E83172BDF428F00CF61D1 /* DSKit.framework */; };
 		9B6F194F2BF7310500AA2F14 /* DSKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B3E83172BDF428F00CF61D1 /* DSKit.framework */; };
 		9B6F19502BF7310500AA2F14 /* DSKit.framework in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9B3E83172BDF428F00CF61D1 /* DSKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -587,8 +587,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B6F19412BF6C62800AA2F14 /* Core.framework in Frameworks */,
-				9B6F19452BF6C62900AA2F14 /* Domain.framework in Frameworks */,
+				9B45C4CE2BFB599E008548BF /* Domain.framework in Frameworks */,
+				9B45C4D12BFB599F008548BF /* Core.framework in Frameworks */,
 				9B68A83A2BCA16EF006903EC /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

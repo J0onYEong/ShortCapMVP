@@ -9,15 +9,16 @@ public class MainViewModel {
     // 카테고리 작업
     private let getVideoMainCategoryRepository: GetVideoMainCategoryRepository
     private let videoMainCategoryViewModelFactory: VideoMainCategoryViewModelFactory
-    
-    public let mainCategories = BehaviorRelay<[VideoMainCategory]>(value: [])
-    
-    public let mainCategoryViewModels = BehaviorRelay<[VideoMainCategoryViewModel]>(value: [])
-     
-    public let selectedMainCategory = BehaviorRelay<VideoMainCategory>(value: .all)
-    
     // Factory
     public let mainCategoryViewControllerFactory: MainCategoryViewControllerFactory
+    
+    // (View) Observable
+    public let mainCategories = BehaviorRelay<[VideoMainCategory]>(value: [])
+    public let mainCategoryViewModels = BehaviorRelay<[VideoMainCategoryViewModel]>(value: [])
+     
+    // 선택된 메인카테고리, 서브카테고리
+    public let selectedMainCategory = BehaviorRelay<VideoMainCategory>(value: .all)
+    public let selectedSubCategory = PublishRelay<VideoSubCategory>()
     
     public init(
         getVideoMainCategoryRepository: GetVideoMainCategoryRepository,
@@ -43,7 +44,11 @@ public class MainViewModel {
                 
                 items.compactMap { mainCategory in
                     
-                    self?.videoMainCategoryViewModelFactory.create(category: mainCategory)
+                    let mainCategoryViewModel = self?.videoMainCategoryViewModelFactory.create(category: mainCategory)
+                    
+                    mainCategoryViewModel?.selectedSubCategory = self?.selectedSubCategory
+                    
+                    return mainCategoryViewModel
                 }
             }
             .subscribe(onNext: { [weak self] in
@@ -69,6 +74,22 @@ public class MainViewModel {
                 fatalError(error.localizedDescription)
             }
         }
+    }
+    
+    /// 비디오를 필터링하는 옵저버블입니다.
+    public func getVideoFilterObservable() -> Observable<VideoFilter> {
+        
+        Observable
+            .combineLatest(selectedMainCategory, selectedSubCategory)
+            .map { (mainCategory, subCategory) in
+                
+                if mainCategory == .all { return .all }
+                
+                return VideoFilter(
+                    mainCategoryId: mainCategory.categoryId,
+                    subCategoryId: subCategory.categoryId
+                )
+            }
     }
 }
 

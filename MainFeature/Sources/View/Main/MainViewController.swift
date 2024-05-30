@@ -60,26 +60,7 @@ public class MainViewController: UIViewController {
         return indicatorBackgroundView
     }()
     
-    private let categoryTabBarView: UICollectionView = {
-        
-        let layout = UICollectionViewFlowLayout()
-          
-        layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 0.0
-        layout.minimumInteritemSpacing = 0
-        layout.itemSize = .init(width: UIScreen.main.bounds.width/7.0, height: 28.0)
-       
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        
-        // 페이징 기능을 사용하지 않는다.
-        collectionView.isPrefetchingEnabled = true
-        collectionView.isPagingEnabled = false
-        
-        collectionView.showsVerticalScrollIndicator = false
-        collectionView.showsHorizontalScrollIndicator = false
-        
-        return collectionView
-    }()
+    private let mainCategoryTabBarView: MainCategoryTabBarView!
     
     private let tempSearchView: UIView = {
         
@@ -103,6 +84,17 @@ public class MainViewController: UIViewController {
         return searchView
     }()
     
+    private let pageTransitionGestureRecognizer = UIPanGestureRecognizer()
+    
+    let gestureArea: UIView = {
+       
+        let view = UIView()
+        
+        view.backgroundColor = .clear
+        
+        return view
+    }()
+    
     private let disposeBag = DisposeBag()
     
     public init(mainViewModel: MainViewModel, videoListViewModel: VideoListViewModelInterface) {
@@ -110,11 +102,9 @@ public class MainViewController: UIViewController {
         self.mainViewModel = mainViewModel
         self.videoListViewModel = videoListViewModel
         self.videoListViewController = VideoListViewController(viewModel: videoListViewModel)
+        self.mainCategoryTabBarView = MainCategoryTabBarView(selectedMainCategory: mainViewModel.selectedMainCategory)
         
         super.init(nibName: nil, bundle: nil)
-        
-        // 카테고리 탭바(컬렉션 뷰)
-        setVideoCategoryCollectionView()
     }
     
     public required init?(coder: NSCoder) { fatalError() }
@@ -122,12 +112,24 @@ public class MainViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        [indicator, applicationLogo, categoryTabBarView, tempSearchView].forEach {
+        view.backgroundColor = .white
+        
+        [gestureArea, indicator, applicationLogo, mainCategoryTabBarView].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         
-        view.backgroundColor = .white
+        // gestureArea위에 존재하는 뷰
+        [tempSearchView].forEach {
+            gestureArea.addSubview($0)
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
+        
+        
+        // 제스처 인식기 설정
+        pageTransitionGestureRecognizer.addTarget(self, action: #selector(onPageTransitionGestureRecognized(_:)))
+        gestureArea.addGestureRecognizer(pageTransitionGestureRecognizer)
+        mainCategoryTabBarView.setGesture(gestureArea: gestureArea)
         
         // 탭바, 인디케이터 오토레이아웃
         setAutoLayout()
@@ -154,7 +156,6 @@ public class MainViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             
-            videoListViewController.view.topAnchor.constraint(equalTo: tempSearchView.bottomAnchor, constant: 20),
             videoListViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             videoListViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             videoListViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -173,7 +174,7 @@ public class MainViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        // 비디오 카테괴를 최초 1회생성
+        // 비디오 카테고리를 최초 1회생성
         let mainCategoryViewControllerObservable = mainViewModel
             .mainCategoryViewModels
             .take(2)
@@ -193,6 +194,18 @@ public class MainViewController: UIViewController {
                 }
             })
         
+        // 메인 카테고리 탭바 구성
+        mainViewModel
+            .mainCategories
+            .take(2)
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { mainCategories in
+                
+                if mainCategories.isEmpty { return }
+                
+                self.mainCategoryTabBarView.setTabBarView(mainCategories: mainCategories)
+            })
+            .disposed(by: disposeBag)
         
         // 선택된 메인카테고리와 메인카테고리 뷰컨트롤러의 생성이 완료되었을 때 필터링을 시작한다.
         Observable.combineLatest(
@@ -221,29 +234,15 @@ public class MainViewController: UIViewController {
         
         view.bringSubviewToFront(videoListViewController.view)
     }
-    
-    private func setVideoCategoryCollectionView() {
-        
-        let videoCategoryCellId = String(describing: VideoMainCategoryCell.self)
-        
-//        categoryTabBarView.delegate = self
-        
-        categoryTabBarView.register(VideoMainCategoryCell.self, forCellWithReuseIdentifier: videoCategoryCellId)
-        
-        //탭바 설정
-        mainViewModel
-            .mainCategories
-            .asDriver()
-            .drive(categoryTabBarView.rx.items(cellIdentifier: videoCategoryCellId, cellType: VideoMainCategoryCell.self)) { index, category, cell in
-                
-                cell.setUp(category: category, selectedMainCategory: self.mainViewModel.selectedMainCategory)
-            }
-            .disposed(by: disposeBag)
-    }
-    
+
     private func setAutoLayout() {
         
         NSLayoutConstraint.activate([
+            
+            gestureArea.topAnchor.constraint(equalTo: mainCategoryTabBarView.bottomAnchor),
+            gestureArea.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            gestureArea.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            gestureArea.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
             indicator.topAnchor.constraint(equalTo: view.topAnchor),
             indicator.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -255,14 +254,17 @@ public class MainViewController: UIViewController {
             applicationLogo.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             applicationLogo.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
-            categoryTabBarView.heightAnchor.constraint(equalToConstant: 28.0),
-            categoryTabBarView.topAnchor.constraint(equalTo: applicationLogo.bottomAnchor),
-            categoryTabBarView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            categoryTabBarView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            
-            tempSearchView.topAnchor.constraint(equalTo: categoryTabBarView.bottomAnchor, constant: 20),
-            tempSearchView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            tempSearchView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            mainCategoryTabBarView.heightAnchor.constraint(equalToConstant: 28.0),
+            mainCategoryTabBarView.topAnchor.constraint(equalTo: applicationLogo.bottomAnchor),
+            mainCategoryTabBarView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            mainCategoryTabBarView.trailingAnchor.constraint(equalTo: view.trailingAnchor), 
+        ])
+        
+        NSLayoutConstraint.activate([
+        
+            tempSearchView.topAnchor.constraint(equalTo: gestureArea.topAnchor, constant: 20),
+            tempSearchView.leadingAnchor.constraint(equalTo: gestureArea.leadingAnchor, constant: 20),
+            tempSearchView.trailingAnchor.constraint(equalTo: gestureArea.trailingAnchor, constant: -20),
             tempSearchView.heightAnchor.constraint(equalToConstant: 52),
         ])
     }
@@ -296,16 +298,25 @@ public class MainViewController: UIViewController {
         // ✅ 커스텀 컨테이너 구현시, addChild이후에 반드시 호출해야한다.
         viewController.didMove(toParent: self)
         
-        view.insertSubview(viewController.view, belowSubview: videoListViewController.view)
+        gestureArea.addSubview(viewController.view)
         
         viewController.view.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             
             viewController.view.topAnchor.constraint(equalTo: tempSearchView.bottomAnchor, constant: 20),
-            viewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            viewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            viewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            viewController.view.bottomAnchor.constraint(equalTo: gestureArea.bottomAnchor),
+            viewController.view.leadingAnchor.constraint(equalTo: gestureArea.leadingAnchor),
+            viewController.view.trailingAnchor.constraint(equalTo: gestureArea.trailingAnchor),
         ])
+    }
+}
+
+extension MainViewController {
+    
+    @objc
+    func onPageTransitionGestureRecognized(_ gesture: UIPanGestureRecognizer) {
+        
+        
     }
 }

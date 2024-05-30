@@ -12,7 +12,7 @@
         <!--Detail View Controller-->
         <scene sceneID="1he-Yy-J8P">
             <objects>
-                <viewController storyboardIdentifier="DetailViewController" id="GL8-d6-amA" customClass="DetailViewController" customModule="Presentation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailViewController" id="GL8-d6-amA" customClass="DetailViewController" customModule="MainFeature" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QAk-ig-5jL">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

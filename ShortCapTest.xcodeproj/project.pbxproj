@@ -189,6 +189,7 @@
 		9BA7EBBB2BC8203A00053C3D /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5CD8222BB27B450041988A /* Config.swift */; };
 		9BA7EBBC2BC8203A00053C3D /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0025992BC19F2E0050D3E5 /* URL+Extension.swift */; };
 		9BA7EBBD2BC8203A00053C3D /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5CD8252BB27B680041988A /* FileManager+Extension.swift */; };
+		9BC21F2B2C084BF000999360 /* MainCategoryTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC21F2A2C084BF000999360 /* MainCategoryTabBarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -573,6 +574,7 @@
 		9B9E6F712BC3DBAF005DB13B /* DefaultSaveVideoIdentityRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSaveVideoIdentityRepository.swift; sourceTree = "<group>"; };
 		9BA7EBAF2BC8202600053C3D /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BA7EBB12BC8202600053C3D /* Core.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Core.h; sourceTree = "<group>"; };
+		9BC21F2A2C084BF000999360 /* MainCategoryTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCategoryTabBarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1360,6 +1362,7 @@
 			isa = PBXGroup;
 			children = (
 				9B62494E2BF52135008F5123 /* VideoMainCategoryCell.swift */,
+				9BC21F2A2C084BF000999360 /* MainCategoryTabBarView.swift */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -2107,6 +2110,7 @@
 				9B52C2A22BF37FAF00053A71 /* MainViewController.swift in Sources */,
 				9B52C2C92BF43EB600053A71 /* Notification+Extension.swift in Sources */,
 				9B52C2C42BF3B6EA00053A71 /* VideoCellViewModel.swift in Sources */,
+				9BC21F2B2C084BF000999360 /* MainCategoryTabBarView.swift in Sources */,
 				9B6F19302BF6733900AA2F14 /* CollectionViewUtils.swift in Sources */,
 				9B52C2BD2BF3B47200053A71 /* VideoListViewModel.swift in Sources */,
 				9B62494F2BF52135008F5123 /* VideoMainCategoryCell.swift in Sources */,

@@ -1,9 +1,26 @@
 import Foundation
 import Core
 
+// MARK: - AuthToken
+struct APIEndpoints {
+    
+    static func setToken(
+        accessToken: String,
+        refreshToken: String
+    ) {
+        UserData.accessToken = accessToken
+        UserData.refreshToken = refreshToken
+    }
+    
+    fileprivate enum UserData {
+        
+        fileprivate static var accessToken: String = ""
+        fileprivate static var refreshToken: String = ""
+    }
+}
 
 // MARK: - Summary
-struct APIEndpoints {
+extension APIEndpoints {
     
     /// 비디오 코드를 획득합니다.
     static func getVideoCode(with videoCodeRequestDTO: VideoCodeRequestDTO) -> Endpoint<ResponseDTOWrapper<VideoCodeResponseDTO>> {
@@ -11,6 +28,9 @@ struct APIEndpoints {
         return Endpoint(
             path: "api/summaries/initiate",
             method: .post,
+            headerParameters: [
+                "Authorization" : "Bearer \(Self.UserData.accessToken)"
+            ],
             bodyParametersEncodable: videoCodeRequestDTO
         )
     }
@@ -20,7 +40,10 @@ struct APIEndpoints {
         
         return Endpoint(
             path: "api/summaries/status/\(videoCode)",
-            method: .get
+            method: .get,
+            headerParameters: [
+                "Authorization" : "Bearer \(Self.UserData.accessToken)"
+            ]
         )
     }
     
@@ -29,7 +52,10 @@ struct APIEndpoints {
         
         return Endpoint(
             path: "api/summaries/\(videoId)",
-            method: .get
+            method: .get,
+            headerParameters: [
+                "Authorization" : "Bearer \(Self.UserData.accessToken)"
+            ]
         )
     }
 }
@@ -37,7 +63,6 @@ struct APIEndpoints {
 
 // MARK: - ThumbNail
 extension APIEndpoints {
-    
     
     static func getYoutubeThumbNail(youtubeVideoId id: String) -> Endpoint<VideoThumbNailDTO> {
         
@@ -64,9 +89,35 @@ extension APIEndpoints {
         return Endpoint(
             path: "api/categories",
             method: .get,
+            headerParameters: [
+                "Authorization" : "Bearer \(Self.UserData.accessToken)"
+            ],
             queryParameters: [
                 "mainCategory" : main
             ]
+        )
+    }
+}
+
+
+// MARK: - Auth
+extension APIEndpoints {
+    
+    static func getNewAuthToken(deviceIdentity: DeviceIdentityDTO) -> Endpoint<ResponseDTOWrapper<AuthTokenDTO>> {
+        
+        return Endpoint(
+            path: "api/auth",
+            method: .post,
+            bodyParametersEncodable: deviceIdentity
+        )
+    }
+    
+    static func reissueAuthToken(prevToken: AuthTokenDTO) -> Endpoint<ResponseDTOWrapper<AuthTokenDTO>> {
+        
+        return Endpoint(
+            path: "api/auth/reissue",
+            method: .post,
+            bodyParametersEncodable: prevToken
         )
     }
 }

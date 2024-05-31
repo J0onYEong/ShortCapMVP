@@ -14,29 +14,18 @@ class ActionViewModel {
     let saveVideoIndentityUserCase: SaveVideoIndentityUserCase
     let convertUrlUseCase: ConvertUrlToVideoCodeUseCase
     let urlValidationUseCase: UrlValidationUseCase
+    let authTokenRepository: GetAuthTokenRepository
     
     init(
-        saveVideoIndentityUserCase: SaveVideoIndentityUserCase = DefualtSaveVideoIndentityUseCase(
-            saveVideoIdentityRepository: DefaultSaveVideoIdentityRepository(
-                videoIdentityStorage: CoreDataVideoIdentityStorage(coreDataStorage: .shared)
-            )
-        ),
-        
-        convertUrlUseCase: ConvertUrlToVideoCodeUseCase = DefaultConvertUrlToVideoCodeUseCase(
-            convertUrlRepository: DefaultConvertUrlRepository(
-                dataTransferService: DefaultDataTransferService(
-                    with: DefaultNetworkService(
-                        config: ApiDataNetworkConfig.default,
-                        sessionManager: DefaultNetworkSessionManager()
-                    )
-                )
-            )
-        ),
-        urlValidationUseCase: UrlValidationUseCase = DefaultUrlValidationUseCase()
+        saveVideoIndentityUserCase: SaveVideoIndentityUserCase,
+        convertUrlUseCase: ConvertUrlToVideoCodeUseCase,
+        urlValidationUseCase: UrlValidationUseCase,
+        authTokenRepository: GetAuthTokenRepository
     ) {
         self.saveVideoIndentityUserCase = saveVideoIndentityUserCase
         self.convertUrlUseCase = convertUrlUseCase
         self.urlValidationUseCase = urlValidationUseCase
+        self.authTokenRepository = authTokenRepository
     }
 
     func validateAndSaveUrl(urlStr: String, completion: @escaping (Result<String, Error>) -> Void) {
@@ -53,6 +42,15 @@ class ActionViewModel {
         Task {
             
             do {
+                
+                if let token = authTokenRepository.getCurrentToken() {
+                    
+                    _ = await authTokenRepository.reissueToken(current: token)
+                    
+                } else {
+                    
+                    _ = await authTokenRepository.getNewToken()
+                }
                 
                 let code = try await convertUrlUseCase.execute(url: urlStr)
                 

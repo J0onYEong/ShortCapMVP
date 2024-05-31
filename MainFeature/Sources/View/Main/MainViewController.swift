@@ -8,9 +8,7 @@ import DSKit
 public class MainViewController: UIViewController {
     
     private let mainViewModel: MainViewModel
-    private let videoListViewModel: VideoListViewModelInterface
-    
-    public var videoListViewController: VideoListViewController
+    public let videoListViewModel: VideoListViewModelInterface
     
     private let applicationLogo: UIView = {
         
@@ -60,8 +58,6 @@ public class MainViewController: UIViewController {
         return indicatorBackgroundView
     }()
     
-    private let mainCategoryTabBarView: MainCategoryTabBarView!
-    
     private let tempSearchView: UIView = {
         
         let searchView = UIView()
@@ -84,9 +80,31 @@ public class MainViewController: UIViewController {
         return searchView
     }()
     
+    private let mainCategoryTabBarView: MainCategoryTabBarView!
+    
+    private let mainScrollView: UIScrollView = {
+       
+        let scrollView = UIScrollView()
+        
+        scrollView.isScrollEnabled = false
+        scrollView.showsHorizontalScrollIndicator = false
+        
+        return scrollView
+    }()
+    
+    private let mainStackView: UIStackView = {
+        
+        let stack = UIStackView()
+        
+        stack.axis = .horizontal
+        stack.distribution = .equalSpacing
+       
+        return stack
+    }()
+    
     private let pageTransitionGestureRecognizer = UIPanGestureRecognizer()
     
-    let gestureArea: UIView = {
+    private let gestureArea: UIView = {
        
         let view = UIView()
         
@@ -101,8 +119,7 @@ public class MainViewController: UIViewController {
         
         self.mainViewModel = mainViewModel
         self.videoListViewModel = videoListViewModel
-        self.videoListViewController = VideoListViewController(viewModel: videoListViewModel)
-        self.mainCategoryTabBarView = MainCategoryTabBarView(selectedMainCategory: mainViewModel.selectedMainCategory)
+        self.mainCategoryTabBarView = MainCategoryTabBarView(selectedMainCategoryIndex: mainViewModel.selectedMainCategoryIndex)
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -114,135 +131,141 @@ public class MainViewController: UIViewController {
         
         view.backgroundColor = .white
         
-        [gestureArea, indicator, applicationLogo, mainCategoryTabBarView].forEach {
+        [
+            applicationLogo,
+            mainCategoryTabBarView,
+            gestureArea,
+            indicator
+        ].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         
         // gestureArea위에 존재하는 뷰
-        [tempSearchView].forEach {
+        [mainScrollView, tempSearchView].forEach {
             gestureArea.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         
+        // 메인 스크롤뷰
+        [mainStackView].forEach {
+            mainScrollView.addSubview($0)
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
         
         // 제스처 인식기 설정
         pageTransitionGestureRecognizer.addTarget(self, action: #selector(onPageTransitionGestureRecognized(_:)))
         gestureArea.addGestureRecognizer(pageTransitionGestureRecognizer)
         mainCategoryTabBarView.setGesture(gestureArea: gestureArea)
         
-        // 탭바, 인디케이터 오토레이아웃
-        setAutoLayout()
-        
-        // 비디오 리스트 뷰컨트롤러
-        setVideoListViewController()
-        
         // 인디케이터 가동
         showUpIndicator()
         
-        // 옵저버 설정
+        // 옵저버 세팅
         setObserver()
-    }
-    
-    private func setVideoListViewController() {
+        mainViewModel.fetchCategories()
         
-        self.addChild(videoListViewController)
-        
-        videoListViewController.view.translatesAutoresizingMaskIntoConstraints = false
-        
-        view.addSubview(videoListViewController.view)
-        
-        view.bringSubviewToFront(videoListViewController.view)
-        
-        NSLayoutConstraint.activate([
-            
-            videoListViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            videoListViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            videoListViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-        ])
+        // 탭바, 인디케이터 오토레이아웃
+        setAutoLayout()
     }
     
     private func setObserver() {
         
-        // 서브카테고리가 선택(핫)됬을 때, 비디오 리스트를 표출
-        mainViewModel
-            .selectedSubCategory
-            .asSignal()
-            .emit(onNext: { subCategory in
+        let categoryViewControllersAreAvailable = PublishSubject<Bool>()
+        let tabBarIsAvailable = PublishSubject<Bool>()
+        
+        Observable
+            .combineLatest([categoryViewControllersAreAvailable, tabBarIsAvailable])
+            .subscribe(onNext: { [weak self] in
                 
-                self.showVideoListView()
+                if !$0.contains(where: { $0 == false }) {
+                    
+                    self?.dismissIndicator()
+                }
             })
             .disposed(by: disposeBag)
         
-        // 비디오 카테고리를 최초 1회생성
-        let mainCategoryViewControllerObservable = mainViewModel
-            .mainCategoryViewModels
-            .take(2)
+        // MainCategory -> ViewModel
+        mainViewModel
+            .mainCategories
+            .take(1)
             .observe(on: MainScheduler.instance)
-            .map({ mainCategoryViewModels in
+            .map { [unowned self] mainCategories in
                 
-                // 두번째 emit: 메인카테고리들 전송완료
-                if !mainCategoryViewModels.isEmpty { self.dismissIndicator() }
+                return mainCategories.compactMap { mainCategory in
+                    
+                    if mainCategory == .all {
+                        
+                        let viewController = AllCatgoryViewController(self.videoListViewModel.displayingVideoCellViewModel)
+                        self.insertCategoryViewController(viewController)
+                        return nil
+                    }
+                    
+                    let mainCategoryViewModel = self.mainViewModel.videoMainCategoryViewModelFactory.create(
+                        mainCategory: mainCategory,
+                        videoList: videoListViewModel.displayingVideoCellViewModel
+                    )
+                    
+                    mainCategoryViewModel.selectedSubCategory = self.mainViewModel.selectedSubCategory
+                    
+                    return mainCategoryViewModel
+                }
+            }
+            .subscribe(onNext: { [unowned self] (viewModels: [VideoMainCategoryViewModel]) in
                 
-                return mainCategoryViewModels.map { viewModel in
+                // 메인카테고리가 전체가 이닌 경우 뷰컨트롤러 삽입
+                viewModels.forEach { viewModel in
                     
                     let viewController = self.mainViewModel.mainCategoryViewControllerFactory.create(viewModel: viewModel)
-                    
-                    self.insertViewController(viewController)
-                    
-                    return viewController
+                    self.insertCategoryViewController(viewController)
                 }
+                
+                categoryViewControllersAreAvailable.onNext(true)
             })
+            .disposed(by: disposeBag)
         
         // 메인 카테고리 탭바 구성
         mainViewModel
             .mainCategories
-            .take(2)
+            .take(1)
             .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { mainCategories in
+            .subscribe(onNext: { [unowned self] mainCategories in
                 
                 if mainCategories.isEmpty { return }
                 
                 self.mainCategoryTabBarView.setTabBarView(mainCategories: mainCategories)
+                
+                tabBarIsAvailable.onNext(true)
             })
             .disposed(by: disposeBag)
         
-        // 선택된 메인카테고리와 메인카테고리 뷰컨트롤러의 생성이 완료되었을 때 필터링을 시작한다.
+    
+        // 화면 스와이프 이벤트 발생
         Observable.combineLatest(
-            mainCategoryViewControllerObservable,
-            mainViewModel.selectedMainCategory
+            mainViewModel.mainCategories,
+            mainViewModel.selectedMainCategoryIndex
         )
-        .observe(on: MainScheduler.instance)
-        .subscribe(onNext: { (viewControllers, selectedCategory) in
+        .subscribe(onNext: { (mainCategories, mainCategoryIndex) in
+        
+            let selectedMainCategory = mainCategories[mainCategoryIndex]
             
-            if selectedCategory == .all {
+            if selectedMainCategory == .all {
                 
-                self.showVideoListView()
+                // 전체 비디오 리스트
+                
             } else {
                 
-                let willShowViewController = viewControllers.first(where: { $0.viewModel.category.categoryId == selectedCategory.categoryId })!
-                
-                self.view.bringSubviewToFront(willShowViewController.view)
+                // 카테고리
             }
         })
         .disposed(by: disposeBag)
 
     }
-    
-    /// 비디오 리스트를 화면에 표시합니다.
-    private func showVideoListView() {
-        
-        view.bringSubviewToFront(videoListViewController.view)
-    }
 
     private func setAutoLayout() {
         
+        // MainViewController의 서브뷰
         NSLayoutConstraint.activate([
-            
-            gestureArea.topAnchor.constraint(equalTo: mainCategoryTabBarView.bottomAnchor),
-            gestureArea.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            gestureArea.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            gestureArea.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
             indicator.topAnchor.constraint(equalTo: view.topAnchor),
             indicator.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -257,15 +280,35 @@ public class MainViewController: UIViewController {
             mainCategoryTabBarView.heightAnchor.constraint(equalToConstant: 28.0),
             mainCategoryTabBarView.topAnchor.constraint(equalTo: applicationLogo.bottomAnchor),
             mainCategoryTabBarView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            mainCategoryTabBarView.trailingAnchor.constraint(equalTo: view.trailingAnchor), 
+            mainCategoryTabBarView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            gestureArea.topAnchor.constraint(equalTo: mainCategoryTabBarView.bottomAnchor),
+            gestureArea.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            gestureArea.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            gestureArea.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
         
+        // 제스쳐 영역 서브뷰
         NSLayoutConstraint.activate([
         
             tempSearchView.topAnchor.constraint(equalTo: gestureArea.topAnchor, constant: 20),
             tempSearchView.leadingAnchor.constraint(equalTo: gestureArea.leadingAnchor, constant: 20),
             tempSearchView.trailingAnchor.constraint(equalTo: gestureArea.trailingAnchor, constant: -20),
             tempSearchView.heightAnchor.constraint(equalToConstant: 52),
+            
+            mainScrollView.topAnchor.constraint(equalTo: gestureArea.topAnchor),
+            mainScrollView.leadingAnchor.constraint(equalTo: gestureArea.leadingAnchor),
+            mainScrollView.trailingAnchor.constraint(equalTo: gestureArea.trailingAnchor),
+            mainScrollView.bottomAnchor.constraint(equalTo: gestureArea.bottomAnchor),
+        ])
+        
+        // MainScrollView뷰의 서브뷰
+        NSLayoutConstraint.activate([
+        
+            mainStackView.topAnchor.constraint(equalTo: mainScrollView.topAnchor),
+            mainStackView.leadingAnchor.constraint(equalTo: mainScrollView.leadingAnchor),
+            mainStackView.trailingAnchor.constraint(equalTo: mainScrollView.trailingAnchor),
+            mainStackView.bottomAnchor.constraint(equalTo: mainScrollView.bottomAnchor),
         ])
     }
     
@@ -288,7 +331,7 @@ public class MainViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
-    private func insertViewController(_ viewController: UIViewController) {
+    private func insertCategoryViewController(_ viewController: UIViewController) {
         
         // willMove를 자동으로 호출한다.
         
@@ -298,24 +341,24 @@ public class MainViewController: UIViewController {
         // ✅ 커스텀 컨테이너 구현시, addChild이후에 반드시 호출해야한다.
         viewController.didMove(toParent: self)
         
-        gestureArea.addSubview(viewController.view)
+        let categoryView: UIView = viewController.view
         
-        viewController.view.translatesAutoresizingMaskIntoConstraints = false
+        categoryView.translatesAutoresizingMaskIntoConstraints = false
+        mainStackView.addArrangedSubview(categoryView)
         
         NSLayoutConstraint.activate([
-            
-            viewController.view.topAnchor.constraint(equalTo: tempSearchView.bottomAnchor, constant: 20),
-            viewController.view.bottomAnchor.constraint(equalTo: gestureArea.bottomAnchor),
-            viewController.view.leadingAnchor.constraint(equalTo: gestureArea.leadingAnchor),
-            viewController.view.trailingAnchor.constraint(equalTo: gestureArea.trailingAnchor),
+            categoryView.heightAnchor.constraint(equalTo: mainScrollView.heightAnchor),
+            categoryView.widthAnchor.constraint(equalTo: mainScrollView.widthAnchor),
         ])
     }
+    
 }
 
 extension MainViewController {
     
     @objc
     func onPageTransitionGestureRecognized(_ gesture: UIPanGestureRecognizer) {
+        
         
         
     }

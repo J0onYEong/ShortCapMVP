@@ -20,9 +20,7 @@ public class MainCategoryViewController: UIViewController {
         
         collectionView.isScrollEnabled = true
         
-        let horizontalInset = VideoCollectionViewConfig.horizontalInset
-        
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: horizontalInset, bottom: 0, right: horizontalInset)
+        collectionView.contentInset = UIEdgeInsets(top: 52, left: 20, bottom: 0, right: 20)
         
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -68,7 +66,7 @@ public class MainCategoryViewController: UIViewController {
             .drive(subCategoryCollectionView.rx.items(cellIdentifier: subCategoryCellID, cellType: SubCategoryCollectionViewCell.self)) { index, subCategory, cell in
                 
                 let viewModel = self.viewModel.subCategoryCellViewModelFactory.create(
-                    mainCategory: self.viewModel.category,
+                    mainCategory: self.viewModel.mainCategory,
                     subCategory: subCategory
                 )
                     
@@ -104,7 +102,15 @@ extension MainCategoryViewController: UICollectionViewDelegateFlowLayout {
             guard let cellSubCategory = subCategoryCell.viewModel?.subCategory else { return }
             
             // 선택된 서브카테고리 전달
-            viewModel.selectedSubCategory?.accept(cellSubCategory)
+            viewModel.selectedSubCategory.accept(cellSubCategory)
+            
+            let videoViewController = VideoListViewController2(
+                displayingVideos: viewModel.getFilteredVideoList()
+            )
+            
+            
+            // MARK: - 네이게이션으로 수정예정
+            present(videoViewController, animated: true)
         }
     }
 }

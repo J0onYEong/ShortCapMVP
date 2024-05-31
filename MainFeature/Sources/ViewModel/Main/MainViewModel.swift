@@ -8,16 +8,17 @@ public class MainViewModel {
     
     // 카테고리 작업
     private let getVideoMainCategoryRepository: GetVideoMainCategoryRepository
-    private let videoMainCategoryViewModelFactory: VideoMainCategoryViewModelFactory
+    public let videoMainCategoryViewModelFactory: VideoMainCategoryViewModelFactory
     // Factory
     public let mainCategoryViewControllerFactory: MainCategoryViewControllerFactory
     
     // (View) Observable
-    public let mainCategories = BehaviorRelay<[VideoMainCategory]>(value: [])
-    public let mainCategoryViewModels = BehaviorRelay<[VideoMainCategoryViewModel]>(value: [])
+    public let mainCategories = PublishRelay<[VideoMainCategory]>()
+    public var fetchedMainCategories: [VideoMainCategory]?
+    public let mainCategoryViewModels = PublishRelay<[VideoMainCategoryViewModel]>()
      
     // 선택된 메인카테고리, 서브카테고리
-    public let selectedMainCategory = BehaviorRelay<VideoMainCategory>(value: .all)
+    public let selectedMainCategoryIndex = BehaviorRelay<Int>(value: 0)
     public let selectedSubCategory = PublishRelay<VideoSubCategory>()
     
     public init(
@@ -30,36 +31,17 @@ public class MainViewModel {
         self.mainCategoryViewControllerFactory = mainCategoryViewControllerFactory
         
         setObserver()
-        
-        fetchCategories()
     }
     
     private let disposeBag = DisposeBag()
     
     private func setObserver() {
         
-        // MainCategory -> ViewModel
-        mainCategories
-            .map { [weak self] (items: [VideoMainCategory]) in
-                
-                items.compactMap { mainCategory in
-                    
-                    let mainCategoryViewModel = self?.videoMainCategoryViewModelFactory.create(category: mainCategory)
-                    
-                    mainCategoryViewModel?.selectedSubCategory = self?.selectedSubCategory
-                    
-                    return mainCategoryViewModel
-                }
-            }
-            .subscribe(onNext: { [weak self] in
-                
-                self?.mainCategoryViewModels.accept($0)
-            })
-            .disposed(by: disposeBag)
+       
     }
     
     /// 메인 카테고리 정보를 가져옵니다.
-    private func fetchCategories() {
+    public func fetchCategories() {
         
         getVideoMainCategoryRepository.fetch { result in
             
@@ -80,15 +62,11 @@ public class MainViewModel {
     public func getVideoFilterObservable() -> Observable<VideoFilter> {
         
         Observable
-            .combineLatest(selectedMainCategory, selectedSubCategory)
+            .combineLatest(selectedMainCategoryIndex, selectedSubCategory)
             .map { (mainCategory, subCategory) in
                 
-                if mainCategory == .all { return .all }
                 
-                return VideoFilter(
-                    mainCategoryId: mainCategory.categoryId,
-                    subCategoryId: subCategory.categoryId
-                )
+                return .all
             }
     }
 }

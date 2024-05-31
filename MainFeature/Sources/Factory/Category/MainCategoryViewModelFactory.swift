@@ -1,5 +1,6 @@
 import Foundation
 import Domain
+import RxRelay
 
 public class VideoMainCategoryViewModelFactory {
     
@@ -11,12 +12,16 @@ public class VideoMainCategoryViewModelFactory {
         self.factory = factory
     }
     
-    func create(category: VideoMainCategory) -> VideoMainCategoryViewModel {
+    func create(
+        mainCategory: VideoMainCategory,
+        videoList: BehaviorRelay<[VideoCellViewModelInterface]>
+    ) -> VideoMainCategoryViewModel {
         
-        return .init(
+        .init(
+            mainCategory: mainCategory,
+            videoList: videoList,
             getVideoSubCategoryRepository: repository,
-            subCategoryCellViewModelFactory: factory,
-            category: category
+            subCategoryCellViewModelFactory: factory
         )
     }
 }

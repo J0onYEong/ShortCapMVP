@@ -5,7 +5,7 @@ import Core
 
 class ActionViewController: UIViewController {
     
-    let viewModel = ActionViewModel()
+    let viewModel: ActionViewModel = DefaultDependencyInjector.shared.resolve(ActionViewModel.self)
     
     let button: CloseButton = {
         

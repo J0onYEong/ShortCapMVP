@@ -8,8 +8,7 @@ import Data
 public protocol VideoListViewModelInterface {
     
     // 테스트를 위해서
-    var displayingVideoCellViewModel: PublishRelay<[VideoCellViewModelInterface]> { get }
-    var filterdVideoCellViewModel: BehaviorRelay<[VideoCellViewModelInterface]> { get }
+    var displayingVideoCellViewModel: BehaviorRelay<[VideoCellViewModelInterface]> { get }
     
     func fetchVideoIdentities()
 }
@@ -29,26 +28,16 @@ public class DefaultVideoListViewModel: VideoListViewModelInterface {
     private let createdVideoCellViewModel = PublishRelay<VideoCellViewModelInterface>()
     
     /// 화면에 표시가능한 뷰모델 배열입니다.
-    public let displayingVideoCellViewModel = PublishRelay<[VideoCellViewModelInterface]>()
-    
-    /// 화면에 표시되는 비디오를 필터링하는 필터옵저버블입니다.
-    private let externalFilterObservable: Observable<VideoFilter>
-    
-    private let internalFilterObservable = BehaviorRelay<VideoFilter>(value: .all)
-    
-    /// (View) 필터링이 적용된 뷰묘델 배열입니다, 이 옵저버블이 최종적으로 UI구성에 사용됩니다.
-    public let filterdVideoCellViewModel = BehaviorRelay<[VideoCellViewModelInterface]>(value: [])
+    public let displayingVideoCellViewModel = BehaviorRelay<[VideoCellViewModelInterface]>(value: [])
     
     private let disposeBag: DisposeBag = .init()
     
     public init(
         fetchVideoIdentityUseCase: FetchVideoIdentityUseCase,
-        videoCellViewModelFactory: VideoCellViewModelFactory,
-        filterObservable: Observable<VideoFilter>
+        videoCellViewModelFactory: VideoCellViewModelFactory
     ) {
         self.fetchVideoIdentityUseCase = fetchVideoIdentityUseCase
         self.videoCellViewModelFactory = videoCellViewModelFactory
-        self.externalFilterObservable = filterObservable
         
         setObserver()
         
@@ -56,10 +45,6 @@ public class DefaultVideoListViewModel: VideoListViewModelInterface {
     }
     
     private func setObserver() {
-        
-        externalFilterObservable
-            .subscribe(onNext: { self.internalFilterObservable.accept($0) })
-            .disposed(by: disposeBag)
         
         fetchedVideoIdentites
             .flatMap { identities in
@@ -106,30 +91,7 @@ public class DefaultVideoListViewModel: VideoListViewModelInterface {
                     .accept($0)
             })
             .disposed(by: disposeBag)
-        
-        // 필터링
-        Observable
-            .combineLatest(internalFilterObservable, displayingVideoCellViewModel)
-            .subscribe(onNext: { [weak self] (filter, viewModels) in
-                
-                if filter == .all {
-                    
-                    self?.filterdVideoCellViewModel.accept(viewModels)
-                } else {
-                    
-                    let fileteredViewModelList = viewModels.filter { viewModel in
-                        
-                        let mainCategoryId = viewModel.detail!.mainCategoryId
-                        let subCategoryId = viewModel.detail!.subCategoryId
-                        
-                        return filter.mainCategoryId == mainCategoryId && filter.subCategoryId == subCategoryId
-                    }
-                    
-                    self?.filterdVideoCellViewModel.accept(fileteredViewModelList)
-                }
-            })
-            .disposed(by: disposeBag)
-        
+
         
         // 현재 어떤 메인카테고리의 서브카테고리에 포함된 비디오가 몇개인지 정보 전송
         displayingVideoCellViewModel

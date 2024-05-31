@@ -11,6 +11,8 @@ import MainFeature
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    
+    var coordinator: AppCoordinator?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -19,12 +21,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         
-        let mainViewController = DIContainer.default.createMainViewController()
+        let injector = DefaultDependencyInjector.default
         
-        let navigationVC = UINavigationController(rootViewController: mainViewController)
-
-        window?.rootViewController = navigationVC
+        injector.assemble([
+            DataAssembly(),
+            DomainAssembly(),
+            OnBoardingPageAssembly(),
+            MainPageAssembly(),
+        ])
+        
+        let navigationController = UINavigationController()
+    
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
+        
+        self.coordinator = DefaultAppCoordinator(
+            injector: injector,
+            navigationController: navigationController
+        )
+        
+        coordinator?.start()
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -54,7 +70,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 type(of: vc) == MainViewController.self
             }) as? MainViewController {
                 
-                targetVC.videoListViewController.viewModel.fetchVideoIdentities()
+                (self.coordinator as? DefaultAppCoordinator)?.fetchToken()
+                
+                targetVC.videoListViewModel.fetchVideoIdentities()
             }
         }
     }

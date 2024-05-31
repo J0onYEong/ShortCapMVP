@@ -12,18 +12,10 @@ struct VideoSubCategoryDTO: Codable {
 }
 
 struct SubCategory: Codable {
-    let subCategory: String
+    let categoryName: String
     let categoryId: Int
-    
-    private init(subCategory: String, categoryId: Int) {
-        self.subCategory = subCategory
-        self.categoryId = categoryId
-    }
-
-    enum CodingKeys: String, CodingKey {
-        case subCategory
-        case categoryId
-    }
+    let summaryCount: Int
+    let updateAt: String?
 }
 
 extension VideoSubCategoryDTO {
@@ -32,7 +24,7 @@ extension VideoSubCategoryDTO {
         
         self.subCategories.map {
             
-            VideoSubCategory(name: $0.subCategory, categoryId: $0.categoryId)
+            VideoSubCategory(name: $0.categoryName, categoryId: $0.categoryId)
         }
     }
 }

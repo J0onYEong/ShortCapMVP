@@ -243,20 +243,15 @@ public class MainViewController: UIViewController {
         // 화면 스와이프 이벤트 발생
         Observable.combineLatest(
             mainViewModel.mainCategories,
-            mainViewModel.selectedMainCategoryIndex
+            mainViewModel
+                .selectedMainCategoryIndex
+                .scan((0, 0)) { ($0.1, $1) }
         )
-        .subscribe(onNext: { (mainCategories, mainCategoryIndex) in
-        
-            let selectedMainCategory = mainCategories[mainCategoryIndex]
+        .observe(on: MainScheduler.instance)
+        .subscribe(onNext: { [weak self] (mainCategorius: [VideoMainCategory], arg1) in
             
-            if selectedMainCategory == .all {
-                
-                // 전체 비디오 리스트
-                
-            } else {
-                
-                // 카테고리
-            }
+            let (previousIndex, currentIndex) = arg1
+            self?.moveBar(previousIndex: previousIndex, currentIndex: currentIndex)
         })
         .disposed(by: disposeBag)
 
@@ -328,6 +323,7 @@ public class MainViewController: UIViewController {
     
     public override func viewWillAppear(_ animated: Bool) {
         
+        // MARK: - 수정 예정
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
@@ -351,7 +347,15 @@ public class MainViewController: UIViewController {
             categoryView.widthAnchor.constraint(equalTo: mainScrollView.widthAnchor),
         ])
     }
+    enum MovingDirection {
+        case right
+        case left
+        case center
+    }
+    var gestureBeganPosition: CGPoint = .init()
+    var screenBeginPosition: CGPoint = .init()
     
+    var movingDirec: MovingDirection = .center
 }
 
 extension MainViewController {
@@ -359,7 +363,55 @@ extension MainViewController {
     @objc
     func onPageTransitionGestureRecognized(_ gesture: UIPanGestureRecognizer) {
         
+        switch gesture.state {
+        case .began:
+            
+            screenBeginPosition = mainScrollView.contentOffset
+            
+            gestureBeganPosition = gesture.numberOfTouches > 0 ? gesture.location(ofTouch: 0, in: gestureArea) : .zero
+        case .changed:
+            
+            let currentTouchPos = gesture.numberOfTouches > 0 ? gesture.location(ofTouch: 0, in: gestureArea) : .zero
+            
+            let movedVector = gesture.translation(in: gestureArea)
+            
+            movingDirec = gestureBeganPosition.x-currentTouchPos.x < 0 ? .left : .right
+            
+            let d = 1.0
+            
+            mainScrollView.contentOffset.x -= movedVector.x * d
+            
+//            gesture.setTranslation(.zero, in: gestureArea)
+            
+            // 좌측 이동 제한
+            if mainScrollView.contentOffset.x < 0 {
+                
+                movingDirec = .center
+                
+                mainScrollView.contentOffset.x = .zero
+            }
+            // 우측 최대 이동 제한
+            let maxXPoint = CGFloat(mainViewModel.fetchedMainCategories.count-1) * mainScrollView.bounds.width
+            if mainScrollView.contentOffset.x > maxXPoint {
+                
+                movingDirec = .center
+                
+                mainScrollView.contentOffset.x = maxXPoint
+            }
+            
+        default:
+            return
+        }
+    }
+    
+    func moveBar(previousIndex: Int, currentIndex: Int) {
         
+        let startXPosition: CGFloat = mainScrollView.bounds.width * CGFloat(previousIndex)
         
+        // 하단바 이동 애니메이션
+        UIView.animate(withDuration: 0.3) {
+            
+            self.mainScrollView.contentOffset.x = startXPosition + self.mainScrollView.bounds.width * CGFloat(currentIndex-previousIndex)
+        }
     }
 }

@@ -14,7 +14,7 @@ public class MainViewModel {
     
     // (View) Observable
     public let mainCategories = PublishRelay<[VideoMainCategory]>()
-    public var fetchedMainCategories: [VideoMainCategory]?
+    public var fetchedMainCategories: [VideoMainCategory] = []
     public let mainCategoryViewModels = PublishRelay<[VideoMainCategoryViewModel]>()
      
     // 선택된 메인카테고리, 서브카테고리
@@ -49,6 +49,8 @@ public class MainViewModel {
             case .success(let categories):
                 
                 printIfDebug("✅가져온 메인카테고리 \(categories.count)개")
+                
+                self.fetchedMainCategories = categories
                 
                 self.mainCategories.accept(categories)
                 

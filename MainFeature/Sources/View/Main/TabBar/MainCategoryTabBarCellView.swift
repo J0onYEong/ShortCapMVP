@@ -90,11 +90,14 @@ class MainCategoryTabBarCellView: UIView {
         
         selectedMainCategoryIndex
             .asDriver()
-            .drive(onNext: { index in
+            .drive(onNext: { [weak self] index in
                 
-                let isFocused = index == self.cellIndex
-                
-                self.onMainCategoryIsSeleceted(isFocused ? .focused : .normal)
+                if let cellIndex = self?.cellIndex {
+                    
+                    let isFocused = index == cellIndex
+                    
+                    self?.onMainCategoryIsSeleceted(isFocused ? .focused : .normal)
+                }
                 
             })
             .disposed(by: disposeBag)

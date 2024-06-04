@@ -5,6 +5,8 @@ import RxRelay
 
 class AllCatgoryViewController: UIViewController {
     
+    private let videoListViewController = VideoListViewController()
+    
     init(_ videoList: BehaviorRelay<[VideoCellViewModelInterface]>) {
         
         super.init(nibName: nil, bundle: nil)
@@ -14,15 +16,14 @@ class AllCatgoryViewController: UIViewController {
     required init?(coder: NSCoder) { fatalError() }
     
     private func setVideoListViewController(_ videoList: Observable<[VideoCellViewModelInterface]>) {
-        let videoListViewController = VideoListViewController2(
-            displayingVideos: videoList
-        )
+        
+        videoListViewController.setObservable(displayingVideos: videoList)
+        videoListViewController.insetsForFirstSection = .init(top: 92, left: 20, bottom: 0, right: 20)
         
         self.addChild(videoListViewController)
         
         let videoListView: UIView = videoListViewController.view
         videoListView.translatesAutoresizingMaskIntoConstraints = false
-        
         view.addSubview(videoListView)
         
         NSLayoutConstraint.activate([

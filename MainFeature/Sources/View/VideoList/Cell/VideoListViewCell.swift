@@ -76,15 +76,18 @@ class VideoListViewCell: UICollectionViewCell {
         
         viewModel.detailSubject
             .asDriver(onErrorJustReturn: .mock)
-            .drive(onNext: { detail in
+            .drive(onNext: { [weak self] detail in
                 
-                self.titleLabel.text = detail.title
+                self?.titleLabel.text = detail.title
             })
             .disposed(by: disposeBag)
         
         viewModel.thumbNailSubject
             .asDriver(onErrorJustReturn: UIImage())
-            .drive(self.thumbNailView.rx.image)
+            .drive(onNext: { [weak self] image in
+                
+                self?.thumbNailView.image = image
+            })
             .disposed(by: disposeBag)
     }
 }

@@ -39,198 +39,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8F5C07A4-C7DC-4016-89D0-0CBBE0D2B7BC"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MainFeature/Sources/View/Main/MainViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "349"
-            endingLineNumber = "349"
-            landmarkName = "insertCategoryViewController(_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "8F5C07A4-C7DC-4016-89D0-0CBBE0D2B7BC - c616d43c0cf78b8b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "MainFeature.MainViewController.insertCategoryViewController(__C.UIViewController) -&gt; ()"
-                  moduleName = "MainFeature"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/choijun-yeong/Desktop/repositories/ShortCapTest/MainFeature/Sources/View/Main/MainViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "349"
-                  endingLineNumber = "349"
-                  offsetFromSymbolStart = "380">
-               </Location>
-               <Location
-                  uuid = "8F5C07A4-C7DC-4016-89D0-0CBBE0D2B7BC - c616d43c0cf78b49"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "MainFeature.MainViewController.insertCategoryViewController(__C.UIViewController) -&gt; ()"
-                  moduleName = "MainFeature"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/choijun-yeong/Desktop/repositories/ShortCapTest/MainFeature/Sources/View/Main/MainViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "351"
-                  endingLineNumber = "351"
-                  offsetFromSymbolStart = "368">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "2E14A674-4DC3-49E5-82B2-E23B088B376F"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MainFeature/Sources/ViewModel/VideoList/VideoCellViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "203"
-            endingLineNumber = "203"
-            landmarkName = "fetchThumbNail()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "2E14A674-4DC3-49E5-82B2-E23B088B376F - 4c53b4253a1906f8"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;__C.UIImage, Swift.Error&gt;) -&gt; () in closure #1 @Sendable () async -&gt; () in MainFeature.DefaultVideoCellViewModel.fetchThumbNail() -&gt; ()"
-                  moduleName = "MainFeature"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/choijun-yeong/Desktop/repositories/ShortCapTest/MainFeature/Sources/ViewModel/VideoList/VideoCellViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "203"
-                  endingLineNumber = "203"
-                  offsetFromSymbolStart = "108">
-               </Location>
-               <Location
-                  uuid = "2E14A674-4DC3-49E5-82B2-E23B088B376F - 4c53b4253a1906f8"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;__C.UIImage, Swift.Error&gt;) -&gt; () in closure #1 @Sendable () async -&gt; () in MainFeature.DefaultVideoCellViewModel.fetchThumbNail() -&gt; ()"
-                  moduleName = "MainFeature"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/choijun-yeong/Desktop/repositories/ShortCapTest/MainFeature/Sources/ViewModel/VideoList/VideoCellViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "203"
-                  endingLineNumber = "203"
-                  offsetFromSymbolStart = "152">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "9D8A03BB-62AB-448E-B3D4-BFCBFD89F2C0"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MainFeature/Sources/ViewModel/VideoList/VideoListViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "setObserver()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "9D8A03BB-62AB-448E-B3D4-BFCBFD89F2C0 - ecd937c4adecfe24"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #3 (MainFeature.VideoCellViewModelInterface) -&gt; RxSwift.Observable&lt;MainFeature.VideoCellViewModelInterface&gt; in MainFeature.DefaultVideoListViewModel.setObserver() -&gt; ()"
-                  moduleName = "MainFeature"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/choijun-yeong/Desktop/repositories/ShortCapTest/MainFeature/Sources/ViewModel/VideoList/VideoListViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "66"
-                  endingLineNumber = "66"
-                  offsetFromSymbolStart = "800">
-               </Location>
-               <Location
-                  uuid = "9D8A03BB-62AB-448E-B3D4-BFCBFD89F2C0 - ecd937c4adecfe24"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #3 (MainFeature.VideoCellViewModelInterface) -&gt; RxSwift.Observable&lt;MainFeature.VideoCellViewModelInterface&gt; in MainFeature.DefaultVideoListViewModel.setObserver() -&gt; ()"
-                  moduleName = "MainFeature"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/choijun-yeong/Desktop/repositories/ShortCapTest/MainFeature/Sources/ViewModel/VideoList/VideoListViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "66"
-                  endingLineNumber = "66"
-                  offsetFromSymbolStart = "816">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "43A6AAC3-FC7C-474B-AFCE-12E2C26FC57A"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MainFeature/Sources/ViewModel/VideoList/VideoListViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
-            landmarkName = "setObserver()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "43A6AAC3-FC7C-474B-AFCE-12E2C26FC57A - 988a2ee907f62cbd"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "MainFeature.DefaultVideoListViewModel.setObserver() -&gt; ()"
-                  moduleName = "MainFeature"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/choijun-yeong/Desktop/repositories/ShortCapTest/MainFeature/Sources/ViewModel/VideoList/VideoListViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
-                  offsetFromSymbolStart = "84">
-               </Location>
-               <Location
-                  uuid = "43A6AAC3-FC7C-474B-AFCE-12E2C26FC57A - 988a2ee907f62cff"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "MainFeature.DefaultVideoListViewModel.setObserver() -&gt; ()"
-                  moduleName = "MainFeature"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/choijun-yeong/Desktop/repositories/ShortCapTest/MainFeature/Sources/ViewModel/VideoList/VideoListViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "47"
-                  endingLineNumber = "47"
-                  offsetFromSymbolStart = "88">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "1532ACBA-1CFD-48E9-84D2-752C6BDE9A2A"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -370,6 +178,38 @@
             endingLineNumber = "64"
             landmarkName = "getNewToken()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1AD306AE-985E-4761-AF80-8C59CF1D0956 - 8cdebb4162df3afd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for Data.DefaultGetAuthTokenRepository.getNewToken() async -&gt; Swift.Optional&lt;Domain.AuthToken&gt;"
+                  moduleName = "Data"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/choijun-yeong/Desktop/repositories/ShortCapTest/Data/RepositoryImpl/Auth/DefaultGetAuthToken.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "63"
+                  endingLineNumber = "63"
+                  offsetFromSymbolStart = "404">
+               </Location>
+               <Location
+                  uuid = "1AD306AE-985E-4761-AF80-8C59CF1D0956 - 8cdebb4162df3a9e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for Data.DefaultGetAuthTokenRepository.getNewToken() async -&gt; Swift.Optional&lt;Domain.AuthToken&gt;"
+                  moduleName = "Data"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/choijun-yeong/Desktop/repositories/ShortCapTest/Data/RepositoryImpl/Auth/DefaultGetAuthToken.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "64"
+                  endingLineNumber = "64"
+                  offsetFromSymbolStart = "404">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

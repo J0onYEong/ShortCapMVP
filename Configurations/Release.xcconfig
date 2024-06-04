@@ -10,8 +10,8 @@
 
 BASE_URL = http:/$()/15.165.250.47:8080
 ShortCap_App_Name = ShortCap
-PRODUCT_BUNDLE_IDENTIFIER = com.Shortcap
-HOST_APP_BUNDLE_IDENTIFIER = com.Shortcap
+PRODUCT_BUNDLE_IDENTIFIER = choijunyeong.ShortCap
+HOST_APP_BUNDLE_IDENTIFIER = choijunyeong.ShortCap
 APP_GROUP = group.choijunyeong.ShortCap
 
 // Google API KEY for youtube thumbnail

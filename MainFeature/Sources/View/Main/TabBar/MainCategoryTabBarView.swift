@@ -221,6 +221,8 @@ extension MainCategoryTabBarView {
                 
             } else {
                 
+                selectedMainCategoryIndex.accept(previousIndex)
+                
                 // 원래 자리로 복귀
                 moveBar(previousIndex: previousIndex, currentIndex: previousIndex)
             }
@@ -236,9 +238,9 @@ extension MainCategoryTabBarView {
         let startXPosition: CGFloat = TabBarConfig.cellSize.width * CGFloat(previousIndex)
         
         // 하단바 이동 애니메이션
-        UIView.animate(withDuration: 0.3) {
+        UIView.animate(withDuration: 0.3) { [weak self] in
             
-            self.movingBar.frame.origin.x = startXPosition + TabBarConfig.cellSize.width * CGFloat(currentIndex-previousIndex)
+            self?.movingBar.frame.origin.x = startXPosition + TabBarConfig.cellSize.width * CGFloat(currentIndex-previousIndex)
         }
         
         // MARK: - 셀위를 움직이는 바가 현재 화면을 이탈하는 경우 처리

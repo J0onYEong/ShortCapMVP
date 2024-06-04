@@ -20,7 +20,7 @@ public class MainCategoryViewController: UIViewController {
         
         collectionView.isScrollEnabled = true
         
-        collectionView.contentInset = UIEdgeInsets(top: 52, left: 20, bottom: 0, right: 20)
+        collectionView.contentInset = UIEdgeInsets(top: 92, left: 20, bottom: 0, right: 20)
         
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -63,14 +63,16 @@ public class MainCategoryViewController: UIViewController {
         
         viewModel.subCategories
             .asDriver()
-            .drive(subCategoryCollectionView.rx.items(cellIdentifier: subCategoryCellID, cellType: SubCategoryCollectionViewCell.self)) { index, subCategory, cell in
+            .drive(subCategoryCollectionView.rx.items(cellIdentifier: subCategoryCellID, cellType: SubCategoryCollectionViewCell.self)) { [weak self] index, subCategory, cell in
                 
-                let viewModel = self.viewModel.subCategoryCellViewModelFactory.create(
-                    mainCategory: self.viewModel.mainCategory,
-                    subCategory: subCategory
-                )
+                if let mainCategory = self?.viewModel.mainCategory, 
+                    let viewModel = self?.viewModel.subCategoryCellViewModelFactory.create(
+                        mainCategory: mainCategory,
+                        subCategory: subCategory
+                    ) {
                     
-                cell.setUp(subCategoryCellViewModel: viewModel)
+                    cell.setUp(subCategoryCellViewModel: viewModel)
+                }
             }
             .disposed(by: disposeBag)
     }
@@ -102,15 +104,15 @@ extension MainCategoryViewController: UICollectionViewDelegateFlowLayout {
             guard let cellSubCategory = subCategoryCell.viewModel?.subCategory else { return }
             
             // 선택된 서브카테고리 전달
+            let videoViewController = VideoListViewController()
+            
+            videoViewController.setObservable(displayingVideos: viewModel.getFilteredVideoList())
+            
             viewModel.selectedSubCategory.accept(cellSubCategory)
             
-            let videoViewController = VideoListViewController2(
-                displayingVideos: viewModel.getFilteredVideoList()
-            )
-            
-            
             // MARK: - 네이게이션으로 수정예정
-            present(videoViewController, animated: true)
+            self.navigationController?.setNavigationBarHidden(false, animated: false)
+            self.navigationController?.pushViewController(videoViewController, animated: true)
         }
     }
 }

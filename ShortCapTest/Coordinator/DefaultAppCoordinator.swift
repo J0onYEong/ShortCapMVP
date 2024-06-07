@@ -2,21 +2,14 @@ import UIKit
 import OnBoardingFeature
 import MainFeature
 import Domain
+import Core
 
-protocol AppCoordinator {
-    
-    var injector: DependencyInjector { get }
-    var navigationController: UINavigationController { get }
-    
-    func start()
-}
+class DefaultAppCoordinator: Coordinator {
 
-class DefaultAppCoordinator: AppCoordinator {
-    
     let injector: DependencyInjector
     let navigationController: UINavigationController
     
-    var controllers: [AppCoordinator] = []
+    var childCoordinators: [Coordinator] = []
     
     init(injector: DependencyInjector, navigationController: UINavigationController) {
         self.injector = injector
@@ -28,12 +21,8 @@ class DefaultAppCoordinator: AppCoordinator {
         setNavigationBar()
         setOnBoardingCoordinator()
         setMainPageCoordinator()
-        showOnBoardingFlow()
-    }
-    
-    func fetchToken() {
         
-        _ = injector.resolve(GetAuthTokenRepository.self).getCurrentToken()
+        showOnBoardingFlow()
     }
     
     private func setNavigationBar() {
@@ -43,106 +32,48 @@ class DefaultAppCoordinator: AppCoordinator {
     
     private func setOnBoardingCoordinator() {
         
-        let coordinator = OnBoardingCoordinator(
-            injector: injector,
+        let coordinator = OnBoardingPageCoordinator(
+            onBoardingViewController: injector.resolve(OnBoardingViewController.self),
             navigationController: navigationController
         )
         
-        coordinator.deleage = self
+        coordinator.delegate = self
         
-        controllers.append(coordinator)
+        childCoordinators.append(coordinator)
     }
     
     private func setMainPageCoordinator() {
         
         let coordinator = MainPageCoordinator(
-            injector: injector,
+            mainViewController: injector.resolve(MainViewController.self),
             navigationController: navigationController
         )
         
-        controllers.append(coordinator)
+        childCoordinators.append(coordinator)
     }
     
     public func showOnBoardingFlow() {
         
-        let coordinator = controllers.first(where: { $0 as? OnBoardingCoordinator != nil })!
-        
-        coordinator.start()
+        getCoordinator(OnBoardingPageCoordinator.self)?.start()
     }
     
     public func showMainPageFlow() {
         
-        let coordinator = controllers.first(where: { $0 as? MainPageCoordinator != nil })!
+        getCoordinator(MainPageCoordinator.self)?.start()
+    }
+    
+    public func getCoordinator<T>(_ type: T.Type) -> Coordinator? where T: Coordinator {
         
-        coordinator.start()
+        childCoordinators.first(where: { ($0 as? T) != nil })
     }
 }
 
-extension DefaultAppCoordinator: CoordinatorFinishDelegate {
+extension DefaultAppCoordinator: OnBoardingPageCoordinatorDelegate {
     
-    func coordinatorFinished(coordinator: AppCoordinator) {
+    func tokenIssued(coordinator: OnBoardingPageCoordinator) {
         
-        if coordinator as? OnBoardingCoordinator != nil {
-            
-            controllers.removeAll(where: { $0 as? OnBoardingCoordinator != nil })
-            
-            DispatchQueue.main.async {
-                self.showMainPageFlow()
-            }
-        }
-    }
-}
-
-protocol CoordinatorFinishDelegate {
-    
-    func coordinatorFinished(coordinator: AppCoordinator)
-}
-
-// MARK: - OnBoardingCoordinator
-class OnBoardingCoordinator: AppCoordinator {
-    
-    var injector: DependencyInjector
-    var navigationController: UINavigationController
-    
-    var deleage: CoordinatorFinishDelegate?
-    
-    init(injector: DependencyInjector, navigationController: UINavigationController) {
-        self.injector = injector
-        self.navigationController = navigationController
-    }
-    
-    func start() {
+        childCoordinators = childCoordinators.filter { $0 !== coordinator }
         
-        let viewController = injector.resolve(OnBoardingViewController.self)
-        
-        navigationController.pushViewController(viewController, animated: false)
-        
-        Task {
-            
-            if let _ = await viewController.viewModel.getToken() {
-                
-                return self.deleage?.coordinatorFinished(coordinator: self)
-            }
-            
-            // MARK: - 토큰 획득 실패
-        }
-    }
-}
-
-class MainPageCoordinator: AppCoordinator {
-    
-    var injector: DependencyInjector
-    var navigationController: UINavigationController
-    
-    init(injector: DependencyInjector, navigationController: UINavigationController) {
-        self.injector = injector
-        self.navigationController = navigationController
-    }
-    
-    func start() {
-        
-        let viewController = injector.resolve(MainViewController.self)
-        
-        navigationController.pushViewController(viewController, animated: true)
+        showMainPageFlow()
     }
 }

@@ -7,12 +7,13 @@
 
 import UIKit
 import MainFeature
+import Core
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     
-    var coordinator: AppCoordinator?
+    var appCoordinator: Coordinator?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -35,12 +36,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
         
-        self.coordinator = DefaultAppCoordinator(
+        self.appCoordinator = DefaultAppCoordinator(
             injector: injector,
             navigationController: navigationController
         )
         
-        coordinator?.start()
+        appCoordinator?.start()
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -69,8 +70,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             if let targetVC = navigationController.viewControllers.first(where: { vc in
                 type(of: vc) == MainViewController.self
             }) as? MainViewController {
-                
-                (self.coordinator as? DefaultAppCoordinator)?.fetchToken()
                 
                 targetVC.videoListViewModel.fetchVideoIdentities()
             }

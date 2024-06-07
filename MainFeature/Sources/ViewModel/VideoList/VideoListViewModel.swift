@@ -40,8 +40,6 @@ public class DefaultVideoListViewModel: VideoListViewModelInterface {
         self.videoCellViewModelFactory = videoCellViewModelFactory
         
         setObserver()
-        
-        fetchVideoIdentities()
     }
     
     private func setObserver() {

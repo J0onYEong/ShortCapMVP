@@ -325,6 +325,7 @@ public class MainViewController: UIViewController {
         
         // MARK: - 수정 예정
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
     }
     
     private func insertCategoryViewController(_ viewController: UIViewController) {

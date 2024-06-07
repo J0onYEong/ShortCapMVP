@@ -17,7 +17,7 @@ enum VideoListViewConfig {
     static var thumbNailSize: CGSize { CGSize(width: thumbNailWidth, height: thumbNailHeight) }
 }
 
-class VideoListViewController: UIViewController {
+public class VideoListViewController: UIViewController {
     
     struct HashableVideoCellViewModel: Hashable, Equatable {
         
@@ -76,7 +76,7 @@ class VideoListViewController: UIViewController {
     
     private let disposebag = DisposeBag()
     
-    init() {
+    public init() {
         
         super.init(nibName: nil, bundle: nil)
         
@@ -84,7 +84,7 @@ class VideoListViewController: UIViewController {
     }
     required init?(coder: NSCoder) { fatalError() }
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         
         [videoListView].forEach {
             
@@ -169,7 +169,7 @@ extension VideoListViewController: UICollectionViewDelegateFlowLayout {
         .init(width: collectionView.bounds.width-VideoListViewConfig.horizontalInset*2, height: VideoListViewConfig.rowHeight)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
         if section == 0 {
             return insetsForFirstSection

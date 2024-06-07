@@ -55,161 +55,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "038D3C33-EBB0-442F-81AF-D8DEAAFB4314"
+            uuid = "96E0BD2F-144E-4AEE-9A10-7FB9613CF545"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Domain/Sources/UseCase/VideoDetail/CheckSummaryStateUseCase.swift"
+            filePath = "ShortCapTest/SceneDelegate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "18"
-            endingLineNumber = "18"
-            landmarkName = "check(videoCode:completion:)"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "sceneWillEnterForeground(_:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "038D3C33-EBB0-442F-81AF-D8DEAAFB4314 - fe1536367799090a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Domain.DefaultCheckSummaryStateUseCase.check(videoCode: Swift.String, completion: (Swift.Result&lt;Domain.VideoSummaryState, Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Domain"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/choijun-yeong/Desktop/repositories/ShortCapTest/Domain/Sources/UseCase/VideoDetail/CheckSummaryStateUseCase.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "18"
-                  endingLineNumber = "18"
-                  offsetFromSymbolStart = "88">
-               </Location>
-               <Location
-                  uuid = "038D3C33-EBB0-442F-81AF-D8DEAAFB4314 - 6e63c261c4244364"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;Domain.VideoSummaryState, Swift.Error&gt;) -&gt; () in Domain.DefaultCheckSummaryStateUseCase.check(videoCode: Swift.String, completion: (Swift.Result&lt;Domain.VideoSummaryState, Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Domain"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/choijun-yeong/Desktop/repositories/ShortCapTest/Domain/Sources/UseCase/VideoDetail/CheckSummaryStateUseCase.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "18"
-                  endingLineNumber = "18"
-                  offsetFromSymbolStart = "92">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "2E6A23ED-5EF7-4D44-9938-926F742D9990"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Data/RepositoryImpl/Video/Summary/DefaultSummaryProcessRepository.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
-            landmarkName = "state(videoCode:completion:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "2E6A23ED-5EF7-4D44-9938-926F742D9990 - 7a6bf7867763bd62"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;Data.ResponseDTOWrapper&lt;Data.VideoSummaryStateResponseDTO&gt;, Core.DataTransferError&gt;) -&gt; () in Data.DefaultSummaryProcessRepository.state(videoCode: Swift.String, completion: (Swift.Result&lt;Domain.VideoSummaryState, Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Data"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/choijun-yeong/Desktop/repositories/ShortCapTest/Data/RepositoryImpl/Video/Summary/DefaultSummaryProcessRepository.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "22"
-                  endingLineNumber = "22"
-                  offsetFromSymbolStart = "556">
-               </Location>
-               <Location
-                  uuid = "2E6A23ED-5EF7-4D44-9938-926F742D9990 - 7a6bf7867763bd62"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;Data.ResponseDTOWrapper&lt;Data.VideoSummaryStateResponseDTO&gt;, Core.DataTransferError&gt;) -&gt; () in Data.DefaultSummaryProcessRepository.state(videoCode: Swift.String, completion: (Swift.Result&lt;Domain.VideoSummaryState, Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Data"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/choijun-yeong/Desktop/repositories/ShortCapTest/Data/RepositoryImpl/Video/Summary/DefaultSummaryProcessRepository.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "22"
-                  endingLineNumber = "22"
-                  offsetFromSymbolStart = "872">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "F03FAC07-521D-4AF6-BA09-929C507A0FA0"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Data/RepositoryImpl/Video/Summary/DefaultSummaryProcessRepository.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "state(videoCode:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "1AD306AE-985E-4761-AF80-8C59CF1D0956"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Data/RepositoryImpl/Auth/DefaultGetAuthToken.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "getNewToken()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "1AD306AE-985E-4761-AF80-8C59CF1D0956 - 8cdebb4162df3afd"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for Data.DefaultGetAuthTokenRepository.getNewToken() async -&gt; Swift.Optional&lt;Domain.AuthToken&gt;"
-                  moduleName = "Data"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/choijun-yeong/Desktop/repositories/ShortCapTest/Data/RepositoryImpl/Auth/DefaultGetAuthToken.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "63"
-                  endingLineNumber = "63"
-                  offsetFromSymbolStart = "404">
-               </Location>
-               <Location
-                  uuid = "1AD306AE-985E-4761-AF80-8C59CF1D0956 - 8cdebb4162df3a9e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for Data.DefaultGetAuthTokenRepository.getNewToken() async -&gt; Swift.Optional&lt;Domain.AuthToken&gt;"
-                  moduleName = "Data"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/choijun-yeong/Desktop/repositories/ShortCapTest/Data/RepositoryImpl/Auth/DefaultGetAuthToken.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "64"
-                  endingLineNumber = "64"
-                  offsetFromSymbolStart = "404">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

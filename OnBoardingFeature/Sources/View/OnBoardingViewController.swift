@@ -1,14 +1,32 @@
 import UIKit
 import Domain
 
+protocol OnBoardingViewControllerDeleage {
+    
+    func tokenIssued()
+}
+
 public class OnBoardingViewController: UIViewController {
     
     public let viewModel: OnBoardingViewModel
+    
+    var delegate: OnBoardingViewControllerDeleage?
     
     public init(viewModel: OnBoardingViewModel) {
         self.viewModel = viewModel
         
         super.init(nibName: nil, bundle: nil)
+        
+        Task { [weak self] in
+            
+            if let _ = await self?.viewModel.getToken() {
+                
+                await MainActor.run { [weak self] in
+                    
+                    self?.delegate?.tokenIssued()
+                }
+            }
+        }
     }
     
     public required init?(coder: NSCoder) { fatalError() }
@@ -33,25 +51,5 @@ public class OnBoardingViewController: UIViewController {
             label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             label.centerYAnchor.constraint(equalTo: view.centerYAnchor),
         ])
-    }
-}
-
-public class OnBoardingViewModel {
-    
-    let getTokenRepository: GetAuthTokenRepository
-    
-    public init(getTokenRepository: GetAuthTokenRepository) {
-        self.getTokenRepository = getTokenRepository
-    }
-    
-    public func getToken() async -> AuthToken? {
-        
-        if let token = getTokenRepository.getCurrentToken() {
-            
-            return await getTokenRepository.reissueToken(current: token)
-        } else {
-            
-            return await getTokenRepository.getNewToken()
-        }
     }
 }

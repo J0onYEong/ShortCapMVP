@@ -43,9 +43,10 @@ class ActionViewModel {
             
             do {
                 
-                if let token = authTokenRepository.getCurrentToken() {
+                if let _ = authTokenRepository.getCurrentToken() {
                     
-                    _ = await authTokenRepository.reissueToken(current: token)
+                    // 토큰을 무조건 재발행
+//                    _ = await authTokenRepository.reissueToken(current: token)
                     
                 } else {
                     

@@ -15,4 +15,10 @@ public class VideoThumbNailInformation {
         self.size = size
         self.quality = quality
     }
+    
+    public static let mock: VideoThumbNailInformation =  .init(
+        url: "https://dummyimage.com/150x200/000/fff",
+        size: CGSize(width: 150, height: 200),
+        quality: .default
+    )
 }

@@ -29,7 +29,7 @@ class TokenInterceptor {
             refreshToken: refreshToken
         )
         
-        let endPoint = Endpoint2(
+        let endPoint = Endpoint(
             baseURL: configuration.baseURL,
             path: "api/auth/reissue",
             method: .post,
@@ -140,8 +140,8 @@ class TokenInterceptor {
                     .request(request: reissueRequest, interceptor: nil)
                     .responseDecodable(type: ResponseDTOWrapper<AuthTokenDTO>.self)
                 
-                guard let accessToken = reissuedToken.data?.accessToken,
-                      let refreshToken = reissuedToken.data?.refreshToken else { return .finish }
+                let accessToken = reissuedToken.data.accessToken
+                let refreshToken = reissuedToken.data.refreshToken
                 
                 credential?.renewalTokens(accessToken: accessToken, refreshToken: refreshToken)
                 

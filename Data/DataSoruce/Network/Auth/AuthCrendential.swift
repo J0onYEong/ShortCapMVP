@@ -11,7 +11,7 @@ public protocol AuthCrendentialable: AnyObject {
 
 public class ShortcapAuthenticationCredential: AuthCrendentialable {
     
-    internal init() { }
+    public init() { }
     
     public typealias Token = String
     public typealias DeviceIdentifier = String
@@ -60,6 +60,8 @@ public class ShortcapAuthenticationCredential: AuthCrendentialable {
         self.refreshToken = refreshToken
         
         do {
+            
+            // 키체인에 토큰을 저장합니다.
             try keyChain.set(accessToken, key: Key.KAccessToken)
             try keyChain.set(refreshToken, key: Key.KRefreshToken)
         } catch {

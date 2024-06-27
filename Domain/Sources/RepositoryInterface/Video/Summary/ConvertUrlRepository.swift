@@ -2,8 +2,8 @@ import Foundation
 
 public protocol ConvertUrlRepository {
     
-    func convert(urlString: String, completion: @escaping (Result<String, Error>) -> Void)
-    func convert(urlString: String) async throws -> String
+    func convert(urlString: String, categoryId: String?, completion: @escaping (Result<String, Error>) -> Void)
+    func convert(urlString: String, categoryId: String?) async throws -> String
 }
 
 // MARK: - Error

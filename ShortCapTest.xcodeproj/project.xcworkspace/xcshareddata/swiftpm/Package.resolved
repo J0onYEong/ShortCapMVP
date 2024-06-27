@@ -1,12 +1,13 @@
 {
+  "originHash" : "fda8712788fbf1861e7b65aec3966921b64e102bf5c1dcbde5be3915d0dbb485",
   "pins" : [
     {
       "identity" : "alamofire",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Alamofire/Alamofire",
       "state" : {
-        "revision" : "3dc6a42c7727c49bf26508e29b0a0b35f9c7e1ad",
-        "version" : "5.8.1"
+        "revision" : "f455c2975872ccd2d9c81594c658af65716e9b9a",
+        "version" : "5.9.1"
       }
     },
     {
@@ -14,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/J0onYEong/Junimofire.git",
       "state" : {
-        "revision" : "640ab6352e5495d38b682030fd1be69025aaf36f",
-        "version" : "0.1.1"
+        "revision" : "618144b51bc9335f785525ee8f92d999efd147a5",
+        "version" : "0.2.0"
       }
     },
     {
@@ -55,5 +56,5 @@
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

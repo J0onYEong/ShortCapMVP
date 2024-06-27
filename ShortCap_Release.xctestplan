@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "319219FC-48CC-40B5-BB7A-F4430927DC5A",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:ShortCapTest.xcodeproj",
+      "identifier" : "9B8E7BDB2B9496D6001F3D88",
+      "name" : "ShortCapTest"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:ShortCapTest.xcodeproj",
+        "identifier" : "9B72BCE32C146E3300FD564F",
+        "name" : "DataLayerTests"
+      }
+    }
+  ],
+  "version" : 1
+}

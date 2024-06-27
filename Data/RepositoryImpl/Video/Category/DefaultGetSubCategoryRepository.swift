@@ -4,28 +4,23 @@ import Core
 
 public class DefaultGetVideoSubCategoryRepository: GetVideoSubCategoryRepository {
     
-    let networkWithShortcap: NetworkWithShortcap
+    let networkService: NetworkService
     
-    init(networkWithShortcap: NetworkWithShortcap) {
-        self.networkWithShortcap = networkWithShortcap
+    public init(networkService: NetworkService) {
+        self.networkService = networkService
     }
     
     public func fetch(mainCategory: VideoMainCategory, completion: @escaping (Result<[VideoSubCategory], Error>) -> Void) {
         
-        let requestBox = networkWithShortcap.api.fetchVideoSubCategoriesFor(mainCategoryName: mainCategory.enName)
+        let requestBox = networkService.api.fetchVideoSubCategoriesFor(mainCategoryName: mainCategory.enName)
         
-        networkWithShortcap.network
+        networkService.network
             .request(requestConvertible: requestBox) { result in
                 
                 switch result {
                 case .success(let dto):
                     
-                    if let subCategories = dto.data?.toEntity() {
-                        
-                        completion(.success(subCategories))
-                    }
-                    
-                    completion(.failure(ResponseError.dataIsNotFound))
+                    completion(.success(dto.data.toEntity()))
                     
                 case .failure(let error):
                     

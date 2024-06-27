@@ -2,12 +2,12 @@ import Foundation
 import Alamofire
 import JunimoFire
 
-final class DefaultNetworkDataSource: NetworkDataSource {
+final public class DefaultNetworkDataSource: NetworkDataSource {
     
     private let configuration: NetworkConfigurable
     private let credential: AuthCrendentialable
     
-    init(
+    public init(
         configuration: NetworkConfigurable,
         credential: AuthCrendentialable
     ) {
@@ -16,7 +16,7 @@ final class DefaultNetworkDataSource: NetworkDataSource {
     }
 }
 
-public typealias NetworkWithShortcap = (network: NetworkDataSource, api: ShortcapAPI)
+public typealias NetworkService = (network: NetworkDataSource, api: ShortcapAPI)
 
 open class NetworkDataSource {
     
@@ -67,4 +67,5 @@ open class NetworkDataSource {
         
         return decoded
     }
+    
 }

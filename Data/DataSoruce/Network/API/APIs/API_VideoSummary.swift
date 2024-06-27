@@ -18,6 +18,20 @@ extension ShortcapAPI {
             afInterceptor: tokenInterceptor.afTokenInterceptor
         )
     }
+    func initiateSummary(videoInformation: RawVideoInformationDTO) async -> RequestBox<ResponseDTOWrapper<VideoCodeDTO>> {
+        
+        let endPoint = Endpoint(
+            baseURL: configuration.baseURL,
+            path: "api/summaries/initiate",
+            method: .post,
+            headerParameters: configuration.baseHeader,
+            bodyParametersEncodable: videoInformation
+        )
+        return RequestBox(
+            endPoint: endPoint,
+            jfInterceptor: tokenInterceptor.jfTokenInterceptor
+        )
+    }
     
     /// 요약 상태를 가져옵니다.
     func fetchVideoSummaryState(videoCode: String) -> RequestBox<ResponseDTOWrapper<VideoSummaryStateResponseDTO>> {

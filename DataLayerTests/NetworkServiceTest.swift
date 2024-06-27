@@ -49,7 +49,7 @@ final class NetworkServiceTest: XCTestCase {
                     
                     print(success)
                     
-                    let temp = success.data?.videoCode
+                    let temp = success.data.videoCode
                     
                     XCTAssertNotNil(temp)
                     
@@ -78,7 +78,7 @@ final class NetworkServiceTest: XCTestCase {
                     
                     print(success)
                     
-                    let id = success.data?.videoSummaryId
+                    let id = success.data.videoSummaryId
                     
                     XCTAssertNotNil(id)
                     

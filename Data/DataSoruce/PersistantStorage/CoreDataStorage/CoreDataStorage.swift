@@ -1,6 +1,5 @@
 import Foundation
 import CoreData
-import Core
 
 enum CoreDataStorageError: Error {
     case readError(Error)

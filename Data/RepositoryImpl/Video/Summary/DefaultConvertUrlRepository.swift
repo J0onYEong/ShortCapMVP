@@ -4,65 +4,58 @@ import Core
 
 public class DefaultConvertUrlRepository: ConvertUrlRepository {
     
-    var dataTransferService: DataTransferService
+    let networkService: NetworkService
     
-    public init(dataTransferService: DataTransferService) {
-        self.dataTransferService = dataTransferService
+    public init(networkService: NetworkService) {
+        self.networkService = networkService
     }
     
-    public func convert(urlString: String, completion: @escaping (Result<String, Error>) -> Void) {
+    public func convert(urlString: String, categoryId: String?=nil, completion: @escaping (Result<String, Error>) -> Void) {
         
-        let endPoint = APIEndpoints.getVideoCode(with: RawVideoInformationDTO(url: urlString, categoryId: nil, categoryIncluded: false))
+        let videoInfo = RawVideoInformationDTO(
+            url: urlString,
+            categoryId: categoryId,
+            categoryIncluded: categoryId != nil
+        )
         
-        dataTransferService.request(with: endPoint) { result in
-            
-            switch result {
-            case .success(let responseDTO):
+        let requestConvertible = networkService.api.initiateSummary(videoInformation: videoInfo)
+        
+        networkService.network
+            .request(requestConvertible: requestConvertible) { result in
                 
-                guard let videoCode = responseDTO.data?.videoCode else { return completion(.success("Error code")) }
-                
-                completion(.success(videoCode))
-                
-            case .failure(let failure):
-                completion(.failure(failure))
+                switch result {
+                case .success(let responseDTO):
+                    
+                    guard let videoCode = responseDTO.data.videoCode else { return completion(.success("videocode isn't found")) }
+                    
+                    completion(.success(videoCode))
+                    
+                case .failure(let failure):
+                    completion(.failure(failure))
+                }
             }
-        }
     }
     
-    public func convert(urlString: String) async throws -> String {
+    public func convert(urlString: String, categoryId: String?=nil) async throws -> String {
         
-        let endPoint = APIEndpoints.getVideoCode(with: RawVideoInformationDTO(url: urlString, categoryId: nil, categoryIncluded: false))
+        let videoInfo = RawVideoInformationDTO(
+            url: urlString,
+            categoryId: categoryId,
+            categoryIncluded: categoryId != nil
+        )
+        
+        let requestConvertible = await networkService.api.initiateSummary(videoInformation: videoInfo)
         
         do {
             
-            let dto: ResponseDTOWrapper<VideoCodeDTO> = try await dataTransferService.request(with: endPoint)
+            let dto = try await networkService.network.request(requestConvertible: requestConvertible)
             
-            guard let videoCode = dto.data?.videoCode else { throw ConvertUrlToVideoCodeUseCaseError.networkError }
+            guard let videoCode = dto.data.videoCode else { throw ConvertUrlToVideoCodeUseCaseError.networkError }
             
             return videoCode
-            
         } catch {
-            
-            if let dataTransferError = error as? DataTransferError {
-                
-                let resolvedError = self.resolve(error: dataTransferError)
-                
-                throw resolvedError
-            }
-            
-            throw error
-        }
-    }
-    
-    private func resolve(error: DataTransferError) -> ConvertUrlToVideoCodeUseCaseError {
         
-        switch error {
-        case .noResponse:
-            return .networkError
-        case .parsing( _ ):
-            return .applicationError
-        default:
-            return .unknownError
+            throw error
         }
     }
 }

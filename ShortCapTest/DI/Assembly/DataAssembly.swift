@@ -8,7 +8,7 @@ public struct DataAssembly: Assembly {
     
     public func assemble(container: Container) {
         
-        // MARK: - Storage
+        // MARK: - DataSource-Storage
         container.register(VideoIdentityStorage.self) { _ in CoreDataVideoIdentityStorage(coreDataStorage: .shared)
         }
         
@@ -19,25 +19,17 @@ public struct DataAssembly: Assembly {
         }
         
         
-        // MARK: - Service
-        container.register(NetworkService.self, name: "default") { _ in DefaultNetworkService() }
-        
-        container.register(NetworkService.self, name: "googleApi") { _ in
-            
-            DefaultNetworkService(config: ApiDataNetworkConfig.googleApi)
+        // MARK: - DataSource-Network
+        container.register(NetworkConfigurable.self) { _ in DefaultNetworkConfiguration()
         }
         
-        container.register(DataTransferService.self, name: "default") { resolver in
-            
-            DefaultDataTransferService(
-                with: resolver.resolve(NetworkService.self, name: "default")!
-            )
+        container.register(AuthCrendentialable.self) { _ in ShortcapAuthenticationCredential()
         }
         
-        container.register(DataTransferService.self, name: "googleApi") { resolver in
-            
-            DefaultDataTransferService(
-                with: resolver.resolve(NetworkService.self, name: "googleApi")!
+        container.register(NetworkDataSource.self) { resolver in
+            DefaultNetworkDataSource(
+                configuration: resolver.resolve(NetworkConfigurable.self)!,
+                credential: resolver.resolve(AuthCrendentialable.self)!
             )
         }
         
@@ -50,7 +42,7 @@ public struct DataAssembly: Assembly {
         container.register(GetVideoSubCategoryRepository.self) { resolver in
             
             DefaultGetVideoSubCategoryRepository(
-                dataTransferService: resolver.resolve(DataTransferService.self, name: "default")!
+                networkService: resolver.resolve(NetworkService.self)!
             )
         }
         
@@ -62,7 +54,7 @@ public struct DataAssembly: Assembly {
         
         container.register(SummaryProcessRepository.self) { resolver in
             DefaultSummaryProcessRepository(
-                dataTransferService: resolver.resolve(DataTransferService.self, name: "default")!
+                networkService: resolver.resolve(NetworkService.self)!
             )
         }
         
@@ -73,9 +65,8 @@ public struct DataAssembly: Assembly {
         }
         
         container.register(FetchThumbNailRepository.self, name: "youtube") { resolver in
-            
-            YoutubeThumbNailRepository(
-                dataTransferService: resolver.resolve(DataTransferService.self, name: "googleApi")!
+            DefaultThumbNailRepository(
+                networkService: resolver.resolve(NetworkService.self)!
             )
         }
         
@@ -87,10 +78,9 @@ public struct DataAssembly: Assembly {
         
         container.register(GetAuthTokenRepository.self) { resolver in
             DefaultGetAuthTokenRepository(
-                dataTransferService: resolver.resolve(DataTransferService.self, name: "default")!
+                networkService: resolver.resolve(NetworkService.self)!,
+                credential: resolver.resolve(AuthCrendentialable.self)!
             )
         }
-        
-        
     }
 }

@@ -4,52 +4,27 @@ import Core
 
 public class DefaultSummaryProcessRepository: SummaryProcessRepository {
     
-    let dataTransferService: DataTransferService
+    let networkService: NetworkService
     
-    public init(dataTransferService: DataTransferService) {
-        self.dataTransferService = dataTransferService
+    public init(networkService: NetworkService) {
+        self.networkService = networkService
     }
     
     public func state(videoCode: String, completion: @escaping ((Result<VideoSummaryState, Error>) -> Void)) {
         
-        let endPoint = APIEndpoints.getVideoSummaryState(with: videoCode)
+        let requestConvertible = networkService.api.fetchVideoSummaryState(videoCode: videoCode)
         
-        dataTransferService.request(with: endPoint, on: DispatchQueue.global()) { result in
+        networkService.network.request(requestConvertible: requestConvertible) { result in
             
             switch result {
             case .success(let responseDTO):
                 
-                if let videoState = responseDTO.data?.toDomain() {
-                    
-                    return completion(.success(videoState))
-                }
+                let videoState = responseDTO.data.toDomain()
                 
-                completion(.failure(SummaryProcessError.unknownError))
+                return completion(.success(videoState))
                                                                                
             case .failure(let failure):
                 
-                completion(.failure(failure))
-            }
-        }
-    }
-    
-    public func detail(videoId: Int, completion: @escaping ((Result<VideoDetail, Error>) -> Void)) {
-        
-        let endPoint = APIEndpoints.getVideoDetail(with: videoId)
-        
-        dataTransferService.request(with: endPoint) { result in
-            
-            switch result {
-            case .success(let responseDTO):
-                
-                if let videoDetail = responseDTO.data?.toDomain() {
-                    
-                    return completion(.success(videoDetail))
-                }
-                
-                completion(.failure(SummaryProcessError.unknownError))
-                                                                               
-            case .failure(let failure):
                 completion(.failure(failure))
             }
         }

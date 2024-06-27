@@ -33,7 +33,7 @@ public final class DefaultSaveVideoIdentityRepository: SaveVideoIdentityReposito
                         case .failure(let error):
                             
                             // 코어데이터 에러
-                            printIfDebug("‼️비디오 아이덴티티 저장실패: \(error) \n \(error.localizedDescription)")
+                            print("‼️비디오 아이덴티티 저장실패: \(error) \n \(error.localizedDescription)")
                             
                             completion(false)
                         }
@@ -46,7 +46,7 @@ public final class DefaultSaveVideoIdentityRepository: SaveVideoIdentityReposito
                 
             case .failure(let failure):
                 
-                printIfDebug("‼️데이터 불러오기 실패: \(failure) \n \(failure.localizedDescription)")
+                print("‼️데이터 불러오기 실패: \(failure) \n \(failure.localizedDescription)")
                 
                 completion(false)
             }

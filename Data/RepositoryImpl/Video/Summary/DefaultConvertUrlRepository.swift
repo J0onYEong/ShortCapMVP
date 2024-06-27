@@ -12,7 +12,7 @@ public class DefaultConvertUrlRepository: ConvertUrlRepository {
     
     public func convert(urlString: String, completion: @escaping (Result<String, Error>) -> Void) {
         
-        let endPoint = APIEndpoints.getVideoCode(with: VideoCodeRequestDTO(url: urlString, categoryId: nil, categoryIncluded: false))
+        let endPoint = APIEndpoints.getVideoCode(with: RawVideoInformationDTO(url: urlString, categoryId: nil, categoryIncluded: false))
         
         dataTransferService.request(with: endPoint) { result in
             
@@ -31,11 +31,11 @@ public class DefaultConvertUrlRepository: ConvertUrlRepository {
     
     public func convert(urlString: String) async throws -> String {
         
-        let endPoint = APIEndpoints.getVideoCode(with: VideoCodeRequestDTO(url: urlString, categoryId: nil, categoryIncluded: false))
+        let endPoint = APIEndpoints.getVideoCode(with: RawVideoInformationDTO(url: urlString, categoryId: nil, categoryIncluded: false))
         
         do {
             
-            let dto: ResponseDTOWrapper<VideoCodeResponseDTO> = try await dataTransferService.request(with: endPoint)
+            let dto: ResponseDTOWrapper<VideoCodeDTO> = try await dataTransferService.request(with: endPoint)
             
             guard let videoCode = dto.data?.videoCode else { throw ConvertUrlToVideoCodeUseCaseError.networkError }
             

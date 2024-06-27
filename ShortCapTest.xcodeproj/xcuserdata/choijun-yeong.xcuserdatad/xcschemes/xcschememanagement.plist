@@ -12,7 +12,7 @@
 		<key>DSKit.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>9</integer>
+			<integer>12</integer>
 		</dict>
 		<key>Data+Domain.xcscheme_^#shared#^_</key>
 		<dict>
@@ -23,6 +23,11 @@
 		<dict>
 			<key>orderHint</key>
 			<integer>5</integer>
+		</dict>
+		<key>DataLayerTests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>9</integer>
 		</dict>
 		<key>Domain.xcscheme_^#shared#^_</key>
 		<dict>
@@ -39,10 +44,20 @@
 			<key>orderHint</key>
 			<integer>7</integer>
 		</dict>
+		<key>MainPageFeature.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>11</integer>
+		</dict>
 		<key>OnBoardingFeature.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>11</integer>
+		</dict>
+		<key>OnBoardingPageFeature.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>10</integer>
 		</dict>
 		<key>Presentation.xcscheme_^#shared#^_</key>
 		<dict>
@@ -165,6 +180,11 @@
 			<true/>
 		</dict>
 		<key>9B5CD80A2BB27AF00041988A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9B72BCE32C146E3300FD564F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

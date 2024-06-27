@@ -10,6 +10,15 @@
       }
     },
     {
+      "identity" : "junimofire",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/J0onYEong/Junimofire.git",
+      "state" : {
+        "revision" : "640ab6352e5495d38b682030fd1be69025aaf36f",
+        "version" : "0.1.1"
+      }
+    },
+    {
       "identity" : "keychainaccess",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/kishikawakatsumi/KeychainAccess.git",

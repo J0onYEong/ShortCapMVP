@@ -1,4 +1,4 @@
-import MainFeature
+import MainPageFeature
 import Domain
 import Data
 import Swinject

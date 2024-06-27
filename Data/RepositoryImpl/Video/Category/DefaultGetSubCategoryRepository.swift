@@ -4,37 +4,32 @@ import Core
 
 public class DefaultGetVideoSubCategoryRepository: GetVideoSubCategoryRepository {
     
-    let service: DataTransferService
+    let networkWithShortcap: NetworkWithShortcap
     
-    public init(dataTransferService service: DataTransferService) {
-        self.service = service
+    init(networkWithShortcap: NetworkWithShortcap) {
+        self.networkWithShortcap = networkWithShortcap
     }
     
-    public func fetch(mainCategory: VideoMainCategory, completion: @escaping (Result<[VideoSubCategory], GetVideoSubCategoryRepositoryError>) -> Void) {
+    public func fetch(mainCategory: VideoMainCategory, completion: @escaping (Result<[VideoSubCategory], Error>) -> Void) {
         
-        let endPoint = APIEndpoints.getVideoSubCategories(mainCategory: mainCategory.enName)
+        let requestBox = networkWithShortcap.api.fetchVideoSubCategoriesFor(mainCategoryName: mainCategory.enName)
         
-        service.request(with: endPoint) { result in
-            
-            switch result {
-            case .success(let dto):
+        networkWithShortcap.network
+            .request(requestConvertible: requestBox) { result in
                 
-                if let subCategories = dto.data?.toEntity() {
+                switch result {
+                case .success(let dto):
                     
-                    completion(.success(subCategories))
-                }
-                
-                completion(.failure(.networkError))
-                
-            case .failure(let error):
-                
-                switch error {
-                case .networkFailure(_):
-                    completion(.failure(.networkError))
-                default:
-                    printIfDebug("‼️서브카테고리 가져오기 실패: \(error.localizedDescription)")
-                    completion(.failure(.unknownError))
-                }
+                    if let subCategories = dto.data?.toEntity() {
+                        
+                        completion(.success(subCategories))
+                    }
+                    
+                    completion(.failure(ResponseError.dataIsNotFound))
+                    
+                case .failure(let error):
+                    
+                    completion(.failure(error))
             }
         }
     }

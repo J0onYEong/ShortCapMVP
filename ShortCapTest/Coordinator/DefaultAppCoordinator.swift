@@ -1,6 +1,6 @@
 import UIKit
-import OnBoardingFeature
-import MainFeature
+import OnBoardingPageFeature
+import MainPageFeature
 import Domain
 import Core
 

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import MainFeature
+import MainPageFeature
 import Core
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {

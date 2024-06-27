@@ -1,4 +1,4 @@
-import OnBoardingFeature
+import OnBoardingPageFeature
 import Domain
 import Data
 import Swinject

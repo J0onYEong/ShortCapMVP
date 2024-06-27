@@ -2,9 +2,9 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Bundle_id</key>
+	<key>BUNDLE_ID</key>
 	<string>$(HOST_APP_BUNDLE_IDENTIFIER)</string>
-	<key>App Group</key>
+	<key>APP_GROUP</key>
 	<string>$(APP_GROUP)</string>
 	<key>BASE_URL</key>
 	<string>$(BASE_URL)</string>
